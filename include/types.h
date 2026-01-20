@@ -44,4 +44,35 @@ typedef enum {
     MSG_KONIEC_DNIA = 13
 } TypKomunikatu;
 
+
+/* ========== STRUKTURA BILETU ========== */
+typedef struct {
+    int id;
+    int typ;                    /* BILET_JEDNORAZOWY, BILET_CZASOWY_*, BILET_DZIENNY */
+    time_t czas_zakupu;
+    time_t czas_waznosci;       /* dla biletów czasowych */
+    int liczba_uzyc;
+    int max_uzyc;               /* -1 dla dziennych/czasowych */
+    bool aktywny;
+    bool vip;
+    int wlasciciel_id;
+} Bilet;
+
+/* ========== STRUKTURA TURYSTY ========== */
+typedef struct {
+    int id;
+    pid_t pid;
+    int wiek;
+    TypOsoby typ;               /* PIESZY lub ROWERZYSTA */
+    bool vip;
+    bool dziecko_pod_opieka;    /* czy wymaga opieki (4-8 lat) */
+    int opiekun_id;             /* ID opiekuna jeśli dziecko */
+    int dzieci_pod_opieka[MAX_DZIECI_POD_OPIEKA];  /* ID dzieci pod opieką */
+    int liczba_dzieci;
+    Bilet bilet;
+    StatusTurysty status;
+    int liczba_zjazdow;
+} Turysta;
+
+
 #endif
