@@ -44,7 +44,6 @@ typedef enum {
     MSG_KONIEC_DNIA = 13
 } TypKomunikatu;
 
-
 /* ========== STRUKTURA BILETU ========== */
 typedef struct {
     int id;
@@ -74,5 +73,82 @@ typedef struct {
     int liczba_zjazdow;
 } Turysta;
 
+/* ========== STRUKTURA KRZESEŁKA ========== */
+typedef struct {
+    int id;
+    bool aktywne;
+    int pasazerowie[POJEMNOSC_KRZESELKA];   /* ID turystów */
+    int liczba_pasazerow;
+    int liczba_rowerzystow;
+    time_t czas_wyjazdu;
+} Krzeselko;
+
+/* ========== STRUKTURA BRAMKI ========== */
+typedef struct {
+    int id;
+    bool otwarta;
+    int aktualny_turysta_id;
+    time_t ostatnie_uzycie;
+} Bramka;
+
+/* ========== WPIS REJESTRU PRZEJŚĆ ========== */
+typedef struct {
+    int bilet_id;
+    int turysta_id;
+    time_t czas;
+    int numer_bramki;
+    int numer_zjazdu;
+} WpisRejestru;
+
+/* ========== MAKSYMALNA LICZBA WPISÓW W REJESTRZE ========== */
+#define MAX_WPISOW_REJESTRU 2000
+
+/* ========== STAN WSPÓŁDZIELONY ========== */
+typedef struct {
+    /* Flagi systemowe */
+    bool kolej_aktywna;
+    bool kolej_zatrzymana;
+    bool godziny_pracy;
+    time_t czas_startu;
+    
+    /* Liczniki */
+    int liczba_osob_na_stacji;
+    int liczba_osob_na_peronie;
+    int liczba_aktywnych_krzeselek;
+    int nastepny_turysta_id;
+    int nastepny_bilet_id;
+    
+    /* Pracownicy */
+    pid_t pid_pracownik1;
+    pid_t pid_pracownik2;
+    bool pracownik1_gotowy;
+    bool pracownik2_gotowy;
+    int kto_zatrzymal;          /* 1 lub 2, 0 = nikt */
+    
+    /* Bramki */
+    Bramka bramki_wejsciowe[LICZBA_BRAMEK_WEJSCIOWYCH];
+    Bramka bramki_peronowe[LICZBA_BRAMEK_PERONOWYCH];
+    
+    /* Krzesełka */
+    Krzeselko krzeselka[MAX_AKTYWNYCH_KRZESELEK];
+    int nastepne_krzeselko_idx;
+    
+    /* Statystyki */
+    int laczna_liczba_zjazdow;
+    int liczba_sprzedanych_biletow;
+    
+    /* Rejestr przejść */
+    WpisRejestru rejestr[MAX_WPISOW_REJESTRU];
+    int liczba_wpisow_rejestru;
+} StanWspoldzielony;
+
+/* ========== KOMUNIKAT IPC ========== */
+typedef struct {
+    long mtype;                 /* Typ komunikatu (wymagane przez System V) */
+    int nadawca_id;
+    int typ_komunikatu;         /* TypKomunikatu */
+    int dane[8];                /* Dane dodatkowe */
+    char tekst[64];             /* Opcjonalny tekst */
+} Komunikat;
 
 #endif
