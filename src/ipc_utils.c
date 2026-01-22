@@ -294,3 +294,148 @@ void usun_pamiec_wspoldzielona(PamiecWspoldzielona *shm) {
         shmctl(shm->shm_id, IPC_RMID, NULL);
     }
 }
+
+/* ========== INICJALIZACJA KOLEJEK KOMUNIKATÓW ========== */
+
+int inicjalizuj_kolejki(KolejkiKomunikatow *mq) {
+    /* Usuń stare kolejki jeśli istnieją */
+    int stara_mq;
+    stara_mq = msgget(MQ_KEY_KASA, 0666);
+    if (stara_mq != -1) msgctl(stara_mq, IPC_RMID, NULL);
+    stara_mq = msgget(MQ_KEY_BRAMKI, 0666);
+    if (stara_mq != -1) msgctl(stara_mq, IPC_RMID, NULL);
+    stara_mq = msgget(MQ_KEY_PRACOWNICY, 0666);
+    if (stara_mq != -1) msgctl(stara_mq, IPC_RMID, NULL);
+    stara_mq = msgget(MQ_KEY_KRZESLA, 0666);
+    if (stara_mq != -1) msgctl(stara_mq, IPC_RMID, NULL);
+    
+    mq->mq_kasa = msgget(MQ_KEY_KASA, IPC_CREAT | IPC_EXCL | 0666);
+    if (mq->mq_kasa == -1) {
+        perror("msgget kasa");
+        return -1;
+    }
+    
+    mq->mq_bramki = msgget(MQ_KEY_BRAMKI, IPC_CREAT | IPC_EXCL | 0666);
+    if (mq->mq_bramki == -1) {
+        perror("msgget bramki");
+        return -1;
+    }
+    
+    mq->mq_pracownicy = msgget(MQ_KEY_PRACOWNICY, IPC_CREAT | IPC_EXCL | 0666);
+    if (mq->mq_pracownicy == -1) {
+        perror("msgget pracownicy");
+        return -1;
+    }
+    
+    mq->mq_krzesla = msgget(MQ_KEY_KRZESLA, IPC_CREAT | IPC_EXCL | 0666);
+    if (mq->mq_krzesla == -1) {
+        perror("msgget krzesla");
+        return -1;
+    }
+    
+    return 0;
+}
+
+/* ========== ŁĄCZENIE Z KOLEJKAMI ========== */
+
+int polacz_kolejki(KolejkiKomunikatow *mq) {
+    mq->mq_kasa = msgget(MQ_KEY_KASA, 0666);
+    mq->mq_bramki = msgget(MQ_KEY_BRAMKI, 0666);
+    mq->mq_pracownicy = msgget(MQ_KEY_PRACOWNICY, 0666);
+    mq->mq_krzesla = msgget(MQ_KEY_KRZESLA, 0666);
+    
+    if (mq->mq_kasa == -1 || mq->mq_bramki == -1 || 
+        mq->mq_pracownicy == -1 || mq->mq_krzesla == -1) {
+        perror("msgget connect");
+        return -1;
+    }
+    
+    return 0;
+}
+
+/* ========== USUWANIE KOLEJEK ========== */
+
+void usun_kolejki(KolejkiKomunikatow *mq) {
+    if (mq->mq_kasa != -1) msgctl(mq->mq_kasa, IPC_RMID, NULL);
+    if (mq->mq_bramki != -1) msgctl(mq->mq_bramki, IPC_RMID, NULL);
+    if (mq->mq_pracownicy != -1) msgctl(mq->mq_pracownicy, IPC_RMID, NULL);
+    if (mq->mq_krzesla != -1) msgctl(mq->mq_krzesla, IPC_RMID, NULL);
+}
+
+/* ========== WYSYŁANIE KOMUNIKATU ========== */
+
+int wyslij_komunikat(int mq_id, Komunikat *msg) {
+    if (msgsnd(mq_id, msg, sizeof(Komunikat) - sizeof(long), 0) == -1) {
+        if (errno != EINTR) {
+            perror("msgsnd");
+        }
+        return -1;
+    }
+    return 0;
+}
+
+/* ========== ODBIERANIE KOMUNIKATU (BLOKUJĄCE) ========== */
+
+int odbierz_komunikat(int mq_id, Komunikat *msg, long mtype) {
+    if (msgrcv(mq_id, msg, sizeof(Komunikat) - sizeof(long), mtype, 0) == -1) {
+        if (errno != EINTR) {
+            perror("msgrcv");
+        }
+        return -1;
+    }
+    return 0;
+}
+
+/* ========== ODBIERANIE KOMUNIKATU (NIEBLOKUJĄCE) ========== */
+
+int odbierz_komunikat_nieblokujaco(int mq_id, Komunikat *msg, long mtype) {
+    if (msgrcv(mq_id, msg, sizeof(Komunikat) - sizeof(long), mtype, IPC_NOWAIT) == -1) {
+        if (errno == ENOMSG) {
+            return 0;  /* Brak komunikatu - to nie błąd */
+        }
+        return -1;
+    }
+    return 1;  /* Odebrano komunikat */
+}
+
+/* ========== FUNKCJE ZBIORCZE ========== */
+
+int inicjalizuj_wszystkie_zasoby(ZasobyIPC *zasoby) {
+    memset(zasoby, 0, sizeof(ZasobyIPC));
+    
+    if (inicjalizuj_semafory(&zasoby->sem) == -1) {
+        fprintf(stderr, "Błąd inicjalizacji semaforów\n");
+        return -1;
+    }
+    
+    if (inicjalizuj_pamiec_wspoldzielona(&zasoby->shm) == -1) {
+        fprintf(stderr, "Błąd inicjalizacji pamięci współdzielonej\n");
+        usun_semafory(&zasoby->sem);
+        return -1;
+    }
+    
+    if (inicjalizuj_kolejki(&zasoby->mq) == -1) {
+        fprintf(stderr, "Błąd inicjalizacji kolejek\n");
+        usun_semafory(&zasoby->sem);
+        usun_pamiec_wspoldzielona(&zasoby->shm);
+        return -1;
+    }
+    
+    return 0;
+}
+
+int polacz_z_zasobami(ZasobyIPC *zasoby) {
+    memset(zasoby, 0, sizeof(ZasobyIPC));
+    
+    if (polacz_semafory(&zasoby->sem) == -1) return -1;
+    if (polacz_pamiec_wspoldzielona(&zasoby->shm) == -1) return -1;
+    if (polacz_kolejki(&zasoby->mq) == -1) return -1;
+    
+    return 0;
+}
+
+void usun_wszystkie_zasoby(ZasobyIPC *zasoby) {
+    usun_kolejki(&zasoby->mq);
+    usun_pamiec_wspoldzielona(&zasoby->shm);
+    usun_semafory(&zasoby->sem);
+}
