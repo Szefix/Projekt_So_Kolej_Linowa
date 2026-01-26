@@ -132,3 +132,83 @@ int kup_bilet(void) {
     
     return 0;
 }
+
+/* Przejście przez bramkę wejściową */
+int przejdz_bramke_wejsciowa(void) {
+    StanWspoldzielony *stan = turysta_zasoby.shm.stan;
+    
+    /* Sprawdź czy kolej działa */
+    if (!stan->godziny_pracy) {
+        LOG_W("TURYSTA #%d: Kolej zamknięta!", ja.id);
+        return -1;
+    }
+    
+    /* Sprawdź ważność biletu */
+    if (!sprawdz_waznosc_biletu()) {
+        LOG_W("TURYSTA #%d: Bilet #%d jest nieważny!", ja.id, ja.bilet.id);
+        return -1;
+    }
+    
+    ja.status = STATUS_PRZED_BRAMKA_WEJSCIOWA;
+    
+    /* VIP wchodzi bez kolejki - priorytetowy semafor */
+    if (ja.vip) {
+        LOG_I("TURYSTA #%d [VIP]: Wchodzę bez kolejki", ja.id);
+        sem_czekaj(turysta_zasoby.sem.vip);
+    }
+    
+    LOG_I("TURYSTA #%d: Czekam na miejsce na stacji dolnej", ja.id);
+    
+    /* Czekaj na miejsce na stacji dolnej (semafor licznikowy) */
+    sem_czekaj(turysta_zasoby.sem.stacja_dolna);
+    
+    /* Znajdź wolną bramkę wejściową */
+    int bramka = -1;
+    for (int i = 0; i < LICZBA_BRAMEK_WEJSCIOWYCH; i++) {
+        if (sem_probuj(turysta_zasoby.sem.bramki_wejsciowe[i]) == 0) {
+            bramka = i;
+            break;
+        }
+    }
+    
+    /* Jeśli żadna bramka nie była wolna, czekaj na losową */
+    if (bramka == -1) {
+        bramka = rand() % LICZBA_BRAMEK_WEJSCIOWYCH;
+        sem_czekaj(turysta_zasoby.sem.bramki_wejsciowe[bramka]);
+    }
+    
+    /* Użyj biletu */
+    ja.bilet.liczba_uzyc++;
+    
+    /* Zarejestruj przejście */
+    sem_czekaj(turysta_zasoby.sem.rejestr);
+    if (stan->liczba_wpisow_rejestru < MAX_WPISOW_REJESTRU) {
+        WpisRejestru *wpis = &stan->rejestr[stan->liczba_wpisow_rejestru];
+        wpis->bilet_id = ja.bilet.id;
+        wpis->turysta_id = ja.id;
+        wpis->czas = time(NULL);
+        wpis->numer_bramki = bramka;
+        wpis->numer_zjazdu = ja.liczba_zjazdow + 1;
+        stan->liczba_wpisow_rejestru++;
+    }
+    sem_sygnalizuj(turysta_zasoby.sem.rejestr);
+    
+    /* Aktualizuj liczbę osób na stacji */
+    sem_czekaj(turysta_zasoby.sem.stan);
+    stan->liczba_osob_na_stacji++;
+    sem_sygnalizuj(turysta_zasoby.sem.stan);
+    
+    LOG_I("TURYSTA #%d: Przeszedłem przez bramkę %d, bilet #%d użyty %d raz(y)",
+          ja.id, bramka, ja.bilet.id, ja.bilet.liczba_uzyc);
+    
+    /* Zwolnij bramkę */
+    sem_sygnalizuj(turysta_zasoby.sem.bramki_wejsciowe[bramka]);
+    
+    /* Zwolnij priorytet VIP */
+    if (ja.vip) {
+        sem_sygnalizuj(turysta_zasoby.sem.vip);
+    }
+    
+    ja.status = STATUS_NA_STACJI_DOLNEJ;
+    return 0;
+}
