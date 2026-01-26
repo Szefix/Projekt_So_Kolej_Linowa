@@ -212,3 +212,90 @@ int przejdz_bramke_wejsciowa(void) {
     ja.status = STATUS_NA_STACJI_DOLNEJ;
     return 0;
 }
+
+/* Czekanie na wejście na peron */
+int czekaj_na_peron(void) {
+    StanWspoldzielony *stan = turysta_zasoby.shm.stan;
+    
+    ja.status = STATUS_OCZEKUJE_NA_PERON;
+    LOG_I("TURYSTA #%d: Czekam na pozwolenie wejścia na peron", ja.id);
+    
+    /* Wyślij prośbę do pracownika1 */
+    Komunikat prosba;
+    memset(&prosba, 0, sizeof(Komunikat));
+    prosba.mtype = MSG_PROSBA_O_PERON;
+    prosba.nadawca_id = ja.id;
+    prosba.typ_komunikatu = MSG_PROSBA_O_PERON;
+    prosba.dane[0] = ja.typ;  /* PIESZY lub ROWERZYSTA */
+    prosba.dane[1] = ja.dziecko_pod_opieka ? 1 : 0;
+    prosba.dane[2] = ja.opiekun_id;
+    prosba.dane[3] = ja.wiek;
+    
+    if (wyslij_komunikat(turysta_zasoby.mq.mq_pracownicy, &prosba) == -1) {
+        LOG_E("TURYSTA #%d: Błąd wysyłania prośby o peron", ja.id);
+        return -1;
+    }
+    
+    /* Czekaj na semaforze - pracownik1 go zwolni gdy będzie można wejść */
+    sem_czekaj(turysta_zasoby.sem.peron);
+    
+    /* Sprawdź czy kolej nie została zatrzymana */
+    if (stan->kolej_zatrzymana) {
+        LOG_W("TURYSTA #%d: Kolej zatrzymana! Czekam...", ja.id);
+        /* Będziemy czekać aż pracownik zwolni kolejny semafor */
+        sem_czekaj(turysta_zasoby.sem.peron);
+    }
+    
+    ja.status = STATUS_NA_PERONIE;
+    LOG_I("TURYSTA #%d: Wchodzę na peron", ja.id);
+    
+    /* Aktualizuj liczniki */
+    sem_czekaj(turysta_zasoby.sem.stan);
+    stan->liczba_osob_na_stacji--;
+    stan->liczba_osob_na_peronie++;
+    sem_sygnalizuj(turysta_zasoby.sem.stan);
+    
+    return 0;
+}
+
+/* Wsiadanie na krzesełko */
+int wsiadz_na_krzeselko(void) {
+    StanWspoldzielony *stan = turysta_zasoby.shm.stan;
+    
+    LOG_I("TURYSTA #%d: Czekam na krzesełko", ja.id);
+    
+    /* Wyślij gotowość do wsiadania */
+    Komunikat msg;
+    memset(&msg, 0, sizeof(Komunikat));
+    msg.mtype = MSG_WSIADANIE_NA_KRZESLO;
+    msg.nadawca_id = ja.id;
+    msg.typ_komunikatu = MSG_WSIADANIE_NA_KRZESLO;
+    msg.dane[0] = ja.typ;
+    msg.dane[1] = ja.dziecko_pod_opieka ? 1 : 0;
+    
+    if (wyslij_komunikat(turysta_zasoby.mq.mq_krzesla, &msg) == -1) {
+        LOG_E("TURYSTA #%d: Błąd wysyłania gotowości do wsiadania", ja.id);
+        return -1;
+    }
+    
+    /* Czekaj na potwierdzenie - specjalny typ wiadomości dla tego turysty */
+    Komunikat odp;
+    long moj_typ = ja.id + 10000;  /* Unikalne ID odpowiedzi */
+    
+    if (odbierz_komunikat(turysta_zasoby.mq.mq_krzesla, &odp, moj_typ) == -1) {
+        LOG_E("TURYSTA #%d: Błąd oczekiwania na krzesełko", ja.id);
+        return -1;
+    }
+    
+    int krzeselko_id = odp.dane[0];
+    
+    ja.status = STATUS_NA_KRZESELKU;
+    LOG_I("TURYSTA #%d: Wsiadłem na krzesełko #%d", ja.id, krzeselko_id);
+    
+    /* Aktualizuj licznik osób na peronie */
+    sem_czekaj(turysta_zasoby.sem.stan);
+    stan->liczba_osob_na_peronie--;
+    sem_sygnalizuj(turysta_zasoby.sem.stan);
+    
+    return krzeselko_id;
+}
