@@ -299,3 +299,135 @@ int wsiadz_na_krzeselko(void) {
     
     return krzeselko_id;
 }
+
+/* Jazda na trasie rowerowej */
+void jedz_na_trasie(void) {
+    if (ja.typ != ROWERZYSTA) {
+        LOG_I("TURYSTA #%d (pieszy): Schodzę ze stacji górnej", ja.id);
+        return;
+    }
+    
+    /* Wybierz losową trasę */
+    int czasy_tras[] = {CZAS_TRASY_T1, CZAS_TRASY_T2, CZAS_TRASY_T3};
+    const char *nazwy_tras[] = {"T1 (łatwa)", "T2 (średnia)", "T3 (trudna)"};
+    int wybor = rand() % 3;
+    int czas_trasy = czasy_tras[wybor];
+    
+    ja.status = STATUS_NA_TRASIE;
+    LOG_I("TURYSTA #%d (rowerzysta): Wybieram trasę %s (czas: %ds)", 
+          ja.id, nazwy_tras[wybor], czas_trasy);
+    
+    /* Symulacja czasu przejazdu - tu sleep jest uzasadniony */
+    sleep(czas_trasy);
+    
+    ja.liczba_zjazdow++;
+    LOG_I("TURYSTA #%d: Ukończyłem zjazd #%d", ja.id, ja.liczba_zjazdow);
+}
+
+/* Główna funkcja procesu turysty */
+int turysta_main(int id, int wiek, int opiekun) {
+    /* Inicjalizacja generatora losowego */
+    srand(time(NULL) ^ (getpid() << 16) ^ id);
+    
+    /* Rejestracja obsługi sygnałów */
+    signal(SIGTERM, turysta_obsluz_sygnal);
+    signal(SIGINT, turysta_obsluz_sygnal);
+    
+    /* Połączenie z zasobami IPC */
+    if (polacz_z_zasobami(&turysta_zasoby) == -1) {
+        fprintf(stderr, "TURYSTA #%d: Nie można połączyć z zasobami IPC\n", id);
+        return 1;
+    }
+    
+    /* Inicjalizacja logowania */
+    char log_name[64];
+    snprintf(log_name, sizeof(log_name), "logs/turysta_%d.log", id);
+    logger_init(log_name);
+    
+    /* Inicjalizacja turysty */
+    inicjalizuj_turystę(id, wiek, opiekun);
+    
+    LOG_I("TURYSTA #%d: Przychodzę (wiek: %d, %s, %s, %s)", 
+          ja.id, ja.wiek, 
+          ja.typ == ROWERZYSTA ? "rowerzysta" : "pieszy",
+          ja.vip ? "VIP" : "zwykły",
+          ja.dziecko_pod_opieka ? "pod opieką" : "samodzielny");
+    
+    StanWspoldzielony *stan = turysta_zasoby.shm.stan;
+    
+    /* Główna pętla turysty */
+    while (turysta_dzialaj && stan->kolej_aktywna) {
+        
+        /* Kup bilet jeśli nie masz ważnego */
+        if (!sprawdz_waznosc_biletu()) {
+            if (!stan->godziny_pracy) {
+                LOG_I("TURYSTA #%d: Kolej zamknięta, wychodzę", ja.id);
+                break;
+            }
+            if (kup_bilet() == -1) {
+                LOG_E("TURYSTA #%d: Nie udało się kupić biletu", ja.id);
+                break;
+            }
+        }
+        
+        /* Przejdź przez bramkę wejściową */
+        if (przejdz_bramke_wejsciowa() == -1) {
+            break;
+        }
+        
+        /* Czekaj na wejście na peron */
+        if (czekaj_na_peron() == -1) {
+            /* Zwolnij miejsce na stacji */
+            sem_sygnalizuj(turysta_zasoby.sem.stacja_dolna);
+            break;
+        }
+        
+        /* Wsiądź na krzesełko */
+        int krzeselko = wsiadz_na_krzeselko();
+        if (krzeselko == -1) {
+            sem_sygnalizuj(turysta_zasoby.sem.stacja_dolna);
+            break;
+        }
+        
+        /* Symulacja jazdy na górę (2 sekundy) */
+        sleep(2);
+        
+        /* Na stacji górnej */
+        ja.status = STATUS_NA_STACJI_GORNEJ;
+        LOG_I("TURYSTA #%d: Dojechałem na stację górną", ja.id);
+        
+        /* Wyjdź jednym z dwóch wyjść */
+        int wyjscie = rand() % LICZBA_WYJSC;
+        LOG_I("TURYSTA #%d: Wychodzę wyjściem %d", ja.id, wyjscie);
+        
+        /* Jedź na trasie (jeśli rowerzysta) */
+        jedz_na_trasie();
+        
+        /* Zwolnij miejsce na stacji dolnej */
+        sem_sygnalizuj(turysta_zasoby.sem.stacja_dolna);
+        
+        /* Sprawdź czy kontynuować */
+        if (!sprawdz_waznosc_biletu()) {
+            LOG_I("TURYSTA #%d: Bilet nieważny, kończę", ja.id);
+            break;
+        }
+        
+        /* 30% szans na zakończenie po każdym zjeździe */
+        if (rand() % 100 < 30) {
+            LOG_I("TURYSTA #%d: Wystarczy na dziś, wychodzę", ja.id);
+            break;
+        }
+        
+        /* Sprawdź godziny pracy */
+        if (!stan->godziny_pracy) {
+            LOG_I("TURYSTA #%d: Kolej się zamyka, wychodzę", ja.id);
+            break;
+        }
+    }
+    
+    ja.status = STATUS_ZAKONCZONY;
+    LOG_I("TURYSTA #%d: Kończę dzień z %d zjazdami", ja.id, ja.liczba_zjazdow);
+    
+    logger_close();
+    return 0;
+}
