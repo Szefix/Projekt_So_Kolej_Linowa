@@ -4,9 +4,9 @@
 #include <signal.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
-#include <errno.h>
 #include <time.h>
 #include <string.h>
+#include <errno.h>
 #include "config.h"
 #include "types.h"
 #include "ipc_utils.h"
