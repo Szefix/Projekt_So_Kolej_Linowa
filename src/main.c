@@ -7,16 +7,13 @@
 #include <time.h>
 #include <string.h>
 #include <errno.h>
+#include <pthread.h>
+#include <fcntl.h>
 #include "config.h"
 #include "types.h"
 #include "ipc_utils.h"
+#include "pipe_comm.h"
 #include "logger.h"
-
-/* Deklaracje zewnętrznych funkcji main */
-extern int kasjer_main(void);
-extern int pracownik1_main(void);
-extern int pracownik2_main(void);
-extern int turysta_main(int id, int wiek, int opiekun);
 
 /* Zmienne globalne */
 static ZasobyIPC zasoby;
@@ -27,13 +24,239 @@ static pid_t pidy_turystow[200];
 static int liczba_turystow = 0;
 static volatile sig_atomic_t zakonczenie = 0;
 
-/* Obsługa sygnałów */
-void obsluz_sygnal_glowny(int sig) {
-    (void)sig;
-    zakonczenie = 1;
+/* Wątek monitorowania stanu */
+static pthread_t watek_monitora;
+static volatile int monitor_aktywny = 1;
+
+/* Pipe do komunikacji z wątkiem monitora */
+static PipeKanaly pipe_monitor;
+
+/* ========== WĄTEK MONITOROWANIA ========== */
+void *watek_monitor_funkcja(void *arg) {
+    (void)arg;
+    StanWspoldzielony *stan = zasoby.shm.stan;
+    
+    LOG_I("MONITOR: Wątek monitorowania uruchomiony");
+    
+    while (monitor_aktywny && stan->kolej_aktywna) {
+        /* Sprawdź czy jest komunikat przez pipe */
+        KomunikatPipe msg;
+        int wynik = odbierz_z_fifo_nieblokujaco(pipe_monitor.fd_read, &msg);
+        
+        if (wynik > 0) {
+            LOG_D("MONITOR: Otrzymano komunikat typu %d", msg.typ);
+        }
+        
+        /* Wyświetl stan - bez blokady semafora żeby uniknąć problemów */
+        printf("\r[Czas: %3ld s] Stacja: %2d | Peron: %2d | Krzesełka: %2d | Zjazdy: %3d | Bilety: %3d   ",
+               time(NULL) - stan->czas_startu,
+               stan->liczba_osob_na_stacji,
+               stan->liczba_osob_na_peronie,
+               stan->liczba_aktywnych_krzeselek,
+               stan->laczna_liczba_zjazdow,
+               stan->liczba_sprzedanych_biletow);
+        fflush(stdout);
+        
+        usleep(500000);
+    }
+    
+    LOG_I("MONITOR: Wątek monitorowania zakończony");
+    pthread_exit(NULL);
 }
 
-/* Wyświetlanie banera */
+/* ========== OBSŁUGA SYGNAŁÓW Z sigaction() ========== */
+void obsluz_sygnal_glowny(int sig, siginfo_t *info, void *context) {
+    (void)info;
+    (void)context;
+    
+    if (sig == SIGINT || sig == SIGTERM) {
+        zakonczenie = 1;
+    }
+    /* Nie obsługujemy SIGCHLD tutaj - zbieramy ręcznie */
+}
+
+void ustaw_obsluge_sygnalow(void) {
+    struct sigaction sa;
+    
+    memset(&sa, 0, sizeof(sa));
+    sa.sa_sigaction = obsluz_sygnal_glowny;
+    sa.sa_flags = SA_SIGINFO | SA_RESTART;
+    sigemptyset(&sa.sa_mask);
+    
+    if (sigaction(SIGINT, &sa, NULL) == -1) {
+        perror("sigaction SIGINT");
+    }
+    if (sigaction(SIGTERM, &sa, NULL) == -1) {
+        perror("sigaction SIGTERM");
+    }
+    
+    /* Ignoruj SIGCHLD - zbieramy ręcznie w zbierz_procesy() */
+    signal(SIGCHLD, SIG_IGN);
+}
+
+/* ========== URUCHAMIANIE PROCESÓW Z exec() ========== */
+void uruchom_kasjer(void) {
+    pid_kasjer = fork();
+    
+    if (pid_kasjer == -1) {
+        perror("fork kasjer");
+        return;
+    }
+    
+    if (pid_kasjer == 0) {
+        execl("./bin/kasjer", "kasjer", NULL);
+        perror("execl kasjer");
+        _exit(1);
+    }
+    
+    LOG_I("MAIN: Uruchomiono kasjera (PID: %d)", pid_kasjer);
+}
+
+void uruchom_pracownika(int numer) {
+    pid_t *pid = (numer == 1) ? &pid_pracownik1 : &pid_pracownik2;
+    const char *nazwa = (numer == 1) ? "./bin/pracownik1" : "./bin/pracownik2";
+    const char *arg = (numer == 1) ? "pracownik1" : "pracownik2";
+    
+    *pid = fork();
+    
+    if (*pid == -1) {
+        perror("fork pracownik");
+        return;
+    }
+    
+    if (*pid == 0) {
+        execl(nazwa, arg, NULL);
+        perror("execl pracownik");
+        _exit(1);
+    }
+    
+    LOG_I("MAIN: Uruchomiono pracownika%d (PID: %d)", numer, *pid);
+}
+
+void uruchom_turystę(int id, int wiek, int opiekun) {
+    pid_t pid = fork();
+    
+    if (pid == -1) {
+        perror("fork turysta");
+        return;
+    }
+    
+    if (pid == 0) {
+        char arg_id[16], arg_wiek[16], arg_opiekun[16];
+        snprintf(arg_id, sizeof(arg_id), "%d", id);
+        snprintf(arg_wiek, sizeof(arg_wiek), "%d", wiek);
+        snprintf(arg_opiekun, sizeof(arg_opiekun), "%d", opiekun);
+        
+        execl("./bin/turysta", "turysta", arg_id, arg_wiek, arg_opiekun, NULL);
+        perror("execl turysta");
+        _exit(1);
+    }
+    
+    if (liczba_turystow < 200) {
+        pidy_turystow[liczba_turystow++] = pid;
+    }
+    LOG_D("MAIN: Uruchomiono turystę #%d (PID: %d, wiek: %d)", id, pid, wiek);
+}
+
+/* ========== GENEROWANIE GRUPY ========== */
+void generuj_grupe(int *id) {
+    int dorosly_id = (*id)++;
+    int wiek_dorosly = 20 + (rand() % 50);
+    
+    int dzieci = 0;
+    if (rand() % 100 < 25) {
+        dzieci = 1 + (rand() % MAX_DZIECI_POD_OPIEKA);
+    }
+    
+    LOG_I("MAIN: Generuję turystę #%d (wiek: %d) z %d dziećmi",
+          dorosly_id, wiek_dorosly, dzieci);
+    
+    uruchom_turystę(dorosly_id, wiek_dorosly, -1);
+    
+    for (int i = 0; i < dzieci; i++) {
+        int dziecko_id = (*id)++;
+        int wiek_dziecka = WIEK_MIN_DZIECKO + 
+                           (rand() % (WIEK_DZIECKO_OPIEKA - WIEK_MIN_DZIECKO));
+        uruchom_turystę(dziecko_id, wiek_dziecka, dorosly_id);
+    }
+}
+
+/* ========== ZATRZYMANIE I OCZEKIWANIE NA PROCESY ========== */
+void zatrzymaj_i_czekaj_na_procesy(void) {
+    LOG_I("MAIN: Zatrzymuję wszystkie procesy...");
+    
+    /* Zatrzymaj wątek monitora */
+    monitor_aktywny = 0;
+    
+    printf("\n\nWysyłanie sygnałów zakończenia...\n");
+    
+    /* Wyślij SIGTERM do wszystkich turystów */
+    for (int i = 0; i < liczba_turystow; i++) {
+        if (pidy_turystow[i] > 0) {
+            kill(pidy_turystow[i], SIGTERM);
+        }
+    }
+    
+    /* Wyślij SIGTERM do pracowników i kasjera */
+    if (pid_pracownik1 > 0) kill(pid_pracownik1, SIGTERM);
+    if (pid_pracownik2 > 0) kill(pid_pracownik2, SIGTERM);
+    if (pid_kasjer > 0) kill(pid_kasjer, SIGTERM);
+    
+    printf("Oczekiwanie na zakończenie procesów potomnych...\n");
+    
+    /* Daj czas na reakcję */
+    usleep(500000);
+    
+    /* Zbierz wszystkie procesy potomne z timeoutem */
+    int zebrane = 0;
+    int timeout = 30;  /* 3 sekundy */
+    
+    while (timeout > 0) {
+        int status;
+        pid_t pid = waitpid(-1, &status, WNOHANG);
+        
+        if (pid > 0) {
+            zebrane++;
+            LOG_D("MAIN: Proces %d zakończony", pid);
+        } else if (pid == -1) {
+            if (errno == ECHILD) {
+                /* Nie ma więcej procesów potomnych */
+                break;
+            }
+        } else {
+            /* pid == 0, brak zakończonych procesów, czekaj */
+            usleep(100000);
+            timeout--;
+        }
+    }
+    
+    /* Jeśli timeout - wymuś zakończenie */
+    if (timeout == 0) {
+        printf("Timeout - wymuszam zakończenie (SIGKILL)...\n");
+        
+        for (int i = 0; i < liczba_turystow; i++) {
+            if (pidy_turystow[i] > 0) {
+                kill(pidy_turystow[i], SIGKILL);
+            }
+        }
+        if (pid_pracownik1 > 0) kill(pid_pracownik1, SIGKILL);
+        if (pid_pracownik2 > 0) kill(pid_pracownik2, SIGKILL);
+        if (pid_kasjer > 0) kill(pid_kasjer, SIGKILL);
+        
+        /* Zbierz pozostałe */
+        while (waitpid(-1, NULL, WNOHANG) > 0) {
+            zebrane++;
+        }
+    }
+    
+    /* Dołącz wątek monitora */
+    pthread_join(watek_monitora, NULL);
+    
+    LOG_I("MAIN: Zebrano %d procesów potomnych", zebrane);
+    printf("Zebrano %d procesów potomnych.\n", zebrane);
+}
+
+/* ========== WYŚWIETLANIE BANERA ========== */
 void wyswietl_banner(void) {
     printf("\n");
     printf("╔═══════════════════════════════════════════════════════════════╗\n");
@@ -52,202 +275,121 @@ void wyswietl_banner(void) {
     printf("\n");
 }
 
-/* Uruchomienie procesów pomocniczych */
-void uruchom_procesy(void) {
-    /* Kasjer */
-    pid_kasjer = fork();
-    if (pid_kasjer == 0) {
-        exit(kasjer_main());
-    } else if (pid_kasjer > 0) {
-        LOG_I("MAIN: Uruchomiono kasjera (PID: %d)", pid_kasjer);
-    } else {
-        perror("fork kasjer");
-    }
-    
-    usleep(50000);
-    
-    /* Pracownik 1 */
-    pid_pracownik1 = fork();
-    if (pid_pracownik1 == 0) {
-        exit(pracownik1_main());
-    } else if (pid_pracownik1 > 0) {
-        LOG_I("MAIN: Uruchomiono pracownika1 (PID: %d)", pid_pracownik1);
-    } else {
-        perror("fork pracownik1");
-    }
-    
-    usleep(50000);
-    
-    /* Pracownik 2 */
-    pid_pracownik2 = fork();
-    if (pid_pracownik2 == 0) {
-        exit(pracownik2_main());
-    } else if (pid_pracownik2 > 0) {
-        LOG_I("MAIN: Uruchomiono pracownika2 (PID: %d)", pid_pracownik2);
-    } else {
-        perror("fork pracownik2");
-    }
-    
-    usleep(100000);
-}
-
-/* Generowanie turysty */
-void generuj_turystę(int id, int wiek, int opiekun) {
-    pid_t pid = fork();
-    if (pid == 0) {
-        exit(turysta_main(id, wiek, opiekun));
-    } else if (pid > 0) {
-        if (liczba_turystow < 200) {
-            pidy_turystow[liczba_turystow++] = pid;
-        }
-        LOG_D("MAIN: Uruchomiono turystę #%d (PID: %d, wiek: %d)", id, pid, wiek);
-    }
-}
-
-/* Generowanie grupy (dorosły + dzieci) */
-void generuj_grupe(int *id) {
-    int dorosly_id = (*id)++;
-    int wiek_dorosly = 20 + (rand() % 50);
-    
-    /* Liczba dzieci pod opieką (0-2) */
-    int dzieci = 0;
-    if (rand() % 100 < 25) {
-        dzieci = 1 + (rand() % MAX_DZIECI_POD_OPIEKA);
-    }
-    
-    LOG_I("MAIN: Generuję turystę #%d (wiek: %d) z %d dziećmi",
-          dorosly_id, wiek_dorosly, dzieci);
-    
-    generuj_turystę(dorosly_id, wiek_dorosly, -1);
-    
-    for (int i = 0; i < dzieci; i++) {
-        int dziecko_id = (*id)++;
-        int wiek_dziecka = WIEK_MIN_DZIECKO + (rand() % (WIEK_DZIECKO_OPIEKA - WIEK_MIN_DZIECKO));
-        generuj_turystę(dziecko_id, wiek_dziecka, dorosly_id);
-    }
-}
-
-/* Zatrzymanie wszystkich procesów */
-void zatrzymaj_wszystko(void) {
-    LOG_I("MAIN: Zatrzymuję wszystkie procesy...");
-    
-    /* Wyślij SIGTERM do wszystkich turystów */
-    for (int i = 0; i < liczba_turystow; i++) {
-        if (pidy_turystow[i] > 0) {
-            kill(pidy_turystow[i], SIGTERM);
-        }
-    }
-    
-    /* Poczekaj chwilę */
-    usleep(500000);
-    
-    /* Zatrzymaj pracowników i kasjera */
-    if (pid_pracownik1 > 0) kill(pid_pracownik1, SIGTERM);
-    if (pid_pracownik2 > 0) kill(pid_pracownik2, SIGTERM);
-    if (pid_kasjer > 0) kill(pid_kasjer, SIGTERM);
-}
-
-/* Zbieranie procesów potomnych */
-void zbierz_procesy(void) {
-    LOG_I("MAIN: Czekam na zakończenie procesów potomnych...");
-    
-    int status;
-    pid_t pid;
-    int zebrane = 0;
-    
-    /* Zbierz wszystkie procesy potomne */
-    while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
-        zebrane++;
-        if (WIFEXITED(status)) {
-            LOG_D("MAIN: Proces %d zakończył się z kodem %d", pid, WEXITSTATUS(status));
-        } else if (WIFSIGNALED(status)) {
-            LOG_D("MAIN: Proces %d zabity sygnałem %d", pid, WTERMSIG(status));
-        }
-    }
-    
-    /* Czekaj na pozostałe z timeoutem */
-    int timeout = 50;  /* 5 sekund */
-    while (timeout > 0) {
-        pid = waitpid(-1, &status, WNOHANG);
-        if (pid <= 0) {
-            if (pid == -1 && errno == ECHILD) {
-                break;  /* Nie ma więcej dzieci */
-            }
-            usleep(100000);
-            timeout--;
-        } else {
-            zebrane++;
-        }
-    }
-    
-    LOG_I("MAIN: Zebrano %d procesów potomnych", zebrane);
-}
-
-/* Wyświetlanie stanu w czasie rzeczywistym */
-void wyswietl_stan(StanWspoldzielony *stan) {
-    printf("\r[Czas: %3ld s] Stacja: %2d osób | Peron: %2d | Krzesełka: %2d | Zjazdy: %3d | Bilety: %3d",
-           time(NULL) - stan->czas_startu,
-           stan->liczba_osob_na_stacji,
-           stan->liczba_osob_na_peronie,
-           stan->liczba_aktywnych_krzeselek,
-           stan->laczna_liczba_zjazdow,
-           stan->liczba_sprzedanych_biletow);
-    fflush(stdout);
-}
-
-/* Tworzenie katalogu logs */
+/* ========== TWORZENIE KATALOGU LOGS ========== */
 void utworz_katalog_logs(void) {
     struct stat st = {0};
     if (stat("logs", &st) == -1) {
-        mkdir("logs", 0755);
+        if (mkdir("logs", 0755) == -1) {
+            perror("mkdir logs");
+        }
     }
+}
+
+/* ========== WALIDACJA PARAMETRÓW ========== */
+int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_turystow) {
+    *czas_symulacji = CZAS_ZAMKNIECIA;
+    *max_turystow = 100;
+    
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-t") == 0 && i + 1 < argc) {
+            int t = atoi(argv[i + 1]);
+            if (t < 10 || t > 3600) {
+                fprintf(stderr, "BŁĄD: Czas symulacji musi być między 10 a 3600 sekund\n");
+                return -1;
+            }
+            *czas_symulacji = t;
+            i++;
+        } else if (strcmp(argv[i], "-n") == 0 && i + 1 < argc) {
+            int n = atoi(argv[i + 1]);
+            if (n < 1 || n > 500) {
+                fprintf(stderr, "BŁĄD: Liczba turystów musi być między 1 a 500\n");
+                return -1;
+            }
+            *max_turystow = n;
+            i++;
+        } else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
+            printf("Użycie: %s [-t czas] [-n liczba_turystow]\n", argv[0]);
+            printf("  -t czas    Czas symulacji w sekundach (10-3600, domyślnie %d)\n", 
+                   CZAS_ZAMKNIECIA);
+            printf("  -n liczba  Max liczba turystów (1-500, domyślnie 100)\n");
+            printf("  -h         Wyświetl tę pomoc\n");
+            return 1;
+        } else {
+            fprintf(stderr, "BŁĄD: Nieznany parametr: %s\n", argv[i]);
+            fprintf(stderr, "Użyj -h aby wyświetlić pomoc\n");
+            return -1;
+        }
+    }
+    
+    return 0;
 }
 
 /* ========== GŁÓWNA FUNKCJA PROGRAMU ========== */
 int main(int argc, char *argv[]) {
-    (void)argc;
-    (void)argv;
+    int czas_symulacji, max_turystow;
     
-    /* Inicjalizacja generatora losowego */
+    /* Walidacja parametrów */
+    int wynik = waliduj_parametry(argc, argv, &czas_symulacji, &max_turystow);
+    if (wynik != 0) {
+        return (wynik > 0) ? 0 : 1;
+    }
+    
+    /* Inicjalizacja */
     srand(time(NULL) ^ getpid());
-    
-    /* Tworzenie katalogu logs */
     utworz_katalog_logs();
-    
-    /* Wyświetl banner */
     wyswietl_banner();
     
-    /* Rejestracja obsługi sygnałów */
-    signal(SIGINT, obsluz_sygnal_glowny);
-    signal(SIGTERM, obsluz_sygnal_glowny);
-    signal(SIGCHLD, SIG_IGN);  /* Ignoruj zakończenie dzieci na bieżąco */
+    /* Ustawienie obsługi sygnałów */
+    ustaw_obsluge_sygnalow();
     
     printf("Inicjalizacja zasobów IPC...\n");
+    
+    /* Tworzenie potoków (FIFO) */
+    if (utworz_fifo_wszystkie() == -1) {
+        fprintf(stderr, "BŁĄD: Nie można utworzyć potoków FIFO\n");
+        return 1;
+    }
+    
+    /* Tworzenie pipe dla wątku monitora */
+    if (utworz_pipe(&pipe_monitor) == -1) {
+        fprintf(stderr, "BŁĄD: Nie można utworzyć pipe\n");
+        usun_fifo_wszystkie();
+        return 1;
+    }
     
     /* Inicjalizacja zasobów IPC */
     if (inicjalizuj_wszystkie_zasoby(&zasoby) == -1) {
         fprintf(stderr, "BŁĄD: Nie można zainicjalizować zasobów IPC\n");
         fprintf(stderr, "Spróbuj: make clean-ipc\n");
+        usun_fifo_wszystkie();
+        close(pipe_monitor.fd_read);
+        close(pipe_monitor.fd_write);
         return 1;
     }
     
     printf("Zasoby IPC zainicjalizowane pomyślnie.\n");
     
-    /* Inicjalizacja logowania głównego procesu */
+    /* Inicjalizacja logowania */
     logger_init("logs/main.log");
     LOG_I("=== ROZPOCZĘCIE SYMULACJI KOLEI LINOWEJ ===");
-    LOG_I("Parametry: %d sekund, max %d osób na stacji", 
-          CZAS_ZAMKNIECIA, MAX_OSOB_NA_STACJI);
+    LOG_I("Parametry: %d sekund, max %d turystów", czas_symulacji, max_turystow);
     
     StanWspoldzielony *stan = zasoby.shm.stan;
     
     printf("Uruchamianie procesów obsługi...\n");
     
-    /* Uruchomienie procesów pomocniczych */
-    uruchom_procesy();
+    /* Uruchomienie procesów */
+    uruchom_kasjer();
+    usleep(100000);
+    uruchom_pracownika(1);
+    usleep(100000);
+    uruchom_pracownika(2);
+    usleep(200000);
     
-    /* Poczekaj na gotowość pracowników */
-    usleep(500000);
+    /* Uruchomienie wątku monitorowania */
+    if (pthread_create(&watek_monitora, NULL, watek_monitor_funkcja, NULL) != 0) {
+        perror("pthread_create monitor");
+    }
     
     printf("Symulacja rozpoczęta! Naciśnij Ctrl+C aby przerwać.\n\n");
     
@@ -260,69 +402,53 @@ int main(int argc, char *argv[]) {
         time_t teraz = time(NULL);
         time_t czas_dzialania = teraz - czas_start;
         
-        /* Sprawdź czy minął czas symulacji */
-        if (czas_dzialania >= CZAS_ZAMKNIECIA) {
+        /* Sprawdź koniec symulacji */
+        if (czas_dzialania >= czas_symulacji) {
             LOG_I("MAIN: Koniec godzin pracy kolei");
             
-            /* Ustaw flagę zamknięcia */
-            sem_czekaj(zasoby.sem.stan);
+            sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
             stan->godziny_pracy = false;
-            sem_sygnalizuj(zasoby.sem.stan);
+            sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
             
             printf("\n\nKolej zamknięta! Oczekiwanie na opuszczenie stacji...\n");
             
-            /* Czekaj na opróżnienie stacji */
             int timeout = CZAS_WYLACZENIA_PO_ZAMKNIECIU;
             while (timeout > 0 && (stan->liczba_osob_na_stacji > 0 || 
-                                    stan->liczba_osob_na_peronie > 0 ||
-                                    stan->liczba_aktywnych_krzeselek > 0)) {
+                                    stan->liczba_osob_na_peronie > 0)) {
                 sleep(1);
                 timeout--;
-                printf("\rOczekiwanie... Stacja: %d, Peron: %d, Krzesełka: %d  ",
-                       stan->liczba_osob_na_stacji,
-                       stan->liczba_osob_na_peronie,
-                       stan->liczba_aktywnych_krzeselek);
-                fflush(stdout);
             }
             
-            /* Wyłącz kolej */
-            sem_czekaj(zasoby.sem.stan);
+            sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
             stan->kolej_aktywna = false;
-            sem_sygnalizuj(zasoby.sem.stan);
+            sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
             
             break;
         }
         
-        /* Generuj nowych turystów (średnio co 0.5-2 sekundy) */
-        if (teraz - ostatni_turysta >= 1 && stan->godziny_pracy) {
-            if (rand() % 100 < 70) {  /* 70% szans na nowego turystę */
+        /* Generuj nowych turystów */
+        if (teraz - ostatni_turysta >= 1 && stan->godziny_pracy && 
+            nastepny_id <= max_turystow) {
+            if (rand() % 100 < 70) {
                 generuj_grupe(&nastepny_id);
                 ostatni_turysta = teraz;
             }
         }
         
-        /* Wyświetl stan */
-        wyswietl_stan(stan);
-        
-        /* Krótka pauza */
-        usleep(200000);  /* 200ms */
+        usleep(100000);
     }
     
     printf("\n\nZatrzymywanie symulacji...\n");
     LOG_I("MAIN: Zatrzymywanie symulacji");
     
-    /* Zatrzymaj wszystkie procesy */
-    zatrzymaj_wszystko();
-    
-    /* Zbierz procesy potomne */
-    signal(SIGCHLD, SIG_DFL);
-    zbierz_procesy();
+    /* WAŻNE: Najpierw zatrzymaj i poczekaj na wszystkie procesy */
+    zatrzymaj_i_czekaj_na_procesy();
     
     /* Generuj raport */
     printf("Generowanie raportu...\n");
     generuj_raport(stan, "logs/raport_dzienny.txt");
     
-    /* Wyświetl podsumowanie */
+    /* Podsumowanie */
     printf("\n");
     printf("╔═══════════════════════════════════════════════════════════════╗\n");
     printf("║                    PODSUMOWANIE DNIA                          ║\n");
@@ -331,18 +457,15 @@ int main(int argc, char *argv[]) {
     printf("║  Sprzedanych biletów:       %-34d ║\n", stan->liczba_sprzedanych_biletow);
     printf("║  Wpisów w rejestrze:        %-34d ║\n", stan->liczba_wpisow_rejestru);
     printf("╚═══════════════════════════════════════════════════════════════╝\n");
-    printf("\n");
-    printf("Raport zapisany do: logs/raport_dzienny.txt\n");
-    printf("Logi procesów dostępne w katalogu: logs/\n");
     
     LOG_I("=== ZAKOŃCZENIE SYMULACJI ===");
-    LOG_I("Zjazdy: %d, Bilety: %d", stan->laczna_liczba_zjazdow, stan->liczba_sprzedanych_biletow);
-    
-    /* Zamknij logger */
     logger_close();
     
-    /* Usuń zasoby IPC */
+    /* DOPIERO TERAZ czyść zasoby IPC - po zakończeniu wszystkich procesów */
     printf("Czyszczenie zasobów IPC...\n");
+    close(pipe_monitor.fd_read);
+    close(pipe_monitor.fd_write);
+    usun_fifo_wszystkie();
     usun_wszystkie_zasoby(&zasoby);
     
     printf("Symulacja zakończona pomyślnie.\n");

@@ -6,115 +6,116 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include "ipc_utils.h"
+#include "config.h"
 
-/* ========== OPERACJE NA SEMAFORACH ========== */
+/* ========== OPERACJE NA SEMAFORACH SYSTEM V ========== */
 
-void sem_czekaj(sem_t *sem) {
-    if (sem == NULL) return;
-    while (sem_wait(sem) == -1) {
+void sem_czekaj_sysv(int sem_id, int sem_num) {
+    struct sembuf op;
+    op.sem_num = sem_num;
+    op.sem_op = -1;         /* Dekrementuj (P/wait) */
+    op.sem_flg = 0;
+    
+    while (semop(sem_id, &op, 1) == -1) {
         if (errno != EINTR) {
-            perror("sem_wait");
+            perror("semop wait");
             break;
         }
+        /* EINTR - przerwane przez sygnał, spróbuj ponownie */
     }
 }
 
-void sem_sygnalizuj(sem_t *sem) {
-    if (sem == NULL) return;
-    if (sem_post(sem) == -1) {
-        perror("sem_post");
+void sem_sygnalizuj_sysv(int sem_id, int sem_num) {
+    struct sembuf op;
+    op.sem_num = sem_num;
+    op.sem_op = 1;          /* Inkrementuj (V/signal) */
+    op.sem_flg = 0;
+    
+    if (semop(sem_id, &op, 1) == -1) {
+        perror("semop signal");
     }
 }
 
-int sem_probuj(sem_t *sem) {
-    if (sem == NULL) return -1;
-    return sem_trywait(sem);
+int sem_probuj_sysv(int sem_id, int sem_num) {
+    struct sembuf op;
+    op.sem_num = sem_num;
+    op.sem_op = -1;
+    op.sem_flg = IPC_NOWAIT;  /* Nieblokujące */
+    
+    if (semop(sem_id, &op, 1) == -1) {
+        if (errno == EAGAIN) {
+            return -1;  /* Semafor zajęty */
+        }
+        perror("semop trywait");
+        return -1;
+    }
+    return 0;  /* Sukces */
 }
 
-/* ========== INICJALIZACJA SEMAFORÓW ========== */
+int sem_pobierz_wartosc(int sem_id, int sem_num) {
+    int val = semctl(sem_id, sem_num, GETVAL);
+    if (val == -1) {
+        perror("semctl getval");
+    }
+    return val;
+}
 
-int inicjalizuj_semafory(Semafory *sem) {
-    char nazwa[64];
-    
-    /* Główne semafory */
-    sem->stacja_dolna = sem_open(SEM_STACJA_DOLNA, O_CREAT | O_EXCL, 0666, MAX_OSOB_NA_STACJI);
-    if (sem->stacja_dolna == SEM_FAILED) {
-        perror("sem_open stacja_dolna");
+/* ========== INICJALIZACJA SEMAFORÓW SYSTEM V ========== */
+
+int inicjalizuj_semafory_sysv(SemaforySysV *sem) {
+    /* Generuj klucz używając ftok */
+    sem->klucz = ftok("/tmp", 'K');
+    if (sem->klucz == -1) {
+        perror("ftok semafory");
         return -1;
     }
     
-    sem->peron = sem_open(SEM_PERON, O_CREAT | O_EXCL, 0666, 0);
-    if (sem->peron == SEM_FAILED) {
-        perror("sem_open peron");
+    /* Usuń stary zestaw jeśli istnieje */
+    int stary = semget(sem->klucz, LICZBA_SEMAFOROW, 0666);
+    if (stary != -1) {
+        semctl(stary, 0, IPC_RMID);
+    }
+    
+    /* Utwórz nowy zestaw semaforów */
+    /* Uprawnienia 0660 - właściciel i grupa: rw */
+    sem->sem_id = semget(sem->klucz, LICZBA_SEMAFOROW, IPC_CREAT | IPC_EXCL | 0660);
+    if (sem->sem_id == -1) {
+        perror("semget create");
         return -1;
     }
     
-    sem->krzeselka = sem_open(SEM_KRZESELKA, O_CREAT | O_EXCL, 0666, MAX_AKTYWNYCH_KRZESELEK);
-    if (sem->krzeselka == SEM_FAILED) {
-        perror("sem_open krzeselka");
-        return -1;
-    }
+    /* Tablica wartości początkowych */
+    unsigned short wartosci[LICZBA_SEMAFOROW];
     
-    sem->kasa = sem_open(SEM_KASA, O_CREAT | O_EXCL, 0666, 1);
-    if (sem->kasa == SEM_FAILED) {
-        perror("sem_open kasa");
-        return -1;
-    }
+    wartosci[SEM_IDX_STACJA_DOLNA] = MAX_OSOB_NA_STACJI;
+    wartosci[SEM_IDX_PERON] = 0;
+    wartosci[SEM_IDX_KRZESELKA] = MAX_AKTYWNYCH_KRZESELEK;
+    wartosci[SEM_IDX_KASA] = 1;
+    wartosci[SEM_IDX_REJESTR] = 1;
+    wartosci[SEM_IDX_STAN] = 1;
+    wartosci[SEM_IDX_PRACOWNIK1] = 0;
+    wartosci[SEM_IDX_PRACOWNIK2] = 0;
+    wartosci[SEM_IDX_SYNC] = 0;
+    wartosci[SEM_IDX_VIP] = 1;
     
-    sem->rejestr = sem_open(SEM_REJESTR, O_CREAT | O_EXCL, 0666, 1);
-    if (sem->rejestr == SEM_FAILED) {
-        perror("sem_open rejestr");
-        return -1;
-    }
-    
-    sem->stan = sem_open(SEM_STAN, O_CREAT | O_EXCL, 0666, 1);
-    if (sem->stan == SEM_FAILED) {
-        perror("sem_open stan");
-        return -1;
-    }
-    
-    sem->pracownik1 = sem_open(SEM_PRACOWNIK1, O_CREAT | O_EXCL, 0666, 0);
-    if (sem->pracownik1 == SEM_FAILED) {
-        perror("sem_open pracownik1");
-        return -1;
-    }
-    
-    sem->pracownik2 = sem_open(SEM_PRACOWNIK2, O_CREAT | O_EXCL, 0666, 0);
-    if (sem->pracownik2 == SEM_FAILED) {
-        perror("sem_open pracownik2");
-        return -1;
-    }
-    
-    sem->sync = sem_open(SEM_SYNC, O_CREAT | O_EXCL, 0666, 0);
-    if (sem->sync == SEM_FAILED) {
-        perror("sem_open sync");
-        return -1;
-    }
-    
-    sem->vip = sem_open(SEM_VIP, O_CREAT | O_EXCL, 0666, 1);
-    if (sem->vip == SEM_FAILED) {
-        perror("sem_open vip");
-        return -1;
-    }
-    
-    /* Semafory bramek wejściowych */
+    /* Bramki wejściowe - każda wolna (1) */
     for (int i = 0; i < LICZBA_BRAMEK_WEJSCIOWYCH; i++) {
-        snprintf(nazwa, sizeof(nazwa), "%s%d", SEM_BRAMKA_WEJ_PREFIX, i);
-        sem->bramki_wejsciowe[i] = sem_open(nazwa, O_CREAT | O_EXCL, 0666, 1);
-        if (sem->bramki_wejsciowe[i] == SEM_FAILED) {
-            perror("sem_open bramka_wejsciowa");
-            return -1;
-        }
+        wartosci[SEM_IDX_BRAMKA_WEJ_BASE + i] = 1;
     }
     
-    /* Semafory bramek peronowych */
+    /* Bramki peronowe - zamknięte (0) */
     for (int i = 0; i < LICZBA_BRAMEK_PERONOWYCH; i++) {
-        snprintf(nazwa, sizeof(nazwa), "%s%d", SEM_BRAMKA_PER_PREFIX, i);
-        sem->bramki_peronowe[i] = sem_open(nazwa, O_CREAT | O_EXCL, 0666, 0);
-        if (sem->bramki_peronowe[i] == SEM_FAILED) {
-            perror("sem_open bramka_peronowa");
-            return -1;
-        }
+        wartosci[SEM_IDX_BRAMKA_PER_BASE + i] = 0;
+    }
+    
+    /* Ustaw wszystkie wartości za jednym razem */
+    union semun arg;
+    arg.array = wartosci;
+    
+    if (semctl(sem->sem_id, 0, SETALL, arg) == -1) {
+        perror("semctl SETALL");
+        semctl(sem->sem_id, 0, IPC_RMID);
+        return -1;
     }
     
     return 0;
@@ -122,34 +123,16 @@ int inicjalizuj_semafory(Semafory *sem) {
 
 /* ========== ŁĄCZENIE Z SEMAFORAMI ========== */
 
-int polacz_semafory(Semafory *sem) {
-    char nazwa[64];
-    
-    sem->stacja_dolna = sem_open(SEM_STACJA_DOLNA, 0);
-    sem->peron = sem_open(SEM_PERON, 0);
-    sem->krzeselka = sem_open(SEM_KRZESELKA, 0);
-    sem->kasa = sem_open(SEM_KASA, 0);
-    sem->rejestr = sem_open(SEM_REJESTR, 0);
-    sem->stan = sem_open(SEM_STAN, 0);
-    sem->pracownik1 = sem_open(SEM_PRACOWNIK1, 0);
-    sem->pracownik2 = sem_open(SEM_PRACOWNIK2, 0);
-    sem->sync = sem_open(SEM_SYNC, 0);
-    sem->vip = sem_open(SEM_VIP, 0);
-    
-    for (int i = 0; i < LICZBA_BRAMEK_WEJSCIOWYCH; i++) {
-        snprintf(nazwa, sizeof(nazwa), "%s%d", SEM_BRAMKA_WEJ_PREFIX, i);
-        sem->bramki_wejsciowe[i] = sem_open(nazwa, 0);
+int polacz_semafory_sysv(SemaforySysV *sem) {
+    sem->klucz = ftok("/tmp", 'K');
+    if (sem->klucz == -1) {
+        perror("ftok semafory (connect)");
+        return -1;
     }
     
-    for (int i = 0; i < LICZBA_BRAMEK_PERONOWYCH; i++) {
-        snprintf(nazwa, sizeof(nazwa), "%s%d", SEM_BRAMKA_PER_PREFIX, i);
-        sem->bramki_peronowe[i] = sem_open(nazwa, 0);
-    }
-    
-    /* Sprawdź czy wszystkie się otworzyły */
-    if (sem->stacja_dolna == SEM_FAILED || sem->peron == SEM_FAILED ||
-        sem->krzeselka == SEM_FAILED || sem->kasa == SEM_FAILED ||
-        sem->stan == SEM_FAILED) {
+    sem->sem_id = semget(sem->klucz, LICZBA_SEMAFOROW, 0660);
+    if (sem->sem_id == -1) {
+        perror("semget connect");
         return -1;
     }
     
@@ -158,66 +141,44 @@ int polacz_semafory(Semafory *sem) {
 
 /* ========== USUWANIE SEMAFORÓW ========== */
 
-void usun_semafory(Semafory *sem) {
-    char nazwa[64];
-    
-    if (sem->stacja_dolna && sem->stacja_dolna != SEM_FAILED) sem_close(sem->stacja_dolna);
-    if (sem->peron && sem->peron != SEM_FAILED) sem_close(sem->peron);
-    if (sem->krzeselka && sem->krzeselka != SEM_FAILED) sem_close(sem->krzeselka);
-    if (sem->kasa && sem->kasa != SEM_FAILED) sem_close(sem->kasa);
-    if (sem->rejestr && sem->rejestr != SEM_FAILED) sem_close(sem->rejestr);
-    if (sem->stan && sem->stan != SEM_FAILED) sem_close(sem->stan);
-    if (sem->pracownik1 && sem->pracownik1 != SEM_FAILED) sem_close(sem->pracownik1);
-    if (sem->pracownik2 && sem->pracownik2 != SEM_FAILED) sem_close(sem->pracownik2);
-    if (sem->sync && sem->sync != SEM_FAILED) sem_close(sem->sync);
-    if (sem->vip && sem->vip != SEM_FAILED) sem_close(sem->vip);
-    
-    sem_unlink(SEM_STACJA_DOLNA);
-    sem_unlink(SEM_PERON);
-    sem_unlink(SEM_KRZESELKA);
-    sem_unlink(SEM_KASA);
-    sem_unlink(SEM_REJESTR);
-    sem_unlink(SEM_STAN);
-    sem_unlink(SEM_PRACOWNIK1);
-    sem_unlink(SEM_PRACOWNIK2);
-    sem_unlink(SEM_SYNC);
-    sem_unlink(SEM_VIP);
-    
-    for (int i = 0; i < LICZBA_BRAMEK_WEJSCIOWYCH; i++) {
-        if (sem->bramki_wejsciowe[i] && sem->bramki_wejsciowe[i] != SEM_FAILED) {
-            sem_close(sem->bramki_wejsciowe[i]);
+void usun_semafory_sysv(SemaforySysV *sem) {
+    if (sem->sem_id != -1) {
+        if (semctl(sem->sem_id, 0, IPC_RMID) == -1) {
+            perror("semctl IPC_RMID");
         }
-        snprintf(nazwa, sizeof(nazwa), "%s%d", SEM_BRAMKA_WEJ_PREFIX, i);
-        sem_unlink(nazwa);
-    }
-    
-    for (int i = 0; i < LICZBA_BRAMEK_PERONOWYCH; i++) {
-        if (sem->bramki_peronowe[i] && sem->bramki_peronowe[i] != SEM_FAILED) {
-            sem_close(sem->bramki_peronowe[i]);
-        }
-        snprintf(nazwa, sizeof(nazwa), "%s%d", SEM_BRAMKA_PER_PREFIX, i);
-        sem_unlink(nazwa);
+        sem->sem_id = -1;
     }
 }
 
 /* ========== INICJALIZACJA PAMIĘCI WSPÓŁDZIELONEJ ========== */
 
 int inicjalizuj_pamiec_wspoldzielona(PamiecWspoldzielona *shm) {
-    /* Usuń starą pamięć jeśli istnieje */
-    int stary_shm = shmget(SHM_KEY, sizeof(StanWspoldzielony), 0666);
-    if (stary_shm != -1) {
-        shmctl(stary_shm, IPC_RMID, NULL);
+    /* Generuj klucz używając ftok */
+    shm->klucz = ftok("/tmp", 'S');
+    if (shm->klucz == -1) {
+        perror("ftok shm");
+        return -1;
     }
     
-    shm->shm_id = shmget(SHM_KEY, sizeof(StanWspoldzielony), IPC_CREAT | IPC_EXCL | 0666);
+    /* Usuń starą pamięć jeśli istnieje */
+    int stary = shmget(shm->klucz, sizeof(StanWspoldzielony), 0666);
+    if (stary != -1) {
+        shmctl(stary, IPC_RMID, NULL);
+    }
+    
+    /* Utwórz nowy segment - uprawnienia 0660 */
+    shm->shm_id = shmget(shm->klucz, sizeof(StanWspoldzielony), 
+                          IPC_CREAT | IPC_EXCL | 0660);
     if (shm->shm_id == -1) {
         perror("shmget create");
         return -1;
     }
     
+    /* Dołącz segment */
     shm->stan = (StanWspoldzielony *)shmat(shm->shm_id, NULL, 0);
     if (shm->stan == (void *)-1) {
         perror("shmat");
+        shmctl(shm->shm_id, IPC_RMID, NULL);
         return -1;
     }
     
@@ -230,22 +191,14 @@ int inicjalizuj_pamiec_wspoldzielona(PamiecWspoldzielona *shm) {
     shm->stan->czas_startu = time(NULL);
     shm->stan->nastepny_turysta_id = 1;
     shm->stan->nastepny_bilet_id = 1;
-    shm->stan->liczba_osob_na_stacji = 0;
-    shm->stan->liczba_osob_na_peronie = 0;
-    shm->stan->liczba_aktywnych_krzeselek = 0;
-    shm->stan->laczna_liczba_zjazdow = 0;
-    shm->stan->liczba_sprzedanych_biletow = 0;
-    shm->stan->liczba_wpisow_rejestru = 0;
-    shm->stan->kto_zatrzymal = 0;
     
-    /* Inicjalizacja bramek wejściowych */
+    /* Inicjalizacja bramek */
     for (int i = 0; i < LICZBA_BRAMEK_WEJSCIOWYCH; i++) {
         shm->stan->bramki_wejsciowe[i].id = i;
         shm->stan->bramki_wejsciowe[i].otwarta = true;
         shm->stan->bramki_wejsciowe[i].aktualny_turysta_id = -1;
     }
     
-    /* Inicjalizacja bramek peronowych */
     for (int i = 0; i < LICZBA_BRAMEK_PERONOWYCH; i++) {
         shm->stan->bramki_peronowe[i].id = i;
         shm->stan->bramki_peronowe[i].otwarta = false;
@@ -257,7 +210,6 @@ int inicjalizuj_pamiec_wspoldzielona(PamiecWspoldzielona *shm) {
         shm->stan->krzeselka[i].id = i;
         shm->stan->krzeselka[i].aktywne = false;
         shm->stan->krzeselka[i].liczba_pasazerow = 0;
-        shm->stan->krzeselka[i].liczba_rowerzystow = 0;
         for (int j = 0; j < POJEMNOSC_KRZESELKA; j++) {
             shm->stan->krzeselka[i].pasazerowie[j] = -1;
         }
@@ -269,7 +221,13 @@ int inicjalizuj_pamiec_wspoldzielona(PamiecWspoldzielona *shm) {
 /* ========== ŁĄCZENIE Z PAMIĘCIĄ WSPÓŁDZIELONĄ ========== */
 
 int polacz_pamiec_wspoldzielona(PamiecWspoldzielona *shm) {
-    shm->shm_id = shmget(SHM_KEY, sizeof(StanWspoldzielony), 0666);
+    shm->klucz = ftok("/tmp", 'S');
+    if (shm->klucz == -1) {
+        perror("ftok shm (connect)");
+        return -1;
+    }
+    
+    shm->shm_id = shmget(shm->klucz, sizeof(StanWspoldzielony), 0660);
     if (shm->shm_id == -1) {
         perror("shmget connect");
         return -1;
@@ -289,45 +247,57 @@ int polacz_pamiec_wspoldzielona(PamiecWspoldzielona *shm) {
 void usun_pamiec_wspoldzielona(PamiecWspoldzielona *shm) {
     if (shm->stan && shm->stan != (void *)-1) {
         shmdt(shm->stan);
+        shm->stan = NULL;
     }
     if (shm->shm_id != -1) {
         shmctl(shm->shm_id, IPC_RMID, NULL);
+        shm->shm_id = -1;
     }
 }
 
-/* ========== INICJALIZACJA KOLEJEK KOMUNIKATÓW ========== */
+/* ========== INICJALIZACJA KOLEJEK ========== */
 
 int inicjalizuj_kolejki(KolejkiKomunikatow *mq) {
-    /* Usuń stare kolejki jeśli istnieją */
-    int stara_mq;
-    stara_mq = msgget(MQ_KEY_KASA, 0666);
-    if (stara_mq != -1) msgctl(stara_mq, IPC_RMID, NULL);
-    stara_mq = msgget(MQ_KEY_BRAMKI, 0666);
-    if (stara_mq != -1) msgctl(stara_mq, IPC_RMID, NULL);
-    stara_mq = msgget(MQ_KEY_PRACOWNICY, 0666);
-    if (stara_mq != -1) msgctl(stara_mq, IPC_RMID, NULL);
-    stara_mq = msgget(MQ_KEY_KRZESLA, 0666);
-    if (stara_mq != -1) msgctl(stara_mq, IPC_RMID, NULL);
+    /* Usuń stare kolejki */
+    key_t klucz;
+    int stary;
     
-    mq->mq_kasa = msgget(MQ_KEY_KASA, IPC_CREAT | IPC_EXCL | 0666);
+    klucz = ftok("/tmp", 'A');
+    stary = msgget(klucz, 0666);
+    if (stary != -1) msgctl(stary, IPC_RMID, NULL);
+    
+    klucz = ftok("/tmp", 'B');
+    stary = msgget(klucz, 0666);
+    if (stary != -1) msgctl(stary, IPC_RMID, NULL);
+    
+    klucz = ftok("/tmp", 'C');
+    stary = msgget(klucz, 0666);
+    if (stary != -1) msgctl(stary, IPC_RMID, NULL);
+    
+    klucz = ftok("/tmp", 'D');
+    stary = msgget(klucz, 0666);
+    if (stary != -1) msgctl(stary, IPC_RMID, NULL);
+    
+    /* Tworzenie nowych kolejek - uprawnienia 0660 */
+    mq->mq_kasa = msgget(ftok("/tmp", 'A'), IPC_CREAT | IPC_EXCL | 0660);
     if (mq->mq_kasa == -1) {
         perror("msgget kasa");
         return -1;
     }
     
-    mq->mq_bramki = msgget(MQ_KEY_BRAMKI, IPC_CREAT | IPC_EXCL | 0666);
+    mq->mq_bramki = msgget(ftok("/tmp", 'B'), IPC_CREAT | IPC_EXCL | 0660);
     if (mq->mq_bramki == -1) {
         perror("msgget bramki");
         return -1;
     }
     
-    mq->mq_pracownicy = msgget(MQ_KEY_PRACOWNICY, IPC_CREAT | IPC_EXCL | 0666);
+    mq->mq_pracownicy = msgget(ftok("/tmp", 'C'), IPC_CREAT | IPC_EXCL | 0660);
     if (mq->mq_pracownicy == -1) {
         perror("msgget pracownicy");
         return -1;
     }
     
-    mq->mq_krzesla = msgget(MQ_KEY_KRZESLA, IPC_CREAT | IPC_EXCL | 0666);
+    mq->mq_krzesla = msgget(ftok("/tmp", 'D'), IPC_CREAT | IPC_EXCL | 0660);
     if (mq->mq_krzesla == -1) {
         perror("msgget krzesla");
         return -1;
@@ -339,10 +309,10 @@ int inicjalizuj_kolejki(KolejkiKomunikatow *mq) {
 /* ========== ŁĄCZENIE Z KOLEJKAMI ========== */
 
 int polacz_kolejki(KolejkiKomunikatow *mq) {
-    mq->mq_kasa = msgget(MQ_KEY_KASA, 0666);
-    mq->mq_bramki = msgget(MQ_KEY_BRAMKI, 0666);
-    mq->mq_pracownicy = msgget(MQ_KEY_PRACOWNICY, 0666);
-    mq->mq_krzesla = msgget(MQ_KEY_KRZESLA, 0666);
+    mq->mq_kasa = msgget(ftok("/tmp", 'A'), 0660);
+    mq->mq_bramki = msgget(ftok("/tmp", 'B'), 0660);
+    mq->mq_pracownicy = msgget(ftok("/tmp", 'C'), 0660);
+    mq->mq_krzesla = msgget(ftok("/tmp", 'D'), 0660);
     
     if (mq->mq_kasa == -1 || mq->mq_bramki == -1 || 
         mq->mq_pracownicy == -1 || mq->mq_krzesla == -1) {
@@ -360,6 +330,54 @@ void usun_kolejki(KolejkiKomunikatow *mq) {
     if (mq->mq_bramki != -1) msgctl(mq->mq_bramki, IPC_RMID, NULL);
     if (mq->mq_pracownicy != -1) msgctl(mq->mq_pracownicy, IPC_RMID, NULL);
     if (mq->mq_krzesla != -1) msgctl(mq->mq_krzesla, IPC_RMID, NULL);
+}
+
+/* ========== FUNKCJE ZBIORCZE ========== */
+
+int inicjalizuj_wszystkie_zasoby(ZasobyIPC *zasoby) {
+    memset(zasoby, 0, sizeof(ZasobyIPC));
+    zasoby->sem.sem_id = -1;
+    zasoby->shm.shm_id = -1;
+    zasoby->mq.mq_kasa = -1;
+    zasoby->mq.mq_bramki = -1;
+    zasoby->mq.mq_pracownicy = -1;
+    zasoby->mq.mq_krzesla = -1;
+    
+    if (inicjalizuj_semafory_sysv(&zasoby->sem) == -1) {
+        fprintf(stderr, "Błąd inicjalizacji semaforów\n");
+        return -1;
+    }
+    
+    if (inicjalizuj_pamiec_wspoldzielona(&zasoby->shm) == -1) {
+        fprintf(stderr, "Błąd inicjalizacji pamięci współdzielonej\n");
+        usun_semafory_sysv(&zasoby->sem);
+        return -1;
+    }
+    
+    if (inicjalizuj_kolejki(&zasoby->mq) == -1) {
+        fprintf(stderr, "Błąd inicjalizacji kolejek\n");
+        usun_semafory_sysv(&zasoby->sem);
+        usun_pamiec_wspoldzielona(&zasoby->shm);
+        return -1;
+    }
+    
+    return 0;
+}
+
+int polacz_z_zasobami(ZasobyIPC *zasoby) {
+    memset(zasoby, 0, sizeof(ZasobyIPC));
+    
+    if (polacz_semafory_sysv(&zasoby->sem) == -1) return -1;
+    if (polacz_pamiec_wspoldzielona(&zasoby->shm) == -1) return -1;
+    if (polacz_kolejki(&zasoby->mq) == -1) return -1;
+    
+    return 0;
+}
+
+void usun_wszystkie_zasoby(ZasobyIPC *zasoby) {
+    usun_kolejki(&zasoby->mq);
+    usun_pamiec_wspoldzielona(&zasoby->shm);
+    usun_semafory_sysv(&zasoby->sem);
 }
 
 /* ========== WYSYŁANIE KOMUNIKATU ========== */
@@ -391,51 +409,9 @@ int odbierz_komunikat(int mq_id, Komunikat *msg, long mtype) {
 int odbierz_komunikat_nieblokujaco(int mq_id, Komunikat *msg, long mtype) {
     if (msgrcv(mq_id, msg, sizeof(Komunikat) - sizeof(long), mtype, IPC_NOWAIT) == -1) {
         if (errno == ENOMSG) {
-            return 0;  /* Brak komunikatu - to nie błąd */
+            return 0;
         }
         return -1;
     }
-    return 1;  /* Odebrano komunikat */
-}
-
-/* ========== FUNKCJE ZBIORCZE ========== */
-
-int inicjalizuj_wszystkie_zasoby(ZasobyIPC *zasoby) {
-    memset(zasoby, 0, sizeof(ZasobyIPC));
-    
-    if (inicjalizuj_semafory(&zasoby->sem) == -1) {
-        fprintf(stderr, "Błąd inicjalizacji semaforów\n");
-        return -1;
-    }
-    
-    if (inicjalizuj_pamiec_wspoldzielona(&zasoby->shm) == -1) {
-        fprintf(stderr, "Błąd inicjalizacji pamięci współdzielonej\n");
-        usun_semafory(&zasoby->sem);
-        return -1;
-    }
-    
-    if (inicjalizuj_kolejki(&zasoby->mq) == -1) {
-        fprintf(stderr, "Błąd inicjalizacji kolejek\n");
-        usun_semafory(&zasoby->sem);
-        usun_pamiec_wspoldzielona(&zasoby->shm);
-        return -1;
-    }
-    
-    return 0;
-}
-
-int polacz_z_zasobami(ZasobyIPC *zasoby) {
-    memset(zasoby, 0, sizeof(ZasobyIPC));
-    
-    if (polacz_semafory(&zasoby->sem) == -1) return -1;
-    if (polacz_pamiec_wspoldzielona(&zasoby->shm) == -1) return -1;
-    if (polacz_kolejki(&zasoby->mq) == -1) return -1;
-    
-    return 0;
-}
-
-void usun_wszystkie_zasoby(ZasobyIPC *zasoby) {
-    usun_kolejki(&zasoby->mq);
-    usun_pamiec_wspoldzielona(&zasoby->shm);
-    usun_semafory(&zasoby->sem);
+    return 1;
 }

@@ -5,32 +5,63 @@ LDFLAGS = -lpthread -lrt
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
+INC_DIR = include
 
-SOURCES = $(wildcard $(SRC_DIR)/*.c)
-OBJECTS = $(SOURCES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-EXECUTABLE = $(BIN_DIR)/kolej_linowa
+# Wspólne źródła
+COMMON_SRC = $(SRC_DIR)/ipc_utils.c $(SRC_DIR)/logger.c $(SRC_DIR)/pipe_comm.c
+COMMON_OBJ = $(OBJ_DIR)/ipc_utils.o $(OBJ_DIR)/logger.o $(OBJ_DIR)/pipe_comm.o
 
-.PHONY: all clean directories
+# Programy wykonywalne
+MAIN = $(BIN_DIR)/kolej_linowa
+KASJER = $(BIN_DIR)/kasjer
+PRACOWNIK1 = $(BIN_DIR)/pracownik1
+PRACOWNIK2 = $(BIN_DIR)/pracownik2
+TURYSTA = $(BIN_DIR)/turysta
 
-all: directories $(EXECUTABLE)
+ALL_BINS = $(MAIN) $(KASJER) $(PRACOWNIK1) $(PRACOWNIK2) $(TURYSTA)
+
+.PHONY: all clean directories run clean-ipc
+
+all: directories $(ALL_BINS)
 
 directories:
 	@mkdir -p $(OBJ_DIR) $(BIN_DIR) logs
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
-
+# Kompilacja obiektów wspólnych
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Program główny
+$(MAIN): $(OBJ_DIR)/main.o $(COMMON_OBJ)
+	$(CC) $^ -o $@ $(LDFLAGS)
+
+# Kasjer - osobny program
+$(KASJER): $(OBJ_DIR)/kasjer.o $(COMMON_OBJ)
+	$(CC) $^ -o $@ $(LDFLAGS)
+
+# Pracownik 1
+$(PRACOWNIK1): $(OBJ_DIR)/pracownik1.o $(COMMON_OBJ)
+	$(CC) $^ -o $@ $(LDFLAGS)
+
+# Pracownik 2
+$(PRACOWNIK2): $(OBJ_DIR)/pracownik2.o $(COMMON_OBJ)
+	$(CC) $^ -o $@ $(LDFLAGS)
+
+# Turysta
+$(TURYSTA): $(OBJ_DIR)/turysta.o $(COMMON_OBJ)
+	$(CC) $^ -o $@ $(LDFLAGS)
+
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR) logs/*.txt
-	ipcrm -a 2>/dev/null || true
+	rm -rf $(OBJ_DIR) $(BIN_DIR) logs/*.txt logs/*.log
 
 run: all
-	./$(EXECUTABLE)
+	./$(MAIN)
 
-# Czyszczenie zasobów IPC w razie problemów
+# Czyszczenie zasobów IPC
 clean-ipc:
 	ipcrm -a 2>/dev/null || true
-	rm -f /dev/shm/sem_*
+	rm -f /tmp/kolej_* 2>/dev/null || true
+	rm -f /dev/shm/sem.kolej* 2>/dev/null || true
+
+# Pełne czyszczenie
+distclean: clean clean-ipc
