@@ -1,19 +1,14 @@
-[16:12:44][INFO ][PID: 8221] TURYSTA #68: Przychodzę (wiek: 20, pieszy, zwykły)
-[16:12:44][INFO ][PID: 8221] TURYSTA #68: Podchodzę do kasy
-[16:12:44][INFO ][PID: 8221] TURYSTA #68: Kupiłem bilet #68 (typ: 3)
-[16:12:44][INFO ][PID: 8221] TURYSTA #68: Czekam na miejsce na stacji
-[16:12:44][INFO ][PID: 8221] TURYSTA #68: Przeszedłem przez bramkę 0
-[16:12:44][INFO ][PID: 8221] TURYSTA #68: Czekam na pozwolenie wejścia na peron
-[16:12:44][INFO ][PID: 8221] TURYSTA #68: Wchodzę na peron
-[16:12:44][INFO ][PID: 8221] TURYSTA #68: Czekam na krzesełko
-[16:12:44][INFO ][PID: 8221] TURYSTA #68: Wsiadłem na krzesełko #7
-[16:12:46][INFO ][PID: 8221] TURYSTA #68: Dojechałem na stację górną
-[16:12:46][INFO ][PID: 8221] TURYSTA #68: Wychodzę wyjściem 0
-[16:12:46][INFO ][PID: 8221] TURYSTA #68 (pieszy): Schodzę ze stacji górnej
-[16:12:46][INFO ][PID: 8221] TURYSTA #68: Czekam na miejsce na stacji
-[16:12:46][INFO ][PID: 8221] TURYSTA #68: Przeszedłem przez bramkę 0
-[16:12:46][INFO ][PID: 8221] TURYSTA #68: Czekam na pozwolenie wejścia na peron
-[16:12:46][INFO ][PID: 8221] TURYSTA #68: Wchodzę na peron
-[16:12:46][INFO ][PID: 8221] TURYSTA #68: Czekam na krzesełko
-[16:12:46][INFO ][PID: 8221] TURYSTA #68: Wsiadłem na krzesełko #11
-[16:12:47][INFO ][PID: 8221] TURYSTA #68: Kończę dzień z 1 zjazdami
+[15:25:31][INFO ][PID: 7346] TURYSTA #68: Przychodzę (wiek: 56, pieszy, zwykły)
+[15:25:31][INFO ][PID: 7346] TURYSTA #68: Podchodzę do kasy
+[15:25:31][INFO ][PID: 7346] TURYSTA #68: Kupiłem bilet #67 (typ: 3)
+[15:25:31][INFO ][PID: 7346] TURYSTA #68: Czekam na miejsce na stacji
+[15:25:31][INFO ][PID: 7346] TURYSTA #68: Przeszedłem przez bramkę 0
+[15:25:31][INFO ][PID: 7346] TURYSTA #68: Czekam na pozwolenie wejścia na peron
+[15:25:31][INFO ][PID: 7346] TURYSTA #68: Wchodzę na peron
+[15:25:31][INFO ][PID: 7346] TURYSTA #68: Czekam na krzesełko
+[15:25:31][INFO ][PID: 7346] TURYSTA #68: Wsiadłem na krzesełko #11
+[15:25:33][INFO ][PID: 7346] TURYSTA #68: Dojechałem na stację górną
+[15:25:33][INFO ][PID: 7346] TURYSTA #68: Wychodzę wyjściem 0
+[15:25:33][INFO ][PID: 7346] TURYSTA #68 (pieszy): Schodzę ze stacji górnej
+[15:25:33][INFO ][PID: 7346] TURYSTA #68: Wystarczy na dziś, wychodzę
+[15:25:33][INFO ][PID: 7346] TURYSTA #68: Kończę dzień z 1 zjazdami

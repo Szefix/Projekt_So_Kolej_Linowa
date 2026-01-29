@@ -1,45 +1,15 @@
-[16:11:51][INFO ][PID: 8162] TURYSTA #9: Przychodzę (wiek: 55, rowerzysta, zwykły)
-[16:11:51][INFO ][PID: 8162] TURYSTA #9: Podchodzę do kasy
-[16:11:51][INFO ][PID: 8162] TURYSTA #9: Kupiłem bilet #9 (typ: 4)
-[16:11:51][INFO ][PID: 8162] TURYSTA #9: Czekam na miejsce na stacji
-[16:11:51][INFO ][PID: 8162] TURYSTA #9: Przeszedłem przez bramkę 0
-[16:11:51][INFO ][PID: 8162] TURYSTA #9: Czekam na pozwolenie wejścia na peron
-[16:11:51][INFO ][PID: 8162] TURYSTA #9: Wchodzę na peron
-[16:11:51][INFO ][PID: 8162] TURYSTA #9: Czekam na krzesełko
-[16:11:51][INFO ][PID: 8162] TURYSTA #9: Wsiadłem na krzesełko #7
-[16:11:53][INFO ][PID: 8162] TURYSTA #9: Dojechałem na stację górną
-[16:11:53][INFO ][PID: 8162] TURYSTA #9: Wychodzę wyjściem 0
-[16:11:53][INFO ][PID: 8162] TURYSTA #9 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[16:12:04][INFO ][PID: 8162] TURYSTA #9: Ukończyłem zjazd #1
-[16:12:04][INFO ][PID: 8162] TURYSTA #9: Czekam na miejsce na stacji
-[16:12:04][INFO ][PID: 8162] TURYSTA #9: Przeszedłem przez bramkę 0
-[16:12:04][INFO ][PID: 8162] TURYSTA #9: Czekam na pozwolenie wejścia na peron
-[16:12:05][INFO ][PID: 8162] TURYSTA #9: Wchodzę na peron
-[16:12:05][INFO ][PID: 8162] TURYSTA #9: Czekam na krzesełko
-[16:12:05][INFO ][PID: 8162] TURYSTA #9: Wsiadłem na krzesełko #34
-[16:12:07][INFO ][PID: 8162] TURYSTA #9: Dojechałem na stację górną
-[16:12:07][INFO ][PID: 8162] TURYSTA #9: Wychodzę wyjściem 0
-[16:12:07][INFO ][PID: 8162] TURYSTA #9 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[16:12:15][INFO ][PID: 8162] TURYSTA #9: Ukończyłem zjazd #2
-[16:12:15][INFO ][PID: 8162] TURYSTA #9: Czekam na miejsce na stacji
-[16:12:15][INFO ][PID: 8162] TURYSTA #9: Przeszedłem przez bramkę 0
-[16:12:15][INFO ][PID: 8162] TURYSTA #9: Czekam na pozwolenie wejścia na peron
-[16:12:16][INFO ][PID: 8162] TURYSTA #9: Wchodzę na peron
-[16:12:16][INFO ][PID: 8162] TURYSTA #9: Czekam na krzesełko
-[16:12:16][INFO ][PID: 8162] TURYSTA #9: Wsiadłem na krzesełko #34
-[16:12:18][INFO ][PID: 8162] TURYSTA #9: Dojechałem na stację górną
-[16:12:18][INFO ][PID: 8162] TURYSTA #9: Wychodzę wyjściem 1
-[16:12:18][INFO ][PID: 8162] TURYSTA #9 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[16:12:21][INFO ][PID: 8162] TURYSTA #9: Ukończyłem zjazd #3
-[16:12:21][INFO ][PID: 8162] TURYSTA #9: Czekam na miejsce na stacji
-[16:12:21][INFO ][PID: 8162] TURYSTA #9: Przeszedłem przez bramkę 0
-[16:12:21][INFO ][PID: 8162] TURYSTA #9: Czekam na pozwolenie wejścia na peron
-[16:12:22][INFO ][PID: 8162] TURYSTA #9: Wchodzę na peron
-[16:12:22][INFO ][PID: 8162] TURYSTA #9: Czekam na krzesełko
-[16:12:22][INFO ][PID: 8162] TURYSTA #9: Wsiadłem na krzesełko #22
-[16:12:24][INFO ][PID: 8162] TURYSTA #9: Dojechałem na stację górną
-[16:12:24][INFO ][PID: 8162] TURYSTA #9: Wychodzę wyjściem 1
-[16:12:24][INFO ][PID: 8162] TURYSTA #9 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[16:12:32][INFO ][PID: 8162] TURYSTA #9: Ukończyłem zjazd #4
-[16:12:32][INFO ][PID: 8162] TURYSTA #9: Wystarczy na dziś, wychodzę
-[16:12:32][INFO ][PID: 8162] TURYSTA #9: Kończę dzień z 4 zjazdami
+[15:24:42][INFO ][PID: 7263] TURYSTA #9: Przychodzę (wiek: 34, rowerzysta, zwykły)
+[15:24:42][INFO ][PID: 7263] TURYSTA #9: Podchodzę do kasy
+[15:24:42][INFO ][PID: 7263] TURYSTA #9: Kupiłem bilet #8 (typ: 4)
+[15:24:42][INFO ][PID: 7263] TURYSTA #9: Czekam na miejsce na stacji
+[15:24:42][INFO ][PID: 7263] TURYSTA #9: Przeszedłem przez bramkę 0
+[15:24:42][INFO ][PID: 7263] TURYSTA #9: Czekam na pozwolenie wejścia na peron
+[15:24:42][INFO ][PID: 7263] TURYSTA #9: Wchodzę na peron
+[15:24:42][INFO ][PID: 7263] TURYSTA #9: Czekam na krzesełko
+[15:24:42][INFO ][PID: 7263] TURYSTA #9: Wsiadłem na krzesełko #9
+[15:24:44][INFO ][PID: 7263] TURYSTA #9: Dojechałem na stację górną
+[15:24:44][INFO ][PID: 7263] TURYSTA #9: Wychodzę wyjściem 0
+[15:24:44][INFO ][PID: 7263] TURYSTA #9 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
+[15:24:47][INFO ][PID: 7263] TURYSTA #9: Ukończyłem zjazd #1
+[15:24:47][INFO ][PID: 7263] TURYSTA #9: Wystarczy na dziś, wychodzę
+[15:24:47][INFO ][PID: 7263] TURYSTA #9: Kończę dzień z 1 zjazdami

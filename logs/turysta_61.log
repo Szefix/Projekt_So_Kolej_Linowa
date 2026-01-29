@@ -1,14 +1,14 @@
-[16:12:38][INFO ][PID: 8214] TURYSTA #61: Przychodzę (wiek: 32, pieszy, zwykły)
-[16:12:38][INFO ][PID: 8214] TURYSTA #61: Podchodzę do kasy
-[16:12:38][INFO ][PID: 8214] TURYSTA #61: Kupiłem bilet #61 (typ: 1)
-[16:12:38][INFO ][PID: 8214] TURYSTA #61: Czekam na miejsce na stacji
-[16:12:38][INFO ][PID: 8214] TURYSTA #61: Przeszedłem przez bramkę 0
-[16:12:38][INFO ][PID: 8214] TURYSTA #61: Czekam na pozwolenie wejścia na peron
-[16:12:38][INFO ][PID: 8214] TURYSTA #61: Wchodzę na peron
-[16:12:38][INFO ][PID: 8214] TURYSTA #61: Czekam na krzesełko
-[16:12:38][INFO ][PID: 8214] TURYSTA #61: Wsiadłem na krzesełko #30
-[16:12:40][INFO ][PID: 8214] TURYSTA #61: Dojechałem na stację górną
-[16:12:40][INFO ][PID: 8214] TURYSTA #61: Wychodzę wyjściem 1
-[16:12:40][INFO ][PID: 8214] TURYSTA #61 (pieszy): Schodzę ze stacji górnej
-[16:12:40][INFO ][PID: 8214] TURYSTA #61: Bilet nieważny, kończę
-[16:12:40][INFO ][PID: 8214] TURYSTA #61: Kończę dzień z 1 zjazdami
+[15:25:22][INFO ][PID: 7339] TURYSTA #61: Przychodzę (wiek: 34, pieszy, zwykły)
+[15:25:22][INFO ][PID: 7339] TURYSTA #61: Podchodzę do kasy
+[15:25:22][INFO ][PID: 7339] TURYSTA #61: Kupiłem bilet #60 (typ: 4)
+[15:25:22][INFO ][PID: 7339] TURYSTA #61: Czekam na miejsce na stacji
+[15:25:22][INFO ][PID: 7339] TURYSTA #61: Przeszedłem przez bramkę 0
+[15:25:22][INFO ][PID: 7339] TURYSTA #61: Czekam na pozwolenie wejścia na peron
+[15:25:22][INFO ][PID: 7339] TURYSTA #61: Wchodzę na peron
+[15:25:22][INFO ][PID: 7339] TURYSTA #61: Czekam na krzesełko
+[15:25:22][INFO ][PID: 7339] TURYSTA #61: Wsiadłem na krzesełko #32
+[15:25:24][INFO ][PID: 7339] TURYSTA #61: Dojechałem na stację górną
+[15:25:24][INFO ][PID: 7339] TURYSTA #61: Wychodzę wyjściem 1
+[15:25:24][INFO ][PID: 7339] TURYSTA #61 (pieszy): Schodzę ze stacji górnej
+[15:25:24][INFO ][PID: 7339] TURYSTA #61: Wystarczy na dziś, wychodzę
+[15:25:24][INFO ][PID: 7339] TURYSTA #61: Kończę dzień z 1 zjazdami

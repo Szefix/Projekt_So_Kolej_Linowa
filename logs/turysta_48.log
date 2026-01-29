@@ -1,25 +1,14 @@
-[16:12:23][INFO ][PID: 8201] TURYSTA #48: Przychodzę (wiek: 26, rowerzysta, zwykły)
-[16:12:23][INFO ][PID: 8201] TURYSTA #48: Podchodzę do kasy
-[16:12:23][INFO ][PID: 8201] TURYSTA #48: Kupiłem bilet #48 (typ: 2)
-[16:12:23][INFO ][PID: 8201] TURYSTA #48: Czekam na miejsce na stacji
-[16:12:23][INFO ][PID: 8201] TURYSTA #48: Przeszedłem przez bramkę 0
-[16:12:23][INFO ][PID: 8201] TURYSTA #48: Czekam na pozwolenie wejścia na peron
-[16:12:24][INFO ][PID: 8201] TURYSTA #48: Wchodzę na peron
-[16:12:24][INFO ][PID: 8201] TURYSTA #48: Czekam na krzesełko
-[16:12:24][INFO ][PID: 8201] TURYSTA #48: Wsiadłem na krzesełko #29
-[16:12:26][INFO ][PID: 8201] TURYSTA #48: Dojechałem na stację górną
-[16:12:26][INFO ][PID: 8201] TURYSTA #48: Wychodzę wyjściem 0
-[16:12:26][INFO ][PID: 8201] TURYSTA #48 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[16:12:34][INFO ][PID: 8201] TURYSTA #48: Ukończyłem zjazd #1
-[16:12:34][INFO ][PID: 8201] TURYSTA #48: Czekam na miejsce na stacji
-[16:12:34][INFO ][PID: 8201] TURYSTA #48: Przeszedłem przez bramkę 0
-[16:12:34][INFO ][PID: 8201] TURYSTA #48: Czekam na pozwolenie wejścia na peron
-[16:12:34][INFO ][PID: 8201] TURYSTA #48: Wchodzę na peron
-[16:12:34][INFO ][PID: 8201] TURYSTA #48: Czekam na krzesełko
-[16:12:38][INFO ][PID: 8201] TURYSTA #48: Wsiadłem na krzesełko #28
-[16:12:40][INFO ][PID: 8201] TURYSTA #48: Dojechałem na stację górną
-[16:12:40][INFO ][PID: 8201] TURYSTA #48: Wychodzę wyjściem 0
-[16:12:40][INFO ][PID: 8201] TURYSTA #48 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[16:12:43][INFO ][PID: 8201] TURYSTA #48: Ukończyłem zjazd #2
-[16:12:43][INFO ][PID: 8201] TURYSTA #48: Bilet nieważny, kończę
-[16:12:43][INFO ][PID: 8201] TURYSTA #48: Kończę dzień z 2 zjazdami
+[15:25:15][INFO ][PID: 7326] TURYSTA #48: Przychodzę (wiek: 7, pieszy, zwykły)
+[15:25:15][INFO ][PID: 7326] TURYSTA #48: Podchodzę do kasy
+[15:25:15][INFO ][PID: 7326] TURYSTA #48: Kupiłem bilet #47 (typ: 2)
+[15:25:15][INFO ][PID: 7326] TURYSTA #48: Czekam na miejsce na stacji
+[15:25:15][INFO ][PID: 7326] TURYSTA #48: Przeszedłem przez bramkę 0
+[15:25:15][INFO ][PID: 7326] TURYSTA #48: Czekam na pozwolenie wejścia na peron
+[15:25:15][INFO ][PID: 7326] TURYSTA #48: Wchodzę na peron
+[15:25:15][INFO ][PID: 7326] TURYSTA #48: Czekam na krzesełko
+[15:25:15][INFO ][PID: 7326] TURYSTA #48: Wsiadłem na krzesełko #13
+[15:25:17][INFO ][PID: 7326] TURYSTA #48: Dojechałem na stację górną
+[15:25:17][INFO ][PID: 7326] TURYSTA #48: Wychodzę wyjściem 1
+[15:25:17][INFO ][PID: 7326] TURYSTA #48 (pieszy): Schodzę ze stacji górnej
+[15:25:17][INFO ][PID: 7326] TURYSTA #48: Wystarczy na dziś, wychodzę
+[15:25:17][INFO ][PID: 7326] TURYSTA #48: Kończę dzień z 1 zjazdami

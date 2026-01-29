@@ -1,23 +1,14 @@
-[16:12:26][INFO ][PID: 8204] TURYSTA #51: Przychodzę (wiek: 62, pieszy, zwykły)
-[16:12:26][INFO ][PID: 8204] TURYSTA #51: Podchodzę do kasy
-[16:12:26][INFO ][PID: 8204] TURYSTA #51: Kupiłem bilet #51 (typ: 2)
-[16:12:26][INFO ][PID: 8204] TURYSTA #51: Czekam na miejsce na stacji
-[16:12:26][INFO ][PID: 8204] TURYSTA #51: Przeszedłem przez bramkę 0
-[16:12:26][INFO ][PID: 8204] TURYSTA #51: Czekam na pozwolenie wejścia na peron
-[16:12:26][INFO ][PID: 8204] TURYSTA #51: Wchodzę na peron
-[16:12:26][INFO ][PID: 8204] TURYSTA #51: Czekam na krzesełko
-[16:12:26][INFO ][PID: 8204] TURYSTA #51: Wsiadłem na krzesełko #4
-[16:12:28][INFO ][PID: 8204] TURYSTA #51: Dojechałem na stację górną
-[16:12:28][INFO ][PID: 8204] TURYSTA #51: Wychodzę wyjściem 1
-[16:12:28][INFO ][PID: 8204] TURYSTA #51 (pieszy): Schodzę ze stacji górnej
-[16:12:28][INFO ][PID: 8204] TURYSTA #51: Czekam na miejsce na stacji
-[16:12:28][INFO ][PID: 8204] TURYSTA #51: Przeszedłem przez bramkę 0
-[16:12:28][INFO ][PID: 8204] TURYSTA #51: Czekam na pozwolenie wejścia na peron
-[16:12:29][INFO ][PID: 8204] TURYSTA #51: Wchodzę na peron
-[16:12:29][INFO ][PID: 8204] TURYSTA #51: Czekam na krzesełko
-[16:12:29][INFO ][PID: 8204] TURYSTA #51: Wsiadłem na krzesełko #12
-[16:12:31][INFO ][PID: 8204] TURYSTA #51: Dojechałem na stację górną
-[16:12:31][INFO ][PID: 8204] TURYSTA #51: Wychodzę wyjściem 0
-[16:12:31][INFO ][PID: 8204] TURYSTA #51 (pieszy): Schodzę ze stacji górnej
-[16:12:31][INFO ][PID: 8204] TURYSTA #51: Wystarczy na dziś, wychodzę
-[16:12:31][INFO ][PID: 8204] TURYSTA #51: Kończę dzień z 2 zjazdami
+[15:25:16][INFO ][PID: 7329] TURYSTA #51: Przychodzę (wiek: 6, pieszy, zwykły)
+[15:25:16][INFO ][PID: 7329] TURYSTA #51: Podchodzę do kasy
+[15:25:16][INFO ][PID: 7329] TURYSTA #51: Kupiłem bilet #50 (typ: 1)
+[15:25:16][INFO ][PID: 7329] TURYSTA #51: Czekam na miejsce na stacji
+[15:25:16][INFO ][PID: 7329] TURYSTA #51: Przeszedłem przez bramkę 0
+[15:25:16][INFO ][PID: 7329] TURYSTA #51: Czekam na pozwolenie wejścia na peron
+[15:25:16][INFO ][PID: 7329] TURYSTA #51: Wchodzę na peron
+[15:25:16][INFO ][PID: 7329] TURYSTA #51: Czekam na krzesełko
+[15:25:16][INFO ][PID: 7329] TURYSTA #51: Wsiadłem na krzesełko #16
+[15:25:18][INFO ][PID: 7329] TURYSTA #51: Dojechałem na stację górną
+[15:25:18][INFO ][PID: 7329] TURYSTA #51: Wychodzę wyjściem 0
+[15:25:18][INFO ][PID: 7329] TURYSTA #51 (pieszy): Schodzę ze stacji górnej
+[15:25:18][INFO ][PID: 7329] TURYSTA #51: Bilet nieważny, kończę
+[15:25:18][INFO ][PID: 7329] TURYSTA #51: Kończę dzień z 1 zjazdami

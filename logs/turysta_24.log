@@ -1,25 +1,14 @@
-[16:12:07][INFO ][PID: 8177] TURYSTA #24: Przychodzę (wiek: 56, rowerzysta, zwykły)
-[16:12:07][INFO ][PID: 8177] TURYSTA #24: Podchodzę do kasy
-[16:12:07][INFO ][PID: 8177] TURYSTA #24: Kupiłem bilet #24 (typ: 2)
-[16:12:07][INFO ][PID: 8177] TURYSTA #24: Czekam na miejsce na stacji
-[16:12:07][INFO ][PID: 8177] TURYSTA #24: Przeszedłem przez bramkę 0
-[16:12:07][INFO ][PID: 8177] TURYSTA #24: Czekam na pozwolenie wejścia na peron
-[16:12:07][INFO ][PID: 8177] TURYSTA #24: Wchodzę na peron
-[16:12:07][INFO ][PID: 8177] TURYSTA #24: Czekam na krzesełko
-[16:12:07][INFO ][PID: 8177] TURYSTA #24: Wsiadłem na krzesełko #3
-[16:12:09][INFO ][PID: 8177] TURYSTA #24: Dojechałem na stację górną
-[16:12:09][INFO ][PID: 8177] TURYSTA #24: Wychodzę wyjściem 1
-[16:12:09][INFO ][PID: 8177] TURYSTA #24 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[16:12:12][INFO ][PID: 8177] TURYSTA #24: Ukończyłem zjazd #1
-[16:12:12][INFO ][PID: 8177] TURYSTA #24: Czekam na miejsce na stacji
-[16:12:12][INFO ][PID: 8177] TURYSTA #24: Przeszedłem przez bramkę 0
-[16:12:12][INFO ][PID: 8177] TURYSTA #24: Czekam na pozwolenie wejścia na peron
-[16:12:12][INFO ][PID: 8177] TURYSTA #24: Wchodzę na peron
-[16:12:12][INFO ][PID: 8177] TURYSTA #24: Czekam na krzesełko
-[16:12:12][INFO ][PID: 8177] TURYSTA #24: Wsiadłem na krzesełko #19
-[16:12:14][INFO ][PID: 8177] TURYSTA #24: Dojechałem na stację górną
-[16:12:14][INFO ][PID: 8177] TURYSTA #24: Wychodzę wyjściem 0
-[16:12:14][INFO ][PID: 8177] TURYSTA #24 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
-[16:12:19][INFO ][PID: 8177] TURYSTA #24: Ukończyłem zjazd #2
-[16:12:19][INFO ][PID: 8177] TURYSTA #24: Wystarczy na dziś, wychodzę
-[16:12:19][INFO ][PID: 8177] TURYSTA #24: Kończę dzień z 2 zjazdami
+[15:24:57][INFO ][PID: 7292] TURYSTA #24: Przychodzę (wiek: 4, pieszy, zwykły)
+[15:24:57][INFO ][PID: 7292] TURYSTA #24: Podchodzę do kasy
+[15:24:57][INFO ][PID: 7292] TURYSTA #24: Kupiłem bilet #23 (typ: 5)
+[15:24:57][INFO ][PID: 7292] TURYSTA #24: Czekam na miejsce na stacji
+[15:24:57][INFO ][PID: 7292] TURYSTA #24: Przeszedłem przez bramkę 0
+[15:24:57][INFO ][PID: 7292] TURYSTA #24: Czekam na pozwolenie wejścia na peron
+[15:24:57][INFO ][PID: 7292] TURYSTA #24: Wchodzę na peron
+[15:24:57][INFO ][PID: 7292] TURYSTA #24: Czekam na krzesełko
+[15:24:57][INFO ][PID: 7292] TURYSTA #24: Wsiadłem na krzesełko #31
+[15:24:59][INFO ][PID: 7292] TURYSTA #24: Dojechałem na stację górną
+[15:24:59][INFO ][PID: 7292] TURYSTA #24: Wychodzę wyjściem 1
+[15:24:59][INFO ][PID: 7292] TURYSTA #24 (pieszy): Schodzę ze stacji górnej
+[15:24:59][INFO ][PID: 7292] TURYSTA #24: Wystarczy na dziś, wychodzę
+[15:24:59][INFO ][PID: 7292] TURYSTA #24: Kończę dzień z 1 zjazdami

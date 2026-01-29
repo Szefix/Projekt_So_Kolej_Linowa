@@ -1,15 +1,32 @@
-[16:12:04][INFO ][PID: 8174] TURYSTA #21: Przychodzę (wiek: 56, rowerzysta, zwykły)
-[16:12:04][INFO ][PID: 8174] TURYSTA #21: Podchodzę do kasy
-[16:12:04][INFO ][PID: 8174] TURYSTA #21: Kupiłem bilet #21 (typ: 1)
-[16:12:04][INFO ][PID: 8174] TURYSTA #21: Czekam na miejsce na stacji
-[16:12:04][INFO ][PID: 8174] TURYSTA #21: Przeszedłem przez bramkę 0
-[16:12:04][INFO ][PID: 8174] TURYSTA #21: Czekam na pozwolenie wejścia na peron
-[16:12:04][INFO ][PID: 8174] TURYSTA #21: Wchodzę na peron
-[16:12:04][INFO ][PID: 8174] TURYSTA #21: Czekam na krzesełko
-[16:12:04][INFO ][PID: 8174] TURYSTA #21: Wsiadłem na krzesełko #31
-[16:12:06][INFO ][PID: 8174] TURYSTA #21: Dojechałem na stację górną
-[16:12:06][INFO ][PID: 8174] TURYSTA #21: Wychodzę wyjściem 0
-[16:12:06][INFO ][PID: 8174] TURYSTA #21 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[16:12:09][INFO ][PID: 8174] TURYSTA #21: Ukończyłem zjazd #1
-[16:12:09][INFO ][PID: 8174] TURYSTA #21: Bilet nieważny, kończę
-[16:12:09][INFO ][PID: 8174] TURYSTA #21: Kończę dzień z 1 zjazdami
+[15:24:55][INFO ][PID: 7289] TURYSTA #21: Przychodzę (wiek: 22, pieszy, zwykły)
+[15:24:55][INFO ][PID: 7289] TURYSTA #21: Podchodzę do kasy
+[15:24:55][INFO ][PID: 7289] TURYSTA #21: Kupiłem bilet #20 (typ: 2)
+[15:24:55][INFO ][PID: 7289] TURYSTA #21: Czekam na miejsce na stacji
+[15:24:55][INFO ][PID: 7289] TURYSTA #21: Przeszedłem przez bramkę 0
+[15:24:55][INFO ][PID: 7289] TURYSTA #21: Czekam na pozwolenie wejścia na peron
+[15:24:55][INFO ][PID: 7289] TURYSTA #21: Wchodzę na peron
+[15:24:55][INFO ][PID: 7289] TURYSTA #21: Czekam na krzesełko
+[15:24:55][INFO ][PID: 7289] TURYSTA #21: Wsiadłem na krzesełko #26
+[15:24:57][INFO ][PID: 7289] TURYSTA #21: Dojechałem na stację górną
+[15:24:57][INFO ][PID: 7289] TURYSTA #21: Wychodzę wyjściem 0
+[15:24:57][INFO ][PID: 7289] TURYSTA #21 (pieszy): Schodzę ze stacji górnej
+[15:24:57][INFO ][PID: 7289] TURYSTA #21: Czekam na miejsce na stacji
+[15:24:57][INFO ][PID: 7289] TURYSTA #21: Przeszedłem przez bramkę 0
+[15:24:57][INFO ][PID: 7289] TURYSTA #21: Czekam na pozwolenie wejścia na peron
+[15:24:57][INFO ][PID: 7289] TURYSTA #21: Wchodzę na peron
+[15:24:57][INFO ][PID: 7289] TURYSTA #21: Czekam na krzesełko
+[15:24:57][INFO ][PID: 7289] TURYSTA #21: Wsiadłem na krzesełko #32
+[15:24:59][INFO ][PID: 7289] TURYSTA #21: Dojechałem na stację górną
+[15:24:59][INFO ][PID: 7289] TURYSTA #21: Wychodzę wyjściem 0
+[15:24:59][INFO ][PID: 7289] TURYSTA #21 (pieszy): Schodzę ze stacji górnej
+[15:24:59][INFO ][PID: 7289] TURYSTA #21: Czekam na miejsce na stacji
+[15:24:59][INFO ][PID: 7289] TURYSTA #21: Przeszedłem przez bramkę 0
+[15:24:59][INFO ][PID: 7289] TURYSTA #21: Czekam na pozwolenie wejścia na peron
+[15:24:59][INFO ][PID: 7289] TURYSTA #21: Wchodzę na peron
+[15:24:59][INFO ][PID: 7289] TURYSTA #21: Czekam na krzesełko
+[15:25:00][INFO ][PID: 7289] TURYSTA #21: Wsiadłem na krzesełko #2
+[15:25:02][INFO ][PID: 7289] TURYSTA #21: Dojechałem na stację górną
+[15:25:02][INFO ][PID: 7289] TURYSTA #21: Wychodzę wyjściem 1
+[15:25:02][INFO ][PID: 7289] TURYSTA #21 (pieszy): Schodzę ze stacji górnej
+[15:25:02][INFO ][PID: 7289] TURYSTA #21: Wystarczy na dziś, wychodzę
+[15:25:02][INFO ][PID: 7289] TURYSTA #21: Kończę dzień z 3 zjazdami

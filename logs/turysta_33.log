@@ -1,35 +1,14 @@
-[16:12:12][INFO ][PID: 8186] TURYSTA #33: Przychodzę (wiek: 48, rowerzysta, zwykły)
-[16:12:12][INFO ][PID: 8186] TURYSTA #33: Podchodzę do kasy
-[16:12:12][INFO ][PID: 8186] TURYSTA #33: Kupiłem bilet #33 (typ: 4)
-[16:12:12][INFO ][PID: 8186] TURYSTA #33: Czekam na miejsce na stacji
-[16:12:12][INFO ][PID: 8186] TURYSTA #33: Przeszedłem przez bramkę 0
-[16:12:12][INFO ][PID: 8186] TURYSTA #33: Czekam na pozwolenie wejścia na peron
-[16:12:12][INFO ][PID: 8186] TURYSTA #33: Wchodzę na peron
-[16:12:12][INFO ][PID: 8186] TURYSTA #33: Czekam na krzesełko
-[16:12:12][INFO ][PID: 8186] TURYSTA #33: Wsiadłem na krzesełko #18
-[16:12:14][INFO ][PID: 8186] TURYSTA #33: Dojechałem na stację górną
-[16:12:14][INFO ][PID: 8186] TURYSTA #33: Wychodzę wyjściem 1
-[16:12:14][INFO ][PID: 8186] TURYSTA #33 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
-[16:12:19][INFO ][PID: 8186] TURYSTA #33: Ukończyłem zjazd #1
-[16:12:19][INFO ][PID: 8186] TURYSTA #33: Czekam na miejsce na stacji
-[16:12:19][INFO ][PID: 8186] TURYSTA #33: Przeszedłem przez bramkę 0
-[16:12:19][INFO ][PID: 8186] TURYSTA #33: Czekam na pozwolenie wejścia na peron
-[16:12:19][INFO ][PID: 8186] TURYSTA #33: Wchodzę na peron
-[16:12:19][INFO ][PID: 8186] TURYSTA #33: Czekam na krzesełko
-[16:12:19][INFO ][PID: 8186] TURYSTA #33: Wsiadłem na krzesełko #12
-[16:12:21][INFO ][PID: 8186] TURYSTA #33: Dojechałem na stację górną
-[16:12:21][INFO ][PID: 8186] TURYSTA #33: Wychodzę wyjściem 0
-[16:12:21][INFO ][PID: 8186] TURYSTA #33 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[16:12:24][INFO ][PID: 8186] TURYSTA #33: Ukończyłem zjazd #2
-[16:12:24][INFO ][PID: 8186] TURYSTA #33: Czekam na miejsce na stacji
-[16:12:24][INFO ][PID: 8186] TURYSTA #33: Przeszedłem przez bramkę 0
-[16:12:24][INFO ][PID: 8186] TURYSTA #33: Czekam na pozwolenie wejścia na peron
-[16:12:25][INFO ][PID: 8186] TURYSTA #33: Wchodzę na peron
-[16:12:25][INFO ][PID: 8186] TURYSTA #33: Czekam na krzesełko
-[16:12:25][INFO ][PID: 8186] TURYSTA #33: Wsiadłem na krzesełko #35
-[16:12:27][INFO ][PID: 8186] TURYSTA #33: Dojechałem na stację górną
-[16:12:27][INFO ][PID: 8186] TURYSTA #33: Wychodzę wyjściem 1
-[16:12:27][INFO ][PID: 8186] TURYSTA #33 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[16:12:39][INFO ][PID: 8186] TURYSTA #33: Ukończyłem zjazd #3
-[16:12:39][INFO ][PID: 8186] TURYSTA #33: Wystarczy na dziś, wychodzę
-[16:12:39][INFO ][PID: 8186] TURYSTA #33: Kończę dzień z 3 zjazdami
+[15:25:04][INFO ][PID: 7308] TURYSTA #33: Przychodzę (wiek: 47, pieszy, zwykły)
+[15:25:04][INFO ][PID: 7308] TURYSTA #33: Podchodzę do kasy
+[15:25:04][INFO ][PID: 7308] TURYSTA #33: Kupiłem bilet #32 (typ: 1)
+[15:25:04][INFO ][PID: 7308] TURYSTA #33: Czekam na miejsce na stacji
+[15:25:04][INFO ][PID: 7308] TURYSTA #33: Przeszedłem przez bramkę 0
+[15:25:04][INFO ][PID: 7308] TURYSTA #33: Czekam na pozwolenie wejścia na peron
+[15:25:04][INFO ][PID: 7308] TURYSTA #33: Wchodzę na peron
+[15:25:04][INFO ][PID: 7308] TURYSTA #33: Czekam na krzesełko
+[15:25:04][INFO ][PID: 7308] TURYSTA #33: Wsiadłem na krzesełko #17
+[15:25:06][INFO ][PID: 7308] TURYSTA #33: Dojechałem na stację górną
+[15:25:06][INFO ][PID: 7308] TURYSTA #33: Wychodzę wyjściem 1
+[15:25:06][INFO ][PID: 7308] TURYSTA #33 (pieszy): Schodzę ze stacji górnej
+[15:25:06][INFO ][PID: 7308] TURYSTA #33: Bilet nieważny, kończę
+[15:25:06][INFO ][PID: 7308] TURYSTA #33: Kończę dzień z 1 zjazdami

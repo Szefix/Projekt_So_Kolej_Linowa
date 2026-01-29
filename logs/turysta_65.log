@@ -1,13 +1,14 @@
-[16:12:41][INFO ][PID: 8218] TURYSTA #65: Przychodzę (wiek: 26, rowerzysta, zwykły)
-[16:12:41][INFO ][PID: 8218] TURYSTA #65: Podchodzę do kasy
-[16:12:41][INFO ][PID: 8218] TURYSTA #65: Kupiłem bilet #65 (typ: 2)
-[16:12:41][INFO ][PID: 8218] TURYSTA #65: Czekam na miejsce na stacji
-[16:12:41][INFO ][PID: 8218] TURYSTA #65: Przeszedłem przez bramkę 0
-[16:12:41][INFO ][PID: 8218] TURYSTA #65: Czekam na pozwolenie wejścia na peron
-[16:12:41][INFO ][PID: 8218] TURYSTA #65: Wchodzę na peron
-[16:12:41][INFO ][PID: 8218] TURYSTA #65: Czekam na krzesełko
-[16:12:41][INFO ][PID: 8218] TURYSTA #65: Wsiadłem na krzesełko #1
-[16:12:43][INFO ][PID: 8218] TURYSTA #65: Dojechałem na stację górną
-[16:12:43][INFO ][PID: 8218] TURYSTA #65: Wychodzę wyjściem 1
-[16:12:43][INFO ][PID: 8218] TURYSTA #65 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[16:12:47][INFO ][PID: 8218] TURYSTA #65: Kończę dzień z 0 zjazdami
+[15:25:29][INFO ][PID: 7343] TURYSTA #65: Przychodzę (wiek: 29, pieszy, zwykły)
+[15:25:29][INFO ][PID: 7343] TURYSTA #65: Podchodzę do kasy
+[15:25:29][INFO ][PID: 7343] TURYSTA #65: Kupiłem bilet #64 (typ: 4)
+[15:25:29][INFO ][PID: 7343] TURYSTA #65: Czekam na miejsce na stacji
+[15:25:29][INFO ][PID: 7343] TURYSTA #65: Przeszedłem przez bramkę 0
+[15:25:29][INFO ][PID: 7343] TURYSTA #65: Czekam na pozwolenie wejścia na peron
+[15:25:29][INFO ][PID: 7343] TURYSTA #65: Wchodzę na peron
+[15:25:29][INFO ][PID: 7343] TURYSTA #65: Czekam na krzesełko
+[15:25:29][INFO ][PID: 7343] TURYSTA #65: Wsiadłem na krzesełko #5
+[15:25:31][INFO ][PID: 7343] TURYSTA #65: Dojechałem na stację górną
+[15:25:31][INFO ][PID: 7343] TURYSTA #65: Wychodzę wyjściem 0
+[15:25:31][INFO ][PID: 7343] TURYSTA #65 (pieszy): Schodzę ze stacji górnej
+[15:25:31][INFO ][PID: 7343] TURYSTA #65: Wystarczy na dziś, wychodzę
+[15:25:31][INFO ][PID: 7343] TURYSTA #65: Kończę dzień z 1 zjazdami
