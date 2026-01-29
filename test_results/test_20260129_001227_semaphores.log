@@ -1,0 +1,10 @@
+=== ANALIZA SEMAFORÓW ===
+
+------ Semaphore Arrays --------
+key        semid      owner      perms      nsems     
+
+
+------ Semaphore Status --------
+used arrays = 0
+allocated semaphores = 0
+

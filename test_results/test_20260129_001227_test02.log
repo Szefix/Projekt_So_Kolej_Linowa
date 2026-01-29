@@ -1,0 +1,38 @@
+pclose: No child processes
+
+                 KOLEJ LINOWA KRZESEŁKOWA                      
+                    Symulacja Systemu                          
+
+  Krzesełka: 36 aktywnych / 72 łącznie                        
+  Bramki wejściowe: 4    Bramki peronowe: 3                   
+  Max osób na stacji: 50                                       
+  Czas symulacji: 9999 sekund                                    
+
+Inicjalizacja zasobów IPC...
+Sprawdzanie istniejących zasobów IPC...
+Zasoby IPC zainicjalizowane pomyślnie.
+Uruchamianie procesów obsługi...
+Symulacja rozpoczęta! Naciśnij Ctrl+C aby przerwać.
+
+[Czas:   1 s] Stacja:  0 | Peron:  0 | Krzesełka:  0 | Zjazdy:   0 | Bilety:   0   [Czas:   1 s] Stacja:  2 | Peron:  0 | Krzesełka:  1 | Zjazdy:   0 | Bilety:   2   [Czas:   2 s] Stacja:  2 | Peron:  0 | Krzesełka:  1 | Zjazdy:   0 | Bilety:   2   [Czas:   2 s] Stacja:  2 | Peron:  1 | Krzesełka:  1 | Zjazdy:   0 | Bilety:   3   [Czas:   3 s] Stacja:  2 | Peron:  1 | Krzesełka:  0 | Zjazdy:   1 | Bilety:   3   [Czas:   3 s] Stacja:  2 | Peron:  2 | Krzesełka:  0 | Zjazdy:   1 | Bilety:   4   [Czas:   7 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   1 | Bilety:   6   [Czas:   8 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   1 | Bilety:   6   [Czas:   8 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   1 | Bilety:   7   [Czas:   9 s] Stacja:  2 | Peron:  2 | Krzesełka:  0 | Zjazdy:   2 | Bilety:   8   [Czas:   9 s] Stacja:  2 | Peron:  3 | Krzesełka:  0 | Zjazdy:   2 | Bilety:   8   [Czas:  10 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   2 | Bilety:   9   [Czas:  10 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   2 | Bilety:   9   [Czas:  11 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   2 | Bilety:   9   [Czas:  11 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   2 | Bilety:  10   [Czas:  12 s] Stacja:  3 | Peron:  2 | Krzesełka:  1 | Zjazdy:   3 | Bilety:  10   [Czas:  12 s] Stacja:  2 | Peron:  3 | Krzesełka:  1 | Zjazdy:   3 | Bilety:  11   [Czas:  13 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   4 | Bilety:  12   [Czas:  13 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   4 | Bilety:  12   [Czas:  14 s] Stacja:  2 | Peron:  2 | Krzesełka:  2 | Zjazdy:   4 | Bilety:  13   [Czas:  14 s] Stacja:  2 | Peron:  2 | Krzesełka:  2 | Zjazdy:   4 | Bilety:  13   [Czas:  15 s] Stacja:  4 | Peron:  2 | Krzesełka:  1 | Zjazdy:   5 | Bilety:  14   [Czas:  15 s] Stacja:  2 | Peron:  2 | Krzesełka:  2 | Zjazdy:   5 | Bilety:  14   [Czas:  16 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   6 | Bilety:  14   [Czas:  16 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   6 | Bilety:  15   [Czas:  17 s] Stacja:  3 | Peron:  2 | Krzesełka:  1 | Zjazdy:   7 | Bilety:  17   [Czas:  17 s] Stacja:  1 | Peron:  1 | Krzesełka:  2 | Zjazdy:   7 | Bilety:  17   [Czas:  18 s] Stacja:  2 | Peron:  2 | Krzesełka:  2 | Zjazdy:   7 | Bilety:  19   [Czas:  18 s] Stacja:  1 | Peron:  1 | Krzesełka:  3 | Zjazdy:   7 | Bilety:  19   [Czas:  19 s] Stacja:  2 | Peron:  1 | Krzesełka:  2 | Zjazdy:   9 | Bilety:  20   [Czas:  19 s] Stacja:  3 | Peron:  1 | Krzesełka:  2 | Zjazdy:   9 | Bilety:  20   [Czas:  20 s] Stacja:  3 | Peron:  2 | Krzesełka:  1 | Zjazdy:  10 | Bilety:  21   [Czas:  20 s] Stacja:  3 | Peron:  2 | Krzesełka:  2 | Zjazdy:  10 | Bilety:  21   [Czas:  21 s] Stacja:  3 | Peron:  3 | Krzesełka:  1 | Zjazdy:  11 | Bilety:  22   [Czas:  21 s] Stacja:  3 | Peron:  3 | Krzesełka:  1 | Zjazdy:  11 | Bilety:  22   [Czas:  22 s] Stacja:  3 | Peron:  3 | Krzesełka:  1 | Zjazdy:  12 | Bilety:  23   [Czas:  22 s] Stacja:  3 | Peron:  3 | Krzesełka:  1 | Zjazdy:  12 | Bilety:  23   [Czas:  23 s] Stacja:  3 | Peron:  3 | Krzesełka:  1 | Zjazdy:  12 | Bilety:  23   [Czas:  23 s] Stacja:  3 | Peron:  3 | Krzesełka:  2 | Zjazdy:  12 | Bilety:  24   [Czas:  24 s] Stacja:  5 | Peron:  3 | Krzesełka:  1 | Zjazdy:  13 | Bilety:  27   [Czas:  24 s] Stacja:  2 | Peron:  2 | Krzesełka:  3 | Zjazdy:  13 | Bilety:  27   [Czas:  25 s] Stacja:  2 | Peron:  2 | Krzesełka:  2 | Zjazdy:  14 | Bilety:  27   [Czas:  25 s] Stacja:  2 | Peron:  2 | Krzesełka:  2 | Zjazdy:  14 | Bilety:  28   [Czas:  26 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:  16 | Bilety:  29   [Czas:  26 s] Stacja:  3 | Peron:  2 | Krzesełka:  1 | Zjazdy:  16 | Bilety:  29   [Czas:  27 s] Stacja:  3 | Peron:  2 | Krzesełka:  1 | Zjazdy:  16 | Bilety:  31   [Czas:  27 s] Stacja:  3 | Peron:  3 | Krzesełka:  2 | Zjazdy:  16 | Bilety:  31   [Czas:  28 s] Stacja:  3 | Peron:  3 | Krzesełka:  1 | Zjazdy:  17 | Bilety:  32   [Czas:  28 s] Stacja:  3 | Peron:  3 | Krzesełka:  1 | Zjazdy:  17 | Bilety:  32   [Czas:  29 s] Stacja:  6 | Peron:  3 | Krzesełka:  0 | Zjazdy:  18 | Bilety:  35   [Czas:  29 s] Stacja:  4 | Peron:  3 | Krzesełka:  1 | Zjazdy:  18 | Bilety:  35   [Czas:  30 s] Stacja:  4 | Peron:  3 | Krzesełka:  1 | Zjazdy:  18 | Bilety:  35   [Czas:  30 s] Stacja:  4 | Peron:  3 | Krzesełka:  1 | Zjazdy:  18 | Bilety:  36   
+
+Kolej zamknięta! Oczekiwanie na opuszczenie stacji...
+[Czas:  31 s] Stacja:  4 | Peron:  3 | Krzesełka:  0 | Zjazdy:  19 | Bilety:  36   [Czas:  31 s] Stacja:  4 | Peron:  3 | Krzesełka:  0 | Zjazdy:  19 | Bilety:  36   [Czas:  32 s] Stacja:  4 | Peron:  3 | Krzesełka:  0 | Zjazdy:  19 | Bilety:  36   [Czas:  32 s] Stacja:  4 | Peron:  3 | Krzesełka:  0 | Zjazdy:  19 | Bilety:  36   [Czas:  33 s] Stacja:  4 | Peron:  3 | Krzesełka:  0 | Zjazdy:  19 | Bilety:  36   [Czas:  33 s] Stacja:  4 | Peron:  3 | Krzesełka:  0 | Zjazdy:  19 | Bilety:  36   
+
+Zatrzymywanie symulacji...
+
+
+Wysyłanie sygnałów zakończenia...
+Oczekiwanie na zakończenie procesów potomnych...
+Timeout - wymuszam zakończenie (SIGKILL)...
+Zebrano 0 procesów potomnych.
+Generowanie raportu...
+Raport zapisany do: logs/raport_dzienny.txt
+
+                    PODSUMOWANIE DNIA                          
+  Łączna liczba zjazdów:     19                                 
+  Sprzedanych biletów:       36                                 
+  Wpisów w rejestrze:        62                                 
+
+Czyszczenie zasobów IPC...
+Symulacja zakończona pomyślnie.

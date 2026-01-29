@@ -1,0 +1,13 @@
+=== ANALIZA DEADLOCKÓW: test02 ===
+PID: 389
+Timeout: 90s
+Start: czw., 29 sty 2026 00:45:06
+
+[0s] Stany procesów:
+
+[0s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[0s] Aktywne semafory: 0
+
+Test zakończony pomyślnie po 0s

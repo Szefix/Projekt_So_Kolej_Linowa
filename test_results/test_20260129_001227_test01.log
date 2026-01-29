@@ -1,0 +1,38 @@
+pclose: No child processes
+
+                 KOLEJ LINOWA KRZESEŁKOWA                      
+                    Symulacja Systemu                          
+
+  Krzesełka: 36 aktywnych / 72 łącznie                        
+  Bramki wejściowe: 4    Bramki peronowe: 3                   
+  Max osób na stacji: 50                                       
+  Czas symulacji: 9999 sekund                                    
+
+Inicjalizacja zasobów IPC...
+Sprawdzanie istniejących zasobów IPC...
+Zasoby IPC zainicjalizowane pomyślnie.
+Uruchamianie procesów obsługi...
+Symulacja rozpoczęta! Naciśnij Ctrl+C aby przerwać.
+
+[Czas:   0 s] Stacja:  0 | Peron:  0 | Krzesełka:  0 | Zjazdy:   0 | Bilety:   0   [Czas:   1 s] Stacja:  0 | Peron:  0 | Krzesełka:  2 | Zjazdy:   0 | Bilety:   1   [Czas:   1 s] Stacja:  0 | Peron:  0 | Krzesełka:  2 | Zjazdy:   0 | Bilety:   1   [Czas:   2 s] Stacja:  1 | Peron:  0 | Krzesełka:  3 | Zjazdy:   0 | Bilety:   3   [Czas:   2 s] Stacja:  1 | Peron:  0 | Krzesełka:  3 | Zjazdy:   0 | Bilety:   3   [Czas:   3 s] Stacja:  2 | Peron:  2 | Krzesełka:  1 | Zjazdy:   2 | Bilety:   4   [Czas:   3 s] Stacja:  1 | Peron:  3 | Krzesełka:  1 | Zjazdy:   2 | Bilety:   4   [Czas:   4 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   4 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   5 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   5 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   6 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   6 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   7 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   7 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   8 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   8 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   9 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:   9 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   
+
+Kolej zamknięta! Oczekiwanie na opuszczenie stacji...
+[Czas:  10 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:  10 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:  11 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:  11 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:  12 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   [Czas:  12 s] Stacja:  1 | Peron:  3 | Krzesełka:  0 | Zjazdy:   3 | Bilety:   4   
+
+Zatrzymywanie symulacji...
+
+
+Wysyłanie sygnałów zakończenia...
+Oczekiwanie na zakończenie procesów potomnych...
+Timeout - wymuszam zakończenie (SIGKILL)...
+Zebrano 0 procesów potomnych.
+Generowanie raportu...
+Raport zapisany do: logs/raport_dzienny.txt
+
+                    PODSUMOWANIE DNIA                          
+  Łączna liczba zjazdów:     3                                  
+  Sprzedanych biletów:       4                                  
+  Wpisów w rejestrze:        7                                  
+
+Czyszczenie zasobów IPC...
+Symulacja zakończona pomyślnie.

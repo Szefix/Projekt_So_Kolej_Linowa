@@ -1,0 +1,2233 @@
+=== ANALIZA DEADLOCKÓW: test05 ===
+PID: 20916
+Timeout: 120s
+Start: Thu Jan 29 00:50:14 CET 2026
+
+[0s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20932 S hrtimer_nanosleep              turysta 1 39 -1
+[0s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[0s] Aktywne semafory: 1
+[2s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20932 S do_semtimedop                  turysta 1 39 -1
+  20965 S hrtimer_nanosleep              turysta 2 31 -1
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20968 S hrtimer_nanosleep              turysta 5 24 -1
+  20969 S hrtimer_nanosleep              turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+[2s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[2s] Aktywne semafory: 1
+[5s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20932 S hrtimer_nanosleep              turysta 1 39 -1
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20968 S hrtimer_nanosleep              turysta 5 24 -1
+  20969 S do_semtimedop                  turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21007 S do_semtimedop                  turysta 8 66 -1
+  21008 S do_semtimedop                  turysta 9 7 8
+  21009 S do_semtimedop                  turysta 10 61 -1
+[5s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[5s] Aktywne semafory: 1
+[8s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 D p9_client_rpc                  pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20932 S do_semtimedop                  turysta 1 39 -1
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20968 S hrtimer_nanosleep              turysta 5 24 -1
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21007 S hrtimer_nanosleep              turysta 8 66 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21009 S hrtimer_nanosleep              turysta 10 61 -1
+  21046 S do_semtimedop                  turysta 11 60 -1
+  21047 S do_semtimedop                  turysta 12 31 -1
+  21052 S do_semtimedop                  turysta 13 34 -1
+[8s] Procesy zablokowane (D): 1, zombie (Z): 0
+0
+[8s] Aktywne semafory: 1
+[8s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        1456         14          
+[10s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 D p9_client_rpc                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20932 S do_semtimedop                  turysta 1 39 -1
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20968 S hrtimer_nanosleep              turysta 5 24 -1
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21009 S hrtimer_nanosleep              turysta 10 61 -1
+  21046 S hrtimer_nanosleep              turysta 11 60 -1
+  21047 S hrtimer_nanosleep              turysta 12 31 -1
+  21052 S do_semtimedop                  turysta 13 34 -1
+  21085 S do_semtimedop                  turysta 14 22 -1
+  21086 S do_semtimedop                  turysta 15 28 -1
+  21091 S do_semtimedop                  turysta 16 44 -1
+[10s] Procesy zablokowane (D): 1, zombie (Z): 0
+0
+[10s] Aktywne semafory: 1
+[10s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        1768         17          
+[13s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 D p9_client_rpc                  pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20932 S hrtimer_nanosleep              turysta 1 39 -1
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20968 S hrtimer_nanosleep              turysta 5 24 -1
+  20969 S hrtimer_nanosleep              turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21009 S hrtimer_nanosleep              turysta 10 61 -1
+  21047 S do_semtimedop                  turysta 12 31 -1
+  21052 S do_semtimedop                  turysta 13 34 -1
+  21085 S hrtimer_nanosleep              turysta 14 22 -1
+  21086 S hrtimer_nanosleep              turysta 15 28 -1
+  21091 S hrtimer_nanosleep              turysta 16 44 -1
+  21124 S hrtimer_nanosleep              turysta 17 28 -1
+  21125 S do_semtimedop                  turysta 18 33 -1
+[13s] Procesy zablokowane (D): 1, zombie (Z): 0
+0
+[13s] Aktywne semafory: 1
+[13s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        2392         23          
+[15s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20932 S hrtimer_nanosleep              turysta 1 39 -1
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20968 S hrtimer_nanosleep              turysta 5 24 -1
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21009 S hrtimer_nanosleep              turysta 10 61 -1
+  21047 S hrtimer_nanosleep              turysta 12 31 -1
+  21052 S hrtimer_nanosleep              turysta 13 34 -1
+  21085 S hrtimer_nanosleep              turysta 14 22 -1
+  21086 S hrtimer_nanosleep              turysta 15 28 -1
+  21124 S do_semtimedop                  turysta 17 28 -1
+  21125 S do_semtimedop                  turysta 18 33 -1
+  21162 S hrtimer_nanosleep              turysta 19 59 -1
+  21163 S hrtimer_nanosleep              turysta 20 41 -1
+  21168 S do_semtimedop                  turysta 21 31 -1
+[15s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[15s] Aktywne semafory: 1
+[15s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        3328         32          
+[18s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 D p9_client_rpc                  pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20968 S hrtimer_nanosleep              turysta 5 24 -1
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21047 S hrtimer_nanosleep              turysta 12 31 -1
+  21085 S hrtimer_nanosleep              turysta 14 22 -1
+  21086 S do_semtimedop                  turysta 15 28 -1
+  21124 S hrtimer_nanosleep              turysta 17 28 -1
+  21125 S hrtimer_nanosleep              turysta 18 33 -1
+  21162 S do_semtimedop                  turysta 19 59 -1
+  21163 S do_semtimedop                  turysta 20 41 -1
+  21168 S hrtimer_nanosleep              turysta 21 31 -1
+  21201 S hrtimer_nanosleep              turysta 22 39 -1
+  21202 S do_semtimedop                  turysta 23 66 -1
+[18s] Procesy zablokowane (D): 1, zombie (Z): 0
+0
+[18s] Aktywne semafory: 1
+[18s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        3952         38          
+[20s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 D p9_client_rpc                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21047 S do_semtimedop                  turysta 12 31 -1
+  21086 S hrtimer_nanosleep              turysta 15 28 -1
+  21125 S do_semtimedop                  turysta 18 33 -1
+  21163 S hrtimer_nanosleep              turysta 20 41 -1
+  21168 S hrtimer_nanosleep              turysta 21 31 -1
+  21201 S hrtimer_nanosleep              turysta 22 39 -1
+  21202 S hrtimer_nanosleep              turysta 23 66 -1
+  21239 S hrtimer_nanosleep              turysta 24 51 -1
+  21240 S do_semtimedop                  turysta 25 44 -1
+  21245 S do_semtimedop                  turysta 26 50 -1
+[20s] Procesy zablokowane (D): 1, zombie (Z): 0
+0
+[20s] Aktywne semafory: 1
+[20s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        4680         45          
+[23s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 D p9_client_rpc                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21047 S hrtimer_nanosleep              turysta 12 31 -1
+  21086 S hrtimer_nanosleep              turysta 15 28 -1
+  21168 S hrtimer_nanosleep              turysta 21 31 -1
+  21202 S do_semtimedop                  turysta 23 66 -1
+  21239 S hrtimer_nanosleep              turysta 24 51 -1
+  21240 S hrtimer_nanosleep              turysta 25 44 -1
+  21245 S hrtimer_nanosleep              turysta 26 50 -1
+  21278 S do_semtimedop                  turysta 27 43 -1
+  21279 S do_semtimedop                  turysta 28 60 -1
+[23s] Procesy zablokowane (D): 1, zombie (Z): 0
+0
+[23s] Aktywne semafory: 1
+[23s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        5096         49          
+[25s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21086 S hrtimer_nanosleep              turysta 15 28 -1
+  21202 S do_semtimedop                  turysta 23 66 -1
+  21239 S hrtimer_nanosleep              turysta 24 51 -1
+  21240 S hrtimer_nanosleep              turysta 25 44 -1
+  21278 S do_semtimedop                  turysta 27 43 -1
+  21279 S hrtimer_nanosleep              turysta 28 60 -1
+  21316 S hrtimer_nanosleep              turysta 29 40 -1
+  21317 S do_semtimedop                  turysta 30 21 -1
+  21322 S do_semtimedop                  turysta 31 29 -1
+[25s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[25s] Aktywne semafory: 1
+[25s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        5928         57          
+[31s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21086 S do_semtimedop                  turysta 15 28 -1
+  21202 S hrtimer_nanosleep              turysta 23 66 -1
+  21239 S hrtimer_nanosleep              turysta 24 51 -1
+  21240 S do_semtimedop                  turysta 25 44 -1
+  21278 S hrtimer_nanosleep              turysta 27 43 -1
+  21316 S do_semtimedop                  turysta 29 40 -1
+  21317 S hrtimer_nanosleep              turysta 30 21 -1
+  21322 S hrtimer_nanosleep              turysta 31 29 -1
+  21355 S hrtimer_nanosleep              turysta 32 67 -1
+  21356 S hrtimer_nanosleep              turysta 33 60 -1
+  21361 S do_semtimedop                  turysta 34 40 -1
+[31s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[31s] Aktywne semafory: 1
+[31s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        6240         60          
+[34s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 D p9_client_rpc                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21086 S hrtimer_nanosleep              turysta 15 28 -1
+  21240 S hrtimer_nanosleep              turysta 25 44 -1
+  21278 S hrtimer_nanosleep              turysta 27 43 -1
+  21316 S do_semtimedop                  turysta 29 40 -1
+  21317 S hrtimer_nanosleep              turysta 30 21 -1
+  21322 S hrtimer_nanosleep              turysta 31 29 -1
+  21355 S do_semtimedop                  turysta 32 67 -1
+  21356 S hrtimer_nanosleep              turysta 33 60 -1
+  21361 S hrtimer_nanosleep              turysta 34 40 -1
+  21394 S hrtimer_nanosleep              turysta 35 30 -1
+  21395 S do_semtimedop                  turysta 36 44 -1
+  21396 S do_semtimedop                  turysta 37 4 36
+  21397 S do_semtimedop                  turysta 38 6 36
+[34s] Procesy zablokowane (D): 1, zombie (Z): 0
+0
+[34s] Aktywne semafory: 1
+[34s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        7384         71          
+[37s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21086 S hrtimer_nanosleep              turysta 15 28 -1
+  21278 S hrtimer_nanosleep              turysta 27 43 -1
+  21316 S hrtimer_nanosleep              turysta 29 40 -1
+  21317 S hrtimer_nanosleep              turysta 30 21 -1
+  21322 S hrtimer_nanosleep              turysta 31 29 -1
+  21356 S hrtimer_nanosleep              turysta 33 60 -1
+  21361 S hrtimer_nanosleep              turysta 34 40 -1
+  21394 S hrtimer_nanosleep              turysta 35 30 -1
+  21395 S do_semtimedop                  turysta 36 44 -1
+  21396 S do_semtimedop                  turysta 37 4 36
+  21397 S hrtimer_nanosleep              turysta 38 6 36
+  21421 S hrtimer_nanosleep              turysta 39 56 -1
+  21422 S hrtimer_nanosleep              turysta 40 4 39
+  21436 S hrtimer_nanosleep              turysta 41 61 -1
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_semtimedop                  turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+[37s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[37s] Aktywne semafory: 1
+[37s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        8944         86          
+[39s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21086 S hrtimer_nanosleep              turysta 15 28 -1
+  21278 S do_semtimedop                  turysta 27 43 -1
+  21316 S hrtimer_nanosleep              turysta 29 40 -1
+  21317 S hrtimer_nanosleep              turysta 30 21 -1
+  21356 S hrtimer_nanosleep              turysta 33 60 -1
+  21361 S hrtimer_nanosleep              turysta 34 40 -1
+  21394 S do_semtimedop                  turysta 35 30 -1
+  21395 S do_semtimedop                  turysta 36 44 -1
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S hrtimer_nanosleep              turysta 39 56 -1
+  21422 S hrtimer_nanosleep              turysta 40 4 39
+  21436 S do_semtimedop                  turysta 41 61 -1
+  21441 S hrtimer_nanosleep              turysta 42 55 -1
+  21442 S do_semtimedop                  turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21476 S hrtimer_nanosleep              turysta 45 60 -1
+  21477 S hrtimer_nanosleep              turysta 46 32 -1
+  21482 S do_semtimedop                  turysta 47 42 -1
+[39s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[39s] Aktywne semafory: 1
+[39s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        10608        102         
+[42s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 D p9_client_rpc                  pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21278 S hrtimer_nanosleep              turysta 27 43 -1
+  21316 S do_semtimedop                  turysta 29 40 -1
+  21356 S hrtimer_nanosleep              turysta 33 60 -1
+  21394 S hrtimer_nanosleep              turysta 35 30 -1
+  21395 S hrtimer_nanosleep              turysta 36 44 -1
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S hrtimer_nanosleep              turysta 42 55 -1
+  21442 S do_semtimedop                  turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21476 S do_semtimedop                  turysta 45 60 -1
+  21482 S hrtimer_nanosleep              turysta 47 42 -1
+  21515 S do_semtimedop                  turysta 48 53 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21518 S do_semtimedop                  turysta 51 7 49
+[42s] Procesy zablokowane (D): 1, zombie (Z): 0
+0
+[42s] Aktywne semafory: 1
+[42s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        11336        109         
+[44s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 D p9_client_rpc                  pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 D p9_client_rpc                  pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S hrtimer_nanosleep              turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21278 S do_semtimedop                  turysta 27 43 -1
+  21356 S do_semtimedop                  turysta 33 60 -1
+  21394 S do_semtimedop                  turysta 35 30 -1
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S hrtimer_nanosleep              turysta 39 56 -1
+  21422 S hrtimer_nanosleep              turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S hrtimer_nanosleep              turysta 44 4 42
+  21476 S hrtimer_nanosleep              turysta 45 60 -1
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21515 S hrtimer_nanosleep              turysta 48 53 -1
+  21516 S hrtimer_nanosleep              turysta 49 26 -1
+  21517 S do_msgrcv                      turysta 50 6 49
+  21518 S do_semtimedop                  turysta 51 7 49
+  21555 S do_semtimedop                  turysta 52 46 -1
+  21556 S do_semtimedop                  turysta 53 38 -1
+  21561 S do_semtimedop                  turysta 54 66 -1
+[44s] Procesy zablokowane (D): 2, zombie (Z): 0
+0
+[44s] Aktywne semafory: 1
+[44s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        12480        120         
+[47s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21356 S hrtimer_nanosleep              turysta 33 60 -1
+  21394 S hrtimer_nanosleep              turysta 35 30 -1
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S hrtimer_nanosleep              turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S hrtimer_nanosleep              turysta 47 42 -1
+  21515 S hrtimer_nanosleep              turysta 48 53 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S hrtimer_nanosleep              turysta 50 6 49
+  21518 S hrtimer_nanosleep              turysta 51 7 49
+  21556 S hrtimer_nanosleep              turysta 53 38 -1
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+[47s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[47s] Aktywne semafory: 1
+[47s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        13104        126         
+[50s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S hrtimer_nanosleep              pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21356 S hrtimer_nanosleep              turysta 33 60 -1
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S hrtimer_nanosleep              turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21556 S hrtimer_nanosleep              turysta 53 38 -1
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+[50s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[50s] Aktywne semafory: 1
+[50s] Kolejki komunikatów prawie pełne:
+0x4430e002 32815      kamil      660        13104        126         
+[52s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S hrtimer_nanosleep              turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21556 S hrtimer_nanosleep              turysta 53 38 -1
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+[52s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[52s] Aktywne semafory: 1
+[52s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        1144         11          
+0x4430e002 32815      kamil      660        13104        126         
+[55s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S hrtimer_nanosleep              turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+[55s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[55s] Aktywne semafory: 1
+[55s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        1352         13          
+0x4430e002 32815      kamil      660        13104        126         
+[57s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+[57s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[57s] Aktywne semafory: 1
+[57s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        1976         19          
+0x4430e002 32815      kamil      660        13104        126         
+[60s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+[60s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[60s] Aktywne semafory: 1
+[60s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        2496         24          
+0x4430e002 32815      kamil      660        13104        126         
+[66s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+[66s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[66s] Aktywne semafory: 1
+[66s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3224         31          
+0x4430e002 32815      kamil      660        13104        126         
+[69s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+[69s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[69s] Aktywne semafory: 1
+[69s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[71s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+[71s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[71s] Aktywne semafory: 1
+[71s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[74s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+[74s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[74s] Aktywne semafory: 1
+[74s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[76s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+[76s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[76s] Aktywne semafory: 1
+[76s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[79s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+[79s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[79s] Aktywne semafory: 1
+[79s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[81s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+  22071 S do_semtimedop                  turysta 100 63 -1
+  22072 S do_semtimedop                  turysta 101 57 -1
+  22077 S do_semtimedop                  turysta 102 57 -1
+  22078 S do_semtimedop                  turysta 103 7 102
+[81s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[81s] Aktywne semafory: 1
+[81s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[84s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+  22071 S do_semtimedop                  turysta 100 63 -1
+  22072 S do_semtimedop                  turysta 101 57 -1
+  22077 S do_semtimedop                  turysta 102 57 -1
+  22078 S do_semtimedop                  turysta 103 7 102
+  22111 S do_semtimedop                  turysta 104 67 -1
+  22116 S do_semtimedop                  turysta 105 20 -1
+[84s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[84s] Aktywne semafory: 1
+[84s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[86s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+  22071 S do_semtimedop                  turysta 100 63 -1
+  22072 S do_semtimedop                  turysta 101 57 -1
+  22077 S do_semtimedop                  turysta 102 57 -1
+  22078 S do_semtimedop                  turysta 103 7 102
+  22111 S do_semtimedop                  turysta 104 67 -1
+  22116 S do_semtimedop                  turysta 105 20 -1
+  22149 S do_semtimedop                  turysta 106 52 -1
+  22150 S do_semtimedop                  turysta 107 32 -1
+[86s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[86s] Aktywne semafory: 1
+[86s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[89s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+  22071 S do_semtimedop                  turysta 100 63 -1
+  22072 S do_semtimedop                  turysta 101 57 -1
+  22077 S do_semtimedop                  turysta 102 57 -1
+  22078 S do_semtimedop                  turysta 103 7 102
+  22111 S do_semtimedop                  turysta 104 67 -1
+  22116 S do_semtimedop                  turysta 105 20 -1
+  22149 S do_semtimedop                  turysta 106 52 -1
+  22150 S do_semtimedop                  turysta 107 32 -1
+  22162 S do_semtimedop                  turysta 108 22 -1
+  22188 S do_semtimedop                  turysta 109 44 -1
+  22189 S do_semtimedop                  turysta 110 37 -1
+[89s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[89s] Aktywne semafory: 1
+[89s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[91s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+  22071 S do_semtimedop                  turysta 100 63 -1
+  22072 S do_semtimedop                  turysta 101 57 -1
+  22077 S do_semtimedop                  turysta 102 57 -1
+  22078 S do_semtimedop                  turysta 103 7 102
+  22111 S do_semtimedop                  turysta 104 67 -1
+  22116 S do_semtimedop                  turysta 105 20 -1
+  22149 S do_semtimedop                  turysta 106 52 -1
+  22150 S do_semtimedop                  turysta 107 32 -1
+  22162 S do_semtimedop                  turysta 108 22 -1
+  22188 S do_semtimedop                  turysta 109 44 -1
+  22189 S do_semtimedop                  turysta 110 37 -1
+  22226 S do_semtimedop                  turysta 111 26 -1
+  22227 S do_semtimedop                  turysta 112 63 -1
+  22232 S do_semtimedop                  turysta 113 54 -1
+[91s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[91s] Aktywne semafory: 1
+[91s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[94s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 R -                              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+  22071 S do_semtimedop                  turysta 100 63 -1
+  22072 S do_semtimedop                  turysta 101 57 -1
+  22077 S do_semtimedop                  turysta 102 57 -1
+  22078 S do_semtimedop                  turysta 103 7 102
+  22111 S do_semtimedop                  turysta 104 67 -1
+  22116 S do_semtimedop                  turysta 105 20 -1
+  22149 S do_semtimedop                  turysta 106 52 -1
+  22150 S do_semtimedop                  turysta 107 32 -1
+  22162 S do_semtimedop                  turysta 108 22 -1
+  22188 S do_semtimedop                  turysta 109 44 -1
+  22189 S do_semtimedop                  turysta 110 37 -1
+  22226 S do_semtimedop                  turysta 111 26 -1
+  22227 S do_semtimedop                  turysta 112 63 -1
+  22232 S do_semtimedop                  turysta 113 54 -1
+  22265 S do_semtimedop                  turysta 114 61 -1
+  22266 S do_semtimedop                  turysta 115 41 -1
+[94s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[94s] Aktywne semafory: 1
+[94s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[96s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+  22071 S do_semtimedop                  turysta 100 63 -1
+  22072 S do_semtimedop                  turysta 101 57 -1
+  22077 S do_semtimedop                  turysta 102 57 -1
+  22078 S do_semtimedop                  turysta 103 7 102
+  22111 S do_semtimedop                  turysta 104 67 -1
+  22116 S do_semtimedop                  turysta 105 20 -1
+  22149 S do_semtimedop                  turysta 106 52 -1
+  22150 S do_semtimedop                  turysta 107 32 -1
+  22162 S do_semtimedop                  turysta 108 22 -1
+  22188 S do_semtimedop                  turysta 109 44 -1
+  22189 S do_semtimedop                  turysta 110 37 -1
+  22226 S do_semtimedop                  turysta 111 26 -1
+  22227 S do_semtimedop                  turysta 112 63 -1
+  22232 S do_semtimedop                  turysta 113 54 -1
+  22265 S do_semtimedop                  turysta 114 61 -1
+  22266 S do_semtimedop                  turysta 115 41 -1
+  22303 S do_semtimedop                  turysta 116 21 -1
+  22304 S do_semtimedop                  turysta 117 26 -1
+  22309 S do_semtimedop                  turysta 118 52 -1
+  22310 S do_semtimedop                  turysta 119 7 118
+  22311 S do_semtimedop                  turysta 120 4 118
+[96s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[96s] Aktywne semafory: 1
+[96s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[99s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+  22071 S do_semtimedop                  turysta 100 63 -1
+  22072 S do_semtimedop                  turysta 101 57 -1
+  22077 S do_semtimedop                  turysta 102 57 -1
+  22078 S do_semtimedop                  turysta 103 7 102
+  22111 S do_semtimedop                  turysta 104 67 -1
+  22116 S do_semtimedop                  turysta 105 20 -1
+  22149 S do_semtimedop                  turysta 106 52 -1
+  22150 S do_semtimedop                  turysta 107 32 -1
+  22162 S do_semtimedop                  turysta 108 22 -1
+  22188 S do_semtimedop                  turysta 109 44 -1
+  22189 S do_semtimedop                  turysta 110 37 -1
+  22226 S do_semtimedop                  turysta 111 26 -1
+  22227 S do_semtimedop                  turysta 112 63 -1
+  22232 S do_semtimedop                  turysta 113 54 -1
+  22265 S do_semtimedop                  turysta 114 61 -1
+  22266 S do_semtimedop                  turysta 115 41 -1
+  22303 S do_semtimedop                  turysta 116 21 -1
+  22304 S do_semtimedop                  turysta 117 26 -1
+  22309 S do_semtimedop                  turysta 118 52 -1
+  22310 S do_semtimedop                  turysta 119 7 118
+  22311 S do_semtimedop                  turysta 120 4 118
+  22344 S do_semtimedop                  turysta 121 28 -1
+  22345 S do_semtimedop                  turysta 122 21 -1
+[99s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[99s] Aktywne semafory: 1
+[99s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[101s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20922 S hrtimer_nanosleep              kasjer
+  20928 S do_semtimedop                  pracownik1
+  20929 S hrtimer_nanosleep              pracownik2
+  20966 S do_msgrcv                      turysta 3 5 2
+  20967 S do_msgrcv                      turysta 4 7 2
+  20969 S do_msgrcv                      turysta 6 6 5
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21008 S do_msgrcv                      turysta 9 7 8
+  21396 S do_msgrcv                      turysta 37 4 36
+  21397 S do_msgrcv                      turysta 38 6 36
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21442 S do_msgrcv                      turysta 43 4 42
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+  21916 S do_semtimedop                  turysta 89 68 -1
+  21917 S do_semtimedop                  turysta 90 28 -1
+  21918 S do_semtimedop                  turysta 91 7 90
+  21923 S do_semtimedop                  turysta 92 42 -1
+  21956 S do_semtimedop                  turysta 93 63 -1
+  21957 S do_semtimedop                  turysta 94 56 -1
+  21994 S do_semtimedop                  turysta 95 64 -1
+  21995 S do_semtimedop                  turysta 96 69 -1
+  22007 S do_semtimedop                  turysta 97 50 -1
+  22033 S do_semtimedop                  turysta 98 30 -1
+  22038 S do_semtimedop                  turysta 99 39 -1
+  22071 S do_semtimedop                  turysta 100 63 -1
+  22072 S do_semtimedop                  turysta 101 57 -1
+  22077 S do_semtimedop                  turysta 102 57 -1
+  22078 S do_semtimedop                  turysta 103 7 102
+  22111 S do_semtimedop                  turysta 104 67 -1
+  22116 S do_semtimedop                  turysta 105 20 -1
+  22149 S do_semtimedop                  turysta 106 52 -1
+  22150 S do_semtimedop                  turysta 107 32 -1
+  22162 S do_semtimedop                  turysta 108 22 -1
+  22188 S do_semtimedop                  turysta 109 44 -1
+  22189 S do_semtimedop                  turysta 110 37 -1
+  22226 S do_semtimedop                  turysta 111 26 -1
+  22227 S do_semtimedop                  turysta 112 63 -1
+  22232 S do_semtimedop                  turysta 113 54 -1
+  22265 S do_semtimedop                  turysta 114 61 -1
+  22266 S do_semtimedop                  turysta 115 41 -1
+  22303 S do_semtimedop                  turysta 116 21 -1
+  22304 S do_semtimedop                  turysta 117 26 -1
+  22309 S do_semtimedop                  turysta 118 52 -1
+  22310 S do_semtimedop                  turysta 119 7 118
+  22311 S do_semtimedop                  turysta 120 4 118
+  22344 S do_semtimedop                  turysta 121 28 -1
+  22345 S do_semtimedop                  turysta 122 21 -1
+[101s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[101s] Aktywne semafory: 1
+[101s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+[104s] Stany procesów:
+  15830 R -                              kasjer
+  15831 S hrtimer_nanosleep              pracownik1
+  15832 S hrtimer_nanosleep              pracownik2
+  15841 R -                              kasjer
+  15842 S hrtimer_nanosleep              pracownik1
+  15844 S hrtimer_nanosleep              pracownik2
+  18847 R -                              kasjer
+  18848 S hrtimer_nanosleep              pracownik1
+  18849 S hrtimer_nanosleep              pracownik2
+  20928 S do_semtimedop                  pracownik1
+  20974 S do_semtimedop                  turysta 7 38 -1
+  21421 S do_semtimedop                  turysta 39 56 -1
+  21422 S do_semtimedop                  turysta 40 4 39
+  21441 S do_semtimedop                  turysta 42 55 -1
+  21443 S do_semtimedop                  turysta 44 4 42
+  21482 S do_semtimedop                  turysta 47 42 -1
+  21516 S do_semtimedop                  turysta 49 26 -1
+  21517 S do_semtimedop                  turysta 50 6 49
+  21561 S do_semtimedop                  turysta 54 66 -1
+  21594 S do_semtimedop                  turysta 55 36 -1
+  21595 S do_semtimedop                  turysta 56 50 -1
+  21600 S do_semtimedop                  turysta 57 34 -1
+  21633 S do_semtimedop                  turysta 58 66 -1
+  21634 S do_semtimedop                  turysta 59 25 -1
+  21635 S do_semtimedop                  turysta 60 4 59
+  21672 S do_semtimedop                  turysta 61 61 -1
+  21673 S do_semtimedop                  turysta 62 7 61
+  21674 S do_semtimedop                  turysta 63 5 61
+  21675 S do_semtimedop                  turysta 64 56 -1
+  21680 S do_semtimedop                  turysta 65 62 -1
+  21713 S do_semtimedop                  turysta 66 50 -1
+  21714 S do_semtimedop                  turysta 67 26 -1
+  21751 S do_semtimedop                  turysta 68 54 -1
+  21752 S do_semtimedop                  turysta 69 7 68
+  21753 S do_semtimedop                  turysta 70 55 -1
+  21754 S do_semtimedop                  turysta 71 4 70
+  21759 S do_semtimedop                  turysta 72 33 -1
+  21792 S do_semtimedop                  turysta 73 64 -1
+  21793 S do_semtimedop                  turysta 74 7 73
+  21794 S do_semtimedop                  turysta 75 6 73
+  21795 S do_semtimedop                  turysta 76 24 -1
+  21800 S do_semtimedop                  turysta 77 56 -1
+  21833 S do_semtimedop                  turysta 78 22 -1
+  21834 S do_semtimedop                  turysta 79 4 78
+  21835 S do_semtimedop                  turysta 80 7 78
+  21836 S do_semtimedop                  turysta 81 43 -1
+  21837 S do_semtimedop                  turysta 82 4 81
+  21838 S do_semtimedop                  turysta 83 6 81
+  21843 S do_semtimedop                  turysta 84 42 -1
+  21876 S do_semtimedop                  turysta 85 28 -1
+  21877 S do_semtimedop                  turysta 86 4 85
+  21878 S do_semtimedop                  turysta 87 5 85
+  21879 S do_semtimedop                  turysta 88 21 -1
+[104s] Procesy zablokowane (D): 0
+0, zombie (Z): 0
+0
+[104s] Aktywne semafory: 1
+[104s] Kolejki komunikatów prawie pełne:
+0x4330e002 32814      kamil      660        3640         35          
+0x4430e002 32815      kamil      660        13104        126         
+
+Test zakończony pomyślnie po 104s

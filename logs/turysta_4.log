@@ -1,65 +1,9 @@
-[19:39:40][INFO ][PID:  511] TURYSTA #4: Przychodzę (wiek: 30, rowerzysta, zwykły)
-[19:39:40][INFO ][PID:  511] TURYSTA #4: Podchodzę do kasy
-[19:39:40][INFO ][PID:  511] TURYSTA #4: Kupiłem bilet #3 (typ: 3)
-[19:39:40][INFO ][PID:  511] TURYSTA #4: Czekam na miejsce na stacji
-[19:39:40][INFO ][PID:  511] TURYSTA #4: Przeszedłem przez bramkę 0
-[19:39:40][INFO ][PID:  511] TURYSTA #4: Czekam na pozwolenie wejścia na peron
-[19:39:40][INFO ][PID:  511] TURYSTA #4: Wchodzę na peron
-[19:39:40][INFO ][PID:  511] TURYSTA #4: Czekam na krzesełko
-[19:39:40][INFO ][PID:  511] TURYSTA #4: Wsiadłem na krzesełko #3
-[19:39:42][INFO ][PID:  511] TURYSTA #4: Dojechałem na stację górną
-[19:39:42][INFO ][PID:  511] TURYSTA #4: Wychodzę wyjściem 0
-[19:39:42][INFO ][PID:  511] TURYSTA #4 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[19:39:50][INFO ][PID:  511] TURYSTA #4: Ukończyłem zjazd #1
-[19:39:50][INFO ][PID:  511] TURYSTA #4: Czekam na miejsce na stacji
-[19:39:50][INFO ][PID:  511] TURYSTA #4: Przeszedłem przez bramkę 0
-[19:39:50][INFO ][PID:  511] TURYSTA #4: Czekam na pozwolenie wejścia na peron
-[19:39:51][INFO ][PID:  511] TURYSTA #4: Wchodzę na peron
-[19:39:51][INFO ][PID:  511] TURYSTA #4: Czekam na krzesełko
-[19:39:51][INFO ][PID:  511] TURYSTA #4: Wsiadłem na krzesełko #14
-[19:39:53][INFO ][PID:  511] TURYSTA #4: Dojechałem na stację górną
-[19:39:53][INFO ][PID:  511] TURYSTA #4: Wychodzę wyjściem 0
-[19:39:53][INFO ][PID:  511] TURYSTA #4 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
-[19:39:58][INFO ][PID:  511] TURYSTA #4: Ukończyłem zjazd #2
-[19:39:58][INFO ][PID:  511] TURYSTA #4: Czekam na miejsce na stacji
-[19:39:58][INFO ][PID:  511] TURYSTA #4: Przeszedłem przez bramkę 0
-[19:39:58][INFO ][PID:  511] TURYSTA #4: Czekam na pozwolenie wejścia na peron
-[19:39:59][INFO ][PID:  511] TURYSTA #4: Wchodzę na peron
-[19:39:59][INFO ][PID:  511] TURYSTA #4: Czekam na krzesełko
-[19:39:59][INFO ][PID:  511] TURYSTA #4: Wsiadłem na krzesełko #21
-[19:40:01][INFO ][PID:  511] TURYSTA #4: Dojechałem na stację górną
-[19:40:01][INFO ][PID:  511] TURYSTA #4: Wychodzę wyjściem 1
-[19:40:01][INFO ][PID:  511] TURYSTA #4 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[19:40:04][INFO ][PID:  511] TURYSTA #4: Ukończyłem zjazd #3
-[19:40:04][INFO ][PID:  511] TURYSTA #4: Czekam na miejsce na stacji
-[19:40:04][INFO ][PID:  511] TURYSTA #4: Przeszedłem przez bramkę 0
-[19:40:04][INFO ][PID:  511] TURYSTA #4: Czekam na pozwolenie wejścia na peron
-[19:40:06][INFO ][PID:  511] TURYSTA #4: Wchodzę na peron
-[19:40:06][INFO ][PID:  511] TURYSTA #4: Czekam na krzesełko
-[19:40:06][INFO ][PID:  511] TURYSTA #4: Wsiadłem na krzesełko #25
-[19:40:08][INFO ][PID:  511] TURYSTA #4: Kończę dzień z 3 zjazdami
-[20:12:17][INFO ][PID:  667] TURYSTA #4: Przychodzę (wiek: 29, rowerzysta, zwykły)
-[20:12:17][INFO ][PID:  667] TURYSTA #4: Podchodzę do kasy
-[20:12:17][INFO ][PID:  667] TURYSTA #4: Kupiłem bilet #4 (typ: 2)
-[20:12:17][INFO ][PID:  667] TURYSTA #4: Czekam na miejsce na stacji
-[20:12:17][INFO ][PID:  667] TURYSTA #4: Przeszedłem przez bramkę 0
-[20:12:17][INFO ][PID:  667] TURYSTA #4: Czekam na pozwolenie wejścia na peron
-[20:12:18][INFO ][PID:  667] TURYSTA #4: Wchodzę na peron
-[20:12:18][INFO ][PID:  667] TURYSTA #4: Czekam na krzesełko
-[20:12:18][INFO ][PID:  667] TURYSTA #4: Wsiadłem na krzesełko #1
-[20:12:20][INFO ][PID:  667] TURYSTA #4: Dojechałem na stację górną
-[20:12:20][INFO ][PID:  667] TURYSTA #4: Wychodzę wyjściem 0
-[20:12:20][INFO ][PID:  667] TURYSTA #4 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[20:12:25][INFO ][PID:  667] TURYSTA #4: Ukończyłem zjazd #1
-[20:12:25][INFO ][PID:  667] TURYSTA #4: Czekam na miejsce na stacji
-[20:12:25][INFO ][PID:  667] TURYSTA #4: Przeszedłem przez bramkę 0
-[20:12:25][INFO ][PID:  667] TURYSTA #4: Czekam na pozwolenie wejścia na peron
-[20:12:27][INFO ][PID:  667] TURYSTA #4: Wchodzę na peron
-[20:12:27][INFO ][PID:  667] TURYSTA #4: Czekam na krzesełko
-[20:12:27][INFO ][PID:  667] TURYSTA #4: Wsiadłem na krzesełko #7
-[20:12:29][INFO ][PID:  667] TURYSTA #4: Dojechałem na stację górną
-[20:12:29][INFO ][PID:  667] TURYSTA #4: Wychodzę wyjściem 0
-[20:12:29][INFO ][PID:  667] TURYSTA #4 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[20:12:37][INFO ][PID:  667] TURYSTA #4: Ukończyłem zjazd #2
-[20:12:37][INFO ][PID:  667] TURYSTA #4: Bilet nieważny, kończę
-[20:12:37][INFO ][PID:  667] TURYSTA #4: Kończę dzień z 2 zjazdami
+[01:20:26][INFO ][PID:26909] TURYSTA #4: Przychodzę (wiek: 4, pieszy, zwykły)
+[01:20:26][INFO ][PID:26909] TURYSTA #4: Podchodzę do kasy
+[01:20:26][INFO ][PID:26909] TURYSTA #4: Kupiłem bilet #3 (typ: 1)
+[01:20:26][INFO ][PID:26909] TURYSTA #4: Czekam na miejsce na stacji
+[01:20:26][INFO ][PID:26909] TURYSTA #4: Przeszedłem przez bramkę 0
+[01:20:26][INFO ][PID:26909] TURYSTA #4: Czekam na pozwolenie wejścia na peron
+[01:20:27][INFO ][PID:26909] TURYSTA #4: Wchodzę na peron
+[01:20:27][INFO ][PID:26909] TURYSTA #4: Czekam na krzesełko
+[01:20:32][INFO ][PID:26909] TURYSTA #4: Kończę dzień z 0 zjazdami

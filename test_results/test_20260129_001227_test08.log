@@ -1,0 +1,35 @@
+pclose: No child processes
+
+                 KOLEJ LINOWA KRZESEŁKOWA                      
+                    Symulacja Systemu                          
+
+  Krzesełka: 36 aktywnych / 72 łącznie                        
+  Bramki wejściowe: 4    Bramki peronowe: 3                   
+  Max osób na stacji: 50                                       
+  Czas symulacji: 9999 sekund                                    
+
+Inicjalizacja zasobów IPC...
+Sprawdzanie istniejących zasobów IPC...
+Zasoby IPC zainicjalizowane pomyślnie.
+Uruchamianie procesów obsługi...
+Symulacja rozpoczęta! Naciśnij Ctrl+C aby przerwać.
+
+[Czas:   0 s] Stacja:  0 | Peron:  0 | Krzesełka:  0 | Zjazdy:   0 | Bilety:   0   [Czas:   1 s] Stacja:  1 | Peron:  0 | Krzesełka:  1 | Zjazdy:   0 | Bilety:   1   [Czas:   1 s] Stacja:  1 | Peron:  0 | Krzesełka:  1 | Zjazdy:   0 | Bilety:   1   [Czas:   2 s] Stacja:  1 | Peron:  1 | Krzesełka:  1 | Zjazdy:   0 | Bilety:   2   [Czas:   2 s] Stacja:  1 | Peron:  1 | Krzesełka:  1 | Zjazdy:   0 | Bilety:   2   [Czas:   3 s] Stacja:  1 | Peron:  1 | Krzesełka:  1 | Zjazdy:   1 | Bilety:   3   [Czas:   3 s] Stacja:  1 | Peron:  1 | Krzesełka:  1 | Zjazdy:   1 | Bilety:   3   [Czas:   4 s] Stacja:  1 | Peron:  2 | Krzesełka:  1 | Zjazdy:   1 | Bilety:   5   [Czas:   4 s] Stacja:  1 | Peron:  2 | Krzesełka:  1 | Zjazdy:   1 | Bilety:   5   [Czas:   5 s] Stacja:  1 | Peron:  1 | Krzesełka:  1 | Zjazdy:   2 | Bilety:   6   
+
+Zatrzymywanie symulacji...
+
+
+Wysyłanie sygnałów zakończenia...
+Oczekiwanie na zakończenie procesów potomnych...
+Timeout - wymuszam zakończenie (SIGKILL)...
+Zebrano 0 procesów potomnych.
+Generowanie raportu...
+Raport zapisany do: logs/raport_dzienny.txt
+
+                    PODSUMOWANIE DNIA                          
+  Łączna liczba zjazdów:     2                                  
+  Sprzedanych biletów:       6                                  
+  Wpisów w rejestrze:        8                                  
+
+Czyszczenie zasobów IPC...
+Symulacja zakończona pomyślnie.

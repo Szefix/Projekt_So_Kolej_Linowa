@@ -1,0 +1,58 @@
+╔═══════════════════════════════════════════════════════════╗
+║          RAPORT KOŃCOWY - TESTY DEADLOCKÓW                ║
+╚═══════════════════════════════════════════════════════════╝
+
+Data wykonania: Thu Jan 29 00:56:49 CET 2026
+Czas trwania: ~15-20 minut
+
+═══════════════════════════════════════════════════════════
+
+WYNIKI:
+-------
+Testy zaliczone:     7/8
+Testy niezaliczone:  1/8
+Procent sukcesu:     87%
+
+═══════════════════════════════════════════════════════════
+
+PODSUMOWANIE TESTÓW:
+
+1. Test współbieżności (100 turystów)
+2. Test ekstremalnego obciążenia (300 turystów)
+3. Test szybkiego generowania (200 turystów)
+4. Test długotrwałej stabilności (150s)
+5. Stress test (500 turystów)
+6. Test powtarzalności (3x)
+7. Test wyczerpania zasobów IPC
+8. Test odporności na sygnały
+
+═══════════════════════════════════════════════════════════
+
+ZALECENIA:
+
+✗ WYKRYTO PROBLEMY Z DEADLOCKAMI!
+
+System wykazuje podatność na deadlocki w niektórych
+scenariuszach testowych.
+
+Zalecenia:
+- Przeanalizuj szczegółowe logi w katalogu: deadlock_tests/results
+- Sprawdź implementację synchronizacji (semafory, mutexy)
+- Upewnij się, że zasoby są zawsze zwalniane
+- Sprawdź kolejność nabywania blokad (lock ordering)
+- Rozważ użycie timeout'ów przy oczekiwaniu na zasoby
+- Przeanalizuj pliki *_detection.log dla szczegółów
+
+KRYTYCZNE PLIKI DO ANALIZY:
+deadlock_tests/results/deadlock_20260129_004533_test06_run1_detection.log
+deadlock_tests/results/deadlock_20260129_004533_test06_run2_detection.log
+deadlock_tests/results/deadlock_20260129_004533_test06_run3_detection.log
+deadlock_tests/results/deadlock_20260129_004533_test07_detection.log
+deadlock_tests/results/deadlock_20260129_004533_test08_detection.log
+
+═══════════════════════════════════════════════════════════
+
+Pełne logi: deadlock_tests/results
+Prefix logów: deadlock_20260129_004533
+
+═══════════════════════════════════════════════════════════

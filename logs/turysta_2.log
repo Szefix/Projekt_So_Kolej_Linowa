@@ -1,17 +1,14 @@
-[19:39:38][INFO ][PID:  509] TURYSTA #2: Przychodzę (wiek: 23, pieszy, zwykły)
-[19:39:38][INFO ][PID:  509] TURYSTA #2: Podchodzę do kasy
-[19:39:38][INFO ][PID:  509] TURYSTA #2: Kupiłem bilet #1 (typ: 1)
-[19:39:38][INFO ][PID:  509] TURYSTA #2: Czekam na miejsce na stacji
-[19:39:38][INFO ][PID:  509] TURYSTA #2: Przeszedłem przez bramkę 0
-[19:39:38][INFO ][PID:  509] TURYSTA #2: Czekam na pozwolenie wejścia na peron
-[19:39:38][INFO ][PID:  509] TURYSTA #2: Wchodzę na peron
-[19:39:38][INFO ][PID:  509] TURYSTA #2: Czekam na krzesełko
-[19:39:38][INFO ][PID:  509] TURYSTA #2: Wsiadłem na krzesełko #1
-[19:39:40][INFO ][PID:  509] TURYSTA #2: Dojechałem na stację górną
-[19:39:40][INFO ][PID:  509] TURYSTA #2: Wychodzę wyjściem 0
-[19:39:40][INFO ][PID:  509] TURYSTA #2 (pieszy): Schodzę ze stacji górnej
-[19:39:40][INFO ][PID:  509] TURYSTA #2: Bilet nieważny, kończę
-[19:39:40][INFO ][PID:  509] TURYSTA #2: Kończę dzień z 1 zjazdami
-[20:12:16][INFO ][PID:  665] TURYSTA #2: Przychodzę (wiek: 4, pieszy, zwykły)
-[20:12:16][INFO ][PID:  665] TURYSTA #2: Podchodzę do kasy
-[20:13:19][INFO ][PID:  665] TURYSTA #2: Kończę dzień z 0 zjazdami
+[01:20:25][INFO ][PID:26907] TURYSTA #2: Przychodzę (wiek: 53, pieszy, zwykły)
+[01:20:25][INFO ][PID:26907] TURYSTA #2: Podchodzę do kasy
+[01:20:25][INFO ][PID:26907] TURYSTA #2: Kupiłem bilet #1 (typ: 2)
+[01:20:25][INFO ][PID:26907] TURYSTA #2: Czekam na miejsce na stacji
+[01:20:25][INFO ][PID:26907] TURYSTA #2: Przeszedłem przez bramkę 0
+[01:20:25][INFO ][PID:26907] TURYSTA #2: Czekam na pozwolenie wejścia na peron
+[01:20:25][INFO ][PID:26907] TURYSTA #2: Wchodzę na peron
+[01:20:25][INFO ][PID:26907] TURYSTA #2: Czekam na krzesełko
+[01:20:25][INFO ][PID:26907] TURYSTA #2: Wsiadłem na krzesełko #1
+[01:20:27][INFO ][PID:26907] TURYSTA #2: Dojechałem na stację górną
+[01:20:27][INFO ][PID:26907] TURYSTA #2: Wychodzę wyjściem 0
+[01:20:27][INFO ][PID:26907] TURYSTA #2 (pieszy): Schodzę ze stacji górnej
+[01:20:27][INFO ][PID:26907] TURYSTA #2: Wystarczy na dziś, wychodzę
+[01:20:27][INFO ][PID:26907] TURYSTA #2: Kończę dzień z 1 zjazdami

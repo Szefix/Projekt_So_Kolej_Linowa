@@ -1,0 +1,11 @@
+=== ANALIZA KOLEJEK KOMUNIKATÓW ===
+
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages    
+
+
+------ Messages Status --------
+allocated queues = 0
+used headers = 0
+used space = 0 bytes
+

@@ -322,19 +322,19 @@ void zatrzymaj_i_czekaj_na_procesy(void) {
 /* ========== WYŚWIETLANIE BANERA ========== */
 void wyswietl_banner(void) {
     printf("\n");
-    printf("╔═══════════════════════════════════════════════════════════════╗\n");
-    printf("║                 KOLEJ LINOWA KRZESEŁKOWA                      ║\n");
-    printf("║                    Symulacja Systemu                          ║\n");
-    printf("╠═══════════════════════════════════════════════════════════════╣\n");
-    printf("║  Krzesełka: %2d aktywnych / %2d łącznie                        ║\n", 
+    printf("---------------------------------------------------------------\n");
+    printf("                 KOLEJ LINOWA KRZESEŁKOWA                      \n");
+    printf("                    Symulacja Systemu                          \n");
+    printf("---------------------------------------------------------------\n");
+    printf("\n");
+    printf("  Krzesełka: %2d aktywnych / %2d łącznie                        \n", 
            MAX_AKTYWNYCH_KRZESELEK, LICZBA_KRZESELEK);
-    printf("║  Bramki wejściowe: %d    Bramki peronowe: %d                   ║\n",
+    printf("  Bramki wejściowe: %d    Bramki peronowe: %d                   \n",
            LICZBA_BRAMEK_WEJSCIOWYCH, LICZBA_BRAMEK_PERONOWYCH);
-    printf("║  Max osób na stacji: %2d                                       ║\n",
+    printf("  Max osób na stacji: %2d                                       \n",
            MAX_OSOB_NA_STACJI);
-    printf("║  Czas symulacji: %d sekund                                    ║\n",
+    printf("  Czas symulacji: %d sekund                                    \n",
            CZAS_ZAMKNIECIA);
-    printf("╚═══════════════════════════════════════════════════════════════╝\n");
     printf("\n");
 }
 
@@ -351,8 +351,7 @@ void utworz_katalog_logs(void) {
 /* ========== UŻYCIE popen() - sprawdzenie zasobów IPC ========== */
 void sprawdz_zasoby_ipc(void) {
     FILE *fp;
-    char bufor[256];
-    
+
     printf("Sprawdzanie istniejących zasobów IPC...\n");
     
     /* Użycie popen() do wykonania komendy ipcs i odczytania wyniku */
@@ -362,20 +361,11 @@ void sprawdz_zasoby_ipc(void) {
         return;
     }
     
-    /* Odczytaj wynik komendy */
-    LOG_I("MAIN: === Stan zasobów IPC ===");
-    while (fgets(bufor, sizeof(bufor), fp) != NULL) {
-        /* Usuń znak nowej linii */
-        bufor[strcspn(bufor, "\n")] = 0;
-        if (strlen(bufor) > 0) {
-            LOG_D("IPC: %s", bufor);
-        }
-    }
-    
+   
     /* Zamknij strumień popen - WAŻNE! */
     int status = pclose(fp);
     if (status == -1) {
-        perror("pclose");
+        fprintf(stderr, "UWAGA: pclose - proces potomny już zakończony (to normalne)\n");
     } else {
         LOG_D("MAIN: ipcs zakończone ze statusem %d", WEXITSTATUS(status));
     }
@@ -556,16 +546,16 @@ int main(int argc, char *argv[]) {
     
     /* Podsumowanie */
     printf("\n");
-    printf("╔═══════════════════════════════════════════════════════════════╗\n");
-    printf("║                    PODSUMOWANIE DNIA                          ║\n");
-    printf("╠═══════════════════════════════════════════════════════════════╣\n");
-    printf("║  Łączna liczba zjazdów:     %-34d ║\n", stan->laczna_liczba_zjazdow);
-    printf("║  Sprzedanych biletów:       %-34d ║\n", stan->liczba_sprzedanych_biletow);
-    printf("║  Wpisów w rejestrze:        %-34d ║\n", stan->liczba_wpisow_rejestru);
-    printf("╚═══════════════════════════════════════════════════════════════╝\n");
+    printf("---------------------------------------------------------------\n");
+    printf("                    PODSUMOWANIE DNIA                          \n");
+    printf("  Łączna liczba zjazdów:     %-34d \n", stan->laczna_liczba_zjazdow);
+    printf("  Sprzedanych biletów:       %-34d \n", stan->liczba_sprzedanych_biletow);
+    printf("  Wpisów w rejestrze:        %-34d \n", stan->liczba_wpisow_rejestru);
+    printf("---------------------------------------------------------------\n");
+    printf("\n");
     
-    LOG_I("=== ZAKOŃCZENIE SYMULACJI ===");
-    logger_close();
+    LOG_I(" ZAKOŃCZENIE SYMULACJI ");
+    logger_close();         
     
     /* DOPIERO TERAZ czyść zasoby IPC - po zakończeniu wszystkich procesów */
     printf("Czyszczenie zasobów IPC...\n");

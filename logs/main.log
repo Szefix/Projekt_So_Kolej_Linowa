@@ -1,239 +1,33 @@
-[19:39:34][INFO ][PID:  499] === ROZPOCZĘCIE SYMULACJI KOLEI LINOWEJ ===
-[19:39:34][INFO ][PID:  499] Parametry: 60 sekund, max 100 turystów
-[19:39:34][INFO ][PID:  499] MAIN: Uruchomiono kasjera (PID: 503)
-[19:39:34][INFO ][PID:  499] MAIN: Uruchomiono pracownika1 (PID: 504)
-[19:39:34][INFO ][PID:  499] MAIN: Uruchomiono pracownika2 (PID: 505)
-[19:39:37][INFO ][PID:  499] MONITOR: Wątek monitorowania uruchomiony
-[19:39:37][INFO ][PID:  499] STATYSTYKI: Wątek statystyk odłączony (pthread_detach)
-[19:39:37][INFO ][PID:  499] MAIN: Generuję turystę #1 (wiek: 42) z 0 dziećmi
-[19:39:37][DEBUG][PID:  499] MAIN: Uruchomiono turystę #1 (PID: 508, wiek: 42)
-[19:39:38][INFO ][PID:  499] MAIN: Generuję turystę #2 (wiek: 23) z 0 dziećmi
-[19:39:38][DEBUG][PID:  499] MAIN: Uruchomiono turystę #2 (PID: 509, wiek: 23)
-[19:39:39][INFO ][PID:  499] MAIN: Generuję turystę #3 (wiek: 21) z 0 dziećmi
-[19:39:39][DEBUG][PID:  499] MAIN: Uruchomiono turystę #3 (PID: 510, wiek: 21)
-[19:39:40][INFO ][PID:  499] MAIN: Generuję turystę #4 (wiek: 30) z 0 dziećmi
-[19:39:40][DEBUG][PID:  499] MAIN: Uruchomiono turystę #4 (PID: 511, wiek: 30)
-[19:39:41][INFO ][PID:  499] MAIN: Generuję turystę #5 (wiek: 28) z 0 dziećmi
-[19:39:41][DEBUG][PID:  499] MAIN: Uruchomiono turystę #5 (PID: 512, wiek: 28)
-[19:39:42][INFO ][PID:  499] MAIN: Generuję turystę #6 (wiek: 60) z 0 dziećmi
-[19:39:42][DEBUG][PID:  499] MAIN: Uruchomiono turystę #6 (PID: 513, wiek: 60)
-[19:39:43][INFO ][PID:  499] MAIN: Generuję turystę #7 (wiek: 38) z 0 dziećmi
-[19:39:43][DEBUG][PID:  499] MAIN: Uruchomiono turystę #7 (PID: 514, wiek: 38)
-[19:39:44][INFO ][PID:  499] MAIN: Generuję turystę #8 (wiek: 20) z 0 dziećmi
-[19:39:44][DEBUG][PID:  499] MAIN: Uruchomiono turystę #8 (PID: 515, wiek: 20)
-[19:39:45][INFO ][PID:  499] MAIN: Generuję turystę #9 (wiek: 41) z 0 dziećmi
-[19:39:45][DEBUG][PID:  499] MAIN: Uruchomiono turystę #9 (PID: 516, wiek: 41)
-[19:39:46][INFO ][PID:  499] MAIN: Generuję turystę #10 (wiek: 20) z 0 dziećmi
-[19:39:46][DEBUG][PID:  499] MAIN: Uruchomiono turystę #10 (PID: 517, wiek: 20)
-[19:39:47][INFO ][PID:  499] MAIN: Generuję turystę #11 (wiek: 44) z 1 dziećmi
-[19:39:47][DEBUG][PID:  499] MAIN: Uruchomiono turystę #11 (PID: 518, wiek: 44)
-[19:39:47][DEBUG][PID:  499] MAIN: Uruchomiono turystę #12 (PID: 519, wiek: 4)
-[19:39:48][INFO ][PID:  499] MAIN: Generuję turystę #13 (wiek: 53) z 0 dziećmi
-[19:39:48][DEBUG][PID:  499] MAIN: Uruchomiono turystę #13 (PID: 520, wiek: 53)
-[19:39:49][INFO ][PID:  499] MAIN: Generuję turystę #14 (wiek: 51) z 0 dziećmi
-[19:39:49][DEBUG][PID:  499] MAIN: Uruchomiono turystę #14 (PID: 521, wiek: 51)
-[19:39:50][INFO ][PID:  499] MAIN: Generuję turystę #15 (wiek: 24) z 0 dziećmi
-[19:39:50][DEBUG][PID:  499] MAIN: Uruchomiono turystę #15 (PID: 522, wiek: 24)
-[19:39:51][INFO ][PID:  499] MAIN: Generuję turystę #16 (wiek: 28) z 2 dziećmi
-[19:39:51][DEBUG][PID:  499] MAIN: Uruchomiono turystę #16 (PID: 523, wiek: 28)
-[19:39:51][DEBUG][PID:  499] MAIN: Uruchomiono turystę #17 (PID: 524, wiek: 4)
-[19:39:51][DEBUG][PID:  499] MAIN: Uruchomiono turystę #18 (PID: 525, wiek: 5)
-[19:39:52][INFO ][PID:  499] MAIN: Generuję turystę #19 (wiek: 39) z 0 dziećmi
-[19:39:52][DEBUG][PID:  499] MAIN: Uruchomiono turystę #19 (PID: 526, wiek: 39)
-[19:39:53][INFO ][PID:  499] MAIN: Generuję turystę #20 (wiek: 54) z 2 dziećmi
-[19:39:53][DEBUG][PID:  499] MAIN: Uruchomiono turystę #20 (PID: 527, wiek: 54)
-[19:39:53][DEBUG][PID:  499] MAIN: Uruchomiono turystę #21 (PID: 528, wiek: 5)
-[19:39:53][DEBUG][PID:  499] MAIN: Uruchomiono turystę #22 (PID: 529, wiek: 7)
-[19:39:54][INFO ][PID:  499] MAIN: Generuję turystę #23 (wiek: 49) z 0 dziećmi
-[19:39:54][DEBUG][PID:  499] MAIN: Uruchomiono turystę #23 (PID: 530, wiek: 49)
-[19:39:55][INFO ][PID:  499] MAIN: Generuję turystę #24 (wiek: 38) z 0 dziećmi
-[19:39:55][DEBUG][PID:  499] MAIN: Uruchomiono turystę #24 (PID: 531, wiek: 38)
-[19:39:56][INFO ][PID:  499] MAIN: Generuję turystę #25 (wiek: 48) z 2 dziećmi
-[19:39:56][DEBUG][PID:  499] MAIN: Uruchomiono turystę #25 (PID: 532, wiek: 48)
-[19:39:56][DEBUG][PID:  499] MAIN: Uruchomiono turystę #26 (PID: 533, wiek: 6)
-[19:39:56][DEBUG][PID:  499] MAIN: Uruchomiono turystę #27 (PID: 534, wiek: 6)
-[19:39:57][INFO ][PID:  499] MAIN: Generuję turystę #28 (wiek: 34) z 0 dziećmi
-[19:39:57][DEBUG][PID:  499] MAIN: Uruchomiono turystę #28 (PID: 535, wiek: 34)
-[19:39:58][INFO ][PID:  499] MAIN: Generuję turystę #29 (wiek: 35) z 0 dziećmi
-[19:39:58][DEBUG][PID:  499] MAIN: Uruchomiono turystę #29 (PID: 536, wiek: 35)
-[19:39:59][INFO ][PID:  499] MAIN: Generuję turystę #30 (wiek: 57) z 0 dziećmi
-[19:39:59][DEBUG][PID:  499] MAIN: Uruchomiono turystę #30 (PID: 537, wiek: 57)
-[19:40:00][INFO ][PID:  499] MAIN: Generuję turystę #31 (wiek: 32) z 0 dziećmi
-[19:40:00][DEBUG][PID:  499] MAIN: Uruchomiono turystę #31 (PID: 538, wiek: 32)
-[19:40:01][INFO ][PID:  499] MAIN: Generuję turystę #32 (wiek: 34) z 0 dziećmi
-[19:40:01][DEBUG][PID:  499] MAIN: Uruchomiono turystę #32 (PID: 539, wiek: 34)
-[19:40:02][INFO ][PID:  499] MAIN: Generuję turystę #33 (wiek: 63) z 0 dziećmi
-[19:40:02][DEBUG][PID:  499] MAIN: Uruchomiono turystę #33 (PID: 540, wiek: 63)
-[19:40:03][INFO ][PID:  499] MAIN: Generuję turystę #34 (wiek: 31) z 0 dziećmi
-[19:40:03][DEBUG][PID:  499] MAIN: Uruchomiono turystę #34 (PID: 541, wiek: 31)
-[19:40:04][INFO ][PID:  499] MAIN: Generuję turystę #35 (wiek: 59) z 1 dziećmi
-[19:40:04][DEBUG][PID:  499] MAIN: Uruchomiono turystę #35 (PID: 542, wiek: 59)
-[19:40:04][DEBUG][PID:  499] MAIN: Uruchomiono turystę #36 (PID: 543, wiek: 4)
-[19:40:05][INFO ][PID:  499] MAIN: Generuję turystę #37 (wiek: 58) z 0 dziećmi
-[19:40:05][DEBUG][PID:  499] MAIN: Uruchomiono turystę #37 (PID: 544, wiek: 58)
-[19:40:06][INFO ][PID:  499] MAIN: Generuję turystę #38 (wiek: 24) z 2 dziećmi
-[19:40:06][DEBUG][PID:  499] MAIN: Uruchomiono turystę #38 (PID: 545, wiek: 24)
-[19:40:06][DEBUG][PID:  499] MAIN: Uruchomiono turystę #39 (PID: 546, wiek: 4)
-[19:40:06][DEBUG][PID:  499] MAIN: Uruchomiono turystę #40 (PID: 547, wiek: 5)
-[19:40:07][INFO ][PID:  499] MAIN: Generuję turystę #41 (wiek: 63) z 1 dziećmi
-[19:40:07][DEBUG][PID:  499] MAIN: Uruchomiono turystę #41 (PID: 548, wiek: 63)
-[19:40:07][DEBUG][PID:  499] MAIN: Uruchomiono turystę #42 (PID: 549, wiek: 6)
-[19:40:08][INFO ][PID:  499] MAIN: Zatrzymywanie symulacji
-[19:40:08][INFO ][PID:  499] MAIN: Zatrzymuję wszystkie procesy...
-[19:40:08][INFO ][PID:  499] MONITOR: Wątek monitorowania zakończony
-[19:40:08][INFO ][PID:  499] STATYSTYKI: Wątek zakończony (był odłączony, nie wymaga join)
-[19:40:14][INFO ][PID:  499] MAIN: Zebrano 0 procesów potomnych
-[19:40:14][INFO ][PID:  499] === ZAKOŃCZENIE SYMULACJI ===
-[20:12:16][INFO ][PID:  655] === ROZPOCZĘCIE SYMULACJI KOLEI LINOWEJ ===
-[20:12:16][INFO ][PID:  655] Parametry: 60 sekund, max 100 turystów
-[20:12:16][INFO ][PID:  655] MAIN: Uruchomiono kasjera (PID: 659)
-[20:12:16][INFO ][PID:  655] MAIN: Uruchomiono pracownika1 (PID: 660)
-[20:12:16][INFO ][PID:  655] MAIN: Uruchomiono pracownika2 (PID: 661)
-[20:12:16][INFO ][PID:  655] MONITOR: Wątek monitorowania uruchomiony
-[20:12:16][INFO ][PID:  655] STATYSTYKI: Wątek statystyk odłączony (pthread_detach)
-[20:12:16][INFO ][PID:  655] MAIN: Generuję turystę #1 (wiek: 53) z 2 dziećmi
-[20:12:16][DEBUG][PID:  655] MAIN: Uruchomiono turystę #1 (PID: 664, wiek: 53)
-[20:12:16][DEBUG][PID:  655] MAIN: Uruchomiono turystę #2 (PID: 665, wiek: 4)
-[20:12:16][DEBUG][PID:  655] MAIN: Uruchomiono turystę #3 (PID: 666, wiek: 7)
-[20:12:17][INFO ][PID:  655] MAIN: Generuję turystę #4 (wiek: 29) z 0 dziećmi
-[20:12:17][DEBUG][PID:  655] MAIN: Uruchomiono turystę #4 (PID: 667, wiek: 29)
-[20:12:18][INFO ][PID:  655] MAIN: Generuję turystę #5 (wiek: 21) z 0 dziećmi
-[20:12:18][DEBUG][PID:  655] MAIN: Uruchomiono turystę #5 (PID: 668, wiek: 21)
-[20:12:19][INFO ][PID:  655] MAIN: Generuję turystę #6 (wiek: 57) z 0 dziećmi
-[20:12:19][DEBUG][PID:  655] MAIN: Uruchomiono turystę #6 (PID: 669, wiek: 57)
-[20:12:20][INFO ][PID:  655] MAIN: Generuję turystę #7 (wiek: 25) z 0 dziećmi
-[20:12:20][DEBUG][PID:  655] MAIN: Uruchomiono turystę #7 (PID: 670, wiek: 25)
-[20:12:23][INFO ][PID:  655] MAIN: Generuję turystę #8 (wiek: 24) z 2 dziećmi
-[20:12:23][DEBUG][PID:  655] MAIN: Uruchomiono turystę #8 (PID: 671, wiek: 24)
-[20:12:23][DEBUG][PID:  655] MAIN: Uruchomiono turystę #9 (PID: 672, wiek: 4)
-[20:12:23][DEBUG][PID:  655] MAIN: Uruchomiono turystę #10 (PID: 673, wiek: 6)
-[20:12:24][INFO ][PID:  655] MAIN: Generuję turystę #11 (wiek: 32) z 0 dziećmi
-[20:12:24][DEBUG][PID:  655] MAIN: Uruchomiono turystę #11 (PID: 674, wiek: 32)
-[20:12:25][INFO ][PID:  655] MAIN: Generuję turystę #12 (wiek: 67) z 0 dziećmi
-[20:12:25][DEBUG][PID:  655] MAIN: Uruchomiono turystę #12 (PID: 675, wiek: 67)
-[20:12:26][INFO ][PID:  655] MAIN: Generuję turystę #13 (wiek: 66) z 0 dziećmi
-[20:12:26][DEBUG][PID:  655] MAIN: Uruchomiono turystę #13 (PID: 676, wiek: 66)
-[20:12:27][INFO ][PID:  655] MAIN: Generuję turystę #14 (wiek: 64) z 0 dziećmi
-[20:12:27][DEBUG][PID:  655] MAIN: Uruchomiono turystę #14 (PID: 677, wiek: 64)
-[20:12:28][INFO ][PID:  655] MAIN: Generuję turystę #15 (wiek: 55) z 0 dziećmi
-[20:12:28][DEBUG][PID:  655] MAIN: Uruchomiono turystę #15 (PID: 678, wiek: 55)
-[20:12:29][INFO ][PID:  655] MAIN: Generuję turystę #16 (wiek: 58) z 2 dziećmi
-[20:12:29][DEBUG][PID:  655] MAIN: Uruchomiono turystę #16 (PID: 679, wiek: 58)
-[20:12:29][DEBUG][PID:  655] MAIN: Uruchomiono turystę #17 (PID: 680, wiek: 6)
-[20:12:29][DEBUG][PID:  655] MAIN: Uruchomiono turystę #18 (PID: 681, wiek: 4)
-[20:12:30][INFO ][PID:  655] MAIN: Generuję turystę #19 (wiek: 29) z 0 dziećmi
-[20:12:30][DEBUG][PID:  655] MAIN: Uruchomiono turystę #19 (PID: 682, wiek: 29)
-[20:12:31][INFO ][PID:  655] MAIN: Generuję turystę #20 (wiek: 29) z 2 dziećmi
-[20:12:31][DEBUG][PID:  655] MAIN: Uruchomiono turystę #20 (PID: 683, wiek: 29)
-[20:12:31][DEBUG][PID:  655] MAIN: Uruchomiono turystę #21 (PID: 684, wiek: 5)
-[20:12:31][DEBUG][PID:  655] MAIN: Uruchomiono turystę #22 (PID: 685, wiek: 4)
-[20:12:32][INFO ][PID:  655] MAIN: Generuję turystę #23 (wiek: 35) z 0 dziećmi
-[20:12:32][DEBUG][PID:  655] MAIN: Uruchomiono turystę #23 (PID: 686, wiek: 35)
-[20:12:33][INFO ][PID:  655] MAIN: Generuję turystę #24 (wiek: 22) z 1 dziećmi
-[20:12:33][DEBUG][PID:  655] MAIN: Uruchomiono turystę #24 (PID: 687, wiek: 22)
-[20:12:33][DEBUG][PID:  655] MAIN: Uruchomiono turystę #25 (PID: 688, wiek: 4)
-[20:12:34][INFO ][PID:  655] MAIN: Generuję turystę #26 (wiek: 67) z 1 dziećmi
-[20:12:34][DEBUG][PID:  655] MAIN: Uruchomiono turystę #26 (PID: 689, wiek: 67)
-[20:12:34][DEBUG][PID:  655] MAIN: Uruchomiono turystę #27 (PID: 690, wiek: 7)
-[20:12:35][INFO ][PID:  655] MAIN: Generuję turystę #28 (wiek: 43) z 1 dziećmi
-[20:12:35][DEBUG][PID:  655] MAIN: Uruchomiono turystę #28 (PID: 691, wiek: 43)
-[20:12:35][DEBUG][PID:  655] MAIN: Uruchomiono turystę #29 (PID: 692, wiek: 5)
-[20:12:36][INFO ][PID:  655] MAIN: Generuję turystę #30 (wiek: 37) z 0 dziećmi
-[20:12:36][DEBUG][PID:  655] MAIN: Uruchomiono turystę #30 (PID: 693, wiek: 37)
-[20:12:37][INFO ][PID:  655] MAIN: Generuję turystę #31 (wiek: 38) z 0 dziećmi
-[20:12:37][DEBUG][PID:  655] MAIN: Uruchomiono turystę #31 (PID: 694, wiek: 38)
-[20:12:38][INFO ][PID:  655] MAIN: Generuję turystę #32 (wiek: 65) z 0 dziećmi
-[20:12:38][DEBUG][PID:  655] MAIN: Uruchomiono turystę #32 (PID: 695, wiek: 65)
-[20:12:39][INFO ][PID:  655] MAIN: Generuję turystę #33 (wiek: 22) z 0 dziećmi
-[20:12:39][DEBUG][PID:  655] MAIN: Uruchomiono turystę #33 (PID: 696, wiek: 22)
-[20:12:40][INFO ][PID:  655] MAIN: Generuję turystę #34 (wiek: 25) z 0 dziećmi
-[20:12:40][DEBUG][PID:  655] MAIN: Uruchomiono turystę #34 (PID: 697, wiek: 25)
-[20:12:41][INFO ][PID:  655] MAIN: Generuję turystę #35 (wiek: 53) z 0 dziećmi
-[20:12:41][DEBUG][PID:  655] MAIN: Uruchomiono turystę #35 (PID: 698, wiek: 53)
-[20:12:42][INFO ][PID:  655] MAIN: Generuję turystę #36 (wiek: 53) z 0 dziećmi
-[20:12:42][DEBUG][PID:  655] MAIN: Uruchomiono turystę #36 (PID: 699, wiek: 53)
-[20:12:43][INFO ][PID:  655] MAIN: Generuję turystę #37 (wiek: 39) z 1 dziećmi
-[20:12:43][DEBUG][PID:  655] MAIN: Uruchomiono turystę #37 (PID: 700, wiek: 39)
-[20:12:43][DEBUG][PID:  655] MAIN: Uruchomiono turystę #38 (PID: 701, wiek: 6)
-[20:12:44][INFO ][PID:  655] MAIN: Generuję turystę #39 (wiek: 46) z 0 dziećmi
-[20:12:44][DEBUG][PID:  655] MAIN: Uruchomiono turystę #39 (PID: 702, wiek: 46)
-[20:12:45][INFO ][PID:  655] MAIN: Generuję turystę #40 (wiek: 39) z 2 dziećmi
-[20:12:45][DEBUG][PID:  655] MAIN: Uruchomiono turystę #40 (PID: 703, wiek: 39)
-[20:12:45][DEBUG][PID:  655] MAIN: Uruchomiono turystę #41 (PID: 704, wiek: 7)
-[20:12:45][DEBUG][PID:  655] MAIN: Uruchomiono turystę #42 (PID: 705, wiek: 5)
-[20:12:46][INFO ][PID:  655] MAIN: Generuję turystę #43 (wiek: 56) z 0 dziećmi
-[20:12:46][DEBUG][PID:  655] MAIN: Uruchomiono turystę #43 (PID: 706, wiek: 56)
-[20:12:47][INFO ][PID:  655] MAIN: Generuję turystę #44 (wiek: 58) z 0 dziećmi
-[20:12:47][DEBUG][PID:  655] MAIN: Uruchomiono turystę #44 (PID: 707, wiek: 58)
-[20:12:48][INFO ][PID:  655] MAIN: Generuję turystę #45 (wiek: 65) z 2 dziećmi
-[20:12:48][DEBUG][PID:  655] MAIN: Uruchomiono turystę #45 (PID: 708, wiek: 65)
-[20:12:48][DEBUG][PID:  655] MAIN: Uruchomiono turystę #46 (PID: 709, wiek: 5)
-[20:12:48][DEBUG][PID:  655] MAIN: Uruchomiono turystę #47 (PID: 710, wiek: 5)
-[20:12:49][INFO ][PID:  655] MAIN: Generuję turystę #48 (wiek: 34) z 0 dziećmi
-[20:12:49][DEBUG][PID:  655] MAIN: Uruchomiono turystę #48 (PID: 711, wiek: 34)
-[20:12:50][INFO ][PID:  655] MAIN: Generuję turystę #49 (wiek: 27) z 0 dziećmi
-[20:12:50][DEBUG][PID:  655] MAIN: Uruchomiono turystę #49 (PID: 712, wiek: 27)
-[20:12:51][INFO ][PID:  655] MAIN: Generuję turystę #50 (wiek: 56) z 2 dziećmi
-[20:12:51][DEBUG][PID:  655] MAIN: Uruchomiono turystę #50 (PID: 713, wiek: 56)
-[20:12:51][DEBUG][PID:  655] MAIN: Uruchomiono turystę #51 (PID: 714, wiek: 5)
-[20:12:51][DEBUG][PID:  655] MAIN: Uruchomiono turystę #52 (PID: 715, wiek: 5)
-[20:12:52][INFO ][PID:  655] MAIN: Generuję turystę #53 (wiek: 21) z 0 dziećmi
-[20:12:52][DEBUG][PID:  655] MAIN: Uruchomiono turystę #53 (PID: 716, wiek: 21)
-[20:12:53][INFO ][PID:  655] MAIN: Generuję turystę #54 (wiek: 47) z 0 dziećmi
-[20:12:53][DEBUG][PID:  655] MAIN: Uruchomiono turystę #54 (PID: 717, wiek: 47)
-[20:12:54][INFO ][PID:  655] MAIN: Generuję turystę #55 (wiek: 21) z 0 dziećmi
-[20:12:54][DEBUG][PID:  655] MAIN: Uruchomiono turystę #55 (PID: 718, wiek: 21)
-[20:12:55][INFO ][PID:  655] MAIN: Generuję turystę #56 (wiek: 31) z 1 dziećmi
-[20:12:55][DEBUG][PID:  655] MAIN: Uruchomiono turystę #56 (PID: 719, wiek: 31)
-[20:12:55][DEBUG][PID:  655] MAIN: Uruchomiono turystę #57 (PID: 720, wiek: 6)
-[20:12:58][INFO ][PID:  655] MAIN: Generuję turystę #58 (wiek: 36) z 0 dziećmi
-[20:12:58][DEBUG][PID:  655] MAIN: Uruchomiono turystę #58 (PID: 721, wiek: 36)
-[20:12:59][INFO ][PID:  655] MAIN: Generuję turystę #59 (wiek: 20) z 0 dziećmi
-[20:12:59][DEBUG][PID:  655] MAIN: Uruchomiono turystę #59 (PID: 722, wiek: 20)
-[20:13:00][INFO ][PID:  655] MAIN: Generuję turystę #60 (wiek: 48) z 2 dziećmi
-[20:13:00][DEBUG][PID:  655] MAIN: Uruchomiono turystę #60 (PID: 723, wiek: 48)
-[20:13:00][DEBUG][PID:  655] MAIN: Uruchomiono turystę #61 (PID: 724, wiek: 6)
-[20:13:00][DEBUG][PID:  655] MAIN: Uruchomiono turystę #62 (PID: 725, wiek: 6)
-[20:13:01][INFO ][PID:  655] MAIN: Generuję turystę #63 (wiek: 31) z 0 dziećmi
-[20:13:01][DEBUG][PID:  655] MAIN: Uruchomiono turystę #63 (PID: 726, wiek: 31)
-[20:13:02][INFO ][PID:  655] MAIN: Generuję turystę #64 (wiek: 35) z 0 dziećmi
-[20:13:02][DEBUG][PID:  655] MAIN: Uruchomiono turystę #64 (PID: 727, wiek: 35)
-[20:13:03][INFO ][PID:  655] MAIN: Generuję turystę #65 (wiek: 22) z 0 dziećmi
-[20:13:03][DEBUG][PID:  655] MAIN: Uruchomiono turystę #65 (PID: 728, wiek: 22)
-[20:13:04][INFO ][PID:  655] MAIN: Generuję turystę #66 (wiek: 50) z 0 dziećmi
-[20:13:04][DEBUG][PID:  655] MAIN: Uruchomiono turystę #66 (PID: 729, wiek: 50)
-[20:13:05][INFO ][PID:  655] MAIN: Generuję turystę #67 (wiek: 22) z 2 dziećmi
-[20:13:05][DEBUG][PID:  655] MAIN: Uruchomiono turystę #67 (PID: 730, wiek: 22)
-[20:13:05][DEBUG][PID:  655] MAIN: Uruchomiono turystę #68 (PID: 731, wiek: 6)
-[20:13:05][DEBUG][PID:  655] MAIN: Uruchomiono turystę #69 (PID: 732, wiek: 7)
-[20:13:06][INFO ][PID:  655] MAIN: Generuję turystę #70 (wiek: 41) z 1 dziećmi
-[20:13:06][DEBUG][PID:  655] MAIN: Uruchomiono turystę #70 (PID: 733, wiek: 41)
-[20:13:06][DEBUG][PID:  655] MAIN: Uruchomiono turystę #71 (PID: 734, wiek: 7)
-[20:13:07][INFO ][PID:  655] MAIN: Generuję turystę #72 (wiek: 23) z 0 dziećmi
-[20:13:07][DEBUG][PID:  655] MAIN: Uruchomiono turystę #72 (PID: 735, wiek: 23)
-[20:13:08][INFO ][PID:  655] MAIN: Generuję turystę #73 (wiek: 23) z 0 dziećmi
-[20:13:08][DEBUG][PID:  655] MAIN: Uruchomiono turystę #73 (PID: 736, wiek: 23)
-[20:13:09][INFO ][PID:  655] MAIN: Generuję turystę #74 (wiek: 40) z 0 dziećmi
-[20:13:09][DEBUG][PID:  655] MAIN: Uruchomiono turystę #74 (PID: 737, wiek: 40)
-[20:13:10][INFO ][PID:  655] MAIN: Generuję turystę #75 (wiek: 21) z 1 dziećmi
-[20:13:10][DEBUG][PID:  655] MAIN: Uruchomiono turystę #75 (PID: 738, wiek: 21)
-[20:13:10][DEBUG][PID:  655] MAIN: Uruchomiono turystę #76 (PID: 739, wiek: 4)
-[20:13:11][INFO ][PID:  655] MAIN: Generuję turystę #77 (wiek: 68) z 0 dziećmi
-[20:13:11][DEBUG][PID:  655] MAIN: Uruchomiono turystę #77 (PID: 740, wiek: 68)
-[20:13:12][INFO ][PID:  655] MAIN: Generuję turystę #78 (wiek: 49) z 2 dziećmi
-[20:13:12][DEBUG][PID:  655] MAIN: Uruchomiono turystę #78 (PID: 741, wiek: 49)
-[20:13:12][DEBUG][PID:  655] MAIN: Uruchomiono turystę #79 (PID: 742, wiek: 5)
-[20:13:12][DEBUG][PID:  655] MAIN: Uruchomiono turystę #80 (PID: 743, wiek: 5)
-[20:13:13][INFO ][PID:  655] MAIN: Generuję turystę #81 (wiek: 55) z 0 dziećmi
-[20:13:13][DEBUG][PID:  655] MAIN: Uruchomiono turystę #81 (PID: 744, wiek: 55)
-[20:13:14][INFO ][PID:  655] MAIN: Generuję turystę #82 (wiek: 28) z 0 dziećmi
-[20:13:14][DEBUG][PID:  655] MAIN: Uruchomiono turystę #82 (PID: 745, wiek: 28)
-[20:13:15][INFO ][PID:  655] MAIN: Generuję turystę #83 (wiek: 51) z 0 dziećmi
-[20:13:15][DEBUG][PID:  655] MAIN: Uruchomiono turystę #83 (PID: 746, wiek: 51)
-[20:13:16][INFO ][PID:  655] MAIN: Koniec godzin pracy kolei
-[20:13:19][INFO ][PID:  655] MAIN: Zatrzymywanie symulacji
-[20:13:19][INFO ][PID:  655] MAIN: Zatrzymuję wszystkie procesy...
-[20:13:19][INFO ][PID:  655] MONITOR: Wątek monitorowania zakończony
-[20:13:19][INFO ][PID:  655] STATYSTYKI: Wątek zakończony (był odłączony, nie wymaga join)
-[20:13:22][INFO ][PID:  655] MAIN: Zebrano 0 procesów potomnych
-[20:13:22][INFO ][PID:  655] === ZAKOŃCZENIE SYMULACJI ===
+[01:20:23][INFO ][PID:26897] === ROZPOCZĘCIE SYMULACJI KOLEI LINOWEJ ===
+[01:20:23][INFO ][PID:26897] Parametry: 9999 sekund, max 100 turystów
+[01:20:23][INFO ][PID:26897] MAIN: Uruchomiono kasjera (PID: 26901)
+[01:20:23][INFO ][PID:26897] MAIN: Uruchomiono pracownika1 (PID: 26902)
+[01:20:24][INFO ][PID:26897] MAIN: Uruchomiono pracownika2 (PID: 26903)
+[01:20:24][INFO ][PID:26897] MAIN: Generuję turystę #1 (wiek: 62) z 0 dziećmi
+[01:20:24][INFO ][PID:26897] MONITOR: Wątek monitorowania uruchomiony
+[01:20:24][INFO ][PID:26897] STATYSTYKI: Wątek statystyk odłączony (pthread_detach)
+[01:20:24][DEBUG][PID:26897] MAIN: Uruchomiono turystę #1 (PID: 26906, wiek: 62)
+[01:20:25][INFO ][PID:26897] MAIN: Generuję turystę #2 (wiek: 53) z 0 dziećmi
+[01:20:25][DEBUG][PID:26897] MAIN: Uruchomiono turystę #2 (PID: 26907, wiek: 53)
+[01:20:26][INFO ][PID:26897] MAIN: Generuję turystę #3 (wiek: 69) z 2 dziećmi
+[01:20:26][DEBUG][PID:26897] MAIN: Uruchomiono turystę #3 (PID: 26908, wiek: 69)
+[01:20:26][DEBUG][PID:26897] MAIN: Uruchomiono turystę #4 (PID: 26909, wiek: 4)
+[01:20:26][DEBUG][PID:26897] MAIN: Uruchomiono turystę #5 (PID: 26910, wiek: 5)
+[01:20:27][INFO ][PID:26897] MAIN: Generuję turystę #6 (wiek: 46) z 0 dziećmi
+[01:20:27][DEBUG][PID:26897] MAIN: Uruchomiono turystę #6 (PID: 26911, wiek: 46)
+[01:20:28][INFO ][PID:26897] MAIN: Generuję turystę #7 (wiek: 56) z 0 dziećmi
+[01:20:28][DEBUG][PID:26897] MAIN: Uruchomiono turystę #7 (PID: 26912, wiek: 56)
+[01:20:29][INFO ][PID:26897] MAIN: Generuję turystę #8 (wiek: 45) z 0 dziećmi
+[01:20:29][DEBUG][PID:26897] MAIN: Uruchomiono turystę #8 (PID: 26917, wiek: 45)
+[01:20:30][INFO ][PID:26897] MAIN: Generuję turystę #9 (wiek: 58) z 0 dziećmi
+[01:20:30][DEBUG][PID:26897] MAIN: Uruchomiono turystę #9 (PID: 26918, wiek: 58)
+[01:20:31][INFO ][PID:26897] MAIN: Generuję turystę #10 (wiek: 29) z 0 dziećmi
+[01:20:31][DEBUG][PID:26897] MAIN: Uruchomiono turystę #10 (PID: 26919, wiek: 29)
+[01:20:32][INFO ][PID:26897] MAIN: Generuję turystę #11 (wiek: 56) z 0 dziećmi
+[01:20:32][DEBUG][PID:26897] MAIN: Uruchomiono turystę #11 (PID: 26920, wiek: 56)
+[01:20:32][INFO ][PID:26897] MAIN: Zatrzymywanie symulacji
+[01:20:32][INFO ][PID:26897] MAIN: Zatrzymuję wszystkie procesy...
+[01:20:32][INFO ][PID:26897] MONITOR: Wątek monitorowania zakończony
+[01:20:33][INFO ][PID:26897] STATYSTYKI: Wątek zakończony (był odłączony, nie wymaga join)
+[01:20:36][INFO ][PID:26897] MAIN: Zebrano 0 procesów potomnych
+[01:20:36][INFO ][PID:26897]  ZAKOŃCZENIE SYMULACJI 

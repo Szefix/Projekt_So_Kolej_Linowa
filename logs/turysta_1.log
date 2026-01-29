@@ -1,56 +1,14 @@
-[19:39:37][INFO ][PID:  508] TURYSTA #1: Przychodzę (wiek: 42, rowerzysta, zwykły)
-[19:39:37][INFO ][PID:  508] TURYSTA #1: Podchodzę do kasy
-[19:39:37][INFO ][PID:  508] TURYSTA #1: Kupiłem bilet #5 (typ: 42)
-[19:39:37][INFO ][PID:  508] TURYSTA #1: Czekam na miejsce na stacji
-[19:39:37][INFO ][PID:  508] TURYSTA #1: Przeszedłem przez bramkę 0
-[19:39:37][INFO ][PID:  508] TURYSTA #1: Czekam na pozwolenie wejścia na peron
-[19:39:37][INFO ][PID:  508] TURYSTA #1: Wchodzę na peron
-[19:39:37][INFO ][PID:  508] TURYSTA #1: Czekam na krzesełko
-[19:39:37][INFO ][PID:  508] TURYSTA #1: Wsiadłem na krzesełko #0
-[19:39:39][INFO ][PID:  508] TURYSTA #1: Dojechałem na stację górną
-[19:39:39][INFO ][PID:  508] TURYSTA #1: Wychodzę wyjściem 1
-[19:39:39][INFO ][PID:  508] TURYSTA #1 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
-[19:39:44][INFO ][PID:  508] TURYSTA #1: Ukończyłem zjazd #1
-[19:39:44][INFO ][PID:  508] TURYSTA #1: Wystarczy na dziś, wychodzę
-[19:39:44][INFO ][PID:  508] TURYSTA #1: Kończę dzień z 1 zjazdami
-[20:12:16][INFO ][PID:  664] TURYSTA #1: Przychodzę (wiek: 53, pieszy, zwykły)
-[20:12:16][INFO ][PID:  664] TURYSTA #1: Podchodzę do kasy
-[20:12:16][INFO ][PID:  664] TURYSTA #1: Kupiłem bilet #1 (typ: 4)
-[20:12:16][INFO ][PID:  664] TURYSTA #1: Czekam na miejsce na stacji
-[20:12:16][INFO ][PID:  664] TURYSTA #1: Przeszedłem przez bramkę 0
-[20:12:16][INFO ][PID:  664] TURYSTA #1: Czekam na pozwolenie wejścia na peron
-[20:12:16][INFO ][PID:  664] TURYSTA #1: Wchodzę na peron
-[20:12:16][INFO ][PID:  664] TURYSTA #1: Czekam na krzesełko
-[20:12:16][INFO ][PID:  664] TURYSTA #1: Wsiadłem na krzesełko #0
-[20:12:18][INFO ][PID:  664] TURYSTA #1: Dojechałem na stację górną
-[20:12:18][INFO ][PID:  664] TURYSTA #1: Wychodzę wyjściem 1
-[20:12:18][INFO ][PID:  664] TURYSTA #1 (pieszy): Schodzę ze stacji górnej
-[20:12:18][INFO ][PID:  664] TURYSTA #1: Czekam na miejsce na stacji
-[20:12:18][INFO ][PID:  664] TURYSTA #1: Przeszedłem przez bramkę 0
-[20:12:18][INFO ][PID:  664] TURYSTA #1: Czekam na pozwolenie wejścia na peron
-[20:12:18][INFO ][PID:  664] TURYSTA #1: Wchodzę na peron
-[20:12:18][INFO ][PID:  664] TURYSTA #1: Czekam na krzesełko
-[20:12:19][INFO ][PID:  664] TURYSTA #1: Wsiadłem na krzesełko #2
-[20:12:23][INFO ][PID:  664] TURYSTA #1: Dojechałem na stację górną
-[20:12:23][INFO ][PID:  664] TURYSTA #1: Wychodzę wyjściem 1
-[20:12:23][INFO ][PID:  664] TURYSTA #1 (pieszy): Schodzę ze stacji górnej
-[20:12:23][INFO ][PID:  664] TURYSTA #1: Czekam na miejsce na stacji
-[20:12:23][INFO ][PID:  664] TURYSTA #1: Przeszedłem przez bramkę 1
-[20:12:23][INFO ][PID:  664] TURYSTA #1: Czekam na pozwolenie wejścia na peron
-[20:12:24][INFO ][PID:  664] TURYSTA #1: Wchodzę na peron
-[20:12:24][INFO ][PID:  664] TURYSTA #1: Czekam na krzesełko
-[20:12:25][INFO ][PID:  664] TURYSTA #1: Wsiadłem na krzesełko #6
-[20:12:27][INFO ][PID:  664] TURYSTA #1: Dojechałem na stację górną
-[20:12:27][INFO ][PID:  664] TURYSTA #1: Wychodzę wyjściem 0
-[20:12:27][INFO ][PID:  664] TURYSTA #1 (pieszy): Schodzę ze stacji górnej
-[20:12:27][INFO ][PID:  664] TURYSTA #1: Czekam na miejsce na stacji
-[20:12:27][INFO ][PID:  664] TURYSTA #1: Przeszedłem przez bramkę 0
-[20:12:27][INFO ][PID:  664] TURYSTA #1: Czekam na pozwolenie wejścia na peron
-[20:12:27][INFO ][PID:  664] TURYSTA #1: Wchodzę na peron
-[20:12:27][INFO ][PID:  664] TURYSTA #1: Czekam na krzesełko
-[20:12:27][INFO ][PID:  664] TURYSTA #1: Wsiadłem na krzesełko #7
-[20:12:29][INFO ][PID:  664] TURYSTA #1: Dojechałem na stację górną
-[20:12:29][INFO ][PID:  664] TURYSTA #1: Wychodzę wyjściem 1
-[20:12:29][INFO ][PID:  664] TURYSTA #1 (pieszy): Schodzę ze stacji górnej
-[20:12:29][INFO ][PID:  664] TURYSTA #1: Wystarczy na dziś, wychodzę
-[20:12:29][INFO ][PID:  664] TURYSTA #1: Kończę dzień z 4 zjazdami
+[01:20:24][INFO ][PID:26906] TURYSTA #1: Przychodzę (wiek: 62, pieszy, zwykły)
+[01:20:24][INFO ][PID:26906] TURYSTA #1: Podchodzę do kasy
+[01:20:24][INFO ][PID:26906] TURYSTA #1: Kupiłem bilet #2 (typ: 62)
+[01:20:24][INFO ][PID:26906] TURYSTA #1: Czekam na miejsce na stacji
+[01:20:24][INFO ][PID:26906] TURYSTA #1: Przeszedłem przez bramkę 0
+[01:20:24][INFO ][PID:26906] TURYSTA #1: Czekam na pozwolenie wejścia na peron
+[01:20:24][INFO ][PID:26906] TURYSTA #1: Wchodzę na peron
+[01:20:24][INFO ][PID:26906] TURYSTA #1: Czekam na krzesełko
+[01:20:24][INFO ][PID:26906] TURYSTA #1: Wsiadłem na krzesełko #0
+[01:20:26][INFO ][PID:26906] TURYSTA #1: Dojechałem na stację górną
+[01:20:26][INFO ][PID:26906] TURYSTA #1: Wychodzę wyjściem 0
+[01:20:26][INFO ][PID:26906] TURYSTA #1 (pieszy): Schodzę ze stacji górnej
+[01:20:26][INFO ][PID:26906] TURYSTA #1: Wystarczy na dziś, wychodzę
+[01:20:26][INFO ][PID:26906] TURYSTA #1: Kończę dzień z 1 zjazdami

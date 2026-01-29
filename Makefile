@@ -4,7 +4,7 @@
 # ============================================================
 
 CC = gcc
-CFLAGS = -Wall -Wextra -pedantic -std=c11 -g -D_GNU_SOURCE
+CFLAGS = -Wall -Wextra -std=c11 -g -D_GNU_SOURCE
 LDFLAGS = -pthread
 
 # Katalogi
@@ -27,10 +27,8 @@ PROGRAMS = $(BIN_DIR)/main $(BIN_DIR)/kasjer $(BIN_DIR)/pracownik1 \
 .PHONY: all clean clean-ipc clean-all run help
 
 all: dirs $(PROGRAMS)
-	@echo "=========================================="
 	@echo "  Kompilacja zakończona pomyślnie!"
 	@echo "  Uruchom: make run"
-	@echo "=========================================="
 
 dirs:
 	@mkdir -p $(BIN_DIR) $(LOG_DIR)
@@ -93,9 +91,7 @@ clean-all: clean clean-ipc
 # ============================================================
 
 help:
-	@echo "=============================================="
 	@echo "  KOLEJ LINOWA KRZESEŁKOWA - Makefile"
-	@echo "=============================================="
 	@echo ""
 	@echo "Cele:"
 	@echo "  all        - Kompilacja wszystkich programów"

@@ -23,8 +23,7 @@
 #define CZAS_TRASY_T3 8
 
 /* ========== GODZINY PRACY (sekundy symulacji) ========== */
-#define CZAS_OTWARCIA 0
-#define CZAS_ZAMKNIECIA 60
+#define CZAS_ZAMKNIECIA 9999
 #define CZAS_WYLACZENIA_PO_ZAMKNIECIU 3
 
 /* ========== TYPY BILETÓW ========== */
