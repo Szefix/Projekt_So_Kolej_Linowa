@@ -1,15 +1,41 @@
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Przychodzę (wiek: 66, rowerzysta, zwykły)
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Podchodzę do kasy
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Kupiłem bilet #27 (typ: 4)
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Czekam na miejsce na stacji
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Przeszedłem przez bramkę 0
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Czekam na pozwolenie wejścia na peron
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Wchodzę na peron
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Czekam na krzesełko
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Wsiadłem na krzesełko #6
-[15:25:03][INFO ][PID: 7296] TURYSTA #28: Dojechałem na stację górną
-[15:25:03][INFO ][PID: 7296] TURYSTA #28: Wychodzę wyjściem 0
-[15:25:03][INFO ][PID: 7296] TURYSTA #28 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[15:25:06][INFO ][PID: 7296] TURYSTA #28: Ukończyłem zjazd #1
-[15:25:06][INFO ][PID: 7296] TURYSTA #28: Wystarczy na dziś, wychodzę
-[15:25:06][INFO ][PID: 7296] TURYSTA #28: Kończę dzień z 1 zjazdami
+[19:39:57][INFO ][PID:  535] TURYSTA #28: Przychodzę (wiek: 34, rowerzysta, zwykły)
+[19:39:57][INFO ][PID:  535] TURYSTA #28: Podchodzę do kasy
+[19:39:57][INFO ][PID:  535] TURYSTA #28: Kupiłem bilet #27 (typ: 5)
+[19:39:57][INFO ][PID:  535] TURYSTA #28: Czekam na miejsce na stacji
+[19:39:57][INFO ][PID:  535] TURYSTA #28: Przeszedłem przez bramkę 0
+[19:39:57][INFO ][PID:  535] TURYSTA #28: Czekam na pozwolenie wejścia na peron
+[19:39:57][INFO ][PID:  535] TURYSTA #28: Wchodzę na peron
+[19:39:57][INFO ][PID:  535] TURYSTA #28: Czekam na krzesełko
+[19:39:57][INFO ][PID:  535] TURYSTA #28: Wsiadłem na krzesełko #19
+[19:39:59][INFO ][PID:  535] TURYSTA #28: Dojechałem na stację górną
+[19:39:59][INFO ][PID:  535] TURYSTA #28: Wychodzę wyjściem 1
+[19:39:59][INFO ][PID:  535] TURYSTA #28 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
+[19:40:07][INFO ][PID:  535] TURYSTA #28: Ukończyłem zjazd #1
+[19:40:07][INFO ][PID:  535] TURYSTA #28: Czekam na miejsce na stacji
+[19:40:07][INFO ][PID:  535] TURYSTA #28: Przeszedłem przez bramkę 0
+[19:40:07][INFO ][PID:  535] TURYSTA #28: Czekam na pozwolenie wejścia na peron
+[20:12:35][INFO ][PID:  691] TURYSTA #28: Przychodzę (wiek: 43, rowerzysta, zwykły)
+[20:12:35][INFO ][PID:  691] TURYSTA #28: Podchodzę do kasy
+[20:12:35][INFO ][PID:  691] TURYSTA #28: Kupiłem bilet #28 (typ: 5)
+[20:12:35][INFO ][PID:  691] TURYSTA #28: Czekam na miejsce na stacji
+[20:12:35][INFO ][PID:  691] TURYSTA #28: Przeszedłem przez bramkę 0
+[20:12:35][INFO ][PID:  691] TURYSTA #28: Czekam na pozwolenie wejścia na peron
+[20:12:37][INFO ][PID:  691] TURYSTA #28: Wchodzę na peron
+[20:12:37][INFO ][PID:  691] TURYSTA #28: Czekam na krzesełko
+[20:12:37][INFO ][PID:  691] TURYSTA #28: Wsiadłem na krzesełko #14
+[20:12:39][INFO ][PID:  691] TURYSTA #28: Dojechałem na stację górną
+[20:12:39][INFO ][PID:  691] TURYSTA #28: Wychodzę wyjściem 0
+[20:12:39][INFO ][PID:  691] TURYSTA #28 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
+[20:12:42][INFO ][PID:  691] TURYSTA #28: Ukończyłem zjazd #1
+[20:12:42][INFO ][PID:  691] TURYSTA #28: Czekam na miejsce na stacji
+[20:12:42][INFO ][PID:  691] TURYSTA #28: Przeszedłem przez bramkę 0
+[20:12:42][INFO ][PID:  691] TURYSTA #28: Czekam na pozwolenie wejścia na peron
+[20:12:43][INFO ][PID:  691] TURYSTA #28: Wchodzę na peron
+[20:12:43][INFO ][PID:  691] TURYSTA #28: Czekam na krzesełko
+[20:12:43][INFO ][PID:  691] TURYSTA #28: Wsiadłem na krzesełko #19
+[20:12:45][INFO ][PID:  691] TURYSTA #28: Dojechałem na stację górną
+[20:12:45][INFO ][PID:  691] TURYSTA #28: Wychodzę wyjściem 0
+[20:12:45][INFO ][PID:  691] TURYSTA #28 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
+[20:12:50][INFO ][PID:  691] TURYSTA #28: Ukończyłem zjazd #2
+[20:12:50][INFO ][PID:  691] TURYSTA #28: Wystarczy na dziś, wychodzę
+[20:12:50][INFO ][PID:  691] TURYSTA #28: Kończę dzień z 2 zjazdami

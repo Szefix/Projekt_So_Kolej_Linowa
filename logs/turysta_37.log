@@ -1,14 +1,36 @@
-[15:25:06][INFO ][PID: 7312] TURYSTA #37: Przychodzę (wiek: 7, pieszy, zwykły)
-[15:25:06][INFO ][PID: 7312] TURYSTA #37: Podchodzę do kasy
-[15:25:06][INFO ][PID: 7312] TURYSTA #37: Kupiłem bilet #36 (typ: 1)
-[15:25:06][INFO ][PID: 7312] TURYSTA #37: Czekam na miejsce na stacji
-[15:25:06][INFO ][PID: 7312] TURYSTA #37: Przeszedłem przez bramkę 0
-[15:25:06][INFO ][PID: 7312] TURYSTA #37: Czekam na pozwolenie wejścia na peron
-[15:25:06][INFO ][PID: 7312] TURYSTA #37: Wchodzę na peron
-[15:25:06][INFO ][PID: 7312] TURYSTA #37: Czekam na krzesełko
-[15:25:06][INFO ][PID: 7312] TURYSTA #37: Wsiadłem na krzesełko #25
-[15:25:08][INFO ][PID: 7312] TURYSTA #37: Dojechałem na stację górną
-[15:25:08][INFO ][PID: 7312] TURYSTA #37: Wychodzę wyjściem 0
-[15:25:08][INFO ][PID: 7312] TURYSTA #37 (pieszy): Schodzę ze stacji górnej
-[15:25:08][INFO ][PID: 7312] TURYSTA #37: Bilet nieważny, kończę
-[15:25:08][INFO ][PID: 7312] TURYSTA #37: Kończę dzień z 1 zjazdami
+[19:40:05][INFO ][PID:  544] TURYSTA #37: Przychodzę (wiek: 58, rowerzysta, zwykły)
+[19:40:05][INFO ][PID:  544] TURYSTA #37: Podchodzę do kasy
+[19:40:05][INFO ][PID:  544] TURYSTA #37: Kupiłem bilet #36 (typ: 4)
+[19:40:05][INFO ][PID:  544] TURYSTA #37: Czekam na miejsce na stacji
+[19:40:05][INFO ][PID:  544] TURYSTA #37: Przeszedłem przez bramkę 0
+[19:40:05][INFO ][PID:  544] TURYSTA #37: Czekam na pozwolenie wejścia na peron
+[19:40:06][INFO ][PID:  544] TURYSTA #37: Wchodzę na peron
+[19:40:06][INFO ][PID:  544] TURYSTA #37: Czekam na krzesełko
+[19:40:06][INFO ][PID:  544] TURYSTA #37: Wsiadłem na krzesełko #26
+[19:40:08][INFO ][PID:  544] TURYSTA #37: Kończę dzień z 0 zjazdami
+[20:12:43][INFO ][PID:  700] TURYSTA #37: Przychodzę (wiek: 39, rowerzysta, zwykły)
+[20:12:43][INFO ][PID:  700] TURYSTA #37: Podchodzę do kasy
+[20:12:43][INFO ][PID:  700] TURYSTA #37: Kupiłem bilet #37 (typ: 4)
+[20:12:43][INFO ][PID:  700] TURYSTA #37: Czekam na miejsce na stacji
+[20:12:43][INFO ][PID:  700] TURYSTA #37: Przeszedłem przez bramkę 0
+[20:12:43][INFO ][PID:  700] TURYSTA #37: Czekam na pozwolenie wejścia na peron
+[20:12:43][INFO ][PID:  700] TURYSTA #37: Wchodzę na peron
+[20:12:43][INFO ][PID:  700] TURYSTA #37: Czekam na krzesełko
+[20:12:43][INFO ][PID:  700] TURYSTA #37: Wsiadłem na krzesełko #20
+[20:12:45][INFO ][PID:  700] TURYSTA #37: Dojechałem na stację górną
+[20:12:45][INFO ][PID:  700] TURYSTA #37: Wychodzę wyjściem 0
+[20:12:45][INFO ][PID:  700] TURYSTA #37 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
+[20:12:53][INFO ][PID:  700] TURYSTA #37: Ukończyłem zjazd #1
+[20:12:53][INFO ][PID:  700] TURYSTA #37: Czekam na miejsce na stacji
+[20:12:53][INFO ][PID:  700] TURYSTA #37: Przeszedłem przez bramkę 0
+[20:12:53][INFO ][PID:  700] TURYSTA #37: Czekam na pozwolenie wejścia na peron
+[20:12:58][INFO ][PID:  700] TURYSTA #37: Wchodzę na peron
+[20:12:58][INFO ][PID:  700] TURYSTA #37: Czekam na krzesełko
+[20:12:58][INFO ][PID:  700] TURYSTA #37: Wsiadłem na krzesełko #31
+[20:13:00][INFO ][PID:  700] TURYSTA #37: Dojechałem na stację górną
+[20:13:00][INFO ][PID:  700] TURYSTA #37: Wychodzę wyjściem 1
+[20:13:00][INFO ][PID:  700] TURYSTA #37 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
+[20:13:08][INFO ][PID:  700] TURYSTA #37: Ukończyłem zjazd #2
+[20:13:08][INFO ][PID:  700] TURYSTA #37: Czekam na miejsce na stacji
+[20:13:08][INFO ][PID:  700] TURYSTA #37: Przeszedłem przez bramkę 0
+[20:13:08][INFO ][PID:  700] TURYSTA #37: Czekam na pozwolenie wejścia na peron

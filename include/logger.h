@@ -18,6 +18,11 @@ void logger_init(const char *nazwa_pliku);
 void logger_close(void);
 void logger_log(PoziomLogu poziom, const char *format, ...);
 
+/* ========== ASYNCHRONICZNE LOGOWANIE (pthread_cond_*) ========== */
+void logger_log_async(const char *wiadomosc);
+void logger_start_async(void);
+void logger_stop_async(void);
+
 /* ========== MAKRA DLA WYGODY ========== */
 #define LOG_D(fmt, ...) logger_log(LOG_DEBUG, fmt, ##__VA_ARGS__)
 #define LOG_I(fmt, ...) logger_log(LOG_INFO, fmt, ##__VA_ARGS__)

@@ -1,14 +1,50 @@
-[15:25:06][INFO ][PID: 7310] TURYSTA #35: Przychodzę (wiek: 32, pieszy, zwykły)
-[15:25:06][INFO ][PID: 7310] TURYSTA #35: Podchodzę do kasy
-[15:25:06][INFO ][PID: 7310] TURYSTA #35: Kupiłem bilet #34 (typ: 3)
-[15:25:06][INFO ][PID: 7310] TURYSTA #35: Czekam na miejsce na stacji
-[15:25:06][INFO ][PID: 7310] TURYSTA #35: Przeszedłem przez bramkę 0
-[15:25:06][INFO ][PID: 7310] TURYSTA #35: Czekam na pozwolenie wejścia na peron
-[15:25:06][INFO ][PID: 7310] TURYSTA #35: Wchodzę na peron
-[15:25:06][INFO ][PID: 7310] TURYSTA #35: Czekam na krzesełko
-[15:25:06][INFO ][PID: 7310] TURYSTA #35: Wsiadłem na krzesełko #23
-[15:25:08][INFO ][PID: 7310] TURYSTA #35: Dojechałem na stację górną
-[15:25:08][INFO ][PID: 7310] TURYSTA #35: Wychodzę wyjściem 1
-[15:25:08][INFO ][PID: 7310] TURYSTA #35 (pieszy): Schodzę ze stacji górnej
-[15:25:08][INFO ][PID: 7310] TURYSTA #35: Wystarczy na dziś, wychodzę
-[15:25:08][INFO ][PID: 7310] TURYSTA #35: Kończę dzień z 1 zjazdami
+[19:40:04][INFO ][PID:  542] TURYSTA #35: Przychodzę (wiek: 59, pieszy, zwykły)
+[19:40:04][INFO ][PID:  542] TURYSTA #35: Podchodzę do kasy
+[19:40:04][INFO ][PID:  542] TURYSTA #35: Kupiłem bilet #34 (typ: 4)
+[19:40:04][INFO ][PID:  542] TURYSTA #35: Czekam na miejsce na stacji
+[19:40:04][INFO ][PID:  542] TURYSTA #35: Przeszedłem przez bramkę 0
+[19:40:04][INFO ][PID:  542] TURYSTA #35: Czekam na pozwolenie wejścia na peron
+[19:40:05][INFO ][PID:  542] TURYSTA #35: Wchodzę na peron
+[19:40:05][INFO ][PID:  542] TURYSTA #35: Czekam na krzesełko
+[19:40:05][INFO ][PID:  542] TURYSTA #35: Wsiadłem na krzesełko #25
+[19:40:07][INFO ][PID:  542] TURYSTA #35: Dojechałem na stację górną
+[19:40:07][INFO ][PID:  542] TURYSTA #35: Wychodzę wyjściem 1
+[19:40:07][INFO ][PID:  542] TURYSTA #35 (pieszy): Schodzę ze stacji górnej
+[19:40:07][INFO ][PID:  542] TURYSTA #35: Wystarczy na dziś, wychodzę
+[19:40:07][INFO ][PID:  542] TURYSTA #35: Kończę dzień z 1 zjazdami
+[20:12:41][INFO ][PID:  698] TURYSTA #35: Przychodzę (wiek: 53, rowerzysta, zwykły)
+[20:12:41][INFO ][PID:  698] TURYSTA #35: Podchodzę do kasy
+[20:12:41][INFO ][PID:  698] TURYSTA #35: Kupiłem bilet #35 (typ: 5)
+[20:12:41][INFO ][PID:  698] TURYSTA #35: Czekam na miejsce na stacji
+[20:12:41][INFO ][PID:  698] TURYSTA #35: Przeszedłem przez bramkę 0
+[20:12:41][INFO ][PID:  698] TURYSTA #35: Czekam na pozwolenie wejścia na peron
+[20:12:42][INFO ][PID:  698] TURYSTA #35: Wchodzę na peron
+[20:12:42][INFO ][PID:  698] TURYSTA #35: Czekam na krzesełko
+[20:12:42][INFO ][PID:  698] TURYSTA #35: Wsiadłem na krzesełko #17
+[20:12:44][INFO ][PID:  698] TURYSTA #35: Dojechałem na stację górną
+[20:12:44][INFO ][PID:  698] TURYSTA #35: Wychodzę wyjściem 1
+[20:12:44][INFO ][PID:  698] TURYSTA #35 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
+[20:12:47][INFO ][PID:  698] TURYSTA #35: Ukończyłem zjazd #1
+[20:12:47][INFO ][PID:  698] TURYSTA #35: Czekam na miejsce na stacji
+[20:12:47][INFO ][PID:  698] TURYSTA #35: Przeszedłem przez bramkę 0
+[20:12:47][INFO ][PID:  698] TURYSTA #35: Czekam na pozwolenie wejścia na peron
+[20:12:49][INFO ][PID:  698] TURYSTA #35: Wchodzę na peron
+[20:12:49][INFO ][PID:  698] TURYSTA #35: Czekam na krzesełko
+[20:12:49][INFO ][PID:  698] TURYSTA #35: Wsiadłem na krzesełko #24
+[20:12:51][INFO ][PID:  698] TURYSTA #35: Dojechałem na stację górną
+[20:12:51][INFO ][PID:  698] TURYSTA #35: Wychodzę wyjściem 1
+[20:12:51][INFO ][PID:  698] TURYSTA #35 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
+[20:12:54][INFO ][PID:  698] TURYSTA #35: Ukończyłem zjazd #2
+[20:12:54][INFO ][PID:  698] TURYSTA #35: Czekam na miejsce na stacji
+[20:12:54][INFO ][PID:  698] TURYSTA #35: Przeszedłem przez bramkę 0
+[20:12:54][INFO ][PID:  698] TURYSTA #35: Czekam na pozwolenie wejścia na peron
+[20:12:59][INFO ][PID:  698] TURYSTA #35: Wchodzę na peron
+[20:12:59][INFO ][PID:  698] TURYSTA #35: Czekam na krzesełko
+[20:12:59][INFO ][PID:  698] TURYSTA #35: Wsiadłem na krzesełko #32
+[20:13:01][INFO ][PID:  698] TURYSTA #35: Dojechałem na stację górną
+[20:13:01][INFO ][PID:  698] TURYSTA #35: Wychodzę wyjściem 0
+[20:13:01][INFO ][PID:  698] TURYSTA #35 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
+[20:13:09][INFO ][PID:  698] TURYSTA #35: Ukończyłem zjazd #3
+[20:13:09][INFO ][PID:  698] TURYSTA #35: Czekam na miejsce na stacji
+[20:13:09][INFO ][PID:  698] TURYSTA #35: Przeszedłem przez bramkę 0
+[20:13:09][INFO ][PID:  698] TURYSTA #35: Czekam na pozwolenie wejścia na peron

@@ -1,45 +1,40 @@
-[15:24:54][INFO ][PID: 7288] TURYSTA #20: Przychodzę (wiek: 46, rowerzysta, zwykły)
-[15:24:54][INFO ][PID: 7288] TURYSTA #20: Podchodzę do kasy
-[15:24:54][INFO ][PID: 7288] TURYSTA #20: Kupiłem bilet #19 (typ: 3)
-[15:24:54][INFO ][PID: 7288] TURYSTA #20: Czekam na miejsce na stacji
-[15:24:54][INFO ][PID: 7288] TURYSTA #20: Przeszedłem przez bramkę 0
-[15:24:54][INFO ][PID: 7288] TURYSTA #20: Czekam na pozwolenie wejścia na peron
-[15:24:54][INFO ][PID: 7288] TURYSTA #20: Wchodzę na peron
-[15:24:54][INFO ][PID: 7288] TURYSTA #20: Czekam na krzesełko
-[15:24:54][INFO ][PID: 7288] TURYSTA #20: Wsiadłem na krzesełko #23
-[15:24:56][INFO ][PID: 7288] TURYSTA #20: Dojechałem na stację górną
-[15:24:56][INFO ][PID: 7288] TURYSTA #20: Wychodzę wyjściem 1
-[15:24:56][INFO ][PID: 7288] TURYSTA #20 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[15:24:59][INFO ][PID: 7288] TURYSTA #20: Ukończyłem zjazd #1
-[15:24:59][INFO ][PID: 7288] TURYSTA #20: Czekam na miejsce na stacji
-[15:24:59][INFO ][PID: 7288] TURYSTA #20: Przeszedłem przez bramkę 0
-[15:24:59][INFO ][PID: 7288] TURYSTA #20: Czekam na pozwolenie wejścia na peron
-[15:24:59][INFO ][PID: 7288] TURYSTA #20: Wchodzę na peron
-[15:24:59][INFO ][PID: 7288] TURYSTA #20: Czekam na krzesełko
-[15:24:59][INFO ][PID: 7288] TURYSTA #20: Wsiadłem na krzesełko #0
-[15:25:01][INFO ][PID: 7288] TURYSTA #20: Dojechałem na stację górną
-[15:25:01][INFO ][PID: 7288] TURYSTA #20: Wychodzę wyjściem 1
-[15:25:01][INFO ][PID: 7288] TURYSTA #20 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:25:09][INFO ][PID: 7288] TURYSTA #20: Ukończyłem zjazd #2
-[15:25:09][INFO ][PID: 7288] TURYSTA #20: Czekam na miejsce na stacji
-[15:25:09][INFO ][PID: 7288] TURYSTA #20: Przeszedłem przez bramkę 0
-[15:25:09][INFO ][PID: 7288] TURYSTA #20: Czekam na pozwolenie wejścia na peron
-[15:25:09][INFO ][PID: 7288] TURYSTA #20: Wchodzę na peron
-[15:25:09][INFO ][PID: 7288] TURYSTA #20: Czekam na krzesełko
-[15:25:09][INFO ][PID: 7288] TURYSTA #20: Wsiadłem na krzesełko #35
-[15:25:11][INFO ][PID: 7288] TURYSTA #20: Dojechałem na stację górną
-[15:25:11][INFO ][PID: 7288] TURYSTA #20: Wychodzę wyjściem 0
-[15:25:11][INFO ][PID: 7288] TURYSTA #20 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[15:25:14][INFO ][PID: 7288] TURYSTA #20: Ukończyłem zjazd #3
-[15:25:14][INFO ][PID: 7288] TURYSTA #20: Czekam na miejsce na stacji
-[15:25:14][INFO ][PID: 7288] TURYSTA #20: Przeszedłem przez bramkę 0
-[15:25:14][INFO ][PID: 7288] TURYSTA #20: Czekam na pozwolenie wejścia na peron
-[15:25:14][INFO ][PID: 7288] TURYSTA #20: Wchodzę na peron
-[15:25:14][INFO ][PID: 7288] TURYSTA #20: Czekam na krzesełko
-[15:25:15][INFO ][PID: 7288] TURYSTA #20: Wsiadłem na krzesełko #11
-[15:25:17][INFO ][PID: 7288] TURYSTA #20: Dojechałem na stację górną
-[15:25:17][INFO ][PID: 7288] TURYSTA #20: Wychodzę wyjściem 1
-[15:25:17][INFO ][PID: 7288] TURYSTA #20 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
-[15:25:22][INFO ][PID: 7288] TURYSTA #20: Ukończyłem zjazd #4
-[15:25:22][INFO ][PID: 7288] TURYSTA #20: Wystarczy na dziś, wychodzę
-[15:25:22][INFO ][PID: 7288] TURYSTA #20: Kończę dzień z 4 zjazdami
+[19:39:53][INFO ][PID:  527] TURYSTA #20: Przychodzę (wiek: 54, rowerzysta, zwykły)
+[19:39:53][INFO ][PID:  527] TURYSTA #20: Podchodzę do kasy
+[19:39:53][INFO ][PID:  527] TURYSTA #20: Kupiłem bilet #19 (typ: 2)
+[19:39:53][INFO ][PID:  527] TURYSTA #20: Czekam na miejsce na stacji
+[19:39:53][INFO ][PID:  527] TURYSTA #20: Przeszedłem przez bramkę 0
+[19:39:53][INFO ][PID:  527] TURYSTA #20: Czekam na pozwolenie wejścia na peron
+[19:39:53][INFO ][PID:  527] TURYSTA #20: Wchodzę na peron
+[19:39:53][INFO ][PID:  527] TURYSTA #20: Czekam na krzesełko
+[19:39:53][INFO ][PID:  527] TURYSTA #20: Wsiadłem na krzesełko #17
+[19:39:55][INFO ][PID:  527] TURYSTA #20: Dojechałem na stację górną
+[19:39:55][INFO ][PID:  527] TURYSTA #20: Wychodzę wyjściem 1
+[19:39:55][INFO ][PID:  527] TURYSTA #20 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
+[19:39:58][INFO ][PID:  527] TURYSTA #20: Ukończyłem zjazd #1
+[19:39:58][INFO ][PID:  527] TURYSTA #20: Wystarczy na dziś, wychodzę
+[19:39:58][INFO ][PID:  527] TURYSTA #20: Kończę dzień z 1 zjazdami
+[20:12:31][INFO ][PID:  683] TURYSTA #20: Przychodzę (wiek: 29, rowerzysta, zwykły)
+[20:12:31][INFO ][PID:  683] TURYSTA #20: Podchodzę do kasy
+[20:12:31][INFO ][PID:  683] TURYSTA #20: Kupiłem bilet #20 (typ: 4)
+[20:12:31][INFO ][PID:  683] TURYSTA #20: Czekam na miejsce na stacji
+[20:12:31][INFO ][PID:  683] TURYSTA #20: Przeszedłem przez bramkę 0
+[20:12:31][INFO ][PID:  683] TURYSTA #20: Czekam na pozwolenie wejścia na peron
+[20:12:31][INFO ][PID:  683] TURYSTA #20: Wchodzę na peron
+[20:12:31][INFO ][PID:  683] TURYSTA #20: Czekam na krzesełko
+[20:12:31][INFO ][PID:  683] TURYSTA #20: Wsiadłem na krzesełko #10
+[20:12:33][INFO ][PID:  683] TURYSTA #20: Dojechałem na stację górną
+[20:12:33][INFO ][PID:  683] TURYSTA #20: Wychodzę wyjściem 0
+[20:12:33][INFO ][PID:  683] TURYSTA #20 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
+[20:12:41][INFO ][PID:  683] TURYSTA #20: Ukończyłem zjazd #1
+[20:12:41][INFO ][PID:  683] TURYSTA #20: Czekam na miejsce na stacji
+[20:12:41][INFO ][PID:  683] TURYSTA #20: Przeszedłem przez bramkę 0
+[20:12:41][INFO ][PID:  683] TURYSTA #20: Czekam na pozwolenie wejścia na peron
+[20:12:42][INFO ][PID:  683] TURYSTA #20: Wchodzę na peron
+[20:12:42][INFO ][PID:  683] TURYSTA #20: Czekam na krzesełko
+[20:12:42][INFO ][PID:  683] TURYSTA #20: Wsiadłem na krzesełko #18
+[20:12:44][INFO ][PID:  683] TURYSTA #20: Dojechałem na stację górną
+[20:12:44][INFO ][PID:  683] TURYSTA #20: Wychodzę wyjściem 0
+[20:12:44][INFO ][PID:  683] TURYSTA #20 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
+[20:12:52][INFO ][PID:  683] TURYSTA #20: Ukończyłem zjazd #2
+[20:12:52][INFO ][PID:  683] TURYSTA #20: Wystarczy na dziś, wychodzę
+[20:12:52][INFO ][PID:  683] TURYSTA #20: Kończę dzień z 2 zjazdami

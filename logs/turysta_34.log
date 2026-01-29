@@ -1,15 +1,28 @@
-[15:25:05][INFO ][PID: 7309] TURYSTA #34: Przychodzę (wiek: 57, rowerzysta, zwykły)
-[15:25:05][INFO ][PID: 7309] TURYSTA #34: Podchodzę do kasy
-[15:25:05][INFO ][PID: 7309] TURYSTA #34: Kupiłem bilet #33 (typ: 1)
-[15:25:05][INFO ][PID: 7309] TURYSTA #34: Czekam na miejsce na stacji
-[15:25:05][INFO ][PID: 7309] TURYSTA #34: Przeszedłem przez bramkę 0
-[15:25:05][INFO ][PID: 7309] TURYSTA #34: Czekam na pozwolenie wejścia na peron
-[15:25:05][INFO ][PID: 7309] TURYSTA #34: Wchodzę na peron
-[15:25:05][INFO ][PID: 7309] TURYSTA #34: Czekam na krzesełko
-[15:25:05][INFO ][PID: 7309] TURYSTA #34: Wsiadłem na krzesełko #20
-[15:25:07][INFO ][PID: 7309] TURYSTA #34: Dojechałem na stację górną
-[15:25:07][INFO ][PID: 7309] TURYSTA #34: Wychodzę wyjściem 0
-[15:25:07][INFO ][PID: 7309] TURYSTA #34 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[15:25:10][INFO ][PID: 7309] TURYSTA #34: Ukończyłem zjazd #1
-[15:25:10][INFO ][PID: 7309] TURYSTA #34: Bilet nieważny, kończę
-[15:25:10][INFO ][PID: 7309] TURYSTA #34: Kończę dzień z 1 zjazdami
+[19:40:03][INFO ][PID:  541] TURYSTA #34: Przychodzę (wiek: 31, pieszy, zwykły)
+[19:40:03][INFO ][PID:  541] TURYSTA #34: Podchodzę do kasy
+[19:40:03][INFO ][PID:  541] TURYSTA #34: Kupiłem bilet #33 (typ: 5)
+[19:40:03][INFO ][PID:  541] TURYSTA #34: Czekam na miejsce na stacji
+[19:40:03][INFO ][PID:  541] TURYSTA #34: Przeszedłem przez bramkę 0
+[19:40:03][INFO ][PID:  541] TURYSTA #34: Czekam na pozwolenie wejścia na peron
+[19:40:05][INFO ][PID:  541] TURYSTA #34: Wchodzę na peron
+[19:40:05][INFO ][PID:  541] TURYSTA #34: Czekam na krzesełko
+[19:40:05][INFO ][PID:  541] TURYSTA #34: Wsiadłem na krzesełko #25
+[19:40:07][INFO ][PID:  541] TURYSTA #34: Dojechałem na stację górną
+[19:40:07][INFO ][PID:  541] TURYSTA #34: Wychodzę wyjściem 1
+[19:40:07][INFO ][PID:  541] TURYSTA #34 (pieszy): Schodzę ze stacji górnej
+[19:40:07][INFO ][PID:  541] TURYSTA #34: Wystarczy na dziś, wychodzę
+[19:40:07][INFO ][PID:  541] TURYSTA #34: Kończę dzień z 1 zjazdami
+[20:12:40][INFO ][PID:  697] TURYSTA #34: Przychodzę (wiek: 25, pieszy, zwykły)
+[20:12:40][INFO ][PID:  697] TURYSTA #34: Podchodzę do kasy
+[20:12:40][INFO ][PID:  697] TURYSTA #34: Kupiłem bilet #34 (typ: 1)
+[20:12:40][INFO ][PID:  697] TURYSTA #34: Czekam na miejsce na stacji
+[20:12:40][INFO ][PID:  697] TURYSTA #34: Przeszedłem przez bramkę 0
+[20:12:40][INFO ][PID:  697] TURYSTA #34: Czekam na pozwolenie wejścia na peron
+[20:12:42][INFO ][PID:  697] TURYSTA #34: Wchodzę na peron
+[20:12:42][INFO ][PID:  697] TURYSTA #34: Czekam na krzesełko
+[20:12:42][INFO ][PID:  697] TURYSTA #34: Wsiadłem na krzesełko #17
+[20:12:44][INFO ][PID:  697] TURYSTA #34: Dojechałem na stację górną
+[20:12:44][INFO ][PID:  697] TURYSTA #34: Wychodzę wyjściem 0
+[20:12:44][INFO ][PID:  697] TURYSTA #34 (pieszy): Schodzę ze stacji górnej
+[20:12:44][INFO ][PID:  697] TURYSTA #34: Bilet nieważny, kończę
+[20:12:44][INFO ][PID:  697] TURYSTA #34: Kończę dzień z 1 zjazdami

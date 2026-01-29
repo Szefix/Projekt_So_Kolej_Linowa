@@ -1,14 +1,7 @@
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Przychodzę (wiek: 56, pieszy, zwykły)
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Podchodzę do kasy
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Kupiłem bilet #68 (typ: 2)
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Czekam na miejsce na stacji
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Przeszedłem przez bramkę 0
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Czekam na pozwolenie wejścia na peron
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Wchodzę na peron
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Czekam na krzesełko
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Wsiadłem na krzesełko #14
-[15:25:34][INFO ][PID: 7347] TURYSTA #69: Dojechałem na stację górną
-[15:25:34][INFO ][PID: 7347] TURYSTA #69: Wychodzę wyjściem 1
-[15:25:34][INFO ][PID: 7347] TURYSTA #69 (pieszy): Schodzę ze stacji górnej
-[15:25:34][INFO ][PID: 7347] TURYSTA #69: Wystarczy na dziś, wychodzę
-[15:25:34][INFO ][PID: 7347] TURYSTA #69: Kończę dzień z 1 zjazdami
+[20:13:05][INFO ][PID:  732] TURYSTA #69: Przychodzę (wiek: 7, pieszy, VIP)
+[20:13:05][INFO ][PID:  732] TURYSTA #69: Podchodzę do kasy
+[20:13:05][INFO ][PID:  732] TURYSTA #69: Kupiłem bilet #69 (typ: 4)
+[20:13:05][INFO ][PID:  732] TURYSTA #69 [VIP]: Wchodzę bez kolejki
+[20:13:05][INFO ][PID:  732] TURYSTA #69: Czekam na miejsce na stacji
+[20:13:05][INFO ][PID:  732] TURYSTA #69: Przeszedłem przez bramkę 0
+[20:13:05][INFO ][PID:  732] TURYSTA #69: Czekam na pozwolenie wejścia na peron

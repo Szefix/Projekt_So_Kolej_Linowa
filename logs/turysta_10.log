@@ -1,14 +1,32 @@
-[15:24:43][INFO ][PID: 7264] TURYSTA #10: Przychodzę (wiek: 39, pieszy, zwykły)
-[15:24:43][INFO ][PID: 7264] TURYSTA #10: Podchodzę do kasy
-[15:24:43][INFO ][PID: 7264] TURYSTA #10: Kupiłem bilet #9 (typ: 2)
-[15:24:43][INFO ][PID: 7264] TURYSTA #10: Czekam na miejsce na stacji
-[15:24:43][INFO ][PID: 7264] TURYSTA #10: Przeszedłem przez bramkę 0
-[15:24:43][INFO ][PID: 7264] TURYSTA #10: Czekam na pozwolenie wejścia na peron
-[15:24:43][INFO ][PID: 7264] TURYSTA #10: Wchodzę na peron
-[15:24:43][INFO ][PID: 7264] TURYSTA #10: Czekam na krzesełko
-[15:24:43][INFO ][PID: 7264] TURYSTA #10: Wsiadłem na krzesełko #10
-[15:24:45][INFO ][PID: 7264] TURYSTA #10: Dojechałem na stację górną
-[15:24:45][INFO ][PID: 7264] TURYSTA #10: Wychodzę wyjściem 0
-[15:24:45][INFO ][PID: 7264] TURYSTA #10 (pieszy): Schodzę ze stacji górnej
-[15:24:45][INFO ][PID: 7264] TURYSTA #10: Wystarczy na dziś, wychodzę
-[15:24:45][INFO ][PID: 7264] TURYSTA #10: Kończę dzień z 1 zjazdami
+[19:39:46][INFO ][PID:  517] TURYSTA #10: Przychodzę (wiek: 20, pieszy, zwykły)
+[19:39:46][INFO ][PID:  517] TURYSTA #10: Podchodzę do kasy
+[19:39:46][INFO ][PID:  517] TURYSTA #10: Kupiłem bilet #9 (typ: 3)
+[19:39:46][INFO ][PID:  517] TURYSTA #10: Czekam na miejsce na stacji
+[19:39:46][INFO ][PID:  517] TURYSTA #10: Przeszedłem przez bramkę 0
+[19:39:46][INFO ][PID:  517] TURYSTA #10: Czekam na pozwolenie wejścia na peron
+[19:39:46][INFO ][PID:  517] TURYSTA #10: Wchodzę na peron
+[19:39:46][INFO ][PID:  517] TURYSTA #10: Czekam na krzesełko
+[19:39:46][INFO ][PID:  517] TURYSTA #10: Wsiadłem na krzesełko #10
+[19:39:48][INFO ][PID:  517] TURYSTA #10: Dojechałem na stację górną
+[19:39:48][INFO ][PID:  517] TURYSTA #10: Wychodzę wyjściem 0
+[19:39:48][INFO ][PID:  517] TURYSTA #10 (pieszy): Schodzę ze stacji górnej
+[19:39:48][INFO ][PID:  517] TURYSTA #10: Czekam na miejsce na stacji
+[19:39:48][INFO ][PID:  517] TURYSTA #10: Przeszedłem przez bramkę 0
+[19:39:48][INFO ][PID:  517] TURYSTA #10: Czekam na pozwolenie wejścia na peron
+[19:39:49][INFO ][PID:  517] TURYSTA #10: Wchodzę na peron
+[19:39:49][INFO ][PID:  517] TURYSTA #10: Czekam na krzesełko
+[19:39:49][INFO ][PID:  517] TURYSTA #10: Wsiadłem na krzesełko #12
+[19:39:51][INFO ][PID:  517] TURYSTA #10: Dojechałem na stację górną
+[19:39:51][INFO ][PID:  517] TURYSTA #10: Wychodzę wyjściem 0
+[19:39:51][INFO ][PID:  517] TURYSTA #10 (pieszy): Schodzę ze stacji górnej
+[19:39:51][INFO ][PID:  517] TURYSTA #10: Wystarczy na dziś, wychodzę
+[19:39:51][INFO ][PID:  517] TURYSTA #10: Kończę dzień z 2 zjazdami
+[20:12:23][INFO ][PID:  673] TURYSTA #10: Przychodzę (wiek: 6, pieszy, zwykły)
+[20:12:23][INFO ][PID:  673] TURYSTA #10: Podchodzę do kasy
+[20:12:23][INFO ][PID:  673] TURYSTA #10: Kupiłem bilet #10 (typ: 4)
+[20:12:23][INFO ][PID:  673] TURYSTA #10: Czekam na miejsce na stacji
+[20:12:23][INFO ][PID:  673] TURYSTA #10: Przeszedłem przez bramkę 0
+[20:12:23][INFO ][PID:  673] TURYSTA #10: Czekam na pozwolenie wejścia na peron
+[20:12:23][INFO ][PID:  673] TURYSTA #10: Wchodzę na peron
+[20:12:23][INFO ][PID:  673] TURYSTA #10: Czekam na krzesełko
+[20:13:19][INFO ][PID:  673] TURYSTA #10: Kończę dzień z 0 zjazdami

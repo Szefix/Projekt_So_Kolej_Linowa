@@ -1,15 +1,14 @@
-[15:25:16][INFO ][PID: 7327] TURYSTA #49: Przychodzę (wiek: 54, rowerzysta, zwykły)
-[15:25:16][INFO ][PID: 7327] TURYSTA #49: Podchodzę do kasy
-[15:25:16][INFO ][PID: 7327] TURYSTA #49: Kupiłem bilet #48 (typ: 3)
-[15:25:16][INFO ][PID: 7327] TURYSTA #49: Czekam na miejsce na stacji
-[15:25:16][INFO ][PID: 7327] TURYSTA #49: Przeszedłem przez bramkę 0
-[15:25:16][INFO ][PID: 7327] TURYSTA #49: Czekam na pozwolenie wejścia na peron
-[15:25:16][INFO ][PID: 7327] TURYSTA #49: Wchodzę na peron
-[15:25:16][INFO ][PID: 7327] TURYSTA #49: Czekam na krzesełko
-[15:25:16][INFO ][PID: 7327] TURYSTA #49: Wsiadłem na krzesełko #14
-[15:25:18][INFO ][PID: 7327] TURYSTA #49: Dojechałem na stację górną
-[15:25:18][INFO ][PID: 7327] TURYSTA #49: Wychodzę wyjściem 1
-[15:25:18][INFO ][PID: 7327] TURYSTA #49 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:25:29][INFO ][PID: 7327] TURYSTA #49: Ukończyłem zjazd #1
-[15:25:29][INFO ][PID: 7327] TURYSTA #49: Wystarczy na dziś, wychodzę
-[15:25:29][INFO ][PID: 7327] TURYSTA #49: Kończę dzień z 1 zjazdami
+[20:12:50][INFO ][PID:  712] TURYSTA #49: Przychodzę (wiek: 27, pieszy, zwykły)
+[20:12:50][INFO ][PID:  712] TURYSTA #49: Podchodzę do kasy
+[20:12:50][INFO ][PID:  712] TURYSTA #49: Kupiłem bilet #49 (typ: 3)
+[20:12:50][INFO ][PID:  712] TURYSTA #49: Czekam na miejsce na stacji
+[20:12:50][INFO ][PID:  712] TURYSTA #49: Przeszedłem przez bramkę 0
+[20:12:50][INFO ][PID:  712] TURYSTA #49: Czekam na pozwolenie wejścia na peron
+[20:12:52][INFO ][PID:  712] TURYSTA #49: Wchodzę na peron
+[20:12:52][INFO ][PID:  712] TURYSTA #49: Czekam na krzesełko
+[20:12:52][INFO ][PID:  712] TURYSTA #49: Wsiadłem na krzesełko #28
+[20:12:54][INFO ][PID:  712] TURYSTA #49: Dojechałem na stację górną
+[20:12:54][INFO ][PID:  712] TURYSTA #49: Wychodzę wyjściem 1
+[20:12:54][INFO ][PID:  712] TURYSTA #49 (pieszy): Schodzę ze stacji górnej
+[20:12:54][INFO ][PID:  712] TURYSTA #49: Wystarczy na dziś, wychodzę
+[20:12:54][INFO ][PID:  712] TURYSTA #49: Kończę dzień z 1 zjazdami

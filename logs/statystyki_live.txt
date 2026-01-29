@@ -1,0 +1,4 @@
+Statystyki (iteracja 50):
+- Osoby na stacji: 24
+- Zjazdy: 37
+- Bilety: 76

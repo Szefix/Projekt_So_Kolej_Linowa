@@ -1,41 +1,16 @@
-[15:25:16][INFO ][PID: 7328] TURYSTA #50: Przychodzę (wiek: 6, pieszy, zwykły)
-[15:25:16][INFO ][PID: 7328] TURYSTA #50: Podchodzę do kasy
-[15:25:16][INFO ][PID: 7328] TURYSTA #50: Kupiłem bilet #49 (typ: 5)
-[15:25:16][INFO ][PID: 7328] TURYSTA #50: Czekam na miejsce na stacji
-[15:25:16][INFO ][PID: 7328] TURYSTA #50: Przeszedłem przez bramkę 0
-[15:25:16][INFO ][PID: 7328] TURYSTA #50: Czekam na pozwolenie wejścia na peron
-[15:25:16][INFO ][PID: 7328] TURYSTA #50: Wchodzę na peron
-[15:25:16][INFO ][PID: 7328] TURYSTA #50: Czekam na krzesełko
-[15:25:16][INFO ][PID: 7328] TURYSTA #50: Wsiadłem na krzesełko #15
-[15:25:18][INFO ][PID: 7328] TURYSTA #50: Dojechałem na stację górną
-[15:25:18][INFO ][PID: 7328] TURYSTA #50: Wychodzę wyjściem 0
-[15:25:18][INFO ][PID: 7328] TURYSTA #50 (pieszy): Schodzę ze stacji górnej
-[15:25:18][INFO ][PID: 7328] TURYSTA #50: Czekam na miejsce na stacji
-[15:25:18][INFO ][PID: 7328] TURYSTA #50: Przeszedłem przez bramkę 0
-[15:25:18][INFO ][PID: 7328] TURYSTA #50: Czekam na pozwolenie wejścia na peron
-[15:25:18][INFO ][PID: 7328] TURYSTA #50: Wchodzę na peron
-[15:25:18][INFO ][PID: 7328] TURYSTA #50: Czekam na krzesełko
-[15:25:18][INFO ][PID: 7328] TURYSTA #50: Wsiadłem na krzesełko #23
-[15:25:20][INFO ][PID: 7328] TURYSTA #50: Dojechałem na stację górną
-[15:25:20][INFO ][PID: 7328] TURYSTA #50: Wychodzę wyjściem 0
-[15:25:20][INFO ][PID: 7328] TURYSTA #50 (pieszy): Schodzę ze stacji górnej
-[15:25:20][INFO ][PID: 7328] TURYSTA #50: Czekam na miejsce na stacji
-[15:25:20][INFO ][PID: 7328] TURYSTA #50: Przeszedłem przez bramkę 0
-[15:25:20][INFO ][PID: 7328] TURYSTA #50: Czekam na pozwolenie wejścia na peron
-[15:25:20][INFO ][PID: 7328] TURYSTA #50: Wchodzę na peron
-[15:25:20][INFO ][PID: 7328] TURYSTA #50: Czekam na krzesełko
-[15:25:21][INFO ][PID: 7328] TURYSTA #50: Wsiadłem na krzesełko #30
-[15:25:23][INFO ][PID: 7328] TURYSTA #50: Dojechałem na stację górną
-[15:25:23][INFO ][PID: 7328] TURYSTA #50: Wychodzę wyjściem 1
-[15:25:23][INFO ][PID: 7328] TURYSTA #50 (pieszy): Schodzę ze stacji górnej
-[15:25:23][INFO ][PID: 7328] TURYSTA #50: Czekam na miejsce na stacji
-[15:25:23][INFO ][PID: 7328] TURYSTA #50: Przeszedłem przez bramkę 0
-[15:25:23][INFO ][PID: 7328] TURYSTA #50: Czekam na pozwolenie wejścia na peron
-[15:25:23][INFO ][PID: 7328] TURYSTA #50: Wchodzę na peron
-[15:25:23][INFO ][PID: 7328] TURYSTA #50: Czekam na krzesełko
-[15:25:23][INFO ][PID: 7328] TURYSTA #50: Wsiadłem na krzesełko #1
-[15:25:29][INFO ][PID: 7328] TURYSTA #50: Dojechałem na stację górną
-[15:25:29][INFO ][PID: 7328] TURYSTA #50: Wychodzę wyjściem 1
-[15:25:29][INFO ][PID: 7328] TURYSTA #50 (pieszy): Schodzę ze stacji górnej
-[15:25:29][INFO ][PID: 7328] TURYSTA #50: Wystarczy na dziś, wychodzę
-[15:25:29][INFO ][PID: 7328] TURYSTA #50: Kończę dzień z 4 zjazdami
+[20:12:51][INFO ][PID:  713] TURYSTA #50: Przychodzę (wiek: 56, rowerzysta, zwykły)
+[20:12:51][INFO ][PID:  713] TURYSTA #50: Podchodzę do kasy
+[20:12:51][INFO ][PID:  713] TURYSTA #50: Kupiłem bilet #50 (typ: 4)
+[20:12:51][INFO ][PID:  713] TURYSTA #50: Czekam na miejsce na stacji
+[20:12:51][INFO ][PID:  713] TURYSTA #50: Przeszedłem przez bramkę 0
+[20:12:51][INFO ][PID:  713] TURYSTA #50: Czekam na pozwolenie wejścia na peron
+[20:12:52][INFO ][PID:  713] TURYSTA #50: Wchodzę na peron
+[20:12:52][INFO ][PID:  713] TURYSTA #50: Czekam na krzesełko
+[20:12:52][INFO ][PID:  713] TURYSTA #50: Wsiadłem na krzesełko #28
+[20:12:54][INFO ][PID:  713] TURYSTA #50: Dojechałem na stację górną
+[20:12:54][INFO ][PID:  713] TURYSTA #50: Wychodzę wyjściem 1
+[20:12:54][INFO ][PID:  713] TURYSTA #50 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
+[20:13:04][INFO ][PID:  713] TURYSTA #50: Ukończyłem zjazd #1
+[20:13:04][INFO ][PID:  713] TURYSTA #50: Czekam na miejsce na stacji
+[20:13:04][INFO ][PID:  713] TURYSTA #50: Przeszedłem przez bramkę 0
+[20:13:04][INFO ][PID:  713] TURYSTA #50: Czekam na pozwolenie wejścia na peron

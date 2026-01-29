@@ -1,14 +1,24 @@
-[15:25:08][INFO ][PID: 7314] TURYSTA #39: Przychodzę (wiek: 21, pieszy, zwykły)
-[15:25:08][INFO ][PID: 7314] TURYSTA #39: Podchodzę do kasy
-[15:25:08][INFO ][PID: 7314] TURYSTA #39: Kupiłem bilet #38 (typ: 2)
-[15:25:08][INFO ][PID: 7314] TURYSTA #39: Czekam na miejsce na stacji
-[15:25:08][INFO ][PID: 7314] TURYSTA #39: Przeszedłem przez bramkę 0
-[15:25:08][INFO ][PID: 7314] TURYSTA #39: Czekam na pozwolenie wejścia na peron
-[15:25:08][INFO ][PID: 7314] TURYSTA #39: Wchodzę na peron
-[15:25:08][INFO ][PID: 7314] TURYSTA #39: Czekam na krzesełko
-[15:25:08][INFO ][PID: 7314] TURYSTA #39: Wsiadłem na krzesełko #31
-[15:25:10][INFO ][PID: 7314] TURYSTA #39: Dojechałem na stację górną
-[15:25:10][INFO ][PID: 7314] TURYSTA #39: Wychodzę wyjściem 0
-[15:25:10][INFO ][PID: 7314] TURYSTA #39 (pieszy): Schodzę ze stacji górnej
-[15:25:10][INFO ][PID: 7314] TURYSTA #39: Wystarczy na dziś, wychodzę
-[15:25:10][INFO ][PID: 7314] TURYSTA #39: Kończę dzień z 1 zjazdami
+[19:40:06][INFO ][PID:  546] TURYSTA #39: Przychodzę (wiek: 4, pieszy, zwykły)
+[19:40:06][INFO ][PID:  546] TURYSTA #39: Podchodzę do kasy
+[19:40:06][INFO ][PID:  546] TURYSTA #39: Kupiłem bilet #38 (typ: 4)
+[19:40:06][INFO ][PID:  546] TURYSTA #39: Czekam na miejsce na stacji
+[19:40:06][INFO ][PID:  546] TURYSTA #39: Przeszedłem przez bramkę 0
+[19:40:06][INFO ][PID:  546] TURYSTA #39: Czekam na pozwolenie wejścia na peron
+[19:40:07][INFO ][PID:  546] TURYSTA #39: Wchodzę na peron
+[19:40:07][INFO ][PID:  546] TURYSTA #39: Czekam na krzesełko
+[19:40:07][INFO ][PID:  546] TURYSTA #39: Wsiadłem na krzesełko #27
+[19:40:08][INFO ][PID:  546] TURYSTA #39: Kończę dzień z 0 zjazdami
+[20:12:44][INFO ][PID:  702] TURYSTA #39: Przychodzę (wiek: 46, pieszy, zwykły)
+[20:12:44][INFO ][PID:  702] TURYSTA #39: Podchodzę do kasy
+[20:12:44][INFO ][PID:  702] TURYSTA #39: Kupiłem bilet #39 (typ: 1)
+[20:12:44][INFO ][PID:  702] TURYSTA #39: Czekam na miejsce na stacji
+[20:12:44][INFO ][PID:  702] TURYSTA #39: Przeszedłem przez bramkę 0
+[20:12:44][INFO ][PID:  702] TURYSTA #39: Czekam na pozwolenie wejścia na peron
+[20:12:45][INFO ][PID:  702] TURYSTA #39: Wchodzę na peron
+[20:12:45][INFO ][PID:  702] TURYSTA #39: Czekam na krzesełko
+[20:12:45][INFO ][PID:  702] TURYSTA #39: Wsiadłem na krzesełko #21
+[20:12:47][INFO ][PID:  702] TURYSTA #39: Dojechałem na stację górną
+[20:12:47][INFO ][PID:  702] TURYSTA #39: Wychodzę wyjściem 1
+[20:12:47][INFO ][PID:  702] TURYSTA #39 (pieszy): Schodzę ze stacji górnej
+[20:12:47][INFO ][PID:  702] TURYSTA #39: Bilet nieważny, kończę
+[20:12:47][INFO ][PID:  702] TURYSTA #39: Kończę dzień z 1 zjazdami

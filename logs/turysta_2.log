@@ -1,15 +1,17 @@
-[15:24:35][INFO ][PID: 7256] TURYSTA #2: Przychodzę (wiek: 57, rowerzysta, zwykły)
-[15:24:35][INFO ][PID: 7256] TURYSTA #2: Podchodzę do kasy
-[15:24:35][INFO ][PID: 7256] TURYSTA #2: Kupiłem bilet #1 (typ: 4)
-[15:24:35][INFO ][PID: 7256] TURYSTA #2: Czekam na miejsce na stacji
-[15:24:35][INFO ][PID: 7256] TURYSTA #2: Przeszedłem przez bramkę 0
-[15:24:35][INFO ][PID: 7256] TURYSTA #2: Czekam na pozwolenie wejścia na peron
-[15:24:35][INFO ][PID: 7256] TURYSTA #2: Wchodzę na peron
-[15:24:35][INFO ][PID: 7256] TURYSTA #2: Czekam na krzesełko
-[15:24:35][INFO ][PID: 7256] TURYSTA #2: Wsiadłem na krzesełko #1
-[15:24:37][INFO ][PID: 7256] TURYSTA #2: Dojechałem na stację górną
-[15:24:37][INFO ][PID: 7256] TURYSTA #2: Wychodzę wyjściem 0
-[15:24:37][INFO ][PID: 7256] TURYSTA #2 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[15:24:40][INFO ][PID: 7256] TURYSTA #2: Ukończyłem zjazd #1
-[15:24:40][INFO ][PID: 7256] TURYSTA #2: Wystarczy na dziś, wychodzę
-[15:24:40][INFO ][PID: 7256] TURYSTA #2: Kończę dzień z 1 zjazdami
+[19:39:38][INFO ][PID:  509] TURYSTA #2: Przychodzę (wiek: 23, pieszy, zwykły)
+[19:39:38][INFO ][PID:  509] TURYSTA #2: Podchodzę do kasy
+[19:39:38][INFO ][PID:  509] TURYSTA #2: Kupiłem bilet #1 (typ: 1)
+[19:39:38][INFO ][PID:  509] TURYSTA #2: Czekam na miejsce na stacji
+[19:39:38][INFO ][PID:  509] TURYSTA #2: Przeszedłem przez bramkę 0
+[19:39:38][INFO ][PID:  509] TURYSTA #2: Czekam na pozwolenie wejścia na peron
+[19:39:38][INFO ][PID:  509] TURYSTA #2: Wchodzę na peron
+[19:39:38][INFO ][PID:  509] TURYSTA #2: Czekam na krzesełko
+[19:39:38][INFO ][PID:  509] TURYSTA #2: Wsiadłem na krzesełko #1
+[19:39:40][INFO ][PID:  509] TURYSTA #2: Dojechałem na stację górną
+[19:39:40][INFO ][PID:  509] TURYSTA #2: Wychodzę wyjściem 0
+[19:39:40][INFO ][PID:  509] TURYSTA #2 (pieszy): Schodzę ze stacji górnej
+[19:39:40][INFO ][PID:  509] TURYSTA #2: Bilet nieważny, kończę
+[19:39:40][INFO ][PID:  509] TURYSTA #2: Kończę dzień z 1 zjazdami
+[20:12:16][INFO ][PID:  665] TURYSTA #2: Przychodzę (wiek: 4, pieszy, zwykły)
+[20:12:16][INFO ][PID:  665] TURYSTA #2: Podchodzę do kasy
+[20:13:19][INFO ][PID:  665] TURYSTA #2: Kończę dzień z 0 zjazdami

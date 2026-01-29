@@ -1,15 +1,29 @@
-[15:24:44][INFO ][PID: 7265] TURYSTA #11: Przychodzę (wiek: 28, rowerzysta, zwykły)
-[15:24:44][INFO ][PID: 7265] TURYSTA #11: Podchodzę do kasy
-[15:24:44][INFO ][PID: 7265] TURYSTA #11: Kupiłem bilet #10 (typ: 1)
-[15:24:44][INFO ][PID: 7265] TURYSTA #11: Czekam na miejsce na stacji
-[15:24:44][INFO ][PID: 7265] TURYSTA #11: Przeszedłem przez bramkę 0
-[15:24:44][INFO ][PID: 7265] TURYSTA #11: Czekam na pozwolenie wejścia na peron
-[15:24:44][INFO ][PID: 7265] TURYSTA #11: Wchodzę na peron
-[15:24:44][INFO ][PID: 7265] TURYSTA #11: Czekam na krzesełko
-[15:24:44][INFO ][PID: 7265] TURYSTA #11: Wsiadłem na krzesełko #11
-[15:24:46][INFO ][PID: 7265] TURYSTA #11: Dojechałem na stację górną
-[15:24:46][INFO ][PID: 7265] TURYSTA #11: Wychodzę wyjściem 1
-[15:24:46][INFO ][PID: 7265] TURYSTA #11 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:24:57][INFO ][PID: 7265] TURYSTA #11: Ukończyłem zjazd #1
-[15:24:57][INFO ][PID: 7265] TURYSTA #11: Bilet nieważny, kończę
-[15:24:57][INFO ][PID: 7265] TURYSTA #11: Kończę dzień z 1 zjazdami
+[19:39:47][INFO ][PID:  518] TURYSTA #11: Przychodzę (wiek: 44, pieszy, zwykły)
+[19:39:47][INFO ][PID:  518] TURYSTA #11: Podchodzę do kasy
+[19:39:47][INFO ][PID:  518] TURYSTA #11: Kupiłem bilet #10 (typ: 5)
+[19:39:47][INFO ][PID:  518] TURYSTA #11: Czekam na miejsce na stacji
+[19:39:47][INFO ][PID:  518] TURYSTA #11: Przeszedłem przez bramkę 0
+[19:39:47][INFO ][PID:  518] TURYSTA #11: Czekam na pozwolenie wejścia na peron
+[19:39:47][INFO ][PID:  518] TURYSTA #11: Wchodzę na peron
+[19:39:47][INFO ][PID:  518] TURYSTA #11: Czekam na krzesełko
+[19:39:47][INFO ][PID:  518] TURYSTA #11: Wsiadłem na krzesełko #11
+[19:39:49][INFO ][PID:  518] TURYSTA #11: Dojechałem na stację górną
+[19:39:49][INFO ][PID:  518] TURYSTA #11: Wychodzę wyjściem 0
+[19:39:49][INFO ][PID:  518] TURYSTA #11 (pieszy): Schodzę ze stacji górnej
+[19:39:49][INFO ][PID:  518] TURYSTA #11: Wystarczy na dziś, wychodzę
+[19:39:49][INFO ][PID:  518] TURYSTA #11: Kończę dzień z 1 zjazdami
+[20:12:24][INFO ][PID:  674] TURYSTA #11: Przychodzę (wiek: 32, pieszy, VIP)
+[20:12:24][INFO ][PID:  674] TURYSTA #11: Podchodzę do kasy
+[20:12:24][INFO ][PID:  674] TURYSTA #11: Kupiłem bilet #11 (typ: 1)
+[20:12:24][INFO ][PID:  674] TURYSTA #11 [VIP]: Wchodzę bez kolejki
+[20:12:24][INFO ][PID:  674] TURYSTA #11: Czekam na miejsce na stacji
+[20:12:24][INFO ][PID:  674] TURYSTA #11: Przeszedłem przez bramkę 0
+[20:12:24][INFO ][PID:  674] TURYSTA #11: Czekam na pozwolenie wejścia na peron
+[20:12:25][INFO ][PID:  674] TURYSTA #11: Wchodzę na peron
+[20:12:25][INFO ][PID:  674] TURYSTA #11: Czekam na krzesełko
+[20:12:25][INFO ][PID:  674] TURYSTA #11: Wsiadłem na krzesełko #6
+[20:12:27][INFO ][PID:  674] TURYSTA #11: Dojechałem na stację górną
+[20:12:27][INFO ][PID:  674] TURYSTA #11: Wychodzę wyjściem 0
+[20:12:27][INFO ][PID:  674] TURYSTA #11 (pieszy): Schodzę ze stacji górnej
+[20:12:27][INFO ][PID:  674] TURYSTA #11: Bilet nieważny, kończę
+[20:12:27][INFO ][PID:  674] TURYSTA #11: Kończę dzień z 1 zjazdami

@@ -1,15 +1,74 @@
-[15:24:53][INFO ][PID: 7273] TURYSTA #19: Przychodzę (wiek: 58, rowerzysta, zwykły)
-[15:24:53][INFO ][PID: 7273] TURYSTA #19: Podchodzę do kasy
-[15:24:53][INFO ][PID: 7273] TURYSTA #19: Kupiłem bilet #18 (typ: 1)
-[15:24:53][INFO ][PID: 7273] TURYSTA #19: Czekam na miejsce na stacji
-[15:24:53][INFO ][PID: 7273] TURYSTA #19: Przeszedłem przez bramkę 0
-[15:24:53][INFO ][PID: 7273] TURYSTA #19: Czekam na pozwolenie wejścia na peron
-[15:24:53][INFO ][PID: 7273] TURYSTA #19: Wchodzę na peron
-[15:24:53][INFO ][PID: 7273] TURYSTA #19: Czekam na krzesełko
-[15:24:53][INFO ][PID: 7273] TURYSTA #19: Wsiadłem na krzesełko #22
-[15:24:55][INFO ][PID: 7273] TURYSTA #19: Dojechałem na stację górną
-[15:24:55][INFO ][PID: 7273] TURYSTA #19: Wychodzę wyjściem 1
-[15:24:55][INFO ][PID: 7273] TURYSTA #19 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
-[15:25:00][INFO ][PID: 7273] TURYSTA #19: Ukończyłem zjazd #1
-[15:25:00][INFO ][PID: 7273] TURYSTA #19: Bilet nieważny, kończę
-[15:25:00][INFO ][PID: 7273] TURYSTA #19: Kończę dzień z 1 zjazdami
+[19:39:52][INFO ][PID:  526] TURYSTA #19: Przychodzę (wiek: 39, rowerzysta, zwykły)
+[19:39:52][INFO ][PID:  526] TURYSTA #19: Podchodzę do kasy
+[19:39:52][INFO ][PID:  526] TURYSTA #19: Kupiłem bilet #18 (typ: 1)
+[19:39:52][INFO ][PID:  526] TURYSTA #19: Czekam na miejsce na stacji
+[19:39:52][INFO ][PID:  526] TURYSTA #19: Przeszedłem przez bramkę 0
+[19:39:52][INFO ][PID:  526] TURYSTA #19: Czekam na pozwolenie wejścia na peron
+[19:39:53][INFO ][PID:  526] TURYSTA #19: Wchodzę na peron
+[19:39:53][INFO ][PID:  526] TURYSTA #19: Czekam na krzesełko
+[19:39:53][INFO ][PID:  526] TURYSTA #19: Wsiadłem na krzesełko #16
+[19:39:55][INFO ][PID:  526] TURYSTA #19: Dojechałem na stację górną
+[19:39:55][INFO ][PID:  526] TURYSTA #19: Wychodzę wyjściem 1
+[19:39:55][INFO ][PID:  526] TURYSTA #19 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
+[19:40:00][INFO ][PID:  526] TURYSTA #19: Ukończyłem zjazd #1
+[19:40:00][INFO ][PID:  526] TURYSTA #19: Bilet nieważny, kończę
+[19:40:00][INFO ][PID:  526] TURYSTA #19: Kończę dzień z 1 zjazdami
+[20:12:30][INFO ][PID:  682] TURYSTA #19: Przychodzę (wiek: 29, pieszy, zwykły)
+[20:12:30][INFO ][PID:  682] TURYSTA #19: Podchodzę do kasy
+[20:12:30][INFO ][PID:  682] TURYSTA #19: Kupiłem bilet #19 (typ: 4)
+[20:12:30][INFO ][PID:  682] TURYSTA #19: Czekam na miejsce na stacji
+[20:12:30][INFO ][PID:  682] TURYSTA #19: Przeszedłem przez bramkę 0
+[20:12:30][INFO ][PID:  682] TURYSTA #19: Czekam na pozwolenie wejścia na peron
+[20:12:30][INFO ][PID:  682] TURYSTA #19: Wchodzę na peron
+[20:12:30][INFO ][PID:  682] TURYSTA #19: Czekam na krzesełko
+[20:12:31][INFO ][PID:  682] TURYSTA #19: Wsiadłem na krzesełko #10
+[20:12:33][INFO ][PID:  682] TURYSTA #19: Dojechałem na stację górną
+[20:12:33][INFO ][PID:  682] TURYSTA #19: Wychodzę wyjściem 0
+[20:12:33][INFO ][PID:  682] TURYSTA #19 (pieszy): Schodzę ze stacji górnej
+[20:12:33][INFO ][PID:  682] TURYSTA #19: Czekam na miejsce na stacji
+[20:12:33][INFO ][PID:  682] TURYSTA #19: Przeszedłem przez bramkę 0
+[20:12:33][INFO ][PID:  682] TURYSTA #19: Czekam na pozwolenie wejścia na peron
+[20:12:35][INFO ][PID:  682] TURYSTA #19: Wchodzę na peron
+[20:12:35][INFO ][PID:  682] TURYSTA #19: Czekam na krzesełko
+[20:12:35][INFO ][PID:  682] TURYSTA #19: Wsiadłem na krzesełko #13
+[20:12:37][INFO ][PID:  682] TURYSTA #19: Dojechałem na stację górną
+[20:12:37][INFO ][PID:  682] TURYSTA #19: Wychodzę wyjściem 0
+[20:12:37][INFO ][PID:  682] TURYSTA #19 (pieszy): Schodzę ze stacji górnej
+[20:12:37][INFO ][PID:  682] TURYSTA #19: Czekam na miejsce na stacji
+[20:12:37][INFO ][PID:  682] TURYSTA #19: Przeszedłem przez bramkę 0
+[20:12:37][INFO ][PID:  682] TURYSTA #19: Czekam na pozwolenie wejścia na peron
+[20:12:40][INFO ][PID:  682] TURYSTA #19: Wchodzę na peron
+[20:12:40][INFO ][PID:  682] TURYSTA #19: Czekam na krzesełko
+[20:12:40][INFO ][PID:  682] TURYSTA #19: Wsiadłem na krzesełko #15
+[20:12:42][INFO ][PID:  682] TURYSTA #19: Dojechałem na stację górną
+[20:12:42][INFO ][PID:  682] TURYSTA #19: Wychodzę wyjściem 0
+[20:12:42][INFO ][PID:  682] TURYSTA #19 (pieszy): Schodzę ze stacji górnej
+[20:12:42][INFO ][PID:  682] TURYSTA #19: Czekam na miejsce na stacji
+[20:12:42][INFO ][PID:  682] TURYSTA #19: Przeszedłem przez bramkę 0
+[20:12:42][INFO ][PID:  682] TURYSTA #19: Czekam na pozwolenie wejścia na peron
+[20:12:43][INFO ][PID:  682] TURYSTA #19: Wchodzę na peron
+[20:12:43][INFO ][PID:  682] TURYSTA #19: Czekam na krzesełko
+[20:12:43][INFO ][PID:  682] TURYSTA #19: Wsiadłem na krzesełko #19
+[20:12:45][INFO ][PID:  682] TURYSTA #19: Dojechałem na stację górną
+[20:12:45][INFO ][PID:  682] TURYSTA #19: Wychodzę wyjściem 1
+[20:12:45][INFO ][PID:  682] TURYSTA #19 (pieszy): Schodzę ze stacji górnej
+[20:12:45][INFO ][PID:  682] TURYSTA #19: Czekam na miejsce na stacji
+[20:12:45][INFO ][PID:  682] TURYSTA #19: Przeszedłem przez bramkę 0
+[20:12:45][INFO ][PID:  682] TURYSTA #19: Czekam na pozwolenie wejścia na peron
+[20:12:47][INFO ][PID:  682] TURYSTA #19: Wchodzę na peron
+[20:12:47][INFO ][PID:  682] TURYSTA #19: Czekam na krzesełko
+[20:12:47][INFO ][PID:  682] TURYSTA #19: Wsiadłem na krzesełko #23
+[20:12:49][INFO ][PID:  682] TURYSTA #19: Dojechałem na stację górną
+[20:12:49][INFO ][PID:  682] TURYSTA #19: Wychodzę wyjściem 1
+[20:12:49][INFO ][PID:  682] TURYSTA #19 (pieszy): Schodzę ze stacji górnej
+[20:12:49][INFO ][PID:  682] TURYSTA #19: Czekam na miejsce na stacji
+[20:12:49][INFO ][PID:  682] TURYSTA #19: Przeszedłem przez bramkę 0
+[20:12:49][INFO ][PID:  682] TURYSTA #19: Czekam na pozwolenie wejścia na peron
+[20:12:51][INFO ][PID:  682] TURYSTA #19: Wchodzę na peron
+[20:12:51][INFO ][PID:  682] TURYSTA #19: Czekam na krzesełko
+[20:12:51][INFO ][PID:  682] TURYSTA #19: Wsiadłem na krzesełko #27
+[20:12:53][INFO ][PID:  682] TURYSTA #19: Dojechałem na stację górną
+[20:12:53][INFO ][PID:  682] TURYSTA #19: Wychodzę wyjściem 1
+[20:12:53][INFO ][PID:  682] TURYSTA #19 (pieszy): Schodzę ze stacji górnej
+[20:12:53][INFO ][PID:  682] TURYSTA #19: Wystarczy na dziś, wychodzę
+[20:12:53][INFO ][PID:  682] TURYSTA #19: Kończę dzień z 6 zjazdami

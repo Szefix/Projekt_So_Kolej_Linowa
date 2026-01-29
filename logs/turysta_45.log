@@ -1,14 +1,32 @@
-[15:25:13][INFO ][PID: 7323] TURYSTA #45: Przychodzę (wiek: 43, pieszy, zwykły)
-[15:25:13][INFO ][PID: 7323] TURYSTA #45: Podchodzę do kasy
-[15:25:13][INFO ][PID: 7323] TURYSTA #45: Kupiłem bilet #44 (typ: 1)
-[15:25:13][INFO ][PID: 7323] TURYSTA #45: Czekam na miejsce na stacji
-[15:25:13][INFO ][PID: 7323] TURYSTA #45: Przeszedłem przez bramkę 0
-[15:25:13][INFO ][PID: 7323] TURYSTA #45: Czekam na pozwolenie wejścia na peron
-[15:25:13][INFO ][PID: 7323] TURYSTA #45: Wchodzę na peron
-[15:25:13][INFO ][PID: 7323] TURYSTA #45: Czekam na krzesełko
-[15:25:13][INFO ][PID: 7323] TURYSTA #45: Wsiadłem na krzesełko #8
-[15:25:15][INFO ][PID: 7323] TURYSTA #45: Dojechałem na stację górną
-[15:25:15][INFO ][PID: 7323] TURYSTA #45: Wychodzę wyjściem 0
-[15:25:15][INFO ][PID: 7323] TURYSTA #45 (pieszy): Schodzę ze stacji górnej
-[15:25:15][INFO ][PID: 7323] TURYSTA #45: Bilet nieważny, kończę
-[15:25:15][INFO ][PID: 7323] TURYSTA #45: Kończę dzień z 1 zjazdami
+[20:12:48][INFO ][PID:  708] TURYSTA #45: Przychodzę (wiek: 65, pieszy, zwykły)
+[20:12:48][INFO ][PID:  708] TURYSTA #45: Podchodzę do kasy
+[20:12:48][INFO ][PID:  708] TURYSTA #45: Kupiłem bilet #45 (typ: 2)
+[20:12:48][INFO ][PID:  708] TURYSTA #45: Czekam na miejsce na stacji
+[20:12:48][INFO ][PID:  708] TURYSTA #45: Przeszedłem przez bramkę 0
+[20:12:48][INFO ][PID:  708] TURYSTA #45: Czekam na pozwolenie wejścia na peron
+[20:12:49][INFO ][PID:  708] TURYSTA #45: Wchodzę na peron
+[20:12:49][INFO ][PID:  708] TURYSTA #45: Czekam na krzesełko
+[20:12:49][INFO ][PID:  708] TURYSTA #45: Wsiadłem na krzesełko #25
+[20:12:51][INFO ][PID:  708] TURYSTA #45: Dojechałem na stację górną
+[20:12:51][INFO ][PID:  708] TURYSTA #45: Wychodzę wyjściem 0
+[20:12:51][INFO ][PID:  708] TURYSTA #45 (pieszy): Schodzę ze stacji górnej
+[20:12:51][INFO ][PID:  708] TURYSTA #45: Czekam na miejsce na stacji
+[20:12:51][INFO ][PID:  708] TURYSTA #45: Przeszedłem przez bramkę 0
+[20:12:51][INFO ][PID:  708] TURYSTA #45: Czekam na pozwolenie wejścia na peron
+[20:12:53][INFO ][PID:  708] TURYSTA #45: Wchodzę na peron
+[20:12:53][INFO ][PID:  708] TURYSTA #45: Czekam na krzesełko
+[20:12:53][INFO ][PID:  708] TURYSTA #45: Wsiadłem na krzesełko #29
+[20:12:55][INFO ][PID:  708] TURYSTA #45: Dojechałem na stację górną
+[20:12:55][INFO ][PID:  708] TURYSTA #45: Wychodzę wyjściem 1
+[20:12:55][INFO ][PID:  708] TURYSTA #45 (pieszy): Schodzę ze stacji górnej
+[20:12:55][INFO ][PID:  708] TURYSTA #45: Czekam na miejsce na stacji
+[20:12:55][INFO ][PID:  708] TURYSTA #45: Przeszedłem przez bramkę 0
+[20:12:55][INFO ][PID:  708] TURYSTA #45: Czekam na pozwolenie wejścia na peron
+[20:13:00][INFO ][PID:  708] TURYSTA #45: Wchodzę na peron
+[20:13:00][INFO ][PID:  708] TURYSTA #45: Czekam na krzesełko
+[20:13:00][INFO ][PID:  708] TURYSTA #45: Wsiadłem na krzesełko #33
+[20:13:02][INFO ][PID:  708] TURYSTA #45: Dojechałem na stację górną
+[20:13:02][INFO ][PID:  708] TURYSTA #45: Wychodzę wyjściem 1
+[20:13:02][INFO ][PID:  708] TURYSTA #45 (pieszy): Schodzę ze stacji górnej
+[20:13:02][INFO ][PID:  708] TURYSTA #45: Wystarczy na dziś, wychodzę
+[20:13:02][INFO ][PID:  708] TURYSTA #45: Kończę dzień z 3 zjazdami

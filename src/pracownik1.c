@@ -13,16 +13,29 @@ static volatile sig_atomic_t p1_dzialaj = 1;
 static volatile sig_atomic_t p1_kolej_zatrzymana = 0;
 static ZasobyIPC p1_zasoby;
 
+/* ========== ROZSZERZONA STRUKTURA GRUPY KRZESEŁKA ========== */
 typedef struct {
     int osoby[POJEMNOSC_KRZESELKA];
     int typy[POJEMNOSC_KRZESELKA];
+    int opiekunowie[POJEMNOSC_KRZESELKA];  /* ID opiekuna dla dzieci */
+    bool czy_dziecko[POJEMNOSC_KRZESELKA]; /* Czy to dziecko pod opieką */
     int liczba;
     int liczba_rowerzystow;
+    int liczba_dzieci;
 } GrupaKrzeselko;
 
+/* ========== STRUKTURA OCZEKUJĄCEGO W KOLEJCE ========== */
+typedef struct {
+    int id;
+    int typ;              /* PIESZY / ROWERZYSTA */
+    bool dziecko_pod_opieka;
+    int opiekun_id;       /* -1 jeśli dorosły lub dziecko bez opieki */
+    int wiek;
+    int liczba_dzieci;    /* Ile dzieci ten dorosły ma pod opieką (w kolejce) */
+} OczekujacyTurysta;
+
 #define MAX_OCZEKUJACYCH 200
-static int kolejka_id[MAX_OCZEKUJACYCH];
-static int kolejka_typ[MAX_OCZEKUJACYCH];
+static OczekujacyTurysta kolejka[MAX_OCZEKUJACYCH];
 static int liczba_oczekujacych = 0;
 static GrupaKrzeselko aktualna_grupa;
 
@@ -70,30 +83,104 @@ void inicjalizuj_grupe(void) {
     for (int i = 0; i < POJEMNOSC_KRZESELKA; i++) {
         aktualna_grupa.osoby[i] = -1;
         aktualna_grupa.typy[i] = -1;
+        aktualna_grupa.opiekunowie[i] = -1;
+        aktualna_grupa.czy_dziecko[i] = false;
     }
+    aktualna_grupa.liczba_dzieci = 0;
 }
 
-bool moze_dolaczyc(int typ_osoby) {
+/* ========== SPRAWDZENIE CZY OPIEKUN JEST W GRUPIE ========== */
+bool opiekun_w_grupie(int opiekun_id) {
+    for (int i = 0; i < aktualna_grupa.liczba; i++) {
+        if (aktualna_grupa.osoby[i] == opiekun_id && !aktualna_grupa.czy_dziecko[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+/* ========== POLICZ DZIECI OPIEKUNA W GRUPIE ========== */
+int policz_dzieci_opiekuna_w_grupie(int opiekun_id) {
+    int licznik = 0;
+    for (int i = 0; i < aktualna_grupa.liczba; i++) {
+        if (aktualna_grupa.opiekunowie[i] == opiekun_id) {
+            licznik++;
+        }
+    }
+    return licznik;
+}
+
+/* ========== ZNAJDŹ OPIEKUNA W KOLEJCE ========== */
+int znajdz_opiekuna_w_kolejce(int opiekun_id) {
+    for (int i = 0; i < liczba_oczekujacych; i++) {
+        if (kolejka[i].id == opiekun_id && !kolejka[i].dziecko_pod_opieka) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+/* ========== SPRAWDZENIE CZY TURYSTA MOŻE DOŁĄCZYĆ DO GRUPY ========== */
+bool moze_dolaczyc(OczekujacyTurysta *turysta) {
     if (aktualna_grupa.liczba >= POJEMNOSC_KRZESELKA) return false;
     
-    if (typ_osoby == ROWERZYSTA) {
+    /* Sprawdzenie reguł dla rowerzystów */
+    if (turysta->typ == ROWERZYSTA) {
         if (aktualna_grupa.liczba_rowerzystow >= MAX_ROWERZYSTOW_NA_KRZESELKU) return false;
         if (aktualna_grupa.liczba_rowerzystow == 1 && 
             (aktualna_grupa.liczba - aktualna_grupa.liczba_rowerzystow) > 1) return false;
-        return true;
     } else {
         if (aktualna_grupa.liczba_rowerzystow == 2) return false;
         if (aktualna_grupa.liczba_rowerzystow == 1 && 
             (aktualna_grupa.liczba - aktualna_grupa.liczba_rowerzystow) >= 2) return false;
-        return true;
     }
+    
+    /* ========== LOGIKA DZIECI POD OPIEKĄ (4-8 LAT) ========== */
+    if (turysta->dziecko_pod_opieka) {
+        /* Dziecko potrzebuje opiekuna w grupie lub musi z nim wejść */
+        if (!opiekun_w_grupie(turysta->opiekun_id)) {
+            /* Opiekun nie jest jeszcze w grupie */
+            int idx_opiekuna = znajdz_opiekuna_w_kolejce(turysta->opiekun_id);
+            if (idx_opiekuna == -1) {
+                /* Opiekun nie jest ani w grupie, ani w kolejce - nie wpuszczamy dziecka! */
+                LOG_W("PRACOWNIK1: Dziecko #%d bez opiekuna #%d - czeka", 
+                      turysta->id, turysta->opiekun_id);
+                return false;
+            }
+            /* Opiekun jest w kolejce - dziecko musi poczekać aż opiekun wejdzie */
+            return false;
+        }
+        
+        /* Sprawdź limit dzieci na opiekuna (max 2) */
+        int dzieci_opiekuna = policz_dzieci_opiekuna_w_grupie(turysta->opiekun_id);
+        if (dzieci_opiekuna >= MAX_DZIECI_POD_OPIEKA) {
+            LOG_W("PRACOWNIK1: Opiekun #%d ma już %d dzieci w grupie - limit!", 
+                  turysta->opiekun_id, dzieci_opiekuna);
+            return false;
+        }
+        
+        LOG_I("PRACOWNIK1: Dziecko #%d dołącza do opiekuna #%d", 
+              turysta->id, turysta->opiekun_id);
+    }
+    
+    return true;
 }
 
-void dodaj_do_grupy(int id, int typ) {
-    aktualna_grupa.osoby[aktualna_grupa.liczba] = id;
-    aktualna_grupa.typy[aktualna_grupa.liczba] = typ;
+/* ========== DODANIE DO GRUPY Z OBSŁUGĄ DZIECI ========== */
+void dodaj_do_grupy(OczekujacyTurysta *turysta) {
+    int idx = aktualna_grupa.liczba;
+    aktualna_grupa.osoby[idx] = turysta->id;
+    aktualna_grupa.typy[idx] = turysta->typ;
+    aktualna_grupa.opiekunowie[idx] = turysta->opiekun_id;
+    aktualna_grupa.czy_dziecko[idx] = turysta->dziecko_pod_opieka;
     aktualna_grupa.liczba++;
-    if (typ == ROWERZYSTA) aktualna_grupa.liczba_rowerzystow++;
+    
+    if (turysta->typ == ROWERZYSTA) {
+        aktualna_grupa.liczba_rowerzystow++;
+    }
+    if (turysta->dziecko_pod_opieka) {
+        aktualna_grupa.liczba_dzieci++;
+    }
 }
 
 bool grupa_pelna(void) {
@@ -233,27 +320,36 @@ int main(int argc, char *argv[]) {
         if (wynik > 0) {
             int id = prosba.nadawca_id;
             int typ = prosba.dane[0];
+            bool dziecko = (prosba.dane[1] != 0);
+            int opiekun_id = prosba.dane[2];
+            int wiek = prosba.dane[3];
             
-            LOG_I("PRACOWNIK1: Prośba od turysty #%d", id);
+            LOG_I("PRACOWNIK1: Prośba od turysty #%d (wiek: %d, dziecko: %s, opiekun: %d)", 
+                  id, wiek, dziecko ? "TAK" : "NIE", opiekun_id);
             
             if (liczba_oczekujacych < MAX_OCZEKUJACYCH) {
-                kolejka_id[liczba_oczekujacych] = id;
-                kolejka_typ[liczba_oczekujacych] = typ;
+                OczekujacyTurysta *t = &kolejka[liczba_oczekujacych];
+                t->id = id;
+                t->typ = typ;
+                t->dziecko_pod_opieka = dziecko;
+                t->opiekun_id = opiekun_id;
+                t->wiek = wiek;
+                t->liczba_dzieci = 0;
                 liczba_oczekujacych++;
             }
         }
         
+        /* Najpierw dodajemy dorosłych, potem ich dzieci */
         for (int i = 0; i < liczba_oczekujacych && p1_dzialaj; ) {
-            int id = kolejka_id[i];
-            int typ = kolejka_typ[i];
+            OczekujacyTurysta *turysta = &kolejka[i];
             
-            if (moze_dolaczyc(typ)) {
-                dodaj_do_grupy(id, typ);
+            if (moze_dolaczyc(turysta)) {
+                dodaj_do_grupy(turysta);
                 sem_sygnalizuj_sysv(sem_id, SEM_IDX_PERON);
                 
+                /* Usuń z kolejki */
                 for (int j = i; j < liczba_oczekujacych - 1; j++) {
-                    kolejka_id[j] = kolejka_id[j + 1];
-                    kolejka_typ[j] = kolejka_typ[j + 1];
+                    kolejka[j] = kolejka[j + 1];
                 }
                 liczba_oczekujacych--;
             } else {

@@ -1,20 +1,16 @@
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Przychodzę (wiek: 69, rowerzysta, zwykły)
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Podchodzę do kasy
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Kupiłem bilet #54 (typ: 2)
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Czekam na miejsce na stacji
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Przeszedłem przez bramkę 0
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Czekam na pozwolenie wejścia na peron
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Wchodzę na peron
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Czekam na krzesełko
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Wsiadłem na krzesełko #24
-[15:25:21][INFO ][PID: 7333] TURYSTA #55: Dojechałem na stację górną
-[15:25:21][INFO ][PID: 7333] TURYSTA #55: Wychodzę wyjściem 1
-[15:25:21][INFO ][PID: 7333] TURYSTA #55 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:25:32][INFO ][PID: 7333] TURYSTA #55: Ukończyłem zjazd #1
-[15:25:32][INFO ][PID: 7333] TURYSTA #55: Czekam na miejsce na stacji
-[15:25:32][INFO ][PID: 7333] TURYSTA #55: Przeszedłem przez bramkę 0
-[15:25:32][INFO ][PID: 7333] TURYSTA #55: Czekam na pozwolenie wejścia na peron
-[15:25:33][INFO ][PID: 7333] TURYSTA #55: Wchodzę na peron
-[15:25:33][INFO ][PID: 7333] TURYSTA #55: Czekam na krzesełko
-[15:25:33][INFO ][PID: 7333] TURYSTA #55: Wsiadłem na krzesełko #17
-[15:25:35][INFO ][PID: 7333] TURYSTA #55: Kończę dzień z 1 zjazdami
+[20:12:54][INFO ][PID:  718] TURYSTA #55: Przychodzę (wiek: 21, rowerzysta, zwykły)
+[20:12:54][INFO ][PID:  718] TURYSTA #55: Podchodzę do kasy
+[20:12:54][INFO ][PID:  718] TURYSTA #55: Kupiłem bilet #55 (typ: 5)
+[20:12:54][INFO ][PID:  718] TURYSTA #55: Czekam na miejsce na stacji
+[20:12:54][INFO ][PID:  718] TURYSTA #55: Przeszedłem przez bramkę 0
+[20:12:54][INFO ][PID:  718] TURYSTA #55: Czekam na pozwolenie wejścia na peron
+[20:12:59][INFO ][PID:  718] TURYSTA #55: Wchodzę na peron
+[20:12:59][INFO ][PID:  718] TURYSTA #55: Czekam na krzesełko
+[20:12:59][INFO ][PID:  718] TURYSTA #55: Wsiadłem na krzesełko #32
+[20:13:01][INFO ][PID:  718] TURYSTA #55: Dojechałem na stację górną
+[20:13:01][INFO ][PID:  718] TURYSTA #55: Wychodzę wyjściem 1
+[20:13:01][INFO ][PID:  718] TURYSTA #55 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
+[20:13:09][INFO ][PID:  718] TURYSTA #55: Ukończyłem zjazd #1
+[20:13:09][INFO ][PID:  718] TURYSTA #55: Czekam na miejsce na stacji
+[20:13:09][INFO ][PID:  718] TURYSTA #55: Przeszedłem przez bramkę 0
+[20:13:09][INFO ][PID:  718] TURYSTA #55: Czekam na pozwolenie wejścia na peron

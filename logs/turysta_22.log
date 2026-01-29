@@ -1,41 +1,32 @@
-[15:24:56][INFO ][PID: 7290] TURYSTA #22: Przychodzę (wiek: 34, pieszy, zwykły)
-[15:24:56][INFO ][PID: 7290] TURYSTA #22: Podchodzę do kasy
-[15:24:56][INFO ][PID: 7290] TURYSTA #22: Kupiłem bilet #21 (typ: 3)
-[15:24:56][INFO ][PID: 7290] TURYSTA #22: Czekam na miejsce na stacji
-[15:24:56][INFO ][PID: 7290] TURYSTA #22: Przeszedłem przez bramkę 0
-[15:24:56][INFO ][PID: 7290] TURYSTA #22: Czekam na pozwolenie wejścia na peron
-[15:24:56][INFO ][PID: 7290] TURYSTA #22: Wchodzę na peron
-[15:24:56][INFO ][PID: 7290] TURYSTA #22: Czekam na krzesełko
-[15:24:56][INFO ][PID: 7290] TURYSTA #22: Wsiadłem na krzesełko #29
-[15:24:58][INFO ][PID: 7290] TURYSTA #22: Dojechałem na stację górną
-[15:24:58][INFO ][PID: 7290] TURYSTA #22: Wychodzę wyjściem 1
-[15:24:58][INFO ][PID: 7290] TURYSTA #22 (pieszy): Schodzę ze stacji górnej
-[15:24:58][INFO ][PID: 7290] TURYSTA #22: Czekam na miejsce na stacji
-[15:24:58][INFO ][PID: 7290] TURYSTA #22: Przeszedłem przez bramkę 0
-[15:24:58][INFO ][PID: 7290] TURYSTA #22: Czekam na pozwolenie wejścia na peron
-[15:24:58][INFO ][PID: 7290] TURYSTA #22: Wchodzę na peron
-[15:24:58][INFO ][PID: 7290] TURYSTA #22: Czekam na krzesełko
-[15:24:58][INFO ][PID: 7290] TURYSTA #22: Wsiadłem na krzesełko #34
-[15:25:00][INFO ][PID: 7290] TURYSTA #22: Dojechałem na stację górną
-[15:25:00][INFO ][PID: 7290] TURYSTA #22: Wychodzę wyjściem 1
-[15:25:00][INFO ][PID: 7290] TURYSTA #22 (pieszy): Schodzę ze stacji górnej
-[15:25:00][INFO ][PID: 7290] TURYSTA #22: Czekam na miejsce na stacji
-[15:25:00][INFO ][PID: 7290] TURYSTA #22: Przeszedłem przez bramkę 0
-[15:25:00][INFO ][PID: 7290] TURYSTA #22: Czekam na pozwolenie wejścia na peron
-[15:25:00][INFO ][PID: 7290] TURYSTA #22: Wchodzę na peron
-[15:25:00][INFO ][PID: 7290] TURYSTA #22: Czekam na krzesełko
-[15:25:01][INFO ][PID: 7290] TURYSTA #22: Wsiadłem na krzesełko #5
-[15:25:03][INFO ][PID: 7290] TURYSTA #22: Dojechałem na stację górną
-[15:25:03][INFO ][PID: 7290] TURYSTA #22: Wychodzę wyjściem 1
-[15:25:03][INFO ][PID: 7290] TURYSTA #22 (pieszy): Schodzę ze stacji górnej
-[15:25:03][INFO ][PID: 7290] TURYSTA #22: Czekam na miejsce na stacji
-[15:25:03][INFO ][PID: 7290] TURYSTA #22: Przeszedłem przez bramkę 0
-[15:25:03][INFO ][PID: 7290] TURYSTA #22: Czekam na pozwolenie wejścia na peron
-[15:25:03][INFO ][PID: 7290] TURYSTA #22: Wchodzę na peron
-[15:25:03][INFO ][PID: 7290] TURYSTA #22: Czekam na krzesełko
-[15:25:03][INFO ][PID: 7290] TURYSTA #22: Wsiadłem na krzesełko #13
-[15:25:05][INFO ][PID: 7290] TURYSTA #22: Dojechałem na stację górną
-[15:25:05][INFO ][PID: 7290] TURYSTA #22: Wychodzę wyjściem 0
-[15:25:05][INFO ][PID: 7290] TURYSTA #22 (pieszy): Schodzę ze stacji górnej
-[15:25:05][INFO ][PID: 7290] TURYSTA #22: Wystarczy na dziś, wychodzę
-[15:25:05][INFO ][PID: 7290] TURYSTA #22: Kończę dzień z 4 zjazdami
+[19:39:53][INFO ][PID:  529] TURYSTA #22: Przychodzę (wiek: 7, pieszy, zwykły)
+[19:39:53][INFO ][PID:  529] TURYSTA #22: Podchodzę do kasy
+[19:39:53][INFO ][PID:  529] TURYSTA #22: Kupiłem bilet #21 (typ: 4)
+[19:39:53][INFO ][PID:  529] TURYSTA #22: Czekam na miejsce na stacji
+[19:39:53][INFO ][PID:  529] TURYSTA #22: Przeszedłem przez bramkę 0
+[19:39:53][INFO ][PID:  529] TURYSTA #22: Czekam na pozwolenie wejścia na peron
+[19:39:54][INFO ][PID:  529] TURYSTA #22: Wchodzę na peron
+[19:39:54][INFO ][PID:  529] TURYSTA #22: Czekam na krzesełko
+[19:39:54][INFO ][PID:  529] TURYSTA #22: Wsiadłem na krzesełko #17
+[19:39:56][INFO ][PID:  529] TURYSTA #22: Dojechałem na stację górną
+[19:39:56][INFO ][PID:  529] TURYSTA #22: Wychodzę wyjściem 0
+[19:39:56][INFO ][PID:  529] TURYSTA #22 (pieszy): Schodzę ze stacji górnej
+[19:39:56][INFO ][PID:  529] TURYSTA #22: Czekam na miejsce na stacji
+[19:39:56][INFO ][PID:  529] TURYSTA #22: Przeszedłem przez bramkę 0
+[19:39:56][INFO ][PID:  529] TURYSTA #22: Czekam na pozwolenie wejścia na peron
+[19:39:57][INFO ][PID:  529] TURYSTA #22: Wchodzę na peron
+[19:39:57][INFO ][PID:  529] TURYSTA #22: Czekam na krzesełko
+[19:40:08][INFO ][PID:  529] TURYSTA #22: Kończę dzień z 1 zjazdami
+[20:12:31][INFO ][PID:  685] TURYSTA #22: Przychodzę (wiek: 4, pieszy, zwykły)
+[20:12:31][INFO ][PID:  685] TURYSTA #22: Podchodzę do kasy
+[20:12:31][INFO ][PID:  685] TURYSTA #22: Kupiłem bilet #22 (typ: 1)
+[20:12:31][INFO ][PID:  685] TURYSTA #22: Czekam na miejsce na stacji
+[20:12:31][INFO ][PID:  685] TURYSTA #22: Przeszedłem przez bramkę 0
+[20:12:31][INFO ][PID:  685] TURYSTA #22: Czekam na pozwolenie wejścia na peron
+[20:12:32][INFO ][PID:  685] TURYSTA #22: Wchodzę na peron
+[20:12:32][INFO ][PID:  685] TURYSTA #22: Czekam na krzesełko
+[20:12:41][INFO ][PID:  685] TURYSTA #22: Wsiadłem na krzesełko #18
+[20:12:43][INFO ][PID:  685] TURYSTA #22: Dojechałem na stację górną
+[20:12:43][INFO ][PID:  685] TURYSTA #22: Wychodzę wyjściem 0
+[20:12:43][INFO ][PID:  685] TURYSTA #22 (pieszy): Schodzę ze stacji górnej
+[20:12:43][INFO ][PID:  685] TURYSTA #22: Bilet nieważny, kończę
+[20:12:43][INFO ][PID:  685] TURYSTA #22: Kończę dzień z 1 zjazdami

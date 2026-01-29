@@ -31,6 +31,57 @@ static volatile int monitor_aktywny = 1;
 /* Pipe do komunikacji z wątkiem monitora */
 static PipeKanaly pipe_monitor;
 
+/* Mutex do statystyk z użyciem pthread_mutex_trylock() */
+static pthread_mutex_t mutex_statystyki = PTHREAD_MUTEX_INITIALIZER;
+static int licznik_przetworzen = 0;
+
+/* ========== WĄTEK STATYSTYK (używa pthread_detach i pthread_mutex_trylock) ========== */
+void *watek_statystyk_funkcja(void *arg) {
+    (void)arg;
+    StanWspoldzielony *stan = zasoby.shm.stan;
+    
+    /* Odłącz wątek - nie wymaga join() */
+    pthread_detach(pthread_self());
+    LOG_I("STATYSTYKI: Wątek statystyk odłączony (pthread_detach)");
+    
+    while (monitor_aktywny && stan->kolej_aktywna) {
+        /* Użycie pthread_mutex_trylock() - nieblokująca próba zablokowania */
+        if (pthread_mutex_trylock(&mutex_statystyki) == 0) {
+            /* Mutex zablokowany pomyślnie */
+            licznik_przetworzen++;
+            
+            /* Zapisz statystyki do pliku co 10 iteracji */
+            if (licznik_przetworzen % 10 == 0) {
+                int fd = open("logs/statystyki_live.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+                if (fd != -1) {
+                    char buf[256];
+                    int len = snprintf(buf, sizeof(buf),
+                        "Statystyki (iteracja %d):\n"
+                        "- Osoby na stacji: %d\n"
+                        "- Zjazdy: %d\n"
+                        "- Bilety: %d\n",
+                        licznik_przetworzen,
+                        stan->liczba_osob_na_stacji,
+                        stan->laczna_liczba_zjazdow,
+                        stan->liczba_sprzedanych_biletow);
+                    write(fd, buf, len);
+                    close(fd);
+                }
+            }
+            
+            pthread_mutex_unlock(&mutex_statystyki);
+        } else {
+            /* Mutex zajęty - pthread_mutex_trylock zwróciło błąd */
+            LOG_D("STATYSTYKI: Mutex zajęty, pomijam iterację");
+        }
+        
+        sleep(1);
+    }
+    
+    LOG_I("STATYSTYKI: Wątek zakończony (był odłączony, nie wymaga join)");
+    return NULL;
+}
+
 /* ========== WĄTEK MONITOROWANIA ========== */
 void *watek_monitor_funkcja(void *arg) {
     (void)arg;
@@ -142,6 +193,18 @@ void uruchom_turystę(int id, int wiek, int opiekun) {
     }
     
     if (pid == 0) {
+        /* ========== UŻYCIE dup2() - przekierowanie stderr do pliku ========== */
+        char stderr_log[128];
+        snprintf(stderr_log, sizeof(stderr_log), "logs/turysta_%d_stderr.log", id);
+        int fd_err = open(stderr_log, O_CREAT | O_WRONLY | O_APPEND, 0644);
+        if (fd_err != -1) {
+            /* dup2() duplikuje deskryptor fd_err na STDERR_FILENO */
+            if (dup2(fd_err, STDERR_FILENO) == -1) {
+                perror("dup2 stderr");
+            }
+            close(fd_err);  /* Zamknij oryginalny, stderr teraz wskazuje na plik */
+        }
+        
         char arg_id[16], arg_wiek[16], arg_opiekun[16];
         snprintf(arg_id, sizeof(arg_id), "%d", id);
         snprintf(arg_wiek, sizeof(arg_wiek), "%d", wiek);
@@ -285,6 +348,39 @@ void utworz_katalog_logs(void) {
     }
 }
 
+/* ========== UŻYCIE popen() - sprawdzenie zasobów IPC ========== */
+void sprawdz_zasoby_ipc(void) {
+    FILE *fp;
+    char bufor[256];
+    
+    printf("Sprawdzanie istniejących zasobów IPC...\n");
+    
+    /* Użycie popen() do wykonania komendy ipcs i odczytania wyniku */
+    fp = popen("ipcs -a 2>/dev/null | head -20", "r");
+    if (fp == NULL) {
+        perror("popen ipcs");
+        return;
+    }
+    
+    /* Odczytaj wynik komendy */
+    LOG_I("MAIN: === Stan zasobów IPC ===");
+    while (fgets(bufor, sizeof(bufor), fp) != NULL) {
+        /* Usuń znak nowej linii */
+        bufor[strcspn(bufor, "\n")] = 0;
+        if (strlen(bufor) > 0) {
+            LOG_D("IPC: %s", bufor);
+        }
+    }
+    
+    /* Zamknij strumień popen - WAŻNE! */
+    int status = pclose(fp);
+    if (status == -1) {
+        perror("pclose");
+    } else {
+        LOG_D("MAIN: ipcs zakończone ze statusem %d", WEXITSTATUS(status));
+    }
+}
+
 /* ========== WALIDACJA PARAMETRÓW ========== */
 int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_turystow) {
     *czas_symulacji = CZAS_ZAMKNIECIA;
@@ -344,6 +440,9 @@ int main(int argc, char *argv[]) {
     
     printf("Inicjalizacja zasobów IPC...\n");
     
+    /* Sprawdź istniejące zasoby IPC używając popen() */
+    sprawdz_zasoby_ipc();
+    
     /* Tworzenie potoków (FIFO) */
     if (utworz_fifo_wszystkie() == -1) {
         fprintf(stderr, "BŁĄD: Nie można utworzyć potoków FIFO\n");
@@ -390,6 +489,13 @@ int main(int argc, char *argv[]) {
     if (pthread_create(&watek_monitora, NULL, watek_monitor_funkcja, NULL) != 0) {
         perror("pthread_create monitor");
     }
+    
+    /* Uruchomienie wątku statystyk (używa pthread_detach wewnętrznie) */
+    pthread_t watek_stat;
+    if (pthread_create(&watek_stat, NULL, watek_statystyk_funkcja, NULL) != 0) {
+        perror("pthread_create statystyki");
+    }
+    /* UWAGA: watek_stat nie wymaga join() bo używa pthread_detach() */
     
     printf("Symulacja rozpoczęta! Naciśnij Ctrl+C aby przerwać.\n\n");
     

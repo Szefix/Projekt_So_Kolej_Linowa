@@ -1,23 +1,15 @@
-[15:25:10][INFO ][PID: 7320] TURYSTA #42: Przychodzę (wiek: 31, pieszy, zwykły)
-[15:25:10][INFO ][PID: 7320] TURYSTA #42: Podchodzę do kasy
-[15:25:10][INFO ][PID: 7320] TURYSTA #42: Kupiłem bilet #41 (typ: 3)
-[15:25:10][INFO ][PID: 7320] TURYSTA #42: Czekam na miejsce na stacji
-[15:25:10][INFO ][PID: 7320] TURYSTA #42: Przeszedłem przez bramkę 0
-[15:25:10][INFO ][PID: 7320] TURYSTA #42: Czekam na pozwolenie wejścia na peron
-[15:25:10][INFO ][PID: 7320] TURYSTA #42: Wchodzę na peron
-[15:25:10][INFO ][PID: 7320] TURYSTA #42: Czekam na krzesełko
-[15:25:10][INFO ][PID: 7320] TURYSTA #42: Wsiadłem na krzesełko #0
-[15:25:12][INFO ][PID: 7320] TURYSTA #42: Dojechałem na stację górną
-[15:25:12][INFO ][PID: 7320] TURYSTA #42: Wychodzę wyjściem 1
-[15:25:12][INFO ][PID: 7320] TURYSTA #42 (pieszy): Schodzę ze stacji górnej
-[15:25:12][INFO ][PID: 7320] TURYSTA #42: Czekam na miejsce na stacji
-[15:25:12][INFO ][PID: 7320] TURYSTA #42: Przeszedłem przez bramkę 0
-[15:25:12][INFO ][PID: 7320] TURYSTA #42: Czekam na pozwolenie wejścia na peron
-[15:25:12][INFO ][PID: 7320] TURYSTA #42: Wchodzę na peron
-[15:25:12][INFO ][PID: 7320] TURYSTA #42: Czekam na krzesełko
-[15:25:12][INFO ][PID: 7320] TURYSTA #42: Wsiadłem na krzesełko #6
-[15:25:14][INFO ][PID: 7320] TURYSTA #42: Dojechałem na stację górną
-[15:25:14][INFO ][PID: 7320] TURYSTA #42: Wychodzę wyjściem 1
-[15:25:14][INFO ][PID: 7320] TURYSTA #42 (pieszy): Schodzę ze stacji górnej
-[15:25:14][INFO ][PID: 7320] TURYSTA #42: Wystarczy na dziś, wychodzę
-[15:25:14][INFO ][PID: 7320] TURYSTA #42: Kończę dzień z 2 zjazdami
+[19:40:07][INFO ][PID:  549] TURYSTA #42: Przychodzę (wiek: 6, pieszy, zwykły)
+[19:40:07][INFO ][PID:  549] TURYSTA #42: Podchodzę do kasy
+[19:40:07][INFO ][PID:  549] TURYSTA #42: Kupiłem bilet #41 (typ: 1)
+[19:40:07][INFO ][PID:  549] TURYSTA #42: Czekam na miejsce na stacji
+[19:40:07][INFO ][PID:  549] TURYSTA #42: Przeszedłem przez bramkę 0
+[19:40:07][INFO ][PID:  549] TURYSTA #42: Czekam na pozwolenie wejścia na peron
+[20:12:45][INFO ][PID:  705] TURYSTA #42: Przychodzę (wiek: 5, pieszy, zwykły)
+[20:12:45][INFO ][PID:  705] TURYSTA #42: Podchodzę do kasy
+[20:12:45][INFO ][PID:  705] TURYSTA #42: Kupiłem bilet #42 (typ: 4)
+[20:12:45][INFO ][PID:  705] TURYSTA #42: Czekam na miejsce na stacji
+[20:12:45][INFO ][PID:  705] TURYSTA #42: Przeszedłem przez bramkę 0
+[20:12:45][INFO ][PID:  705] TURYSTA #42: Czekam na pozwolenie wejścia na peron
+[20:12:46][INFO ][PID:  705] TURYSTA #42: Wchodzę na peron
+[20:12:46][INFO ][PID:  705] TURYSTA #42: Czekam na krzesełko
+[20:13:19][INFO ][PID:  705] TURYSTA #42: Kończę dzień z 0 zjazdami

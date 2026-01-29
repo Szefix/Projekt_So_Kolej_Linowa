@@ -17,6 +17,19 @@ static int fd_logu = -1;
 static pthread_mutex_t mutex_logu = PTHREAD_MUTEX_INITIALIZER;
 static char nazwa_pliku_logu[256] = {0};
 
+/* ========== ZMIENNE WARUNKOWE PTHREAD ========== */
+/* Używane do synchronizacji bufora logów */
+static pthread_cond_t cond_bufor_gotowy = PTHREAD_COND_INITIALIZER;
+static pthread_mutex_t mutex_bufor = PTHREAD_MUTEX_INITIALIZER;
+
+/* Bufor asynchroniczny dla logów */
+#define ROZMIAR_BUFORA_LOGOW 100
+static char bufor_logow[ROZMIAR_BUFORA_LOGOW][512];
+static int glowa_bufora = 0;
+static int ogon_bufora = 0;
+static volatile int bufor_aktywny = 0;
+static pthread_t watek_zapisujacy;
+
 /* Konwersja poziomu na tekst */
 static const char *poziom_do_tekstu(PoziomLogu poziom) {
     switch (poziom) {
@@ -26,6 +39,85 @@ static const char *poziom_do_tekstu(PoziomLogu poziom) {
         case LOG_ERROR: return "ERROR";
         default:        return "?????";
     }
+}
+
+/* ========== WĄTEK ZAPISUJĄCY LOGI ASYNCHRONICZNIE ========== */
+/* Demonstracja użycia pthread_cond_wait() i pthread_cond_signal() */
+static void *watek_zapis_logow(void *arg) {
+    (void)arg;
+    
+    while (bufor_aktywny) {
+        pthread_mutex_lock(&mutex_bufor);
+        
+        /* Czekaj na dane w buforze używając pthread_cond_wait() */
+        while (glowa_bufora == ogon_bufora && bufor_aktywny) {
+            /* pthread_cond_wait() - atomowo zwalnia mutex i czeka na sygnał */
+            pthread_cond_wait(&cond_bufor_gotowy, &mutex_bufor);
+        }
+        
+        /* Przetwórz wszystkie wpisy w buforze */
+        while (glowa_bufora != ogon_bufora && bufor_aktywny) {
+            char *wpis = bufor_logow[ogon_bufora];
+            ogon_bufora = (ogon_bufora + 1) % ROZMIAR_BUFORA_LOGOW;
+            
+            pthread_mutex_unlock(&mutex_bufor);
+            
+            /* Zapisz do pliku */
+            if (fd_logu != -1) {
+                flock(fd_logu, LOCK_EX);
+                write(fd_logu, wpis, strlen(wpis));
+                flock(fd_logu, LOCK_UN);
+            }
+            
+            pthread_mutex_lock(&mutex_bufor);
+        }
+        
+        pthread_mutex_unlock(&mutex_bufor);
+    }
+    
+    pthread_exit(NULL);
+}
+
+/* ========== ASYNCHRONICZNE LOGOWANIE Z pthread_cond_signal() ========== */
+void logger_log_async(const char *wiadomosc) {
+    if (!bufor_aktywny) return;
+    
+    pthread_mutex_lock(&mutex_bufor);
+    
+    /* Dodaj do bufora */
+    int nastepny = (glowa_bufora + 1) % ROZMIAR_BUFORA_LOGOW;
+    if (nastepny != ogon_bufora) {  /* Sprawdź czy jest miejsce */
+        strncpy(bufor_logow[glowa_bufora], wiadomosc, 511);
+        bufor_logow[glowa_bufora][511] = '\0';
+        glowa_bufora = nastepny;
+        
+        /* Sygnalizuj wątek zapisujący używając pthread_cond_signal() */
+        pthread_cond_signal(&cond_bufor_gotowy);
+    }
+    
+    pthread_mutex_unlock(&mutex_bufor);
+}
+
+/* ========== URUCHOMIENIE ASYNCHRONICZNEGO LOGOWANIA ========== */
+void logger_start_async(void) {
+    bufor_aktywny = 1;
+    if (pthread_create(&watek_zapisujacy, NULL, watek_zapis_logow, NULL) != 0) {
+        perror("pthread_create logger");
+        bufor_aktywny = 0;
+    }
+}
+
+/* ========== ZATRZYMANIE ASYNCHRONICZNEGO LOGOWANIA ========== */
+void logger_stop_async(void) {
+    if (!bufor_aktywny) return;
+    
+    pthread_mutex_lock(&mutex_bufor);
+    bufor_aktywny = 0;
+    /* Użycie pthread_cond_broadcast() - budzi WSZYSTKIE czekające wątki */
+    pthread_cond_broadcast(&cond_bufor_gotowy);
+    pthread_mutex_unlock(&mutex_bufor);
+    
+    pthread_join(watek_zapisujacy, NULL);
 }
 
 /* ========== INICJALIZACJA LOGGERA - SYSTEMOWE open() ========== */

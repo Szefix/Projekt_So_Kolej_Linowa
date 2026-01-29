@@ -1,41 +1,28 @@
-[15:24:58][INFO ][PID: 7293] TURYSTA #25: Przychodzę (wiek: 31, pieszy, zwykły)
-[15:24:58][INFO ][PID: 7293] TURYSTA #25: Podchodzę do kasy
-[15:24:58][INFO ][PID: 7293] TURYSTA #25: Kupiłem bilet #24 (typ: 5)
-[15:24:58][INFO ][PID: 7293] TURYSTA #25: Czekam na miejsce na stacji
-[15:24:58][INFO ][PID: 7293] TURYSTA #25: Przeszedłem przez bramkę 0
-[15:24:58][INFO ][PID: 7293] TURYSTA #25: Czekam na pozwolenie wejścia na peron
-[15:24:58][INFO ][PID: 7293] TURYSTA #25: Wchodzę na peron
-[15:24:58][INFO ][PID: 7293] TURYSTA #25: Czekam na krzesełko
-[15:24:58][INFO ][PID: 7293] TURYSTA #25: Wsiadłem na krzesełko #33
-[15:25:00][INFO ][PID: 7293] TURYSTA #25: Dojechałem na stację górną
-[15:25:00][INFO ][PID: 7293] TURYSTA #25: Wychodzę wyjściem 1
-[15:25:00][INFO ][PID: 7293] TURYSTA #25 (pieszy): Schodzę ze stacji górnej
-[15:25:00][INFO ][PID: 7293] TURYSTA #25: Czekam na miejsce na stacji
-[15:25:00][INFO ][PID: 7293] TURYSTA #25: Przeszedłem przez bramkę 0
-[15:25:00][INFO ][PID: 7293] TURYSTA #25: Czekam na pozwolenie wejścia na peron
-[15:25:00][INFO ][PID: 7293] TURYSTA #25: Wchodzę na peron
-[15:25:00][INFO ][PID: 7293] TURYSTA #25: Czekam na krzesełko
-[15:25:00][INFO ][PID: 7293] TURYSTA #25: Wsiadłem na krzesełko #4
-[15:25:02][INFO ][PID: 7293] TURYSTA #25: Dojechałem na stację górną
-[15:25:02][INFO ][PID: 7293] TURYSTA #25: Wychodzę wyjściem 1
-[15:25:02][INFO ][PID: 7293] TURYSTA #25 (pieszy): Schodzę ze stacji górnej
-[15:25:02][INFO ][PID: 7293] TURYSTA #25: Czekam na miejsce na stacji
-[15:25:02][INFO ][PID: 7293] TURYSTA #25: Przeszedłem przez bramkę 0
-[15:25:02][INFO ][PID: 7293] TURYSTA #25: Czekam na pozwolenie wejścia na peron
-[15:25:02][INFO ][PID: 7293] TURYSTA #25: Wchodzę na peron
-[15:25:02][INFO ][PID: 7293] TURYSTA #25: Czekam na krzesełko
-[15:25:02][INFO ][PID: 7293] TURYSTA #25: Wsiadłem na krzesełko #12
-[15:25:04][INFO ][PID: 7293] TURYSTA #25: Dojechałem na stację górną
-[15:25:04][INFO ][PID: 7293] TURYSTA #25: Wychodzę wyjściem 1
-[15:25:04][INFO ][PID: 7293] TURYSTA #25 (pieszy): Schodzę ze stacji górnej
-[15:25:04][INFO ][PID: 7293] TURYSTA #25: Czekam na miejsce na stacji
-[15:25:04][INFO ][PID: 7293] TURYSTA #25: Przeszedłem przez bramkę 0
-[15:25:04][INFO ][PID: 7293] TURYSTA #25: Czekam na pozwolenie wejścia na peron
-[15:25:04][INFO ][PID: 7293] TURYSTA #25: Wchodzę na peron
-[15:25:04][INFO ][PID: 7293] TURYSTA #25: Czekam na krzesełko
-[15:25:05][INFO ][PID: 7293] TURYSTA #25: Wsiadłem na krzesełko #19
-[15:25:07][INFO ][PID: 7293] TURYSTA #25: Dojechałem na stację górną
-[15:25:07][INFO ][PID: 7293] TURYSTA #25: Wychodzę wyjściem 1
-[15:25:07][INFO ][PID: 7293] TURYSTA #25 (pieszy): Schodzę ze stacji górnej
-[15:25:07][INFO ][PID: 7293] TURYSTA #25: Wystarczy na dziś, wychodzę
-[15:25:07][INFO ][PID: 7293] TURYSTA #25: Kończę dzień z 4 zjazdami
+[19:39:56][INFO ][PID:  532] TURYSTA #25: Przychodzę (wiek: 48, pieszy, zwykły)
+[19:39:56][INFO ][PID:  532] TURYSTA #25: Podchodzę do kasy
+[19:39:56][INFO ][PID:  532] TURYSTA #25: Kupiłem bilet #24 (typ: 2)
+[19:39:56][INFO ][PID:  532] TURYSTA #25: Czekam na miejsce na stacji
+[19:39:56][INFO ][PID:  532] TURYSTA #25: Przeszedłem przez bramkę 0
+[19:39:56][INFO ][PID:  532] TURYSTA #25: Czekam na pozwolenie wejścia na peron
+[19:39:57][INFO ][PID:  532] TURYSTA #25: Wchodzę na peron
+[19:39:57][INFO ][PID:  532] TURYSTA #25: Czekam na krzesełko
+[19:39:57][INFO ][PID:  532] TURYSTA #25: Wsiadłem na krzesełko #19
+[19:39:59][INFO ][PID:  532] TURYSTA #25: Dojechałem na stację górną
+[19:39:59][INFO ][PID:  532] TURYSTA #25: Wychodzę wyjściem 1
+[19:39:59][INFO ][PID:  532] TURYSTA #25 (pieszy): Schodzę ze stacji górnej
+[19:39:59][INFO ][PID:  532] TURYSTA #25: Wystarczy na dziś, wychodzę
+[19:39:59][INFO ][PID:  532] TURYSTA #25: Kończę dzień z 1 zjazdami
+[20:12:33][INFO ][PID:  688] TURYSTA #25: Przychodzę (wiek: 4, pieszy, zwykły)
+[20:12:33][INFO ][PID:  688] TURYSTA #25: Podchodzę do kasy
+[20:12:33][INFO ][PID:  688] TURYSTA #25: Kupiłem bilet #25 (typ: 4)
+[20:12:33][INFO ][PID:  688] TURYSTA #25: Czekam na miejsce na stacji
+[20:12:33][INFO ][PID:  688] TURYSTA #25: Przeszedłem przez bramkę 0
+[20:12:33][INFO ][PID:  688] TURYSTA #25: Czekam na pozwolenie wejścia na peron
+[20:12:34][INFO ][PID:  688] TURYSTA #25: Wchodzę na peron
+[20:12:34][INFO ][PID:  688] TURYSTA #25: Czekam na krzesełko
+[20:12:34][INFO ][PID:  688] TURYSTA #25: Wsiadłem na krzesełko #12
+[20:12:36][INFO ][PID:  688] TURYSTA #25: Dojechałem na stację górną
+[20:12:36][INFO ][PID:  688] TURYSTA #25: Wychodzę wyjściem 1
+[20:12:36][INFO ][PID:  688] TURYSTA #25 (pieszy): Schodzę ze stacji górnej
+[20:12:36][INFO ][PID:  688] TURYSTA #25: Wystarczy na dziś, wychodzę
+[20:12:36][INFO ][PID:  688] TURYSTA #25: Kończę dzień z 1 zjazdami

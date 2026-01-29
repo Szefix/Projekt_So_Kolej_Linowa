@@ -1,35 +1,29 @@
-[15:24:41][INFO ][PID: 7262] TURYSTA #8: Przychodzę (wiek: 28, rowerzysta, zwykły)
-[15:24:41][INFO ][PID: 7262] TURYSTA #8: Podchodzę do kasy
-[15:24:41][INFO ][PID: 7262] TURYSTA #8: Kupiłem bilet #7 (typ: 5)
-[15:24:41][INFO ][PID: 7262] TURYSTA #8: Czekam na miejsce na stacji
-[15:24:41][INFO ][PID: 7262] TURYSTA #8: Przeszedłem przez bramkę 0
-[15:24:41][INFO ][PID: 7262] TURYSTA #8: Czekam na pozwolenie wejścia na peron
-[15:24:41][INFO ][PID: 7262] TURYSTA #8: Wchodzę na peron
-[15:24:41][INFO ][PID: 7262] TURYSTA #8: Czekam na krzesełko
-[15:24:41][INFO ][PID: 7262] TURYSTA #8: Wsiadłem na krzesełko #7
-[15:24:43][INFO ][PID: 7262] TURYSTA #8: Dojechałem na stację górną
-[15:24:43][INFO ][PID: 7262] TURYSTA #8: Wychodzę wyjściem 1
-[15:24:43][INFO ][PID: 7262] TURYSTA #8 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:24:55][INFO ][PID: 7262] TURYSTA #8: Ukończyłem zjazd #1
-[15:24:55][INFO ][PID: 7262] TURYSTA #8: Czekam na miejsce na stacji
-[15:24:55][INFO ][PID: 7262] TURYSTA #8: Przeszedłem przez bramkę 0
-[15:24:55][INFO ][PID: 7262] TURYSTA #8: Czekam na pozwolenie wejścia na peron
-[15:24:55][INFO ][PID: 7262] TURYSTA #8: Wchodzę na peron
-[15:24:55][INFO ][PID: 7262] TURYSTA #8: Czekam na krzesełko
-[15:24:55][INFO ][PID: 7262] TURYSTA #8: Wsiadłem na krzesełko #25
-[15:24:57][INFO ][PID: 7262] TURYSTA #8: Dojechałem na stację górną
-[15:24:57][INFO ][PID: 7262] TURYSTA #8: Wychodzę wyjściem 0
-[15:24:57][INFO ][PID: 7262] TURYSTA #8 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:25:05][INFO ][PID: 7262] TURYSTA #8: Ukończyłem zjazd #2
-[15:25:05][INFO ][PID: 7262] TURYSTA #8: Czekam na miejsce na stacji
-[15:25:05][INFO ][PID: 7262] TURYSTA #8: Przeszedłem przez bramkę 0
-[15:25:05][INFO ][PID: 7262] TURYSTA #8: Czekam na pozwolenie wejścia na peron
-[15:25:05][INFO ][PID: 7262] TURYSTA #8: Wchodzę na peron
-[15:25:05][INFO ][PID: 7262] TURYSTA #8: Czekam na krzesełko
-[15:25:05][INFO ][PID: 7262] TURYSTA #8: Wsiadłem na krzesełko #21
-[15:25:07][INFO ][PID: 7262] TURYSTA #8: Dojechałem na stację górną
-[15:25:07][INFO ][PID: 7262] TURYSTA #8: Wychodzę wyjściem 0
-[15:25:07][INFO ][PID: 7262] TURYSTA #8 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:25:15][INFO ][PID: 7262] TURYSTA #8: Ukończyłem zjazd #3
-[15:25:15][INFO ][PID: 7262] TURYSTA #8: Wystarczy na dziś, wychodzę
-[15:25:15][INFO ][PID: 7262] TURYSTA #8: Kończę dzień z 3 zjazdami
+[19:39:44][INFO ][PID:  515] TURYSTA #8: Przychodzę (wiek: 20, pieszy, zwykły)
+[19:39:44][INFO ][PID:  515] TURYSTA #8: Podchodzę do kasy
+[19:39:44][INFO ][PID:  515] TURYSTA #8: Kupiłem bilet #7 (typ: 5)
+[19:39:44][INFO ][PID:  515] TURYSTA #8: Czekam na miejsce na stacji
+[19:39:44][INFO ][PID:  515] TURYSTA #8: Przeszedłem przez bramkę 0
+[19:39:44][INFO ][PID:  515] TURYSTA #8: Czekam na pozwolenie wejścia na peron
+[19:39:44][INFO ][PID:  515] TURYSTA #8: Wchodzę na peron
+[19:39:44][INFO ][PID:  515] TURYSTA #8: Czekam na krzesełko
+[19:39:44][INFO ][PID:  515] TURYSTA #8: Wsiadłem na krzesełko #7
+[19:39:46][INFO ][PID:  515] TURYSTA #8: Dojechałem na stację górną
+[19:39:46][INFO ][PID:  515] TURYSTA #8: Wychodzę wyjściem 1
+[19:39:46][INFO ][PID:  515] TURYSTA #8 (pieszy): Schodzę ze stacji górnej
+[19:39:46][INFO ][PID:  515] TURYSTA #8: Wystarczy na dziś, wychodzę
+[19:39:46][INFO ][PID:  515] TURYSTA #8: Kończę dzień z 1 zjazdami
+[20:12:23][INFO ][PID:  671] TURYSTA #8: Przychodzę (wiek: 24, rowerzysta, zwykły)
+[20:12:23][INFO ][PID:  671] TURYSTA #8: Podchodzę do kasy
+[20:12:23][INFO ][PID:  671] TURYSTA #8: Kupiłem bilet #8 (typ: 2)
+[20:12:23][INFO ][PID:  671] TURYSTA #8: Czekam na miejsce na stacji
+[20:12:23][INFO ][PID:  671] TURYSTA #8: Przeszedłem przez bramkę 0
+[20:12:23][INFO ][PID:  671] TURYSTA #8: Czekam na pozwolenie wejścia na peron
+[20:12:23][INFO ][PID:  671] TURYSTA #8: Wchodzę na peron
+[20:12:23][INFO ][PID:  671] TURYSTA #8: Czekam na krzesełko
+[20:12:23][INFO ][PID:  671] TURYSTA #8: Wsiadłem na krzesełko #5
+[20:12:25][INFO ][PID:  671] TURYSTA #8: Dojechałem na stację górną
+[20:12:25][INFO ][PID:  671] TURYSTA #8: Wychodzę wyjściem 0
+[20:12:25][INFO ][PID:  671] TURYSTA #8 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
+[20:12:30][INFO ][PID:  671] TURYSTA #8: Ukończyłem zjazd #1
+[20:12:30][INFO ][PID:  671] TURYSTA #8: Wystarczy na dziś, wychodzę
+[20:12:30][INFO ][PID:  671] TURYSTA #8: Kończę dzień z 1 zjazdami

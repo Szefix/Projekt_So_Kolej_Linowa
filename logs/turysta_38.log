@@ -1,15 +1,28 @@
-[15:25:07][INFO ][PID: 7313] TURYSTA #38: Przychodzę (wiek: 28, rowerzysta, zwykły)
-[15:25:07][INFO ][PID: 7313] TURYSTA #38: Podchodzę do kasy
-[15:25:07][INFO ][PID: 7313] TURYSTA #38: Kupiłem bilet #37 (typ: 1)
-[15:25:07][INFO ][PID: 7313] TURYSTA #38: Czekam na miejsce na stacji
-[15:25:07][INFO ][PID: 7313] TURYSTA #38: Przeszedłem przez bramkę 0
-[15:25:07][INFO ][PID: 7313] TURYSTA #38: Czekam na pozwolenie wejścia na peron
-[15:25:07][INFO ][PID: 7313] TURYSTA #38: Wchodzę na peron
-[15:25:07][INFO ][PID: 7313] TURYSTA #38: Czekam na krzesełko
-[15:25:07][INFO ][PID: 7313] TURYSTA #38: Wsiadłem na krzesełko #29
-[15:25:09][INFO ][PID: 7313] TURYSTA #38: Dojechałem na stację górną
-[15:25:09][INFO ][PID: 7313] TURYSTA #38: Wychodzę wyjściem 0
-[15:25:09][INFO ][PID: 7313] TURYSTA #38 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[15:25:12][INFO ][PID: 7313] TURYSTA #38: Ukończyłem zjazd #1
-[15:25:12][INFO ][PID: 7313] TURYSTA #38: Bilet nieważny, kończę
-[15:25:12][INFO ][PID: 7313] TURYSTA #38: Kończę dzień z 1 zjazdami
+[19:40:06][INFO ][PID:  545] TURYSTA #38: Przychodzę (wiek: 24, rowerzysta, zwykły)
+[19:40:06][INFO ][PID:  545] TURYSTA #38: Podchodzę do kasy
+[19:40:06][INFO ][PID:  545] TURYSTA #38: Kupiłem bilet #37 (typ: 1)
+[19:40:06][INFO ][PID:  545] TURYSTA #38: Czekam na miejsce na stacji
+[19:40:06][INFO ][PID:  545] TURYSTA #38: Przeszedłem przez bramkę 0
+[19:40:06][INFO ][PID:  545] TURYSTA #38: Czekam na pozwolenie wejścia na peron
+[19:40:07][INFO ][PID:  545] TURYSTA #38: Wchodzę na peron
+[19:40:07][INFO ][PID:  545] TURYSTA #38: Czekam na krzesełko
+[19:40:07][INFO ][PID:  545] TURYSTA #38: Wsiadłem na krzesełko #27
+[19:40:08][INFO ][PID:  545] TURYSTA #38: Kończę dzień z 0 zjazdami
+[20:12:43][INFO ][PID:  701] TURYSTA #38: Przychodzę (wiek: 6, pieszy, zwykły)
+[20:12:43][INFO ][PID:  701] TURYSTA #38: Podchodzę do kasy
+[20:12:43][INFO ][PID:  701] TURYSTA #38: Kupiłem bilet #38 (typ: 2)
+[20:12:43][INFO ][PID:  701] TURYSTA #38: Czekam na miejsce na stacji
+[20:12:43][INFO ][PID:  701] TURYSTA #38: Przeszedłem przez bramkę 0
+[20:12:43][INFO ][PID:  701] TURYSTA #38: Czekam na pozwolenie wejścia na peron
+[20:12:44][INFO ][PID:  701] TURYSTA #38: Wchodzę na peron
+[20:12:44][INFO ][PID:  701] TURYSTA #38: Czekam na krzesełko
+[20:12:44][INFO ][PID:  701] TURYSTA #38: Wsiadłem na krzesełko #20
+[20:12:46][INFO ][PID:  701] TURYSTA #38: Dojechałem na stację górną
+[20:12:46][INFO ][PID:  701] TURYSTA #38: Wychodzę wyjściem 1
+[20:12:46][INFO ][PID:  701] TURYSTA #38 (pieszy): Schodzę ze stacji górnej
+[20:12:46][INFO ][PID:  701] TURYSTA #38: Czekam na miejsce na stacji
+[20:12:46][INFO ][PID:  701] TURYSTA #38: Przeszedłem przez bramkę 0
+[20:12:46][INFO ][PID:  701] TURYSTA #38: Czekam na pozwolenie wejścia na peron
+[20:12:47][INFO ][PID:  701] TURYSTA #38: Wchodzę na peron
+[20:12:47][INFO ][PID:  701] TURYSTA #38: Czekam na krzesełko
+[20:13:19][INFO ][PID:  701] TURYSTA #38: Kończę dzień z 1 zjazdami

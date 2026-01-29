@@ -1,14 +1,24 @@
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Przychodzę (wiek: 31, pieszy, zwykły)
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Podchodzę do kasy
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Kupiłem bilet #53 (typ: 1)
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Czekam na miejsce na stacji
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Przeszedłem przez bramkę 0
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Czekam na pozwolenie wejścia na peron
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Wchodzę na peron
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Czekam na krzesełko
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Wsiadłem na krzesełko #22
-[15:25:20][INFO ][PID: 7332] TURYSTA #54: Dojechałem na stację górną
-[15:25:20][INFO ][PID: 7332] TURYSTA #54: Wychodzę wyjściem 0
-[15:25:20][INFO ][PID: 7332] TURYSTA #54 (pieszy): Schodzę ze stacji górnej
-[15:25:20][INFO ][PID: 7332] TURYSTA #54: Bilet nieważny, kończę
-[15:25:20][INFO ][PID: 7332] TURYSTA #54: Kończę dzień z 1 zjazdami
+[20:12:53][INFO ][PID:  717] TURYSTA #54: Przychodzę (wiek: 47, pieszy, zwykły)
+[20:12:53][INFO ][PID:  717] TURYSTA #54: Podchodzę do kasy
+[20:12:53][INFO ][PID:  717] TURYSTA #54: Kupiłem bilet #54 (typ: 2)
+[20:12:53][INFO ][PID:  717] TURYSTA #54: Czekam na miejsce na stacji
+[20:12:53][INFO ][PID:  717] TURYSTA #54: Przeszedłem przez bramkę 0
+[20:12:53][INFO ][PID:  717] TURYSTA #54: Czekam na pozwolenie wejścia na peron
+[20:12:55][INFO ][PID:  717] TURYSTA #54: Wchodzę na peron
+[20:12:55][INFO ][PID:  717] TURYSTA #54: Czekam na krzesełko
+[20:12:55][INFO ][PID:  717] TURYSTA #54: Wsiadłem na krzesełko #30
+[20:12:59][INFO ][PID:  717] TURYSTA #54: Dojechałem na stację górną
+[20:12:59][INFO ][PID:  717] TURYSTA #54: Wychodzę wyjściem 0
+[20:12:59][INFO ][PID:  717] TURYSTA #54 (pieszy): Schodzę ze stacji górnej
+[20:12:59][INFO ][PID:  717] TURYSTA #54: Czekam na miejsce na stacji
+[20:12:59][INFO ][PID:  717] TURYSTA #54: Przeszedłem przez bramkę 0
+[20:12:59][INFO ][PID:  717] TURYSTA #54: Czekam na pozwolenie wejścia na peron
+[20:13:05][INFO ][PID:  717] TURYSTA #54: Wchodzę na peron
+[20:13:05][INFO ][PID:  717] TURYSTA #54: Czekam na krzesełko
+[20:13:05][INFO ][PID:  717] TURYSTA #54: Wsiadłem na krzesełko #34
+[20:13:07][INFO ][PID:  717] TURYSTA #54: Dojechałem na stację górną
+[20:13:07][INFO ][PID:  717] TURYSTA #54: Wychodzę wyjściem 1
+[20:13:07][INFO ][PID:  717] TURYSTA #54 (pieszy): Schodzę ze stacji górnej
+[20:13:07][INFO ][PID:  717] TURYSTA #54: Czekam na miejsce na stacji
+[20:13:07][INFO ][PID:  717] TURYSTA #54: Przeszedłem przez bramkę 0
+[20:13:07][INFO ][PID:  717] TURYSTA #54: Czekam na pozwolenie wejścia na peron

@@ -1,15 +1,14 @@
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Przychodzę (wiek: 56, rowerzysta, zwykły)
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Podchodzę do kasy
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Kupiłem bilet #43 (typ: 2)
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Czekam na miejsce na stacji
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Przeszedłem przez bramkę 0
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Czekam na pozwolenie wejścia na peron
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Wchodzę na peron
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Czekam na krzesełko
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Wsiadłem na krzesełko #5
-[15:25:14][INFO ][PID: 7322] TURYSTA #44: Dojechałem na stację górną
-[15:25:14][INFO ][PID: 7322] TURYSTA #44: Wychodzę wyjściem 0
-[15:25:14][INFO ][PID: 7322] TURYSTA #44 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:25:22][INFO ][PID: 7322] TURYSTA #44: Ukończyłem zjazd #1
-[15:25:22][INFO ][PID: 7322] TURYSTA #44: Wystarczy na dziś, wychodzę
-[15:25:22][INFO ][PID: 7322] TURYSTA #44: Kończę dzień z 1 zjazdami
+[20:12:47][INFO ][PID:  707] TURYSTA #44: Przychodzę (wiek: 58, pieszy, zwykły)
+[20:12:47][INFO ][PID:  707] TURYSTA #44: Podchodzę do kasy
+[20:12:47][INFO ][PID:  707] TURYSTA #44: Kupiłem bilet #44 (typ: 2)
+[20:12:47][INFO ][PID:  707] TURYSTA #44: Czekam na miejsce na stacji
+[20:12:47][INFO ][PID:  707] TURYSTA #44: Przeszedłem przez bramkę 0
+[20:12:47][INFO ][PID:  707] TURYSTA #44: Czekam na pozwolenie wejścia na peron
+[20:12:48][INFO ][PID:  707] TURYSTA #44: Wchodzę na peron
+[20:12:48][INFO ][PID:  707] TURYSTA #44: Czekam na krzesełko
+[20:12:48][INFO ][PID:  707] TURYSTA #44: Wsiadłem na krzesełko #24
+[20:12:50][INFO ][PID:  707] TURYSTA #44: Dojechałem na stację górną
+[20:12:50][INFO ][PID:  707] TURYSTA #44: Wychodzę wyjściem 1
+[20:12:50][INFO ][PID:  707] TURYSTA #44 (pieszy): Schodzę ze stacji górnej
+[20:12:50][INFO ][PID:  707] TURYSTA #44: Wystarczy na dziś, wychodzę
+[20:12:50][INFO ][PID:  707] TURYSTA #44: Kończę dzień z 1 zjazdami
