@@ -4,6 +4,7 @@
 #include <string.h>
 #include <signal.h>
 #include <errno.h>
+#include <sys/select.h>
 #include "config.h"
 #include "types.h"
 #include "ipc_utils.h"
@@ -307,7 +308,8 @@ int main(int argc, char *argv[]) {
     
     while (p1_dzialaj && stan->kolej_aktywna) {
         if (p1_kolej_zatrzymana) {
-            usleep(100000);
+            /* BLOKUJĄCE czekanie na semaforze z timeoutem */
+            sem_czekaj_timeout_sysv(sem_id, SEM_IDX_PRACOWNIK1, 1);
             continue;
         }
         
@@ -360,7 +362,7 @@ int main(int argc, char *argv[]) {
         }
         
         if (aktualna_grupa.liczba > 0 && liczba_oczekujacych == 0 && p1_dzialaj) {
-            usleep(200000);
+            /* Sprawdź ponownie bez usleep */
             if (liczba_oczekujacych == 0 && aktualna_grupa.liczba > 0) {
                 wyslij_grupe_na_krzeselko();
             }
@@ -368,11 +370,16 @@ int main(int argc, char *argv[]) {
         
         if (rand() % 2000 == 0 && !p1_kolej_zatrzymana && p1_dzialaj) {
             p1_zatrzymaj_kolej();
-            sleep(2);
+            /* BLOKUJĄCE czekanie z timeoutem 2 sekundy */
+            sem_czekaj_timeout_sysv(sem_id, SEM_IDX_SYNC, 2);
             if (p1_dzialaj) p1_wznow_kolej();
         }
-        
-        usleep(50000);
+
+        /* BLOKUJĄCE czekanie 50ms zamiast busy waiting */
+        struct timeval tv;
+        tv.tv_sec = 0;
+        tv.tv_usec = 50000;
+        select(0, NULL, NULL, NULL, &tv);
     }
     
     if (aktualna_grupa.liczba > 0 && p1_dzialaj) {

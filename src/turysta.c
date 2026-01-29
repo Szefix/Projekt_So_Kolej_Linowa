@@ -5,6 +5,7 @@
 #include <signal.h>
 #include <time.h>
 #include <errno.h>
+#include <sys/select.h>
 #include "config.h"
 #include "types.h"
 #include "ipc_utils.h"
@@ -371,9 +372,13 @@ void jedz_na_trasie(void) {
     LOG_I("TURYSTA #%d (rowerzysta): Wybieram trasę %s (czas: %ds)", 
           ja.id, nazwy_tras[wybor], czas_trasy);
     
-    /* Symulacja czasu przejazdu - podziel na krótsze odcinki dla szybszego wyjścia */
+    /* Symulacja czasu przejazdu - BLOKUJĄCE czekanie zamiast busy waiting */
     for (int i = 0; i < czas_trasy && turysta_dzialaj; i++) {
-        sleep(1);
+        /* select() blokuje proces na 1 sekundę */
+        struct timeval tv;
+        tv.tv_sec = 1;
+        tv.tv_usec = 0;
+        select(0, NULL, NULL, NULL, &tv);
     }
     
     if (turysta_dzialaj) {
@@ -412,9 +417,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     
-    char log_name[64];
-    snprintf(log_name, sizeof(log_name), "logs/turysta_%d.log", id);
-    logger_init(log_name);
+    /* Wszyscy turysci piszą do wspólnego pliku */
+    logger_init("logs/wszyscy_turysci.log");
     
     inicjalizuj_turystę(id, wiek, opiekun);
     
@@ -479,9 +483,13 @@ int main(int argc, char *argv[]) {
             break;
         }
         
-        /* Symulacja jazdy na górę - podzielona dla szybszego wyjścia */
+        /* Symulacja jazdy na górę - BLOKUJĄCE czekanie 2 sekundy */
         for (int i = 0; i < 2 && turysta_dzialaj; i++) {
-            sleep(1);
+            /* select() blokuje proces na 1 sekundę */
+            struct timeval tv;
+            tv.tv_sec = 1;
+            tv.tv_usec = 0;
+            select(0, NULL, NULL, NULL, &tv);
         }
         
         if (!turysta_dzialaj) {

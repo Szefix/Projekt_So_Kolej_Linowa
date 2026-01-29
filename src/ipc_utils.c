@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <time.h>
 #include "ipc_utils.h"
 #include "config.h"
 
@@ -58,6 +59,32 @@ int sem_pobierz_wartosc(int sem_id, int sem_num) {
         perror("semctl getval");
     }
     return val;
+}
+
+/* Czekaj na semafor z timeoutem - BLOKUJĄCE z timeoutem */
+int sem_czekaj_timeout_sysv(int sem_id, int sem_num, int timeout_sec) {
+    struct sembuf op;
+    op.sem_num = sem_num;
+    op.sem_op = -1;         /* Dekrementuj (P/wait) */
+    op.sem_flg = 0;         /* Blokujące */
+
+    struct timespec timeout;
+    timeout.tv_sec = timeout_sec;
+    timeout.tv_nsec = 0;
+
+    /* semtimedop() blokuje proces/wątek do timeout lub uzyskania semafora */
+    int result = semtimedop(sem_id, &op, 1, &timeout);
+
+    if (result == -1) {
+        if (errno == EAGAIN || errno == ETIMEDOUT) {
+            return -1;  /* Timeout */
+        }
+        if (errno != EINTR) {
+            perror("semtimedop");
+        }
+        return -1;
+    }
+    return 0;  /* Sukces */
 }
 
 /* ========== INICJALIZACJA SEMAFORÓW SYSTEM V ========== */

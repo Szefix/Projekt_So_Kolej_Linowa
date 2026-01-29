@@ -88,6 +88,7 @@ void sem_czekaj_sysv(int sem_id, int sem_num);
 void sem_sygnalizuj_sysv(int sem_id, int sem_num);
 int sem_probuj_sysv(int sem_id, int sem_num);
 int sem_pobierz_wartosc(int sem_id, int sem_num);
+int sem_czekaj_timeout_sysv(int sem_id, int sem_num, int timeout_sec);  /* Czeka z timeoutem */
 
 /* ========== OPERACJE NA KOLEJKACH ========== */
 int wyslij_komunikat(int mq_id, Komunikat *msg);

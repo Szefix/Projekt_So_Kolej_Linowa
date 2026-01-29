@@ -4,6 +4,7 @@
 #include <string.h>
 #include <signal.h>
 #include <errno.h>
+#include <sys/select.h>
 #include "config.h"
 #include "types.h"
 #include "ipc_utils.h"
@@ -169,7 +170,11 @@ int main(int argc, char *argv[]) {
             }
             sem_sygnalizuj_sysv(sem_id, SEM_IDX_KASA);
         } else if (wynik == 0) {
-            usleep(10000);
+            /* BLOKUJĄCE czekanie 10ms gdy brak komunikatów */
+            struct timeval tv;
+            tv.tv_sec = 0;
+            tv.tv_usec = 10000;
+            select(0, NULL, NULL, NULL, &tv);
         }
     }
     

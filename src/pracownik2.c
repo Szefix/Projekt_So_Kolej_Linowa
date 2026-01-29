@@ -4,6 +4,7 @@
 #include <string.h>
 #include <signal.h>
 #include <errno.h>
+#include <sys/select.h>
 #include "config.h"
 #include "types.h"
 #include "ipc_utils.h"
@@ -138,7 +139,8 @@ int main(int argc, char *argv[]) {
     
     while (p2_dzialaj && stan->kolej_aktywna) {
         if (p2_kolej_zatrzymana) {
-            usleep(100000);
+            /* BLOKUJĄCE czekanie na semaforze z timeoutem */
+            sem_czekaj_timeout_sysv(sem_id, SEM_IDX_PRACOWNIK2, 1);
             continue;
         }
         
@@ -168,8 +170,10 @@ int main(int argc, char *argv[]) {
         
         if (rand() % 3000 == 0 && !p2_kolej_zatrzymana && p2_dzialaj) {
             p2_zatrzymaj_kolej();
-            sleep(2);
-            
+
+            /* BLOKUJĄCE czekanie z timeoutem 2 sekundy */
+            sem_czekaj_timeout_sysv(sem_id, SEM_IDX_SYNC, 2);
+
             if (!p2_dzialaj) break;
             
             Komunikat wznow;
@@ -188,8 +192,12 @@ int main(int argc, char *argv[]) {
             
             LOG_I("PRACOWNIK2: Kolej wznowiona");
         }
-        
-        usleep(100000);
+
+        /* BLOKUJĄCE czekanie 100ms zamiast busy waiting */
+        struct timeval tv;
+        tv.tv_sec = 0;
+        tv.tv_usec = 100000;
+        select(0, NULL, NULL, NULL, &tv);
     }
     
     LOG_I("PRACOWNIK2: Kończę pracę. Zjazdów: %d", stan->laczna_liczba_zjazdow);

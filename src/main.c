@@ -4,6 +4,7 @@
 #include <signal.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <sys/select.h>
 #include <time.h>
 #include <string.h>
 #include <errno.h>
@@ -33,51 +34,52 @@ static PipeKanaly pipe_monitor;
 
 /* Mutex do statystyk z użyciem pthread_mutex_trylock() */
 static pthread_mutex_t mutex_statystyki = PTHREAD_MUTEX_INITIALIZER;
+static pthread_cond_t cond_statystyki = PTHREAD_COND_INITIALIZER;
 static int licznik_przetworzen = 0;
 
-/* ========== WĄTEK STATYSTYK (używa pthread_detach i pthread_mutex_trylock) ========== */
+/* Zmienna warunkowa dla monitora */
+static pthread_mutex_t mutex_monitor = PTHREAD_MUTEX_INITIALIZER;
+static pthread_cond_t cond_monitor = PTHREAD_COND_INITIALIZER;
+
+/* ========== WĄTEK STATYSTYK (używa pthread_detach i pthread_cond_timedwait) ========== */
 void *watek_statystyk_funkcja(void *arg) {
     (void)arg;
     StanWspoldzielony *stan = zasoby.shm.stan;
-    
+
     /* Odłącz wątek - nie wymaga join() */
     pthread_detach(pthread_self());
     LOG_I("STATYSTYKI: Wątek statystyk odłączony (pthread_detach)");
-    
+
     while (monitor_aktywny && stan->kolej_aktywna) {
-        /* Użycie pthread_mutex_trylock() - nieblokująca próba zablokowania */
-        if (pthread_mutex_trylock(&mutex_statystyki) == 0) {
-            /* Mutex zablokowany pomyślnie */
-            licznik_przetworzen++;
-            
-            /* Zapisz statystyki do pliku co 10 iteracji */
-            if (licznik_przetworzen % 10 == 0) {
-                int fd = open("logs/statystyki_live.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644);
-                if (fd != -1) {
-                    char buf[256];
-                    int len = snprintf(buf, sizeof(buf),
-                        "Statystyki (iteracja %d):\n"
-                        "- Osoby na stacji: %d\n"
-                        "- Zjazdy: %d\n"
-                        "- Bilety: %d\n",
-                        licznik_przetworzen,
-                        stan->liczba_osob_na_stacji,
-                        stan->laczna_liczba_zjazdow,
-                        stan->liczba_sprzedanych_biletow);
-                    write(fd, buf, len);
-                    close(fd);
-                }
-            }
-            
-            pthread_mutex_unlock(&mutex_statystyki);
-        } else {
-            /* Mutex zajęty - pthread_mutex_trylock zwróciło błąd */
-            LOG_D("STATYSTYKI: Mutex zajęty, pomijam iterację");
+        /* BLOKUJĄCE czekanie z timeoutem 1 sekunda - pthread_cond_timedwait() */
+        struct timespec ts;
+        clock_gettime(CLOCK_REALTIME, &ts);
+        ts.tv_sec += 1;  /* Timeout 1 sekunda */
+
+        pthread_mutex_lock(&mutex_statystyki);
+        pthread_cond_timedwait(&cond_statystyki, &mutex_statystyki, &ts);
+
+        /* Po obudzeniu - zapisz statystyki */
+        licznik_przetworzen++;
+        int fd = open("logs/statystyki_live.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+        if (fd != -1) {
+            char buf[256];
+            int len = snprintf(buf, sizeof(buf),
+                "Statystyki (iteracja %d):\n"
+                "- Osoby na stacji: %d\n"
+                "- Zjazdy: %d\n"
+                "- Bilety: %d\n",
+                licznik_przetworzen,
+                stan->liczba_osob_na_stacji,
+                stan->laczna_liczba_zjazdow,
+                stan->liczba_sprzedanych_biletow);
+            write(fd, buf, len);
+            close(fd);
         }
-        
-        sleep(1);
+
+        pthread_mutex_unlock(&mutex_statystyki);
     }
-    
+
     LOG_I("STATYSTYKI: Wątek zakończony (był odłączony, nie wymaga join)");
     return NULL;
 }
@@ -86,19 +88,19 @@ void *watek_statystyk_funkcja(void *arg) {
 void *watek_monitor_funkcja(void *arg) {
     (void)arg;
     StanWspoldzielony *stan = zasoby.shm.stan;
-    
+
     LOG_I("MONITOR: Wątek monitorowania uruchomiony");
-    
+
     while (monitor_aktywny && stan->kolej_aktywna) {
         /* Sprawdź czy jest komunikat przez pipe */
         KomunikatPipe msg;
         int wynik = odbierz_z_fifo_nieblokujaco(pipe_monitor.fd_read, &msg);
-        
+
         if (wynik > 0) {
             LOG_D("MONITOR: Otrzymano komunikat typu %d", msg.typ);
         }
-        
-        /* Wyświetl stan - bez blokady semafora żeby uniknąć problemów */
+
+        /* Wyświetl stan */
         printf("\r[Czas: %3ld s] Stacja: %2d | Peron: %2d | Krzesełka: %2d | Zjazdy: %3d | Bilety: %3d   ",
                time(NULL) - stan->czas_startu,
                stan->liczba_osob_na_stacji,
@@ -107,10 +109,21 @@ void *watek_monitor_funkcja(void *arg) {
                stan->laczna_liczba_zjazdow,
                stan->liczba_sprzedanych_biletow);
         fflush(stdout);
-        
-        usleep(500000);
+
+        /* BLOKUJĄCE czekanie z timeoutem 500ms - pthread_cond_timedwait() */
+        struct timespec ts;
+        clock_gettime(CLOCK_REALTIME, &ts);
+        ts.tv_nsec += 500000000;  /* +500ms */
+        if (ts.tv_nsec >= 1000000000) {
+            ts.tv_sec += 1;
+            ts.tv_nsec -= 1000000000;
+        }
+
+        pthread_mutex_lock(&mutex_monitor);
+        pthread_cond_timedwait(&cond_monitor, &mutex_monitor, &ts);
+        pthread_mutex_unlock(&mutex_monitor);
     }
-    
+
     LOG_I("MONITOR: Wątek monitorowania zakończony");
     pthread_exit(NULL);
 }
@@ -194,9 +207,8 @@ void uruchom_turystę(int id, int wiek, int opiekun) {
     
     if (pid == 0) {
         /* ========== UŻYCIE dup2() - przekierowanie stderr do pliku ========== */
-        char stderr_log[128];
-        snprintf(stderr_log, sizeof(stderr_log), "logs/turysta_%d_stderr.log", id);
-        int fd_err = open(stderr_log, O_CREAT | O_WRONLY | O_APPEND, 0644);
+        /* Wszyscy turysci piszą błędy do wspólnego pliku */
+        int fd_err = open("logs/wszyscy_turysci_stderr.log", O_CREAT | O_WRONLY | O_APPEND, 0644);
         if (fd_err != -1) {
             /* dup2() duplikuje deskryptor fd_err na STDERR_FILENO */
             if (dup2(fd_err, STDERR_FILENO) == -1) {
@@ -266,18 +278,15 @@ void zatrzymaj_i_czekaj_na_procesy(void) {
     if (pid_kasjer > 0) kill(pid_kasjer, SIGTERM);
     
     printf("Oczekiwanie na zakończenie procesów potomnych...\n");
-    
-    /* Daj czas na reakcję */
-    usleep(500000);
-    
+
     /* Zbierz wszystkie procesy potomne z timeoutem */
     int zebrane = 0;
-    int timeout = 30;  /* 3 sekundy */
-    
+    int timeout = 30;  /* 30 sekund */
+
     while (timeout > 0) {
         int status;
         pid_t pid = waitpid(-1, &status, WNOHANG);
-        
+
         if (pid > 0) {
             zebrane++;
             LOG_D("MAIN: Proces %d zakończony", pid);
@@ -287,8 +296,11 @@ void zatrzymaj_i_czekaj_na_procesy(void) {
                 break;
             }
         } else {
-            /* pid == 0, brak zakończonych procesów, czekaj */
-            usleep(100000);
+            /* pid == 0, brak zakończonych procesów - BLOKUJ zamiast busy waiting */
+            struct timeval tv;
+            tv.tv_sec = 1;
+            tv.tv_usec = 0;
+            select(0, NULL, NULL, NULL, &tv);  /* Blokuje na 1 sekundę */
             timeout--;
         }
     }
@@ -466,14 +478,11 @@ int main(int argc, char *argv[]) {
     StanWspoldzielony *stan = zasoby.shm.stan;
     
     printf("Uruchamianie procesów obsługi...\n");
-    
+
     /* Uruchomienie procesów */
     uruchom_kasjer();
-    usleep(100000);
     uruchom_pracownika(1);
-    usleep(100000);
     uruchom_pracownika(2);
-    usleep(200000);
     
     /* Uruchomienie wątku monitorowania */
     if (pthread_create(&watek_monitora, NULL, watek_monitor_funkcja, NULL) != 0) {
@@ -507,11 +516,15 @@ int main(int argc, char *argv[]) {
             sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
             
             printf("\n\nKolej zamknięta! Oczekiwanie na opuszczenie stacji...\n");
-            
+
             int timeout = CZAS_WYLACZENIA_PO_ZAMKNIECIU;
-            while (timeout > 0 && (stan->liczba_osob_na_stacji > 0 || 
+            while (timeout > 0 && (stan->liczba_osob_na_stacji > 0 ||
                                     stan->liczba_osob_na_peronie > 0)) {
-                sleep(1);
+                /* BLOKUJĄCE czekanie z timeoutem zamiast busy waiting */
+                struct timeval tv;
+                tv.tv_sec = 1;
+                tv.tv_usec = 0;
+                select(0, NULL, NULL, NULL, &tv);  /* Blokuje na 1 sekundę */
                 timeout--;
             }
             
@@ -523,15 +536,19 @@ int main(int argc, char *argv[]) {
         }
         
         /* Generuj nowych turystów */
-        if (teraz - ostatni_turysta >= 1 && stan->godziny_pracy && 
+        if (teraz - ostatni_turysta >= 1 && stan->godziny_pracy &&
             nastepny_id <= max_turystow) {
             if (rand() % 100 < 70) {
                 generuj_grupe(&nastepny_id);
                 ostatni_turysta = teraz;
             }
         }
-        
-        usleep(100000);
+
+        /* Zamiast busy waiting - użyj select() z timeoutem 100ms (BLOKUJĄCE) */
+        struct timeval tv;
+        tv.tv_sec = 0;
+        tv.tv_usec = 100000;  /* 100ms */
+        select(0, NULL, NULL, NULL, &tv);  /* Blokuje proces na 100ms */
     }
     
     printf("\n\nZatrzymywanie symulacji...\n");
