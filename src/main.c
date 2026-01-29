@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <pthread.h>
 #include <fcntl.h>
+#include <limits.h>
 #include "config.h"
 #include "types.h"
 #include "ipc_utils.h"
@@ -332,21 +333,25 @@ void zatrzymaj_i_czekaj_na_procesy(void) {
 }
 
 /* ========== WYŚWIETLANIE BANERA ========== */
-void wyswietl_banner(void) {
+void wyswietl_banner(int czas_symulacji) {
     printf("\n");
     printf("---------------------------------------------------------------\n");
     printf("                 KOLEJ LINOWA KRZESEŁKOWA                      \n");
     printf("                    Symulacja Systemu                          \n");
     printf("---------------------------------------------------------------\n");
     printf("\n");
-    printf("  Krzesełka: %2d aktywnych / %2d łącznie                        \n", 
+    printf("  Krzesełka: %2d aktywnych / %2d łącznie                        \n",
            MAX_AKTYWNYCH_KRZESELEK, LICZBA_KRZESELEK);
     printf("  Bramki wejściowe: %d    Bramki peronowe: %d                   \n",
            LICZBA_BRAMEK_WEJSCIOWYCH, LICZBA_BRAMEK_PERONOWYCH);
     printf("  Max osób na stacji: %2d                                       \n",
            MAX_OSOB_NA_STACJI);
-    printf("  Czas symulacji: %d sekund                                    \n",
-           CZAS_ZAMKNIECIA);
+    if (czas_symulacji == -1) {
+        printf("  Czas symulacji: NIESKOŃCZONY (Ctrl+C aby zakończyć)          \n");
+    } else {
+        printf("  Czas symulacji: %d sekund                                    \n",
+               czas_symulacji);
+    }
     printf("\n");
 }
 
@@ -383,59 +388,179 @@ void sprawdz_zasoby_ipc(void) {
     }
 }
 
+/* ========== PARSOWANIE LICZBY Z WALIDACJĄ ========== */
+/* Zwraca 0 przy sukcesie, -1 przy błędzie. Wynik zapisuje do *wynik */
+int parsuj_liczbe(const char *str, int *wynik) {
+    if (str == NULL || *str == '\0') {
+        return -1;
+    }
+
+    char *koniec;
+    errno = 0;
+    long wartosc = strtol(str, &koniec, 10);
+
+    /* Sprawdź czy cały string został sparsowany */
+    if (*koniec != '\0') {
+        return -1;  /* Niepoprawne znaki po liczbie */
+    }
+
+    /* Sprawdź przepełnienie */
+    if (errno == ERANGE || wartosc > INT_MAX || wartosc < INT_MIN) {
+        return -1;
+    }
+
+    *wynik = (int)wartosc;
+    return 0;
+}
+
+/* ========== PYTANIE O CZAS DZIAŁANIA ========== */
+int zapytaj_o_czas_dzialania(void) {
+    char bufor[64];
+
+    printf("\n");
+    printf("---------------------------------------------------------------\n");
+    printf("           KONFIGURACJA CZASU DZIAŁANIA SYMULACJI              \n");
+    printf("---------------------------------------------------------------\n");
+    printf("\n");
+    printf("Podaj czas działania symulacji w sekundach.\n");
+    printf("(Wciśnij ENTER bez wpisywania, aby działać w nieskończoność)\n");
+    printf("\n");
+
+    while (1) {
+        printf("Czas [sekundy]: ");
+        fflush(stdout);
+
+        if (fgets(bufor, sizeof(bufor), stdin) == NULL) {
+            return -1;  /* EOF - nieskończoność */
+        }
+
+        /* Usuń znak nowej linii */
+        bufor[strcspn(bufor, "\n")] = '\0';
+
+        /* Jeśli pusty string - nieskończoność */
+        if (strlen(bufor) == 0) {
+            printf("Wybrano tryb: NIESKOŃCZONY (aż do zamknięcia Ctrl+C)\n\n");
+            return -1;
+        }
+
+        /* Spróbuj sparsować liczbę */
+        int czas;
+        if (parsuj_liczbe(bufor, &czas) != 0) {
+            printf("BŁĄD: '%s' nie jest poprawną liczbą. Spróbuj ponownie.\n", bufor);
+            continue;
+        }
+
+        /* Sprawdź zakres */
+        if (czas < 0) {
+            printf("BŁĄD: Czas nie może być ujemny. Spróbuj ponownie.\n");
+            continue;
+        }
+
+        if (czas == 0) {
+            printf("Wybrano tryb: NIESKOŃCZONY (aż do zamknięcia Ctrl+C)\n\n");
+            return -1;
+        }
+
+        printf("Wybrano czas działania: %d sekund\n\n", czas);
+        return czas;
+    }
+}
+
 /* ========== WALIDACJA PARAMETRÓW ========== */
 int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_turystow) {
-    *czas_symulacji = CZAS_ZAMKNIECIA;
+    *czas_symulacji = -1;  /* Domyślnie: pytaj użytkownika */
     *max_turystow = 100;
-    
+
     for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-t") == 0 && i + 1 < argc) {
-            int t = atoi(argv[i + 1]);
-            if (t < 10 || t > 3600) {
-                fprintf(stderr, "BŁĄD: Czas symulacji musi być między 10 a 3600 sekund\n");
+        if (strcmp(argv[i], "-t") == 0) {
+            /* Sprawdź czy jest argument po -t */
+            if (i + 1 >= argc) {
+                fprintf(stderr, "BŁĄD: Brak wartości po parametrze -t\n");
+                fprintf(stderr, "Użyj: -t <liczba_sekund>\n");
                 return -1;
             }
-            *czas_symulacji = t;
+
+            int t;
+            if (parsuj_liczbe(argv[i + 1], &t) != 0) {
+                fprintf(stderr, "BŁĄD: '%s' nie jest poprawną liczbą dla parametru -t\n", argv[i + 1]);
+                return -1;
+            }
+
+            if (t < 0) {
+                fprintf(stderr, "BŁĄD: Czas symulacji nie może być ujemny\n");
+                return -1;
+            }
+
+            *czas_symulacji = (t == 0) ? -1 : t;  /* 0 oznacza nieskończoność */
             i++;
-        } else if (strcmp(argv[i], "-n") == 0 && i + 1 < argc) {
-            int n = atoi(argv[i + 1]);
-            if (n < 1 || n > 500) {
-                fprintf(stderr, "BŁĄD: Liczba turystów musi być między 1 a 500\n");
+
+        } else if (strcmp(argv[i], "-n") == 0) {
+            /* Sprawdź czy jest argument po -n */
+            if (i + 1 >= argc) {
+                fprintf(stderr, "BŁĄD: Brak wartości po parametrze -n\n");
+                fprintf(stderr, "Użyj: -n <liczba_turystow>\n");
                 return -1;
             }
+
+            int n;
+            if (parsuj_liczbe(argv[i + 1], &n) != 0) {
+                fprintf(stderr, "BŁĄD: '%s' nie jest poprawną liczbą dla parametru -n\n", argv[i + 1]);
+                return -1;
+            }
+
+            if (n < 1 || n > 500) {
+                fprintf(stderr, "BŁĄD: Liczba turystów musi być między 1 a 500 (podano: %d)\n", n);
+                return -1;
+            }
+
             *max_turystow = n;
             i++;
+
         } else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
             printf("Użycie: %s [-t czas] [-n liczba_turystow]\n", argv[0]);
-            printf("  -t czas    Czas symulacji w sekundach (10-3600, domyślnie %d)\n", 
-                   CZAS_ZAMKNIECIA);
+            printf("\n");
+            printf("Parametry:\n");
+            printf("  -t czas    Czas symulacji w sekundach (0 = nieskończoność)\n");
+            printf("             Jeśli nie podano, program zapyta interaktywnie\n");
             printf("  -n liczba  Max liczba turystów (1-500, domyślnie 100)\n");
             printf("  -h         Wyświetl tę pomoc\n");
+            printf("\n");
+            printf("Przykłady:\n");
+            printf("  %s              - interaktywne pytanie o czas\n", argv[0]);
+            printf("  %s -t 60        - symulacja przez 60 sekund\n", argv[0]);
+            printf("  %s -t 0         - symulacja w nieskończoność\n", argv[0]);
+            printf("  %s -t 120 -n 50 - 120 sekund, max 50 turystów\n", argv[0]);
             return 1;
+
         } else {
-            fprintf(stderr, "BŁĄD: Nieznany parametr: %s\n", argv[i]);
-            fprintf(stderr, "Użyj -h aby wyświetlić pomoc\n");
+            fprintf(stderr, "BŁĄD: Nieznany parametr: '%s'\n", argv[i]);
+            fprintf(stderr, "Użyj '%s -h' aby wyświetlić pomoc\n", argv[0]);
             return -1;
         }
     }
-    
+
     return 0;
 }
 
 /* ========== GŁÓWNA FUNKCJA PROGRAMU ========== */
 int main(int argc, char *argv[]) {
     int czas_symulacji, max_turystow;
-    
+
     /* Walidacja parametrów */
     int wynik = waliduj_parametry(argc, argv, &czas_symulacji, &max_turystow);
     if (wynik != 0) {
         return (wynik > 0) ? 0 : 1;
     }
-    
+
+    /* Jeśli czas nie podany przez argumenty - zapytaj użytkownika */
+    if (czas_symulacji == -1) {
+        czas_symulacji = zapytaj_o_czas_dzialania();
+    }
+
     /* Inicjalizacja */
     srand(time(NULL) ^ getpid());
     utworz_katalog_logs();
-    wyswietl_banner();
+    wyswietl_banner(czas_symulacji);
     
     /* Ustawienie obsługi sygnałów */
     ustaw_obsluge_sygnalow();
@@ -473,7 +598,11 @@ int main(int argc, char *argv[]) {
     /* Inicjalizacja logowania */
     logger_init("logs/main.log");
     LOG_I("=== ROZPOCZĘCIE SYMULACJI KOLEI LINOWEJ ===");
-    LOG_I("Parametry: %d sekund, max %d turystów", czas_symulacji, max_turystow);
+    if (czas_symulacji == -1) {
+        LOG_I("Parametry: NIESKOŃCZONY czas, max %d turystów", max_turystow);
+    } else {
+        LOG_I("Parametry: %d sekund, max %d turystów", czas_symulacji, max_turystow);
+    }
     
     StanWspoldzielony *stan = zasoby.shm.stan;
     
@@ -502,19 +631,20 @@ int main(int argc, char *argv[]) {
     time_t czas_start = time(NULL);
     int nastepny_id = 1;
     time_t ostatni_turysta = 0;
-    
+    int tryb_nieskonczonosci = (czas_symulacji == -1);
+
     while (!zakonczenie) {
         time_t teraz = time(NULL);
         time_t czas_dzialania = teraz - czas_start;
-        
-        /* Sprawdź koniec symulacji */
-        if (czas_dzialania >= czas_symulacji) {
+
+        /* Sprawdź koniec symulacji (tylko jeśli nie tryb nieskończony) */
+        if (!tryb_nieskonczonosci && czas_dzialania >= czas_symulacji) {
             LOG_I("MAIN: Koniec godzin pracy kolei");
-            
+
             sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
             stan->godziny_pracy = false;
             sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
-            
+
             printf("\n\nKolej zamknięta! Oczekiwanie na opuszczenie stacji...\n");
 
             int timeout = CZAS_WYLACZENIA_PO_ZAMKNIECIU;
@@ -527,11 +657,11 @@ int main(int argc, char *argv[]) {
                 select(0, NULL, NULL, NULL, &tv);  /* Blokuje na 1 sekundę */
                 timeout--;
             }
-            
+
             sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
             stan->kolej_aktywna = false;
             sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
-            
+
             break;
         }
         
