@@ -1,15 +1,59 @@
-[15:24:40][INFO ][PID: 7261] TURYSTA #7: Przychodzę (wiek: 68, rowerzysta, zwykły)
-[15:24:40][INFO ][PID: 7261] TURYSTA #7: Podchodzę do kasy
-[15:24:40][INFO ][PID: 7261] TURYSTA #7: Kupiłem bilet #6 (typ: 4)
-[15:24:40][INFO ][PID: 7261] TURYSTA #7: Czekam na miejsce na stacji
-[15:24:40][INFO ][PID: 7261] TURYSTA #7: Przeszedłem przez bramkę 0
-[15:24:40][INFO ][PID: 7261] TURYSTA #7: Czekam na pozwolenie wejścia na peron
-[15:24:40][INFO ][PID: 7261] TURYSTA #7: Wchodzę na peron
-[15:24:40][INFO ][PID: 7261] TURYSTA #7: Czekam na krzesełko
-[15:24:40][INFO ][PID: 7261] TURYSTA #7: Wsiadłem na krzesełko #6
-[15:24:42][INFO ][PID: 7261] TURYSTA #7: Dojechałem na stację górną
-[15:24:42][INFO ][PID: 7261] TURYSTA #7: Wychodzę wyjściem 1
-[15:24:42][INFO ][PID: 7261] TURYSTA #7 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
-[15:24:47][INFO ][PID: 7261] TURYSTA #7: Ukończyłem zjazd #1
-[15:24:47][INFO ][PID: 7261] TURYSTA #7: Wystarczy na dziś, wychodzę
-[15:24:47][INFO ][PID: 7261] TURYSTA #7: Kończę dzień z 1 zjazdami
+[16:11:49][INFO ][PID: 8160] TURYSTA #7: Przychodzę (wiek: 43, pieszy, zwykły)
+[16:11:49][INFO ][PID: 8160] TURYSTA #7: Podchodzę do kasy
+[16:11:49][INFO ][PID: 8160] TURYSTA #7: Kupiłem bilet #7 (typ: 5)
+[16:11:49][INFO ][PID: 8160] TURYSTA #7: Czekam na miejsce na stacji
+[16:11:49][INFO ][PID: 8160] TURYSTA #7: Przeszedłem przez bramkę 0
+[16:11:49][INFO ][PID: 8160] TURYSTA #7: Czekam na pozwolenie wejścia na peron
+[16:11:49][INFO ][PID: 8160] TURYSTA #7: Wchodzę na peron
+[16:11:49][INFO ][PID: 8160] TURYSTA #7: Czekam na krzesełko
+[16:11:49][INFO ][PID: 8160] TURYSTA #7: Wsiadłem na krzesełko #5
+[16:11:51][INFO ][PID: 8160] TURYSTA #7: Dojechałem na stację górną
+[16:11:51][INFO ][PID: 8160] TURYSTA #7: Wychodzę wyjściem 1
+[16:11:51][INFO ][PID: 8160] TURYSTA #7 (pieszy): Schodzę ze stacji górnej
+[16:11:51][INFO ][PID: 8160] TURYSTA #7: Czekam na miejsce na stacji
+[16:11:51][INFO ][PID: 8160] TURYSTA #7: Przeszedłem przez bramkę 0
+[16:11:51][INFO ][PID: 8160] TURYSTA #7: Czekam na pozwolenie wejścia na peron
+[16:11:51][INFO ][PID: 8160] TURYSTA #7: Wchodzę na peron
+[16:11:51][INFO ][PID: 8160] TURYSTA #7: Czekam na krzesełko
+[16:11:51][INFO ][PID: 8160] TURYSTA #7: Wsiadłem na krzesełko #8
+[16:11:53][INFO ][PID: 8160] TURYSTA #7: Dojechałem na stację górną
+[16:11:53][INFO ][PID: 8160] TURYSTA #7: Wychodzę wyjściem 0
+[16:11:53][INFO ][PID: 8160] TURYSTA #7 (pieszy): Schodzę ze stacji górnej
+[16:11:53][INFO ][PID: 8160] TURYSTA #7: Czekam na miejsce na stacji
+[16:11:53][INFO ][PID: 8160] TURYSTA #7: Przeszedłem przez bramkę 0
+[16:11:53][INFO ][PID: 8160] TURYSTA #7: Czekam na pozwolenie wejścia na peron
+[16:11:53][INFO ][PID: 8160] TURYSTA #7: Wchodzę na peron
+[16:11:53][INFO ][PID: 8160] TURYSTA #7: Czekam na krzesełko
+[16:11:53][INFO ][PID: 8160] TURYSTA #7: Wsiadłem na krzesełko #12
+[16:11:55][INFO ][PID: 8160] TURYSTA #7: Dojechałem na stację górną
+[16:11:55][INFO ][PID: 8160] TURYSTA #7: Wychodzę wyjściem 0
+[16:11:55][INFO ][PID: 8160] TURYSTA #7 (pieszy): Schodzę ze stacji górnej
+[16:11:55][INFO ][PID: 8160] TURYSTA #7: Czekam na miejsce na stacji
+[16:11:55][INFO ][PID: 8160] TURYSTA #7: Przeszedłem przez bramkę 0
+[16:11:55][INFO ][PID: 8160] TURYSTA #7: Czekam na pozwolenie wejścia na peron
+[16:11:55][INFO ][PID: 8160] TURYSTA #7: Wchodzę na peron
+[16:11:55][INFO ][PID: 8160] TURYSTA #7: Czekam na krzesełko
+[16:11:56][INFO ][PID: 8160] TURYSTA #7: Wsiadłem na krzesełko #18
+[16:11:58][INFO ][PID: 8160] TURYSTA #7: Dojechałem na stację górną
+[16:11:58][INFO ][PID: 8160] TURYSTA #7: Wychodzę wyjściem 1
+[16:11:58][INFO ][PID: 8160] TURYSTA #7 (pieszy): Schodzę ze stacji górnej
+[16:11:58][INFO ][PID: 8160] TURYSTA #7: Czekam na miejsce na stacji
+[16:11:58][INFO ][PID: 8160] TURYSTA #7: Przeszedłem przez bramkę 0
+[16:11:58][INFO ][PID: 8160] TURYSTA #7: Czekam na pozwolenie wejścia na peron
+[16:11:58][INFO ][PID: 8160] TURYSTA #7: Wchodzę na peron
+[16:11:58][INFO ][PID: 8160] TURYSTA #7: Czekam na krzesełko
+[16:11:58][INFO ][PID: 8160] TURYSTA #7: Wsiadłem na krzesełko #24
+[16:12:03][INFO ][PID: 8160] TURYSTA #7: Dojechałem na stację górną
+[16:12:03][INFO ][PID: 8160] TURYSTA #7: Wychodzę wyjściem 1
+[16:12:03][INFO ][PID: 8160] TURYSTA #7 (pieszy): Schodzę ze stacji górnej
+[16:12:03][INFO ][PID: 8160] TURYSTA #7: Czekam na miejsce na stacji
+[16:12:03][INFO ][PID: 8160] TURYSTA #7: Przeszedłem przez bramkę 0
+[16:12:03][INFO ][PID: 8160] TURYSTA #7: Czekam na pozwolenie wejścia na peron
+[16:12:03][INFO ][PID: 8160] TURYSTA #7: Wchodzę na peron
+[16:12:03][INFO ][PID: 8160] TURYSTA #7: Czekam na krzesełko
+[16:12:04][INFO ][PID: 8160] TURYSTA #7: Wsiadłem na krzesełko #30
+[16:12:06][INFO ][PID: 8160] TURYSTA #7: Dojechałem na stację górną
+[16:12:06][INFO ][PID: 8160] TURYSTA #7: Wychodzę wyjściem 0
+[16:12:06][INFO ][PID: 8160] TURYSTA #7 (pieszy): Schodzę ze stacji górnej
+[16:12:06][INFO ][PID: 8160] TURYSTA #7: Wystarczy na dziś, wychodzę
+[16:12:06][INFO ][PID: 8160] TURYSTA #7: Kończę dzień z 6 zjazdami

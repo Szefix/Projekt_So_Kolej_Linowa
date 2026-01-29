@@ -1,14 +1,41 @@
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Przychodzę (wiek: 31, pieszy, zwykły)
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Podchodzę do kasy
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Kupiłem bilet #53 (typ: 1)
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Czekam na miejsce na stacji
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Przeszedłem przez bramkę 0
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Czekam na pozwolenie wejścia na peron
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Wchodzę na peron
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Czekam na krzesełko
-[15:25:18][INFO ][PID: 7332] TURYSTA #54: Wsiadłem na krzesełko #22
-[15:25:20][INFO ][PID: 7332] TURYSTA #54: Dojechałem na stację górną
-[15:25:20][INFO ][PID: 7332] TURYSTA #54: Wychodzę wyjściem 0
-[15:25:20][INFO ][PID: 7332] TURYSTA #54 (pieszy): Schodzę ze stacji górnej
-[15:25:20][INFO ][PID: 7332] TURYSTA #54: Bilet nieważny, kończę
-[15:25:20][INFO ][PID: 7332] TURYSTA #54: Kończę dzień z 1 zjazdami
+[16:12:28][INFO ][PID: 8207] TURYSTA #54: Przychodzę (wiek: 69, pieszy, zwykły)
+[16:12:28][INFO ][PID: 8207] TURYSTA #54: Podchodzę do kasy
+[16:12:28][INFO ][PID: 8207] TURYSTA #54: Kupiłem bilet #54 (typ: 3)
+[16:12:28][INFO ][PID: 8207] TURYSTA #54: Czekam na miejsce na stacji
+[16:12:28][INFO ][PID: 8207] TURYSTA #54: Przeszedłem przez bramkę 0
+[16:12:28][INFO ][PID: 8207] TURYSTA #54: Czekam na pozwolenie wejścia na peron
+[16:12:28][INFO ][PID: 8207] TURYSTA #54: Wchodzę na peron
+[16:12:28][INFO ][PID: 8207] TURYSTA #54: Czekam na krzesełko
+[16:12:28][INFO ][PID: 8207] TURYSTA #54: Wsiadłem na krzesełko #8
+[16:12:30][INFO ][PID: 8207] TURYSTA #54: Dojechałem na stację górną
+[16:12:30][INFO ][PID: 8207] TURYSTA #54: Wychodzę wyjściem 1
+[16:12:30][INFO ][PID: 8207] TURYSTA #54 (pieszy): Schodzę ze stacji górnej
+[16:12:30][INFO ][PID: 8207] TURYSTA #54: Czekam na miejsce na stacji
+[16:12:30][INFO ][PID: 8207] TURYSTA #54: Przeszedłem przez bramkę 0
+[16:12:30][INFO ][PID: 8207] TURYSTA #54: Czekam na pozwolenie wejścia na peron
+[16:12:30][INFO ][PID: 8207] TURYSTA #54: Wchodzę na peron
+[16:12:30][INFO ][PID: 8207] TURYSTA #54: Czekam na krzesełko
+[16:12:30][INFO ][PID: 8207] TURYSTA #54: Wsiadłem na krzesełko #17
+[16:12:32][INFO ][PID: 8207] TURYSTA #54: Dojechałem na stację górną
+[16:12:32][INFO ][PID: 8207] TURYSTA #54: Wychodzę wyjściem 1
+[16:12:32][INFO ][PID: 8207] TURYSTA #54 (pieszy): Schodzę ze stacji górnej
+[16:12:32][INFO ][PID: 8207] TURYSTA #54: Czekam na miejsce na stacji
+[16:12:32][INFO ][PID: 8207] TURYSTA #54: Przeszedłem przez bramkę 0
+[16:12:32][INFO ][PID: 8207] TURYSTA #54: Czekam na pozwolenie wejścia na peron
+[16:12:32][INFO ][PID: 8207] TURYSTA #54: Wchodzę na peron
+[16:12:32][INFO ][PID: 8207] TURYSTA #54: Czekam na krzesełko
+[16:12:32][INFO ][PID: 8207] TURYSTA #54: Wsiadłem na krzesełko #23
+[16:12:38][INFO ][PID: 8207] TURYSTA #54: Dojechałem na stację górną
+[16:12:38][INFO ][PID: 8207] TURYSTA #54: Wychodzę wyjściem 0
+[16:12:38][INFO ][PID: 8207] TURYSTA #54 (pieszy): Schodzę ze stacji górnej
+[16:12:38][INFO ][PID: 8207] TURYSTA #54: Czekam na miejsce na stacji
+[16:12:38][INFO ][PID: 8207] TURYSTA #54: Przeszedłem przez bramkę 0
+[16:12:38][INFO ][PID: 8207] TURYSTA #54: Czekam na pozwolenie wejścia na peron
+[16:12:38][INFO ][PID: 8207] TURYSTA #54: Wchodzę na peron
+[16:12:38][INFO ][PID: 8207] TURYSTA #54: Czekam na krzesełko
+[16:12:38][INFO ][PID: 8207] TURYSTA #54: Wsiadłem na krzesełko #31
+[16:12:40][INFO ][PID: 8207] TURYSTA #54: Dojechałem na stację górną
+[16:12:40][INFO ][PID: 8207] TURYSTA #54: Wychodzę wyjściem 1
+[16:12:40][INFO ][PID: 8207] TURYSTA #54 (pieszy): Schodzę ze stacji górnej
+[16:12:40][INFO ][PID: 8207] TURYSTA #54: Wystarczy na dziś, wychodzę
+[16:12:40][INFO ][PID: 8207] TURYSTA #54: Kończę dzień z 4 zjazdami

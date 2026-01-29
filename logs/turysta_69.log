@@ -1,14 +1,10 @@
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Przychodzę (wiek: 56, pieszy, zwykły)
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Podchodzę do kasy
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Kupiłem bilet #68 (typ: 2)
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Czekam na miejsce na stacji
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Przeszedłem przez bramkę 0
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Czekam na pozwolenie wejścia na peron
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Wchodzę na peron
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Czekam na krzesełko
-[15:25:32][INFO ][PID: 7347] TURYSTA #69: Wsiadłem na krzesełko #14
-[15:25:34][INFO ][PID: 7347] TURYSTA #69: Dojechałem na stację górną
-[15:25:34][INFO ][PID: 7347] TURYSTA #69: Wychodzę wyjściem 1
-[15:25:34][INFO ][PID: 7347] TURYSTA #69 (pieszy): Schodzę ze stacji górnej
-[15:25:34][INFO ][PID: 7347] TURYSTA #69: Wystarczy na dziś, wychodzę
-[15:25:34][INFO ][PID: 7347] TURYSTA #69: Kończę dzień z 1 zjazdami
+[16:12:45][INFO ][PID: 8222] TURYSTA #69: Przychodzę (wiek: 57, rowerzysta, zwykły)
+[16:12:45][INFO ][PID: 8222] TURYSTA #69: Podchodzę do kasy
+[16:12:45][INFO ][PID: 8222] TURYSTA #69: Kupiłem bilet #69 (typ: 3)
+[16:12:45][INFO ][PID: 8222] TURYSTA #69: Czekam na miejsce na stacji
+[16:12:45][INFO ][PID: 8222] TURYSTA #69: Przeszedłem przez bramkę 0
+[16:12:45][INFO ][PID: 8222] TURYSTA #69: Czekam na pozwolenie wejścia na peron
+[16:12:45][INFO ][PID: 8222] TURYSTA #69: Wchodzę na peron
+[16:12:45][INFO ][PID: 8222] TURYSTA #69: Czekam na krzesełko
+[16:12:45][INFO ][PID: 8222] TURYSTA #69: Wsiadłem na krzesełko #9
+[16:12:47][INFO ][PID: 8222] TURYSTA #69: Kończę dzień z 0 zjazdami

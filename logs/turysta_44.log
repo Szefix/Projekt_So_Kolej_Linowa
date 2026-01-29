@@ -1,15 +1,14 @@
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Przychodzę (wiek: 56, rowerzysta, zwykły)
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Podchodzę do kasy
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Kupiłem bilet #43 (typ: 2)
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Czekam na miejsce na stacji
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Przeszedłem przez bramkę 0
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Czekam na pozwolenie wejścia na peron
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Wchodzę na peron
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Czekam na krzesełko
-[15:25:12][INFO ][PID: 7322] TURYSTA #44: Wsiadłem na krzesełko #5
-[15:25:14][INFO ][PID: 7322] TURYSTA #44: Dojechałem na stację górną
-[15:25:14][INFO ][PID: 7322] TURYSTA #44: Wychodzę wyjściem 0
-[15:25:14][INFO ][PID: 7322] TURYSTA #44 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:25:22][INFO ][PID: 7322] TURYSTA #44: Ukończyłem zjazd #1
-[15:25:22][INFO ][PID: 7322] TURYSTA #44: Wystarczy na dziś, wychodzę
-[15:25:22][INFO ][PID: 7322] TURYSTA #44: Kończę dzień z 1 zjazdami
+[16:12:21][INFO ][PID: 8197] TURYSTA #44: Przychodzę (wiek: 24, pieszy, zwykły)
+[16:12:21][INFO ][PID: 8197] TURYSTA #44: Podchodzę do kasy
+[16:12:21][INFO ][PID: 8197] TURYSTA #44: Kupiłem bilet #44 (typ: 1)
+[16:12:21][INFO ][PID: 8197] TURYSTA #44: Czekam na miejsce na stacji
+[16:12:21][INFO ][PID: 8197] TURYSTA #44: Przeszedłem przez bramkę 0
+[16:12:21][INFO ][PID: 8197] TURYSTA #44: Czekam na pozwolenie wejścia na peron
+[16:12:21][INFO ][PID: 8197] TURYSTA #44: Wchodzę na peron
+[16:12:21][INFO ][PID: 8197] TURYSTA #44: Czekam na krzesełko
+[16:12:21][INFO ][PID: 8197] TURYSTA #44: Wsiadłem na krzesełko #19
+[16:12:23][INFO ][PID: 8197] TURYSTA #44: Dojechałem na stację górną
+[16:12:23][INFO ][PID: 8197] TURYSTA #44: Wychodzę wyjściem 1
+[16:12:23][INFO ][PID: 8197] TURYSTA #44 (pieszy): Schodzę ze stacji górnej
+[16:12:23][INFO ][PID: 8197] TURYSTA #44: Bilet nieważny, kończę
+[16:12:23][INFO ][PID: 8197] TURYSTA #44: Kończę dzień z 1 zjazdami

@@ -1,20 +1,14 @@
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Przychodzę (wiek: 69, rowerzysta, zwykły)
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Podchodzę do kasy
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Kupiłem bilet #54 (typ: 2)
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Czekam na miejsce na stacji
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Przeszedłem przez bramkę 0
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Czekam na pozwolenie wejścia na peron
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Wchodzę na peron
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Czekam na krzesełko
-[15:25:19][INFO ][PID: 7333] TURYSTA #55: Wsiadłem na krzesełko #24
-[15:25:21][INFO ][PID: 7333] TURYSTA #55: Dojechałem na stację górną
-[15:25:21][INFO ][PID: 7333] TURYSTA #55: Wychodzę wyjściem 1
-[15:25:21][INFO ][PID: 7333] TURYSTA #55 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:25:32][INFO ][PID: 7333] TURYSTA #55: Ukończyłem zjazd #1
-[15:25:32][INFO ][PID: 7333] TURYSTA #55: Czekam na miejsce na stacji
-[15:25:32][INFO ][PID: 7333] TURYSTA #55: Przeszedłem przez bramkę 0
-[15:25:32][INFO ][PID: 7333] TURYSTA #55: Czekam na pozwolenie wejścia na peron
-[15:25:33][INFO ][PID: 7333] TURYSTA #55: Wchodzę na peron
-[15:25:33][INFO ][PID: 7333] TURYSTA #55: Czekam na krzesełko
-[15:25:33][INFO ][PID: 7333] TURYSTA #55: Wsiadłem na krzesełko #17
-[15:25:35][INFO ][PID: 7333] TURYSTA #55: Kończę dzień z 1 zjazdami
+[16:12:29][INFO ][PID: 8208] TURYSTA #55: Przychodzę (wiek: 65, pieszy, zwykły)
+[16:12:29][INFO ][PID: 8208] TURYSTA #55: Podchodzę do kasy
+[16:12:29][INFO ][PID: 8208] TURYSTA #55: Kupiłem bilet #55 (typ: 1)
+[16:12:29][INFO ][PID: 8208] TURYSTA #55: Czekam na miejsce na stacji
+[16:12:29][INFO ][PID: 8208] TURYSTA #55: Przeszedłem przez bramkę 0
+[16:12:29][INFO ][PID: 8208] TURYSTA #55: Czekam na pozwolenie wejścia na peron
+[16:12:29][INFO ][PID: 8208] TURYSTA #55: Wchodzę na peron
+[16:12:29][INFO ][PID: 8208] TURYSTA #55: Czekam na krzesełko
+[16:12:29][INFO ][PID: 8208] TURYSTA #55: Wsiadłem na krzesełko #13
+[16:12:31][INFO ][PID: 8208] TURYSTA #55: Dojechałem na stację górną
+[16:12:31][INFO ][PID: 8208] TURYSTA #55: Wychodzę wyjściem 1
+[16:12:31][INFO ][PID: 8208] TURYSTA #55 (pieszy): Schodzę ze stacji górnej
+[16:12:31][INFO ][PID: 8208] TURYSTA #55: Bilet nieważny, kończę
+[16:12:31][INFO ][PID: 8208] TURYSTA #55: Kończę dzień z 1 zjazdami

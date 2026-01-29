@@ -1,15 +1,15 @@
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Przychodzę (wiek: 66, rowerzysta, zwykły)
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Podchodzę do kasy
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Kupiłem bilet #27 (typ: 4)
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Czekam na miejsce na stacji
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Przeszedłem przez bramkę 0
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Czekam na pozwolenie wejścia na peron
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Wchodzę na peron
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Czekam na krzesełko
-[15:25:01][INFO ][PID: 7296] TURYSTA #28: Wsiadłem na krzesełko #6
-[15:25:03][INFO ][PID: 7296] TURYSTA #28: Dojechałem na stację górną
-[15:25:03][INFO ][PID: 7296] TURYSTA #28: Wychodzę wyjściem 0
-[15:25:03][INFO ][PID: 7296] TURYSTA #28 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[15:25:06][INFO ][PID: 7296] TURYSTA #28: Ukończyłem zjazd #1
-[15:25:06][INFO ][PID: 7296] TURYSTA #28: Wystarczy na dziś, wychodzę
-[15:25:06][INFO ][PID: 7296] TURYSTA #28: Kończę dzień z 1 zjazdami
+[16:12:09][INFO ][PID: 8181] TURYSTA #28: Przychodzę (wiek: 43, rowerzysta, zwykły)
+[16:12:09][INFO ][PID: 8181] TURYSTA #28: Podchodzę do kasy
+[16:12:09][INFO ][PID: 8181] TURYSTA #28: Kupiłem bilet #28 (typ: 4)
+[16:12:09][INFO ][PID: 8181] TURYSTA #28: Czekam na miejsce na stacji
+[16:12:09][INFO ][PID: 8181] TURYSTA #28: Przeszedłem przez bramkę 0
+[16:12:09][INFO ][PID: 8181] TURYSTA #28: Czekam na pozwolenie wejścia na peron
+[16:12:09][INFO ][PID: 8181] TURYSTA #28: Wchodzę na peron
+[16:12:09][INFO ][PID: 8181] TURYSTA #28: Czekam na krzesełko
+[16:12:09][INFO ][PID: 8181] TURYSTA #28: Wsiadłem na krzesełko #10
+[16:12:11][INFO ][PID: 8181] TURYSTA #28: Dojechałem na stację górną
+[16:12:11][INFO ][PID: 8181] TURYSTA #28: Wychodzę wyjściem 0
+[16:12:11][INFO ][PID: 8181] TURYSTA #28 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
+[16:12:16][INFO ][PID: 8181] TURYSTA #28: Ukończyłem zjazd #1
+[16:12:16][INFO ][PID: 8181] TURYSTA #28: Wystarczy na dziś, wychodzę
+[16:12:16][INFO ][PID: 8181] TURYSTA #28: Kończę dzień z 1 zjazdami

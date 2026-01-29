@@ -1,45 +1,14 @@
-[15:24:45][INFO ][PID: 7267] TURYSTA #13: Przychodzę (wiek: 26, rowerzysta, zwykły)
-[15:24:45][INFO ][PID: 7267] TURYSTA #13: Podchodzę do kasy
-[15:24:45][INFO ][PID: 7267] TURYSTA #13: Kupiłem bilet #12 (typ: 3)
-[15:24:45][INFO ][PID: 7267] TURYSTA #13: Czekam na miejsce na stacji
-[15:24:45][INFO ][PID: 7267] TURYSTA #13: Przeszedłem przez bramkę 0
-[15:24:45][INFO ][PID: 7267] TURYSTA #13: Czekam na pozwolenie wejścia na peron
-[15:24:45][INFO ][PID: 7267] TURYSTA #13: Wchodzę na peron
-[15:24:45][INFO ][PID: 7267] TURYSTA #13: Czekam na krzesełko
-[15:24:45][INFO ][PID: 7267] TURYSTA #13: Wsiadłem na krzesełko #14
-[15:24:47][INFO ][PID: 7267] TURYSTA #13: Dojechałem na stację górną
-[15:24:47][INFO ][PID: 7267] TURYSTA #13: Wychodzę wyjściem 1
-[15:24:47][INFO ][PID: 7267] TURYSTA #13 (rowerzysta): Wybieram trasę T2 (średnia) (czas: 5s)
-[15:24:55][INFO ][PID: 7267] TURYSTA #13: Ukończyłem zjazd #1
-[15:24:55][INFO ][PID: 7267] TURYSTA #13: Czekam na miejsce na stacji
-[15:24:55][INFO ][PID: 7267] TURYSTA #13: Przeszedłem przez bramkę 0
-[15:24:55][INFO ][PID: 7267] TURYSTA #13: Czekam na pozwolenie wejścia na peron
-[15:24:55][INFO ][PID: 7267] TURYSTA #13: Wchodzę na peron
-[15:24:55][INFO ][PID: 7267] TURYSTA #13: Czekam na krzesełko
-[15:24:56][INFO ][PID: 7267] TURYSTA #13: Wsiadłem na krzesełko #27
-[15:24:58][INFO ][PID: 7267] TURYSTA #13: Dojechałem na stację górną
-[15:24:58][INFO ][PID: 7267] TURYSTA #13: Wychodzę wyjściem 0
-[15:24:58][INFO ][PID: 7267] TURYSTA #13 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[15:25:01][INFO ][PID: 7267] TURYSTA #13: Ukończyłem zjazd #2
-[15:25:01][INFO ][PID: 7267] TURYSTA #13: Czekam na miejsce na stacji
-[15:25:01][INFO ][PID: 7267] TURYSTA #13: Przeszedłem przez bramkę 0
-[15:25:01][INFO ][PID: 7267] TURYSTA #13: Czekam na pozwolenie wejścia na peron
-[15:25:01][INFO ][PID: 7267] TURYSTA #13: Wchodzę na peron
-[15:25:01][INFO ][PID: 7267] TURYSTA #13: Czekam na krzesełko
-[15:25:01][INFO ][PID: 7267] TURYSTA #13: Wsiadłem na krzesełko #8
-[15:25:03][INFO ][PID: 7267] TURYSTA #13: Dojechałem na stację górną
-[15:25:03][INFO ][PID: 7267] TURYSTA #13: Wychodzę wyjściem 1
-[15:25:03][INFO ][PID: 7267] TURYSTA #13 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
-[15:25:06][INFO ][PID: 7267] TURYSTA #13: Ukończyłem zjazd #3
-[15:25:06][INFO ][PID: 7267] TURYSTA #13: Czekam na miejsce na stacji
-[15:25:06][INFO ][PID: 7267] TURYSTA #13: Przeszedłem przez bramkę 0
-[15:25:06][INFO ][PID: 7267] TURYSTA #13: Czekam na pozwolenie wejścia na peron
-[15:25:07][INFO ][PID: 7267] TURYSTA #13: Wchodzę na peron
-[15:25:07][INFO ][PID: 7267] TURYSTA #13: Czekam na krzesełko
-[15:25:07][INFO ][PID: 7267] TURYSTA #13: Wsiadłem na krzesełko #28
-[15:25:09][INFO ][PID: 7267] TURYSTA #13: Dojechałem na stację górną
-[15:25:09][INFO ][PID: 7267] TURYSTA #13: Wychodzę wyjściem 0
-[15:25:09][INFO ][PID: 7267] TURYSTA #13 (rowerzysta): Wybieram trasę T3 (trudna) (czas: 8s)
-[15:25:17][INFO ][PID: 7267] TURYSTA #13: Ukończyłem zjazd #4
-[15:25:17][INFO ][PID: 7267] TURYSTA #13: Bilet nieważny, kończę
-[15:25:17][INFO ][PID: 7267] TURYSTA #13: Kończę dzień z 4 zjazdami
+[16:11:54][INFO ][PID: 8166] TURYSTA #13: Przychodzę (wiek: 67, pieszy, zwykły)
+[16:11:54][INFO ][PID: 8166] TURYSTA #13: Podchodzę do kasy
+[16:11:54][INFO ][PID: 8166] TURYSTA #13: Kupiłem bilet #13 (typ: 1)
+[16:11:54][INFO ][PID: 8166] TURYSTA #13: Czekam na miejsce na stacji
+[16:11:54][INFO ][PID: 8166] TURYSTA #13: Przeszedłem przez bramkę 0
+[16:11:54][INFO ][PID: 8166] TURYSTA #13: Czekam na pozwolenie wejścia na peron
+[16:11:54][INFO ][PID: 8166] TURYSTA #13: Wchodzę na peron
+[16:11:54][INFO ][PID: 8166] TURYSTA #13: Czekam na krzesełko
+[16:11:54][INFO ][PID: 8166] TURYSTA #13: Wsiadłem na krzesełko #13
+[16:11:56][INFO ][PID: 8166] TURYSTA #13: Dojechałem na stację górną
+[16:11:56][INFO ][PID: 8166] TURYSTA #13: Wychodzę wyjściem 0
+[16:11:56][INFO ][PID: 8166] TURYSTA #13 (pieszy): Schodzę ze stacji górnej
+[16:11:56][INFO ][PID: 8166] TURYSTA #13: Bilet nieważny, kończę
+[16:11:56][INFO ][PID: 8166] TURYSTA #13: Kończę dzień z 1 zjazdami

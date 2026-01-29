@@ -1,144 +1,142 @@
-[15:24:33][INFO ][PID: 7251] KASJER: Rozpoczynam pracę (PID: 7251)
-[15:24:35][INFO ][PID: 7251] KASJER: Obsługuję turystę #2 (wiek: 57, VIP: NIE)
-[15:24:35][INFO ][PID: 7251] KASJER: Wydaję bilet #1, cena: 70 zł
-[15:24:36][INFO ][PID: 7251] KASJER: Obsługuję turystę #3 (wiek: 35, VIP: NIE)
-[15:24:36][INFO ][PID: 7251] KASJER: Wydaję bilet #2, cena: 100 zł
-[15:24:37][INFO ][PID: 7251] KASJER: Obsługuję turystę #4 (wiek: 38, VIP: NIE)
-[15:24:37][INFO ][PID: 7251] KASJER: Wydaję bilet #3, cena: 30 zł
-[15:24:38][INFO ][PID: 7251] KASJER: Obsługuję turystę #5 (wiek: 28, VIP: NIE)
-[15:24:38][INFO ][PID: 7251] KASJER: Wydaję bilet #4, cena: 15 zł
-[15:24:39][INFO ][PID: 7251] KASJER: Obsługuję turystę #6 (wiek: 45, VIP: NIE)
-[15:24:39][INFO ][PID: 7251] KASJER: Wydaję bilet #5, cena: 30 zł
-[15:24:40][INFO ][PID: 7251] KASJER: Obsługuję turystę #7 (wiek: 68, VIP: NIE)
-[15:24:40][INFO ][PID: 7251] KASJER: Wydaję bilet #6, cena: 52 zł
-[15:24:41][INFO ][PID: 7251] KASJER: Obsługuję turystę #8 (wiek: 28, VIP: NIE)
-[15:24:41][INFO ][PID: 7251] KASJER: Wydaję bilet #7, cena: 100 zł
-[15:24:42][INFO ][PID: 7251] KASJER: Obsługuję turystę #9 (wiek: 34, VIP: NIE)
-[15:24:42][INFO ][PID: 7251] KASJER: Wydaję bilet #8, cena: 70 zł
-[15:24:43][INFO ][PID: 7251] KASJER: Obsługuję turystę #10 (wiek: 39, VIP: NIE)
-[15:24:43][INFO ][PID: 7251] KASJER: Wydaję bilet #9, cena: 30 zł
-[15:24:44][INFO ][PID: 7251] KASJER: Obsługuję turystę #11 (wiek: 28, VIP: NIE)
-[15:24:44][INFO ][PID: 7251] KASJER: Wydaję bilet #10, cena: 15 zł
-[15:24:44][INFO ][PID: 7251] KASJER: Obsługuję turystę #12 (wiek: 5, VIP: NIE)
-[15:24:44][INFO ][PID: 7251] KASJER: Wydaję bilet #11, cena: 75 zł
-[15:24:45][INFO ][PID: 7251] KASJER: Obsługuję turystę #13 (wiek: 26, VIP: NIE)
-[15:24:45][INFO ][PID: 7251] KASJER: Wydaję bilet #12, cena: 50 zł
-[15:24:46][INFO ][PID: 7251] KASJER: Obsługuję turystę #14 (wiek: 38, VIP: NIE)
-[15:24:46][INFO ][PID: 7251] KASJER: Wydaję bilet #13, cena: 30 zł
-[15:24:46][INFO ][PID: 7251] KASJER: Obsługuję turystę #15 (wiek: 4, VIP: NIE)
-[15:24:46][INFO ][PID: 7251] KASJER: Wydaję bilet #14, cena: 52 zł
-[15:24:47][INFO ][PID: 7251] KASJER: Obsługuję turystę #16 (wiek: 67, VIP: NIE)
-[15:24:47][INFO ][PID: 7251] KASJER: Wydaję bilet #15, cena: 37 zł
-[15:24:48][INFO ][PID: 7251] KASJER: Obsługuję turystę #17 (wiek: 68, VIP: NIE)
-[15:24:48][INFO ][PID: 7251] KASJER: Wydaję bilet #16, cena: 22 zł
-[15:24:52][INFO ][PID: 7251] KASJER: Obsługuję turystę #18 (wiek: 40, VIP: NIE)
-[15:24:52][INFO ][PID: 7251] KASJER: Wydaję bilet #17, cena: 30 zł
-[15:24:53][INFO ][PID: 7251] KASJER: Obsługuję turystę #19 (wiek: 58, VIP: NIE)
-[15:24:53][INFO ][PID: 7251] KASJER: Wydaję bilet #18, cena: 15 zł
-[15:24:54][INFO ][PID: 7251] KASJER: Obsługuję turystę #20 (wiek: 46, VIP: NIE)
-[15:24:54][INFO ][PID: 7251] KASJER: Wydaję bilet #19, cena: 50 zł
-[15:24:55][INFO ][PID: 7251] KASJER: Obsługuję turystę #21 (wiek: 22, VIP: NIE)
-[15:24:55][INFO ][PID: 7251] KASJER: Wydaję bilet #20, cena: 30 zł
-[15:24:56][INFO ][PID: 7251] KASJER: Obsługuję turystę #22 (wiek: 34, VIP: NIE)
-[15:24:56][INFO ][PID: 7251] KASJER: Wydaję bilet #21, cena: 50 zł
-[15:24:57][INFO ][PID: 7251] KASJER: Obsługuję turystę #23 (wiek: 28, VIP: NIE)
-[15:24:57][INFO ][PID: 7251] KASJER: Wydaję bilet #22, cena: 100 zł
-[15:24:57][INFO ][PID: 7251] KASJER: Obsługuję turystę #24 (wiek: 4, VIP: NIE)
-[15:24:57][INFO ][PID: 7251] KASJER: Wydaję bilet #23, cena: 75 zł
-[15:24:58][INFO ][PID: 7251] KASJER: Obsługuję turystę #25 (wiek: 31, VIP: NIE)
-[15:24:58][INFO ][PID: 7251] KASJER: Wydaję bilet #24, cena: 100 zł
-[15:24:59][INFO ][PID: 7251] KASJER: Obsługuję turystę #26 (wiek: 22, VIP: NIE)
-[15:24:59][INFO ][PID: 7251] KASJER: Wydaję bilet #25, cena: 100 zł
-[15:25:00][INFO ][PID: 7251] KASJER: Obsługuję turystę #27 (wiek: 25, VIP: NIE)
-[15:25:00][INFO ][PID: 7251] KASJER: Wydaję bilet #26, cena: 30 zł
-[15:25:01][INFO ][PID: 7251] KASJER: Obsługuję turystę #28 (wiek: 66, VIP: NIE)
-[15:25:01][INFO ][PID: 7251] KASJER: Wydaję bilet #27, cena: 52 zł
-[15:25:01][INFO ][PID: 7251] KASJER: Obsługuję turystę #29 (wiek: 7, VIP: NIE)
-[15:25:01][INFO ][PID: 7251] KASJER: Wydaję bilet #28, cena: 11 zł
-[15:25:02][INFO ][PID: 7251] KASJER: Obsługuję turystę #30 (wiek: 20, VIP: NIE)
-[15:25:02][INFO ][PID: 7251] KASJER: Wydaję bilet #29, cena: 50 zł
-[15:25:03][INFO ][PID: 7251] KASJER: Obsługuję turystę #31 (wiek: 27, VIP: NIE)
-[15:25:03][INFO ][PID: 7251] KASJER: Wydaję bilet #30, cena: 100 zł
-[15:25:03][INFO ][PID: 7251] KASJER: Obsługuję turystę #32 (wiek: 7, VIP: NIE)
-[15:25:03][INFO ][PID: 7251] KASJER: Wydaję bilet #31, cena: 37 zł
-[15:25:04][INFO ][PID: 7251] KASJER: Obsługuję turystę #33 (wiek: 47, VIP: NIE)
-[15:25:04][INFO ][PID: 7251] KASJER: Wydaję bilet #32, cena: 15 zł
-[15:25:05][INFO ][PID: 7251] KASJER: Obsługuję turystę #34 (wiek: 57, VIP: NIE)
-[15:25:05][INFO ][PID: 7251] KASJER: Wydaję bilet #33, cena: 15 zł
-[15:25:06][INFO ][PID: 7251] KASJER: Obsługuję turystę #35 (wiek: 32, VIP: NIE)
-[15:25:06][INFO ][PID: 7251] KASJER: Wydaję bilet #34, cena: 50 zł
-[15:25:06][INFO ][PID: 7251] KASJER: Obsługuję turystę #36 (wiek: 7, VIP: NIE)
-[15:25:06][INFO ][PID: 7251] KASJER: Wydaję bilet #35, cena: 22 zł
-[15:25:06][INFO ][PID: 7251] KASJER: Obsługuję turystę #37 (wiek: 7, VIP: NIE)
-[15:25:06][INFO ][PID: 7251] KASJER: Wydaję bilet #36, cena: 11 zł
-[15:25:07][INFO ][PID: 7251] KASJER: Obsługuję turystę #38 (wiek: 28, VIP: NIE)
-[15:25:07][INFO ][PID: 7251] KASJER: Wydaję bilet #37, cena: 15 zł
-[15:25:08][INFO ][PID: 7251] KASJER: Obsługuję turystę #39 (wiek: 21, VIP: NIE)
-[15:25:08][INFO ][PID: 7251] KASJER: Wydaję bilet #38, cena: 30 zł
-[15:25:09][INFO ][PID: 7251] KASJER: Obsługuję turystę #40 (wiek: 55, VIP: NIE)
-[15:25:09][INFO ][PID: 7251] KASJER: Wydaję bilet #39, cena: 15 zł
-[15:25:09][INFO ][PID: 7251] KASJER: Obsługuję turystę #41 (wiek: 7, VIP: NIE)
-[15:25:09][INFO ][PID: 7251] KASJER: Wydaję bilet #40, cena: 52 zł
-[15:25:10][INFO ][PID: 7251] KASJER: Obsługuję turystę #42 (wiek: 31, VIP: NIE)
-[15:25:10][INFO ][PID: 7251] KASJER: Wydaję bilet #41, cena: 50 zł
-[15:25:11][INFO ][PID: 7251] KASJER: Obsługuję turystę #43 (wiek: 26, VIP: NIE)
-[15:25:11][INFO ][PID: 7251] KASJER: Wydaję bilet #42, cena: 15 zł
-[15:25:12][INFO ][PID: 7251] KASJER: Obsługuję turystę #44 (wiek: 56, VIP: NIE)
-[15:25:12][INFO ][PID: 7251] KASJER: Wydaję bilet #43, cena: 30 zł
-[15:25:13][INFO ][PID: 7251] KASJER: Obsługuję turystę #45 (wiek: 43, VIP: NIE)
-[15:25:13][INFO ][PID: 7251] KASJER: Wydaję bilet #44, cena: 15 zł
-[15:25:14][INFO ][PID: 7251] KASJER: Obsługuję turystę #46 (wiek: 55, VIP: NIE)
-[15:25:14][INFO ][PID: 7251] KASJER: Wydaję bilet #45, cena: 70 zł
-[15:25:15][INFO ][PID: 7251] KASJER: Obsługuję turystę #47 (wiek: 45, VIP: NIE)
-[15:25:15][INFO ][PID: 7251] KASJER: Wydaję bilet #46, cena: 50 zł
-[15:25:15][INFO ][PID: 7251] KASJER: Obsługuję turystę #48 (wiek: 7, VIP: NIE)
-[15:25:15][INFO ][PID: 7251] KASJER: Wydaję bilet #47, cena: 22 zł
-[15:25:16][INFO ][PID: 7251] KASJER: Obsługuję turystę #49 (wiek: 54, VIP: NIE)
-[15:25:16][INFO ][PID: 7251] KASJER: Wydaję bilet #48, cena: 50 zł
-[15:25:16][INFO ][PID: 7251] KASJER: Obsługuję turystę #50 (wiek: 6, VIP: NIE)
-[15:25:16][INFO ][PID: 7251] KASJER: Wydaję bilet #49, cena: 75 zł
-[15:25:16][INFO ][PID: 7251] KASJER: Obsługuję turystę #51 (wiek: 6, VIP: NIE)
-[15:25:16][INFO ][PID: 7251] KASJER: Wydaję bilet #50, cena: 11 zł
-[15:25:17][INFO ][PID: 7251] KASJER: Obsługuję turystę #52 (wiek: 27, VIP: TAK)
-[15:25:17][INFO ][PID: 7251] KASJER: Wydaję bilet #51, cena: 50 zł
-[15:25:17][INFO ][PID: 7251] KASJER: Obsługuję turystę #53 (wiek: 6, VIP: NIE)
-[15:25:17][INFO ][PID: 7251] KASJER: Wydaję bilet #52, cena: 75 zł
-[15:25:18][INFO ][PID: 7251] KASJER: Obsługuję turystę #54 (wiek: 31, VIP: NIE)
-[15:25:18][INFO ][PID: 7251] KASJER: Wydaję bilet #53, cena: 15 zł
-[15:25:19][INFO ][PID: 7251] KASJER: Obsługuję turystę #55 (wiek: 69, VIP: NIE)
-[15:25:19][INFO ][PID: 7251] KASJER: Wydaję bilet #54, cena: 22 zł
-[15:25:19][INFO ][PID: 7251] KASJER: Obsługuję turystę #56 (wiek: 6, VIP: NIE)
-[15:25:19][INFO ][PID: 7251] KASJER: Wydaję bilet #55, cena: 75 zł
-[15:25:20][INFO ][PID: 7251] KASJER: Obsługuję turystę #57 (wiek: 65, VIP: NIE)
-[15:25:20][INFO ][PID: 7251] KASJER: Wydaję bilet #56, cena: 30 zł
-[15:25:20][INFO ][PID: 7251] KASJER: Obsługuję turystę #58 (wiek: 5, VIP: NIE)
-[15:25:20][INFO ][PID: 7251] KASJER: Wydaję bilet #57, cena: 22 zł
-[15:25:20][INFO ][PID: 7251] KASJER: Obsługuję turystę #59 (wiek: 4, VIP: NIE)
-[15:25:20][INFO ][PID: 7251] KASJER: Wydaję bilet #58, cena: 52 zł
-[15:25:21][INFO ][PID: 7251] KASJER: Obsługuję turystę #60 (wiek: 28, VIP: NIE)
-[15:25:21][INFO ][PID: 7251] KASJER: Wydaję bilet #59, cena: 100 zł
-[15:25:22][INFO ][PID: 7251] KASJER: Obsługuję turystę #61 (wiek: 34, VIP: NIE)
-[15:25:22][INFO ][PID: 7251] KASJER: Wydaję bilet #60, cena: 70 zł
-[15:25:23][INFO ][PID: 7251] KASJER: Obsługuję turystę #62 (wiek: 61, VIP: NIE)
-[15:25:23][INFO ][PID: 7251] KASJER: Wydaję bilet #61, cena: 50 zł
-[15:25:24][INFO ][PID: 7251] KASJER: Obsługuję turystę #63 (wiek: 68, VIP: NIE)
-[15:25:24][INFO ][PID: 7251] KASJER: Wydaję bilet #62, cena: 52 zł
-[15:25:28][INFO ][PID: 7251] KASJER: Obsługuję turystę #64 (wiek: 36, VIP: NIE)
-[15:25:28][INFO ][PID: 7251] KASJER: Wydaję bilet #63, cena: 100 zł
-[15:25:29][INFO ][PID: 7251] KASJER: Obsługuję turystę #65 (wiek: 29, VIP: NIE)
-[15:25:29][INFO ][PID: 7251] KASJER: Wydaję bilet #64, cena: 70 zł
-[15:25:29][INFO ][PID: 7251] KASJER: Obsługuję turystę #66 (wiek: 6, VIP: NIE)
-[15:25:29][INFO ][PID: 7251] KASJER: Wydaję bilet #65, cena: 52 zł
-[15:25:30][INFO ][PID: 7251] KASJER: Obsługuję turystę #67 (wiek: 46, VIP: NIE)
-[15:25:30][INFO ][PID: 7251] KASJER: Wydaję bilet #66, cena: 100 zł
-[15:25:31][INFO ][PID: 7251] KASJER: Obsługuję turystę #68 (wiek: 56, VIP: NIE)
-[15:25:31][INFO ][PID: 7251] KASJER: Wydaję bilet #67, cena: 50 zł
-[15:25:32][INFO ][PID: 7251] KASJER: Obsługuję turystę #69 (wiek: 56, VIP: NIE)
-[15:25:32][INFO ][PID: 7251] KASJER: Wydaję bilet #68, cena: 30 zł
-[15:25:32][INFO ][PID: 7251] KASJER: Obsługuję turystę #70 (wiek: 6, VIP: TAK)
-[15:25:32][INFO ][PID: 7251] KASJER: Wydaję bilet #69, cena: 75 zł
-[15:25:32][INFO ][PID: 7251] KASJER: Obsługuję turystę #71 (wiek: 6, VIP: NIE)
-[15:25:32][INFO ][PID: 7251] KASJER: Wydaję bilet #70, cena: 22 zł
-[15:25:33][INFO ][PID: 7251] KASJER: Obsługuję turystę #72 (wiek: 26, VIP: NIE)
-[15:25:33][INFO ][PID: 7251] KASJER: Wydaję bilet #71, cena: 50 zł
-[15:25:35][INFO ][PID: 7251] KASJER: Kończę pracę. Sprzedano 71 biletów.
+[16:11:47][INFO ][PID: 8150] KASJER: Rozpoczynam pracę (PID: 8150)
+[16:11:47][INFO ][PID: 8150] KASJER: Obsługuję turystę #1 (wiek: 52, VIP: NIE)
+[16:11:47][INFO ][PID: 8150] KASJER: Wydaję bilet #1, cena: 70 zł
+[16:11:47][INFO ][PID: 8150] KASJER: Obsługuję turystę #3 (wiek: 6, VIP: NIE)
+[16:11:47][INFO ][PID: 8150] KASJER: Wydaję bilet #2, cena: 75 zł
+[16:11:47][INFO ][PID: 8150] KASJER: Obsługuję turystę #0 (wiek: 4, VIP: TAK)
+[16:11:47][INFO ][PID: 8150] KASJER: Wydaję bilet #3, cena: 11 zł
+[16:11:48][INFO ][PID: 8150] KASJER: Obsługuję turystę #4 (wiek: 30, VIP: NIE)
+[16:11:48][INFO ][PID: 8150] KASJER: Wydaję bilet #4, cena: 30 zł
+[16:11:48][INFO ][PID: 8150] KASJER: Obsługuję turystę #5 (wiek: 7, VIP: NIE)
+[16:11:48][INFO ][PID: 8150] KASJER: Wydaję bilet #5, cena: 11 zł
+[16:11:48][INFO ][PID: 8150] KASJER: Obsługuję turystę #6 (wiek: 7, VIP: NIE)
+[16:11:48][INFO ][PID: 8150] KASJER: Wydaję bilet #6, cena: 75 zł
+[16:11:49][INFO ][PID: 8150] KASJER: Obsługuję turystę #7 (wiek: 43, VIP: NIE)
+[16:11:49][INFO ][PID: 8150] KASJER: Wydaję bilet #7, cena: 100 zł
+[16:11:50][INFO ][PID: 8150] KASJER: Obsługuję turystę #8 (wiek: 68, VIP: NIE)
+[16:11:50][INFO ][PID: 8150] KASJER: Wydaję bilet #8, cena: 52 zł
+[16:11:51][INFO ][PID: 8150] KASJER: Obsługuję turystę #9 (wiek: 55, VIP: NIE)
+[16:11:51][INFO ][PID: 8150] KASJER: Wydaję bilet #9, cena: 70 zł
+[16:11:52][INFO ][PID: 8150] KASJER: Obsługuję turystę #10 (wiek: 20, VIP: NIE)
+[16:11:52][INFO ][PID: 8150] KASJER: Wydaję bilet #10, cena: 70 zł
+[16:11:53][INFO ][PID: 8150] KASJER: Obsługuję turystę #11 (wiek: 54, VIP: NIE)
+[16:11:53][INFO ][PID: 8150] KASJER: Wydaję bilet #11, cena: 50 zł
+[16:11:53][INFO ][PID: 8150] KASJER: Obsługuję turystę #12 (wiek: 7, VIP: NIE)
+[16:11:53][INFO ][PID: 8150] KASJER: Wydaję bilet #12, cena: 75 zł
+[16:11:54][INFO ][PID: 8150] KASJER: Obsługuję turystę #13 (wiek: 67, VIP: NIE)
+[16:11:54][INFO ][PID: 8150] KASJER: Wydaję bilet #13, cena: 11 zł
+[16:11:55][INFO ][PID: 8150] KASJER: Obsługuję turystę #14 (wiek: 47, VIP: NIE)
+[16:11:55][INFO ][PID: 8150] KASJER: Wydaję bilet #14, cena: 70 zł
+[16:11:56][INFO ][PID: 8150] KASJER: Obsługuję turystę #15 (wiek: 21, VIP: NIE)
+[16:11:56][INFO ][PID: 8150] KASJER: Wydaję bilet #15, cena: 70 zł
+[16:11:57][INFO ][PID: 8150] KASJER: Obsługuję turystę #16 (wiek: 38, VIP: NIE)
+[16:11:57][INFO ][PID: 8150] KASJER: Wydaję bilet #16, cena: 50 zł
+[16:11:58][INFO ][PID: 8150] KASJER: Obsługuję turystę #17 (wiek: 39, VIP: NIE)
+[16:11:58][INFO ][PID: 8150] KASJER: Wydaję bilet #17, cena: 15 zł
+[16:12:02][INFO ][PID: 8150] KASJER: Obsługuję turystę #18 (wiek: 54, VIP: NIE)
+[16:12:02][INFO ][PID: 8150] KASJER: Wydaję bilet #18, cena: 70 zł
+[16:12:02][INFO ][PID: 8150] KASJER: Obsługuję turystę #19 (wiek: 4, VIP: NIE)
+[16:12:02][INFO ][PID: 8150] KASJER: Wydaję bilet #19, cena: 37 zł
+[16:12:03][INFO ][PID: 8150] KASJER: Obsługuję turystę #20 (wiek: 36, VIP: NIE)
+[16:12:03][INFO ][PID: 8150] KASJER: Wydaję bilet #20, cena: 70 zł
+[16:12:04][INFO ][PID: 8150] KASJER: Obsługuję turystę #21 (wiek: 56, VIP: NIE)
+[16:12:04][INFO ][PID: 8150] KASJER: Wydaję bilet #21, cena: 15 zł
+[16:12:05][INFO ][PID: 8150] KASJER: Obsługuję turystę #22 (wiek: 46, VIP: NIE)
+[16:12:05][INFO ][PID: 8150] KASJER: Wydaję bilet #22, cena: 15 zł
+[16:12:06][INFO ][PID: 8150] KASJER: Obsługuję turystę #23 (wiek: 36, VIP: NIE)
+[16:12:06][INFO ][PID: 8150] KASJER: Wydaję bilet #23, cena: 100 zł
+[16:12:07][INFO ][PID: 8150] KASJER: Obsługuję turystę #24 (wiek: 56, VIP: NIE)
+[16:12:07][INFO ][PID: 8150] KASJER: Wydaję bilet #24, cena: 30 zł
+[16:12:08][INFO ][PID: 8150] KASJER: Obsługuję turystę #25 (wiek: 52, VIP: NIE)
+[16:12:08][INFO ][PID: 8150] KASJER: Wydaję bilet #25, cena: 50 zł
+[16:12:08][INFO ][PID: 8150] KASJER: Obsługuję turystę #26 (wiek: 7, VIP: NIE)
+[16:12:08][INFO ][PID: 8150] KASJER: Wydaję bilet #26, cena: 11 zł
+[16:12:08][INFO ][PID: 8150] KASJER: Obsługuję turystę #27 (wiek: 7, VIP: NIE)
+[16:12:08][INFO ][PID: 8150] KASJER: Wydaję bilet #27, cena: 52 zł
+[16:12:09][INFO ][PID: 8150] KASJER: Obsługuję turystę #28 (wiek: 43, VIP: NIE)
+[16:12:09][INFO ][PID: 8150] KASJER: Wydaję bilet #28, cena: 70 zł
+[16:12:10][INFO ][PID: 8150] KASJER: Obsługuję turystę #29 (wiek: 66, VIP: NIE)
+[16:12:10][INFO ][PID: 8150] KASJER: Wydaję bilet #29, cena: 11 zł
+[16:12:11][INFO ][PID: 8150] KASJER: Obsługuję turystę #30 (wiek: 32, VIP: NIE)
+[16:12:11][INFO ][PID: 8150] KASJER: Wydaję bilet #30, cena: 100 zł
+[16:12:11][INFO ][PID: 8150] KASJER: Obsługuję turystę #32 (wiek: 5, VIP: NIE)
+[16:12:11][INFO ][PID: 8150] KASJER: Wydaję bilet #31, cena: 75 zł
+[16:12:11][INFO ][PID: 8150] KASJER: Obsługuję turystę #31 (wiek: 4, VIP: NIE)
+[16:12:11][INFO ][PID: 8150] KASJER: Wydaję bilet #32, cena: 75 zł
+[16:12:12][INFO ][PID: 8150] KASJER: Obsługuję turystę #33 (wiek: 48, VIP: NIE)
+[16:12:12][INFO ][PID: 8150] KASJER: Wydaję bilet #33, cena: 70 zł
+[16:12:13][INFO ][PID: 8150] KASJER: Obsługuję turystę #34 (wiek: 61, VIP: NIE)
+[16:12:13][INFO ][PID: 8150] KASJER: Wydaję bilet #34, cena: 50 zł
+[16:12:13][INFO ][PID: 8150] KASJER: Obsługuję turystę #35 (wiek: 4, VIP: NIE)
+[16:12:13][INFO ][PID: 8150] KASJER: Wydaję bilet #35, cena: 11 zł
+[16:12:13][INFO ][PID: 8150] KASJER: Obsługuję turystę #36 (wiek: 4, VIP: NIE)
+[16:12:13][INFO ][PID: 8150] KASJER: Wydaję bilet #36, cena: 11 zł
+[16:12:14][INFO ][PID: 8150] KASJER: Obsługuję turystę #37 (wiek: 66, VIP: NIE)
+[16:12:14][INFO ][PID: 8150] KASJER: Wydaję bilet #37, cena: 11 zł
+[16:12:15][INFO ][PID: 8150] KASJER: Obsługuję turystę #38 (wiek: 21, VIP: NIE)
+[16:12:15][INFO ][PID: 8150] KASJER: Wydaję bilet #38, cena: 100 zł
+[16:12:16][INFO ][PID: 8150] KASJER: Obsługuję turystę #39 (wiek: 65, VIP: NIE)
+[16:12:16][INFO ][PID: 8150] KASJER: Wydaję bilet #39, cena: 50 zł
+[16:12:17][INFO ][PID: 8150] KASJER: Obsługuję turystę #40 (wiek: 47, VIP: NIE)
+[16:12:17][INFO ][PID: 8150] KASJER: Wydaję bilet #40, cena: 100 zł
+[16:12:18][INFO ][PID: 8150] KASJER: Obsługuję turystę #41 (wiek: 47, VIP: NIE)
+[16:12:18][INFO ][PID: 8150] KASJER: Wydaję bilet #41, cena: 15 zł
+[16:12:19][INFO ][PID: 8150] KASJER: Obsługuję turystę #42 (wiek: 47, VIP: NIE)
+[16:12:19][INFO ][PID: 8150] KASJER: Wydaję bilet #42, cena: 50 zł
+[16:12:20][INFO ][PID: 8150] KASJER: Obsługuję turystę #43 (wiek: 38, VIP: NIE)
+[16:12:20][INFO ][PID: 8150] KASJER: Wydaję bilet #43, cena: 100 zł
+[16:12:21][INFO ][PID: 8150] KASJER: Obsługuję turystę #44 (wiek: 24, VIP: NIE)
+[16:12:21][INFO ][PID: 8150] KASJER: Wydaję bilet #44, cena: 15 zł
+[16:12:21][INFO ][PID: 8150] KASJER: Obsługuję turystę #45 (wiek: 4, VIP: NIE)
+[16:12:21][INFO ][PID: 8150] KASJER: Wydaję bilet #45, cena: 75 zł
+[16:12:21][INFO ][PID: 8150] KASJER: Obsługuję turystę #46 (wiek: 7, VIP: NIE)
+[16:12:21][INFO ][PID: 8150] KASJER: Wydaję bilet #46, cena: 11 zł
+[16:12:22][INFO ][PID: 8150] KASJER: Obsługuję turystę #47 (wiek: 68, VIP: NIE)
+[16:12:22][INFO ][PID: 8150] KASJER: Wydaję bilet #47, cena: 11 zł
+[16:12:23][INFO ][PID: 8150] KASJER: Obsługuję turystę #48 (wiek: 26, VIP: NIE)
+[16:12:23][INFO ][PID: 8150] KASJER: Wydaję bilet #48, cena: 30 zł
+[16:12:24][INFO ][PID: 8150] KASJER: Obsługuję turystę #49 (wiek: 23, VIP: NIE)
+[16:12:24][INFO ][PID: 8150] KASJER: Wydaję bilet #49, cena: 70 zł
+[16:12:25][INFO ][PID: 8150] KASJER: Obsługuję turystę #50 (wiek: 46, VIP: NIE)
+[16:12:25][INFO ][PID: 8150] KASJER: Wydaję bilet #50, cena: 100 zł
+[16:12:26][INFO ][PID: 8150] KASJER: Obsługuję turystę #51 (wiek: 62, VIP: NIE)
+[16:12:26][INFO ][PID: 8150] KASJER: Wydaję bilet #51, cena: 30 zł
+[16:12:26][INFO ][PID: 8150] KASJER: Obsługuję turystę #52 (wiek: 6, VIP: NIE)
+[16:12:26][INFO ][PID: 8150] KASJER: Wydaję bilet #52, cena: 37 zł
+[16:12:27][INFO ][PID: 8150] KASJER: Obsługuję turystę #53 (wiek: 51, VIP: NIE)
+[16:12:27][INFO ][PID: 8150] KASJER: Wydaję bilet #53, cena: 100 zł
+[16:12:28][INFO ][PID: 8150] KASJER: Obsługuję turystę #54 (wiek: 69, VIP: NIE)
+[16:12:28][INFO ][PID: 8150] KASJER: Wydaję bilet #54, cena: 37 zł
+[16:12:29][INFO ][PID: 8150] KASJER: Obsługuję turystę #55 (wiek: 65, VIP: NIE)
+[16:12:29][INFO ][PID: 8150] KASJER: Wydaję bilet #55, cena: 15 zł
+[16:12:30][INFO ][PID: 8150] KASJER: Obsługuję turystę #56 (wiek: 37, VIP: NIE)
+[16:12:30][INFO ][PID: 8150] KASJER: Wydaję bilet #56, cena: 30 zł
+[16:12:31][INFO ][PID: 8150] KASJER: Obsługuję turystę #57 (wiek: 45, VIP: NIE)
+[16:12:31][INFO ][PID: 8150] KASJER: Wydaję bilet #57, cena: 100 zł
+[16:12:32][INFO ][PID: 8150] KASJER: Obsługuję turystę #58 (wiek: 38, VIP: NIE)
+[16:12:32][INFO ][PID: 8150] KASJER: Wydaję bilet #58, cena: 30 zł
+[16:12:33][INFO ][PID: 8150] KASJER: Obsługuję turystę #59 (wiek: 30, VIP: NIE)
+[16:12:33][INFO ][PID: 8150] KASJER: Wydaję bilet #59, cena: 15 zł
+[16:12:34][INFO ][PID: 8150] KASJER: Obsługuję turystę #60 (wiek: 30, VIP: NIE)
+[16:12:34][INFO ][PID: 8150] KASJER: Wydaję bilet #60, cena: 100 zł
+[16:12:38][INFO ][PID: 8150] KASJER: Obsługuję turystę #61 (wiek: 32, VIP: NIE)
+[16:12:38][INFO ][PID: 8150] KASJER: Wydaję bilet #61, cena: 15 zł
+[16:12:39][INFO ][PID: 8150] KASJER: Obsługuję turystę #62 (wiek: 48, VIP: NIE)
+[16:12:39][INFO ][PID: 8150] KASJER: Wydaję bilet #62, cena: 50 zł
+[16:12:39][INFO ][PID: 8150] KASJER: Obsługuję turystę #63 (wiek: 6, VIP: NIE)
+[16:12:39][INFO ][PID: 8150] KASJER: Wydaję bilet #63, cena: 52 zł
+[16:12:40][INFO ][PID: 8150] KASJER: Obsługuję turystę #64 (wiek: 27, VIP: NIE)
+[16:12:40][INFO ][PID: 8150] KASJER: Wydaję bilet #64, cena: 30 zł
+[16:12:41][INFO ][PID: 8150] KASJER: Obsługuję turystę #65 (wiek: 26, VIP: NIE)
+[16:12:41][INFO ][PID: 8150] KASJER: Wydaję bilet #65, cena: 30 zł
+[16:12:42][INFO ][PID: 8150] KASJER: Obsługuję turystę #66 (wiek: 45, VIP: NIE)
+[16:12:42][INFO ][PID: 8150] KASJER: Wydaję bilet #66, cena: 15 zł
+[16:12:43][INFO ][PID: 8150] KASJER: Obsługuję turystę #67 (wiek: 34, VIP: NIE)
+[16:12:43][INFO ][PID: 8150] KASJER: Wydaję bilet #67, cena: 30 zł
+[16:12:44][INFO ][PID: 8150] KASJER: Obsługuję turystę #68 (wiek: 20, VIP: NIE)
+[16:12:44][INFO ][PID: 8150] KASJER: Wydaję bilet #68, cena: 50 zł
+[16:12:45][INFO ][PID: 8150] KASJER: Obsługuję turystę #69 (wiek: 57, VIP: NIE)
+[16:12:45][INFO ][PID: 8150] KASJER: Wydaję bilet #69, cena: 50 zł
+[16:12:46][INFO ][PID: 8150] KASJER: Obsługuję turystę #70 (wiek: 68, VIP: NIE)
+[16:12:46][INFO ][PID: 8150] KASJER: Wydaję bilet #70, cena: 11 zł
+[16:12:47][INFO ][PID: 8150] KASJER: Kończę pracę. Sprzedano 70 biletów.

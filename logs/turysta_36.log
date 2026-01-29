@@ -1,14 +1,14 @@
-[15:25:06][INFO ][PID: 7311] TURYSTA #36: Przychodzę (wiek: 7, pieszy, zwykły)
-[15:25:06][INFO ][PID: 7311] TURYSTA #36: Podchodzę do kasy
-[15:25:06][INFO ][PID: 7311] TURYSTA #36: Kupiłem bilet #35 (typ: 2)
-[15:25:06][INFO ][PID: 7311] TURYSTA #36: Czekam na miejsce na stacji
-[15:25:06][INFO ][PID: 7311] TURYSTA #36: Przeszedłem przez bramkę 0
-[15:25:06][INFO ][PID: 7311] TURYSTA #36: Czekam na pozwolenie wejścia na peron
-[15:25:06][INFO ][PID: 7311] TURYSTA #36: Wchodzę na peron
-[15:25:06][INFO ][PID: 7311] TURYSTA #36: Czekam na krzesełko
-[15:25:06][INFO ][PID: 7311] TURYSTA #36: Wsiadłem na krzesełko #24
-[15:25:08][INFO ][PID: 7311] TURYSTA #36: Dojechałem na stację górną
-[15:25:08][INFO ][PID: 7311] TURYSTA #36: Wychodzę wyjściem 1
-[15:25:08][INFO ][PID: 7311] TURYSTA #36 (pieszy): Schodzę ze stacji górnej
-[15:25:08][INFO ][PID: 7311] TURYSTA #36: Wystarczy na dziś, wychodzę
-[15:25:08][INFO ][PID: 7311] TURYSTA #36: Kończę dzień z 1 zjazdami
+[16:12:13][INFO ][PID: 8189] TURYSTA #36: Przychodzę (wiek: 4, pieszy, zwykły)
+[16:12:13][INFO ][PID: 8189] TURYSTA #36: Podchodzę do kasy
+[16:12:13][INFO ][PID: 8189] TURYSTA #36: Kupiłem bilet #36 (typ: 1)
+[16:12:13][INFO ][PID: 8189] TURYSTA #36: Czekam na miejsce na stacji
+[16:12:13][INFO ][PID: 8189] TURYSTA #36: Przeszedłem przez bramkę 0
+[16:12:13][INFO ][PID: 8189] TURYSTA #36: Czekam na pozwolenie wejścia na peron
+[16:12:13][INFO ][PID: 8189] TURYSTA #36: Wchodzę na peron
+[16:12:13][INFO ][PID: 8189] TURYSTA #36: Czekam na krzesełko
+[16:12:13][INFO ][PID: 8189] TURYSTA #36: Wsiadłem na krzesełko #24
+[16:12:15][INFO ][PID: 8189] TURYSTA #36: Dojechałem na stację górną
+[16:12:15][INFO ][PID: 8189] TURYSTA #36: Wychodzę wyjściem 1
+[16:12:15][INFO ][PID: 8189] TURYSTA #36 (pieszy): Schodzę ze stacji górnej
+[16:12:15][INFO ][PID: 8189] TURYSTA #36: Bilet nieważny, kończę
+[16:12:15][INFO ][PID: 8189] TURYSTA #36: Kończę dzień z 1 zjazdami

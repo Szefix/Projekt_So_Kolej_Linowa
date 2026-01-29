@@ -1,14 +1,15 @@
-[15:25:01][INFO ][PID: 7297] TURYSTA #29: Przychodzę (wiek: 7, pieszy, zwykły)
-[15:25:01][INFO ][PID: 7297] TURYSTA #29: Podchodzę do kasy
-[15:25:01][INFO ][PID: 7297] TURYSTA #29: Kupiłem bilet #28 (typ: 1)
-[15:25:01][INFO ][PID: 7297] TURYSTA #29: Czekam na miejsce na stacji
-[15:25:01][INFO ][PID: 7297] TURYSTA #29: Przeszedłem przez bramkę 0
-[15:25:01][INFO ][PID: 7297] TURYSTA #29: Czekam na pozwolenie wejścia na peron
-[15:25:01][INFO ][PID: 7297] TURYSTA #29: Wchodzę na peron
-[15:25:01][INFO ][PID: 7297] TURYSTA #29: Czekam na krzesełko
-[15:25:01][INFO ][PID: 7297] TURYSTA #29: Wsiadłem na krzesełko #7
-[15:25:03][INFO ][PID: 7297] TURYSTA #29: Dojechałem na stację górną
-[15:25:03][INFO ][PID: 7297] TURYSTA #29: Wychodzę wyjściem 0
-[15:25:03][INFO ][PID: 7297] TURYSTA #29 (pieszy): Schodzę ze stacji górnej
-[15:25:03][INFO ][PID: 7297] TURYSTA #29: Bilet nieważny, kończę
-[15:25:03][INFO ][PID: 7297] TURYSTA #29: Kończę dzień z 1 zjazdami
+[16:12:10][INFO ][PID: 8182] TURYSTA #29: Przychodzę (wiek: 66, rowerzysta, zwykły)
+[16:12:10][INFO ][PID: 8182] TURYSTA #29: Podchodzę do kasy
+[16:12:10][INFO ][PID: 8182] TURYSTA #29: Kupiłem bilet #29 (typ: 1)
+[16:12:10][INFO ][PID: 8182] TURYSTA #29: Czekam na miejsce na stacji
+[16:12:10][INFO ][PID: 8182] TURYSTA #29: Przeszedłem przez bramkę 0
+[16:12:10][INFO ][PID: 8182] TURYSTA #29: Czekam na pozwolenie wejścia na peron
+[16:12:10][INFO ][PID: 8182] TURYSTA #29: Wchodzę na peron
+[16:12:10][INFO ][PID: 8182] TURYSTA #29: Czekam na krzesełko
+[16:12:10][INFO ][PID: 8182] TURYSTA #29: Wsiadłem na krzesełko #12
+[16:12:12][INFO ][PID: 8182] TURYSTA #29: Dojechałem na stację górną
+[16:12:12][INFO ][PID: 8182] TURYSTA #29: Wychodzę wyjściem 0
+[16:12:12][INFO ][PID: 8182] TURYSTA #29 (rowerzysta): Wybieram trasę T1 (łatwa) (czas: 3s)
+[16:12:15][INFO ][PID: 8182] TURYSTA #29: Ukończyłem zjazd #1
+[16:12:15][INFO ][PID: 8182] TURYSTA #29: Bilet nieważny, kończę
+[16:12:15][INFO ][PID: 8182] TURYSTA #29: Kończę dzień z 1 zjazdami
