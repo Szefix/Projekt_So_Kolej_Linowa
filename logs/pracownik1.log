@@ -1,4 +1,167 @@
-[13:49:35][INFO ][PID:  621] PRACOWNIK1: Rozpoczynam pracę (PID: 621)
-[13:49:36][INFO ][PID:  621] PRACOWNIK1: Prośba od turysty #1 (wiek: 39, dziecko: NIE, opiekun: -1)
-[13:49:36][INFO ][PID:  621] PRACOWNIK1: Wysyłam krzesełko #0 z 1 osobami
-[13:49:37][INFO ][PID:  621] PRACOWNIK1: Kończę pracę
+[14:54:11][INFO ][PID:  492] PRACOWNIK1: Rozpoczynam pracę (PID: 492)
+[14:54:11][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #1 (wiek: 35, dziecko: NIE, opiekun: -1)
+[14:54:11][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #0 z 1 osobami
+[14:54:12][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #2 (wiek: 23, dziecko: NIE, opiekun: -1)
+[14:54:12][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #1 z 1 osobami
+[14:54:13][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #3 (wiek: 30, dziecko: NIE, opiekun: -1)
+[14:54:13][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #2 z 1 osobami
+[14:54:14][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #5 (wiek: 7, dziecko: TAK, opiekun: 4)
+[14:54:14][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #4 (wiek: 50, dziecko: NIE, opiekun: -1)
+[14:54:14][INFO ][PID:  492] PRACOWNIK1: Opiekun #4 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:14][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #4 z 1 dziećmi do grupy
+[14:54:14][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #3 z 2 osobami
+[14:54:15][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #6 (wiek: 50, dziecko: NIE, opiekun: -1)
+[14:54:15][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #4 z 1 osobami
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #8 (wiek: 7, dziecko: TAK, opiekun: 7)
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #7 (wiek: 30, dziecko: NIE, opiekun: -1)
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Opiekun #7 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #7 z 1 dziećmi do grupy
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #5 z 2 osobami
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #5 (wiek: 7, dziecko: TAK, opiekun: 4)
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #4 (wiek: 50, dziecko: NIE, opiekun: -1)
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Opiekun #4 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #4 z 1 dziećmi do grupy
+[14:54:16][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #6 z 2 osobami
+[14:54:17][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #10 (wiek: 7, dziecko: TAK, opiekun: 9)
+[14:54:17][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #11 (wiek: 5, dziecko: TAK, opiekun: 9)
+[14:54:17][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #9 (wiek: 67, dziecko: NIE, opiekun: -1)
+[14:54:17][INFO ][PID:  492] PRACOWNIK1: Opiekun #9 ma wszystkie 2 dzieci w kolejce - wchodzą razem
+[14:54:17][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #9 z 2 dziećmi do grupy
+[14:54:17][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #7 z 3 osobami
+[14:54:17][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #6 (wiek: 50, dziecko: NIE, opiekun: -1)
+[14:54:17][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #8 z 1 osobami
+[14:54:18][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #3 (wiek: 30, dziecko: NIE, opiekun: -1)
+[14:54:18][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #9 z 1 osobami
+[14:54:18][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #12 (wiek: 40, dziecko: NIE, opiekun: -1)
+[14:54:18][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #10 z 1 osobami
+[14:54:18][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #4 (wiek: 50, dziecko: NIE, opiekun: -1)
+[14:54:19][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #13 (wiek: 45, dziecko: NIE, opiekun: -1)
+[14:54:19][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #10 (wiek: 7, dziecko: TAK, opiekun: 9)
+[14:54:19][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #11 (wiek: 5, dziecko: TAK, opiekun: 9)
+[14:54:20][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #15 (wiek: 5, dziecko: TAK, opiekun: 14)
+[14:54:20][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #16 (wiek: 4, dziecko: TAK, opiekun: 14)
+[14:54:20][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #14 (wiek: 55, dziecko: NIE, opiekun: -1)
+[14:54:20][INFO ][PID:  492] PRACOWNIK1: Opiekun #14 ma wszystkie 2 dzieci w kolejce - wchodzą razem
+[14:54:20][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #14 z 2 dziećmi do grupy
+[14:54:20][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #11 z 4 osobami
+[14:54:21][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #17 (wiek: 45, dziecko: NIE, opiekun: -1)
+[14:54:22][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #19 (wiek: 5, dziecko: TAK, opiekun: 18)
+[14:54:22][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #18 (wiek: 60, dziecko: NIE, opiekun: -1)
+[14:54:22][INFO ][PID:  492] PRACOWNIK1: Opiekun #18 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:22][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #18 z 1 dziećmi do grupy
+[14:54:22][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #13 (wiek: 45, dziecko: NIE, opiekun: -1)
+[14:54:22][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #12 z 4 osobami
+[14:54:25][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #20 (wiek: 49, dziecko: NIE, opiekun: -1)
+[14:54:26][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #21 (wiek: 67, dziecko: NIE, opiekun: -1)
+[14:54:26][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #9 (wiek: 67, dziecko: NIE, opiekun: -1)
+[14:54:26][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #17 (wiek: 45, dziecko: NIE, opiekun: -1)
+[14:54:26][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #13 (wiek: 45, dziecko: NIE, opiekun: -1)
+[14:54:26][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #13 z 4 osobami
+[14:54:26][INFO ][PID:  492] PRACOWNIK1: Opiekun #9 ma wszystkie 2 dzieci w kolejce - wchodzą razem
+[14:54:26][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #9 z 2 dziećmi do grupy
+[14:54:26][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #14 z 3 osobami
+[14:54:27][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #23 (wiek: 6, dziecko: TAK, opiekun: 22)
+[14:54:27][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #22 (wiek: 39, dziecko: NIE, opiekun: -1)
+[14:54:27][INFO ][PID:  492] PRACOWNIK1: Opiekun #22 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:27][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #22 z 1 dziećmi do grupy
+[14:54:28][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #25 (wiek: 6, dziecko: TAK, opiekun: 24)
+[14:54:28][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #24 (wiek: 64, dziecko: NIE, opiekun: -1)
+[14:54:28][INFO ][PID:  492] PRACOWNIK1: Opiekun #24 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:28][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #24 z 1 dziećmi do grupy
+[14:54:28][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #15 z 4 osobami
+[14:54:28][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #17 (wiek: 45, dziecko: NIE, opiekun: -1)
+[14:54:28][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #20 (wiek: 49, dziecko: NIE, opiekun: -1)
+[14:54:28][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #21 (wiek: 67, dziecko: NIE, opiekun: -1)
+[14:54:29][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #11 (wiek: 5, dziecko: TAK, opiekun: 9)
+[14:54:29][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #10 (wiek: 7, dziecko: TAK, opiekun: 9)
+[14:54:29][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #26 (wiek: 26, dziecko: NIE, opiekun: -1)
+[14:54:29][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #16 z 4 osobami
+[14:54:29][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #14 (wiek: 55, dziecko: NIE, opiekun: -1)
+[14:54:30][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #27 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:30][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #24 (wiek: 64, dziecko: NIE, opiekun: -1)
+[14:54:30][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #3 (wiek: 30, dziecko: NIE, opiekun: -1)
+[14:54:31][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #28 (wiek: 43, dziecko: NIE, opiekun: -1)
+[14:54:31][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #17 z 3 osobami
+[14:54:31][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #20 (wiek: 49, dziecko: NIE, opiekun: -1)
+[14:54:32][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #30 (wiek: 4, dziecko: TAK, opiekun: 29)
+[14:54:32][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #31 (wiek: 4, dziecko: TAK, opiekun: 29)
+[14:54:32][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #29 (wiek: 28, dziecko: NIE, opiekun: -1)
+[14:54:32][INFO ][PID:  492] PRACOWNIK1: Opiekun #29 ma wszystkie 2 dzieci w kolejce - wchodzą razem
+[14:54:32][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #29 z 2 dziećmi do grupy
+[14:54:32][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #18 z 4 osobami
+[14:54:33][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #32 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:33][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #27 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:34][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #33 (wiek: 57, dziecko: NIE, opiekun: -1)
+[14:54:34][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #19 z 3 osobami
+[14:54:34][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #20 (wiek: 49, dziecko: NIE, opiekun: -1)
+[14:54:35][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #34 (wiek: 35, dziecko: NIE, opiekun: -1)
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #36 (wiek: 6, dziecko: TAK, opiekun: 35)
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #35 (wiek: 29, dziecko: NIE, opiekun: -1)
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Opiekun #35 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #35 z 1 dziećmi do grupy
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #20 z 4 osobami
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #32 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #9 (wiek: 67, dziecko: NIE, opiekun: -1)
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Opiekun #9 ma wszystkie 2 dzieci w kolejce - wchodzą razem
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #9 z 2 dziećmi do grupy
+[14:54:36][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #21 z 4 osobami
+[14:54:37][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #37 (wiek: 30, dziecko: NIE, opiekun: -1)
+[14:54:38][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #35 (wiek: 29, dziecko: NIE, opiekun: -1)
+[14:54:38][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #38 (wiek: 57, dziecko: NIE, opiekun: -1)
+[14:54:38][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #22 z 2 osobami
+[14:54:39][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #10 (wiek: 7, dziecko: TAK, opiekun: 9)
+[14:54:39][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #11 (wiek: 5, dziecko: TAK, opiekun: 9)
+[14:54:39][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #32 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:39][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #39 (wiek: 35, dziecko: NIE, opiekun: -1)
+[14:54:40][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #40 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:40][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #23 z 3 osobami
+[14:54:41][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #33 (wiek: 57, dziecko: NIE, opiekun: -1)
+[14:54:41][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #28 (wiek: 43, dziecko: NIE, opiekun: -1)
+[14:54:41][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #24 z 2 osobami
+[14:54:41][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #41 (wiek: 39, dziecko: NIE, opiekun: -1)
+[14:54:42][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #42 (wiek: 56, dziecko: NIE, opiekun: -1)
+[14:54:42][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #32 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:42][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #25 z 3 osobami
+[14:54:43][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #44 (wiek: 5, dziecko: TAK, opiekun: 43)
+[14:54:43][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #43 (wiek: 22, dziecko: NIE, opiekun: -1)
+[14:54:43][INFO ][PID:  492] PRACOWNIK1: Opiekun #43 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:43][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #43 z 1 dziećmi do grupy
+[14:54:43][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #34 (wiek: 35, dziecko: NIE, opiekun: -1)
+[14:54:43][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #26 z 3 osobami
+[14:54:44][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #45 (wiek: 62, dziecko: NIE, opiekun: -1)
+[14:54:44][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #32 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:45][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #47 (wiek: 5, dziecko: TAK, opiekun: 46)
+[14:54:45][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #46 (wiek: 62, dziecko: NIE, opiekun: -1)
+[14:54:45][INFO ][PID:  492] PRACOWNIK1: Opiekun #46 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:45][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #46 z 1 dziećmi do grupy
+[14:54:45][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #27 z 4 osobami
+[14:54:45][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #40 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:46][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #48 (wiek: 41, dziecko: NIE, opiekun: -1)
+[14:54:47][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #49 (wiek: 68, dziecko: NIE, opiekun: -1)
+[14:54:47][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #28 z 3 osobami
+[14:54:47][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #32 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:47][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #42 (wiek: 56, dziecko: NIE, opiekun: -1)
+[14:54:48][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #50 (wiek: 51, dziecko: NIE, opiekun: -1)
+[14:54:48][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #29 z 3 osobami
+[14:54:49][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #51 (wiek: 67, dziecko: NIE, opiekun: -1)
+[14:54:50][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #52 (wiek: 24, dziecko: NIE, opiekun: -1)
+[14:54:51][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #53 (wiek: 44, dziecko: NIE, opiekun: -1)
+[14:54:51][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #30 z 3 osobami
+[14:54:52][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #55 (wiek: 7, dziecko: TAK, opiekun: 54)
+[14:54:52][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #54 (wiek: 32, dziecko: NIE, opiekun: -1)
+[14:54:52][INFO ][PID:  492] PRACOWNIK1: Opiekun #54 ma wszystkie 1 dzieci w kolejce - wchodzą razem
+[14:54:52][INFO ][PID:  492] PRACOWNIK1: Dodano opiekuna #54 z 1 dziećmi do grupy
+[14:54:52][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #40 (wiek: 53, dziecko: NIE, opiekun: -1)
+[14:54:52][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #31 z 3 osobami
+[14:54:53][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #56 (wiek: 41, dziecko: NIE, opiekun: -1)
+[14:54:53][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #50 (wiek: 51, dziecko: NIE, opiekun: -1)
+[14:54:53][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #32 z 2 osobami
+[14:54:54][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #57 (wiek: 57, dziecko: NIE, opiekun: -1)
+[14:54:54][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #54 (wiek: 32, dziecko: NIE, opiekun: -1)
+[14:54:55][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #58 (wiek: 60, dziecko: NIE, opiekun: -1)
+[14:54:55][INFO ][PID:  492] PRACOWNIK1: Prośba od turysty #45 (wiek: 62, dziecko: NIE, opiekun: -1)
+[14:54:55][INFO ][PID:  492] PRACOWNIK1: Wysyłam krzesełko #33 z 3 osobami
+[14:54:55][WARN ][PID:  492] PRACOWNIK1: ZATRZYMUJĘ KOLEJ!
+[14:54:57][INFO ][PID:  492] PRACOWNIK1: Wznawianie kolei...
+[14:54:59][WARN ][PID:  492] PRACOWNIK1: Timeout oczekiwania na pracownik2 - wznawianie mimo to
+[14:54:59][INFO ][PID:  492] PRACOWNIK1: Kończę pracę

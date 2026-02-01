@@ -155,8 +155,8 @@ void ustaw_obsluge_sygnalow(void) {
         perror("sigaction SIGTERM");
     }
     
-    /* Ignoruj SIGCHLD - zbieramy ręcznie w zbierz_procesy() */
-    signal(SIGCHLD, SIG_IGN);
+    /* NIE ignorujemy SIGCHLD - zbieramy ręcznie przez waitpid() */
+    /* signal(SIGCHLD, SIG_IGN) powodowałoby automatyczne zbieranie przez jądro */
 }
 
 /* ========== URUCHAMIANIE PROCESÓW Z exec() ========== */
@@ -198,14 +198,14 @@ void uruchom_pracownika(int numer) {
     LOG_I("MAIN: Uruchomiono pracownika%d (PID: %d)", numer, *pid);
 }
 
-void uruchom_turystę(int id, int wiek, int opiekun) {
+void uruchom_turystę(int id, int wiek, int opiekun, int liczba_dzieci) {
     pid_t pid = fork();
-    
+
     if (pid == -1) {
         perror("fork turysta");
         return;
     }
-    
+
     if (pid == 0) {
         /* ========== UŻYCIE dup2() - przekierowanie stderr do pliku ========== */
         /* Wszyscy turysci piszą błędy do wspólnego pliku */
@@ -217,13 +217,14 @@ void uruchom_turystę(int id, int wiek, int opiekun) {
             }
             close(fd_err);  /* Zamknij oryginalny, stderr teraz wskazuje na plik */
         }
-        
-        char arg_id[16], arg_wiek[16], arg_opiekun[16];
+
+        char arg_id[16], arg_wiek[16], arg_opiekun[16], arg_dzieci[16];
         snprintf(arg_id, sizeof(arg_id), "%d", id);
         snprintf(arg_wiek, sizeof(arg_wiek), "%d", wiek);
         snprintf(arg_opiekun, sizeof(arg_opiekun), "%d", opiekun);
-        
-        execl("./bin/turysta", "turysta", arg_id, arg_wiek, arg_opiekun, NULL);
+        snprintf(arg_dzieci, sizeof(arg_dzieci), "%d", liczba_dzieci);
+
+        execl("./bin/turysta", "turysta", arg_id, arg_wiek, arg_opiekun, arg_dzieci, NULL);
         perror("execl turysta");
         _exit(1);
     }
@@ -246,15 +247,18 @@ void generuj_grupe(int *id) {
     
     LOG_I("MAIN: Generuję turystę #%d (wiek: %d) z %d dziećmi",
           dorosly_id, wiek_dorosly, dzieci);
-    
-    uruchom_turystę(dorosly_id, wiek_dorosly, -1);
-    
+
+    /* Najpierw uruchom dzieci, potem opiekuna - żeby dzieci dotarły do kolejki pierwsze */
+    int id_dzieci[MAX_DZIECI_POD_OPIEKA];
     for (int i = 0; i < dzieci; i++) {
-        int dziecko_id = (*id)++;
-        int wiek_dziecka = WIEK_MIN_DZIECKO + 
+        id_dzieci[i] = (*id)++;
+        int wiek_dziecka = WIEK_MIN_DZIECKO +
                            (rand() % (WIEK_DZIECKO_OPIEKA - WIEK_MIN_DZIECKO));
-        uruchom_turystę(dziecko_id, wiek_dziecka, dorosly_id);
+        uruchom_turystę(id_dzieci[i], wiek_dziecka, dorosly_id, 0);
     }
+
+    /* Opiekun na końcu - wie ile ma dzieci */
+    uruchom_turystę(dorosly_id, wiek_dorosly, -1, dzieci);
 }
 
 /* ========== ZATRZYMANIE I OCZEKIWANIE NA PROCESY ========== */
@@ -641,9 +645,10 @@ int main(int argc, char *argv[]) {
         if (!tryb_nieskonczonosci && czas_dzialania >= czas_symulacji) {
             LOG_I("MAIN: Koniec godzin pracy kolei");
 
-            sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
-            stan->godziny_pracy = false;
-            sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
+            if (sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN) == 0) {
+                stan->godziny_pracy = false;
+                sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
+            }
 
             printf("\n\nKolej zamknięta! Oczekiwanie na opuszczenie stacji...\n");
 
@@ -658,9 +663,10 @@ int main(int argc, char *argv[]) {
                 timeout--;
             }
 
-            sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
-            stan->kolej_aktywna = false;
-            sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
+            if (sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN) == 0) {
+                stan->kolej_aktywna = false;
+                sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
+            }
 
             break;
         }
@@ -671,6 +677,19 @@ int main(int argc, char *argv[]) {
             if (rand() % 100 < 70) {
                 generuj_grupe(&nastepny_id);
                 ostatni_turysta = teraz;
+            }
+        }
+
+        /* Zbierz zakończone procesy potomne (zapobieganie zombie) */
+        int status;
+        pid_t zakonczone_pid;
+        while ((zakonczone_pid = waitpid(-1, &status, WNOHANG)) > 0) {
+            /* Usuń z tablicy pidów turystów */
+            for (int i = 0; i < liczba_turystow; i++) {
+                if (pidy_turystow[i] == zakonczone_pid) {
+                    pidy_turystow[i] = 0;  /* Oznacz jako zebrany */
+                    break;
+                }
             }
         }
 

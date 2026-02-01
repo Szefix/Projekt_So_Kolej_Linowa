@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <sys/stat.h>
+#include <sys/select.h>
 #include <unistd.h>
 #include <time.h>
 #include "ipc_utils.h"
@@ -11,19 +12,23 @@
 
 /* ========== OPERACJE NA SEMAFORACH SYSTEM V ========== */
 
-void sem_czekaj_sysv(int sem_id, int sem_num) {
+int sem_czekaj_sysv(int sem_id, int sem_num) {
     struct sembuf op;
     op.sem_num = sem_num;
     op.sem_op = -1;         /* Dekrementuj (P/wait) */
     op.sem_flg = 0;
-    
-    while (semop(sem_id, &op, 1) == -1) {
-        if (errno != EINTR) {
-            perror("semop wait");
-            break;
+
+    if (semop(sem_id, &op, 1) == -1) {
+        if (errno == EINTR) {
+            /* Przerwane przez sygnał (np. SIGTERM) - semafor NIE został nabyty */
+            return -1;
         }
-        /* EINTR - przerwane przez sygnał, spróbuj ponownie */
+        if (errno != EIDRM && errno != EINVAL) {
+            perror("semop wait");
+        }
+        return -1;
     }
+    return 0;  /* Sukces - semafor nabyty */
 }
 
 void sem_sygnalizuj_sysv(int sem_id, int sem_num) {
@@ -441,4 +446,39 @@ int odbierz_komunikat_nieblokujaco(int mq_id, Komunikat *msg, long mtype) {
         return -1;
     }
     return 1;
+}
+
+/* ========== ODBIERANIE KOMUNIKATU Z TIMEOUTEM ========== */
+/* Używa pętli z nieblokującym odbiorem + select() jako BLOKUJĄCE czekanie */
+/* Zwraca: 1 = sukces, 0 = timeout, -1 = błąd/przerwanie */
+
+int odbierz_komunikat_timeout(int mq_id, Komunikat *msg, long mtype, int timeout_sec) {
+    int iterations = timeout_sec * 10;  /* 100ms per iteration */
+
+    for (int i = 0; i < iterations; i++) {
+        /* Spróbuj odebrać nieblokująco */
+        int wynik = odbierz_komunikat_nieblokujaco(mq_id, msg, mtype);
+
+        if (wynik == 1) {
+            return 1;  /* Sukces - odebrano komunikat */
+        }
+
+        if (wynik == -1 && errno != ENOMSG) {
+            return -1;  /* Błąd */
+        }
+
+        /* Brak komunikatu - BLOKUJĄCE czekanie 100ms używając select() */
+        struct timeval tv;
+        tv.tv_sec = 0;
+        tv.tv_usec = 100000;  /* 100ms */
+
+        /* select() z pustymi setami i timeoutem - blokuje proces */
+        if (select(0, NULL, NULL, NULL, &tv) == -1) {
+            if (errno == EINTR) {
+                return -1;  /* Przerwane sygnałem */
+            }
+        }
+    }
+
+    return 0;  /* Timeout */
 }

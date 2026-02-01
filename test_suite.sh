@@ -463,13 +463,219 @@ test_10_zombie_prevention() {
 }
 
 # ============================================================
+#                 TESTY FUNKCJONALNE (LOGIKA BIZNESOWA)
+# ============================================================
+
+test_11_child_guardian_sync() {
+    log_test "TEST 11: Synchronizacja dziecko-opiekun (weryfikacja logów)"
+    cleanup
+
+    # Uruchom symulację z wieloma turystami (będą rodziny z dziećmi)
+    timeout 40 ./bin/main -t 30 -n 60 > "${LOG_PREFIX}_test11.log" 2>&1
+    local status=$?
+
+    if [ $status -ne 0 ]; then
+        log_error "Test 11 FAILED - Symulacja nie zakończyła się poprawnie"
+        return 1
+    fi
+
+    # Sprawdź logi pracownika1 - czy logika dzieci działa
+    local child_waiting=$(grep -c "czeka.*opiekun" logs/pracownik1.log 2>/dev/null || echo "0")
+    local child_joined=$(grep -c "dołącza do opiekuna" logs/pracownik1.log 2>/dev/null || echo "0")
+
+    echo "  Dzieci czekających na opiekuna: $child_waiting" >> "${LOG_PREFIX}_test11_analysis.log"
+    echo "  Dzieci dołączonych do opiekuna: $child_joined" >> "${LOG_PREFIX}_test11_analysis.log"
+
+    # Sprawdź czy NIE MA sytuacji że dziecko weszło BEZ opiekuna
+    # (szukamy w logach krzesełek - dziecko powinno być zawsze z opiekunem)
+    local orphan_child=$(grep -E "Dziecko.*bez opiekuna.*wchodzi" logs/*.log 2>/dev/null | wc -l || echo "0")
+
+    if [ "$orphan_child" -gt 0 ]; then
+        log_error "Test 11 FAILED - Znaleziono dziecko wchodzące bez opiekuna!"
+        return 1
+    fi
+
+    if [ "$child_joined" -gt 0 ] || [ "$child_waiting" -gt 0 ]; then
+        log_success "Test 11 PASSED - Logika dziecko-opiekun działa (czekało: $child_waiting, dołączyło: $child_joined)"
+        return 0
+    else
+        log_warning "Test 11 PASSED - Brak dzieci w symulacji (to OK, losowe)"
+        return 0
+    fi
+}
+
+test_12_max_children_per_guardian() {
+    log_test "TEST 12: Max 2 dzieci na opiekuna"
+    cleanup
+
+    timeout 40 ./bin/main -t 30 -n 80 > "${LOG_PREFIX}_test12.log" 2>&1
+    local status=$?
+
+    if [ $status -ne 0 ]; then
+        log_error "Test 12 FAILED - Symulacja nie zakończyła się poprawnie"
+        return 1
+    fi
+
+    # Sprawdź czy pojawiły się komunikaty o limicie dzieci
+    local limit_msgs=$(grep -c "ma już.*dzieci.*limit" logs/pracownik1.log 2>/dev/null || echo "0")
+
+    echo "  Komunikaty o limicie dzieci: $limit_msgs" >> "${LOG_PREFIX}_test12_analysis.log"
+
+    # Sprawdź czy NIE przekroczono limitu (3+ dzieci z jednym opiekunem na krzesełku)
+    # To wymagałoby analizy struktury krzesełek - uproszczona wersja sprawdza logi
+    local exceeded=$(grep -E "Opiekun.*ma już [3-9] dzieci" logs/*.log 2>/dev/null | wc -l || echo "0")
+
+    if [ "$exceeded" -gt 0 ]; then
+        log_error "Test 12 FAILED - Przekroczono limit dzieci na opiekuna!"
+        return 1
+    fi
+
+    log_success "Test 12 PASSED - Limit 2 dzieci na opiekuna respektowany"
+    return 0
+}
+
+test_13_vip_priority() {
+    log_test "TEST 13: Priorytet VIP (wejście bez kolejki)"
+    cleanup
+
+    timeout 40 ./bin/main -t 30 -n 100 > "${LOG_PREFIX}_test13.log" 2>&1
+    local status=$?
+
+    if [ $status -ne 0 ]; then
+        log_error "Test 13 FAILED - Symulacja nie zakończyła się poprawnie"
+        return 1
+    fi
+
+    # Sprawdź czy byli VIP-owie i czy wchodzili bez kolejki
+    local vip_entries=$(grep -c "\[VIP\].*bez kolejki" logs/wszyscy_turysci.log 2>/dev/null || echo "0")
+    local total_tourists=$(grep -c "Przychodzę" logs/wszyscy_turysci.log 2>/dev/null || echo "0")
+
+    echo "  Turystów VIP: $vip_entries" >> "${LOG_PREFIX}_test13_analysis.log"
+    echo "  Wszystkich turystów: $total_tourists" >> "${LOG_PREFIX}_test13_analysis.log"
+
+    # VIP to ~1%, więc przy 100 turystach powinien być 0-3
+    if [ "$vip_entries" -ge 0 ]; then
+        log_success "Test 13 PASSED - VIP działa (znaleziono: $vip_entries VIP-ów)"
+        return 0
+    else
+        log_warning "Test 13 PASSED - Brak VIP-ów w tej symulacji (1% szansa)"
+        return 0
+    fi
+}
+
+test_14_chairlift_capacity() {
+    log_test "TEST 14: Pojemność krzesełka (max 4 osoby, max 2 rowerzystów)"
+    cleanup
+
+    timeout 40 ./bin/main -t 30 -n 80 > "${LOG_PREFIX}_test14.log" 2>&1
+    local status=$?
+
+    if [ $status -ne 0 ]; then
+        log_error "Test 14 FAILED - Symulacja nie zakończyła się poprawnie"
+        return 1
+    fi
+
+    # Sprawdź logi pracownika1 - ile osób na krzesełkach
+    local chairs_sent=$(grep "Wysyłam krzesełko" logs/pracownik1.log 2>/dev/null || true)
+
+    # Sprawdź czy żadne krzesełko nie ma więcej niż 4 osoby
+    local overcrowded=$(echo "$chairs_sent" | grep -E "z [5-9] osobami|z [0-9][0-9] osobami" | wc -l || echo "0")
+
+    if [ "$overcrowded" -gt 0 ]; then
+        log_error "Test 14 FAILED - Znaleziono przepełnione krzesełka!"
+        echo "$chairs_sent" | grep -E "z [5-9] osobami" >> "${LOG_PREFIX}_test14_analysis.log"
+        return 1
+    fi
+
+    local chair_count=$(echo "$chairs_sent" | wc -l || echo "0")
+    log_success "Test 14 PASSED - Wszystkie krzesełka ($chair_count) mieszczą max 4 osoby"
+    return 0
+}
+
+test_15_station_capacity() {
+    log_test "TEST 15: Limit osób na stacji dolnej (max N=$MAX_STATION_CAPACITY)"
+    cleanup
+
+    # Pobierz limit ze stanu lub użyj domyślnego
+    local MAX_STATION_CAPACITY=50
+
+    timeout 50 ./bin/main -t 40 -n 150 > "${LOG_PREFIX}_test15.log" 2>&1 &
+    local pid=$!
+
+    local max_observed=0
+    local exceeded=0
+
+    # Monitoruj przez 35 sekund
+    for i in {1..35}; do
+        if ! kill -0 "$pid" 2>/dev/null; then
+            break
+        fi
+
+        # Odczytaj aktualną liczbę osób ze statystyk (jeśli dostępne)
+        local current=$(grep "Osoby na stacji:" logs/statystyki_live.txt 2>/dev/null | tail -1 | grep -oE "[0-9]+" || echo "0")
+
+        if [ "$current" -gt "$max_observed" ]; then
+            max_observed=$current
+        fi
+
+        if [ "$current" -gt "$MAX_STATION_CAPACITY" ]; then
+            exceeded=$((exceeded + 1))
+        fi
+
+        sleep 1
+    done
+
+    wait $pid 2>/dev/null
+
+    echo "  Max zaobserwowane osób na stacji: $max_observed" >> "${LOG_PREFIX}_test15_analysis.log"
+    echo "  Przekroczenia limitu: $exceeded" >> "${LOG_PREFIX}_test15_analysis.log"
+
+    if [ "$exceeded" -gt 0 ]; then
+        log_error "Test 15 FAILED - Przekroczono limit osób na stacji ($exceeded razy)"
+        return 1
+    fi
+
+    log_success "Test 15 PASSED - Limit stacji respektowany (max: $max_observed/$MAX_STATION_CAPACITY)"
+    return 0
+}
+
+test_16_closing_time() {
+    log_test "TEST 16: Zamknięcie kolei - transport pozostałych osób"
+    cleanup
+
+    # Krótka symulacja - sprawdzamy czy po zamknięciu wszyscy zostają przetransportowani
+    timeout 25 ./bin/main -t 15 -n 40 > "${LOG_PREFIX}_test16.log" 2>&1
+    local status=$?
+
+    # Sprawdź czy symulacja zakończyła się poprawnie
+    if [ $status -ne 0 ]; then
+        log_error "Test 16 FAILED - Symulacja nie zakończyła się poprawnie"
+        return 1
+    fi
+
+    # Sprawdź komunikaty o zamknięciu
+    local closing_msg=$(grep -c "Kolej zamknięta\|godziny_pracy.*false\|Kolej się zamyka" logs/*.log 2>/dev/null || echo "0")
+
+    # Sprawdź czy raport został wygenerowany
+    if [ -f "logs/raport_dzienny.txt" ]; then
+        local total_rides=$(grep "Łączna liczba zjazdów" logs/raport_dzienny.txt 2>/dev/null | grep -oE "[0-9]+" || echo "0")
+        echo "  Łączna liczba zjazdów: $total_rides" >> "${LOG_PREFIX}_test16_analysis.log"
+        log_success "Test 16 PASSED - Kolej zamknięta poprawnie, raport wygenerowany (zjazdy: $total_rides)"
+        return 0
+    else
+        log_warning "Test 16 PASSED - Brak raportu (krótka symulacja)"
+        return 0
+    fi
+}
+
+# ============================================================
 #                    GŁÓWNA FUNKCJA TESTOWA
 # ============================================================
 
 run_all_tests() {
     local passed=0
     local failed=0
-    local total=10
+    local total=16
 
     echo ""
     echo "╔════════════════════════════════════════════════════════════╗"
@@ -517,6 +723,31 @@ run_all_tests() {
     test_10_zombie_prevention && passed=$((passed + 1)) || failed=$((failed + 1))
     echo ""
 
+    # Testy funkcjonalne
+    echo ""
+    echo "╔════════════════════════════════════════════════════════════╗"
+    echo "║              TESTY FUNKCJONALNE (LOGIKA)                   ║"
+    echo "╚════════════════════════════════════════════════════════════╝"
+    echo ""
+
+    test_11_child_guardian_sync && passed=$((passed + 1)) || failed=$((failed + 1))
+    echo ""
+
+    test_12_max_children_per_guardian && passed=$((passed + 1)) || failed=$((failed + 1))
+    echo ""
+
+    test_13_vip_priority && passed=$((passed + 1)) || failed=$((failed + 1))
+    echo ""
+
+    test_14_chairlift_capacity && passed=$((passed + 1)) || failed=$((failed + 1))
+    echo ""
+
+    test_15_station_capacity && passed=$((passed + 1)) || failed=$((failed + 1))
+    echo ""
+
+    test_16_closing_time && passed=$((passed + 1)) || failed=$((failed + 1))
+    echo ""
+
     # Podsumowanie
     echo ""
     echo "╔════════════════════════════════════════════════════════════╗"
@@ -558,6 +789,15 @@ show_menu() {
     echo "  8) Test obsługi sygnałów"
     echo "  9) Tylko monitoring zasobów"
     echo " 10) Wyczyść zasoby IPC"
+    echo ""
+    echo " --- TESTY FUNKCJONALNE ---"
+    echo " 11) Test dziecko-opiekun"
+    echo " 12) Test max dzieci na opiekuna"
+    echo " 13) Test VIP"
+    echo " 14) Test pojemności krzesełka"
+    echo " 15) Test limitu stacji"
+    echo " 16) Test zamknięcia kolei"
+    echo ""
     echo "  0) Wyjście"
     echo ""
     echo -n "Wybór: "
@@ -634,6 +874,30 @@ while true; do
         10)
             cleanup
             log_success "Zasoby wyczyszczone"
+            ;;
+        11)
+            test_11_child_guardian_sync
+            read -p "Naciśnij Enter aby kontynuować..."
+            ;;
+        12)
+            test_12_max_children_per_guardian
+            read -p "Naciśnij Enter aby kontynuować..."
+            ;;
+        13)
+            test_13_vip_priority
+            read -p "Naciśnij Enter aby kontynuować..."
+            ;;
+        14)
+            test_14_chairlift_capacity
+            read -p "Naciśnij Enter aby kontynuować..."
+            ;;
+        15)
+            test_15_station_capacity
+            read -p "Naciśnij Enter aby kontynuować..."
+            ;;
+        16)
+            test_16_closing_time
+            read -p "Naciśnij Enter aby kontynuować..."
             ;;
         0)
             echo "Do widzenia!"

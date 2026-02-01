@@ -1,2 +1,116 @@
-[13:49:35][INFO ][PID:  620] KASJER: Rozpoczynam pracę (PID: 620)
-[13:49:37][INFO ][PID:  620] KASJER: Kończę pracę. Sprzedano 0 biletów.
+[14:54:11][INFO ][PID:  491] KASJER: Rozpoczynam pracę (PID: 491)
+[14:54:12][INFO ][PID:  491] KASJER: Obsługuję turystę #2 (wiek: 23, VIP: NIE)
+[14:54:12][INFO ][PID:  491] KASJER: Wydaję bilet #1, cena: 50 zł
+[14:54:13][INFO ][PID:  491] KASJER: Obsługuję turystę #3 (wiek: 30, VIP: NIE)
+[14:54:13][INFO ][PID:  491] KASJER: Wydaję bilet #2, cena: 100 zł
+[14:54:14][INFO ][PID:  491] KASJER: Obsługuję turystę #5 (wiek: 7, VIP: NIE)
+[14:54:14][INFO ][PID:  491] KASJER: Wydaję bilet #3, cena: 22 zł
+[14:54:14][INFO ][PID:  491] KASJER: Obsługuję turystę #4 (wiek: 50, VIP: NIE)
+[14:54:14][INFO ][PID:  491] KASJER: Wydaję bilet #4, cena: 30 zł
+[14:54:15][INFO ][PID:  491] KASJER: Obsługuję turystę #6 (wiek: 50, VIP: NIE)
+[14:54:15][INFO ][PID:  491] KASJER: Wydaję bilet #5, cena: 100 zł
+[14:54:16][INFO ][PID:  491] KASJER: Obsługuję turystę #8 (wiek: 7, VIP: NIE)
+[14:54:16][INFO ][PID:  491] KASJER: Wydaję bilet #6, cena: 37 zł
+[14:54:16][INFO ][PID:  491] KASJER: Obsługuję turystę #7 (wiek: 30, VIP: NIE)
+[14:54:16][INFO ][PID:  491] KASJER: Wydaję bilet #7, cena: 70 zł
+[14:54:17][INFO ][PID:  491] KASJER: Obsługuję turystę #10 (wiek: 7, VIP: NIE)
+[14:54:17][INFO ][PID:  491] KASJER: Wydaję bilet #8, cena: 37 zł
+[14:54:17][INFO ][PID:  491] KASJER: Obsługuję turystę #11 (wiek: 5, VIP: NIE)
+[14:54:17][INFO ][PID:  491] KASJER: Wydaję bilet #9, cena: 52 zł
+[14:54:17][INFO ][PID:  491] KASJER: Obsługuję turystę #9 (wiek: 67, VIP: NIE)
+[14:54:17][INFO ][PID:  491] KASJER: Wydaję bilet #10, cena: 37 zł
+[14:54:18][INFO ][PID:  491] KASJER: Obsługuję turystę #12 (wiek: 40, VIP: NIE)
+[14:54:18][INFO ][PID:  491] KASJER: Wydaję bilet #11, cena: 100 zł
+[14:54:19][INFO ][PID:  491] KASJER: Obsługuję turystę #13 (wiek: 45, VIP: NIE)
+[14:54:19][INFO ][PID:  491] KASJER: Wydaję bilet #12, cena: 100 zł
+[14:54:20][INFO ][PID:  491] KASJER: Obsługuję turystę #15 (wiek: 5, VIP: NIE)
+[14:54:20][INFO ][PID:  491] KASJER: Wydaję bilet #13, cena: 52 zł
+[14:54:20][INFO ][PID:  491] KASJER: Obsługuję turystę #16 (wiek: 4, VIP: NIE)
+[14:54:20][INFO ][PID:  491] KASJER: Wydaję bilet #14, cena: 37 zł
+[14:54:20][INFO ][PID:  491] KASJER: Obsługuję turystę #14 (wiek: 55, VIP: NIE)
+[14:54:20][INFO ][PID:  491] KASJER: Wydaję bilet #15, cena: 30 zł
+[14:54:21][INFO ][PID:  491] KASJER: Obsługuję turystę #17 (wiek: 45, VIP: NIE)
+[14:54:21][INFO ][PID:  491] KASJER: Wydaję bilet #16, cena: 100 zł
+[14:54:22][INFO ][PID:  491] KASJER: Obsługuję turystę #19 (wiek: 5, VIP: NIE)
+[14:54:22][INFO ][PID:  491] KASJER: Wydaję bilet #17, cena: 11 zł
+[14:54:22][INFO ][PID:  491] KASJER: Obsługuję turystę #18 (wiek: 60, VIP: NIE)
+[14:54:22][INFO ][PID:  491] KASJER: Wydaję bilet #18, cena: 15 zł
+[14:54:25][INFO ][PID:  491] KASJER: Obsługuję turystę #20 (wiek: 49, VIP: NIE)
+[14:54:25][INFO ][PID:  491] KASJER: Wydaję bilet #19, cena: 30 zł
+[14:54:26][INFO ][PID:  491] KASJER: Obsługuję turystę #21 (wiek: 67, VIP: NIE)
+[14:54:26][INFO ][PID:  491] KASJER: Wydaję bilet #20, cena: 52 zł
+[14:54:27][INFO ][PID:  491] KASJER: Obsługuję turystę #23 (wiek: 6, VIP: NIE)
+[14:54:27][INFO ][PID:  491] KASJER: Wydaję bilet #21, cena: 22 zł
+[14:54:27][INFO ][PID:  491] KASJER: Obsługuję turystę #22 (wiek: 39, VIP: TAK)
+[14:54:27][INFO ][PID:  491] KASJER: Wydaję bilet #22, cena: 70 zł
+[14:54:28][INFO ][PID:  491] KASJER: Obsługuję turystę #25 (wiek: 6, VIP: NIE)
+[14:54:28][INFO ][PID:  491] KASJER: Wydaję bilet #23, cena: 11 zł
+[14:54:28][INFO ][PID:  491] KASJER: Obsługuję turystę #24 (wiek: 64, VIP: NIE)
+[14:54:28][INFO ][PID:  491] KASJER: Wydaję bilet #24, cena: 100 zł
+[14:54:29][INFO ][PID:  491] KASJER: Obsługuję turystę #26 (wiek: 26, VIP: NIE)
+[14:54:29][INFO ][PID:  491] KASJER: Wydaję bilet #25, cena: 70 zł
+[14:54:30][INFO ][PID:  491] KASJER: Obsługuję turystę #27 (wiek: 53, VIP: NIE)
+[14:54:30][INFO ][PID:  491] KASJER: Wydaję bilet #26, cena: 50 zł
+[14:54:31][INFO ][PID:  491] KASJER: Obsługuję turystę #28 (wiek: 43, VIP: NIE)
+[14:54:31][INFO ][PID:  491] KASJER: Wydaję bilet #27, cena: 50 zł
+[14:54:32][INFO ][PID:  491] KASJER: Obsługuję turystę #30 (wiek: 4, VIP: NIE)
+[14:54:32][INFO ][PID:  491] KASJER: Wydaję bilet #28, cena: 52 zł
+[14:54:32][INFO ][PID:  491] KASJER: Obsługuję turystę #31 (wiek: 4, VIP: NIE)
+[14:54:32][INFO ][PID:  491] KASJER: Wydaję bilet #29, cena: 52 zł
+[14:54:32][INFO ][PID:  491] KASJER: Obsługuję turystę #29 (wiek: 28, VIP: NIE)
+[14:54:32][INFO ][PID:  491] KASJER: Wydaję bilet #30, cena: 100 zł
+[14:54:33][INFO ][PID:  491] KASJER: Obsługuję turystę #32 (wiek: 53, VIP: NIE)
+[14:54:33][INFO ][PID:  491] KASJER: Wydaję bilet #31, cena: 100 zł
+[14:54:34][INFO ][PID:  491] KASJER: Obsługuję turystę #33 (wiek: 57, VIP: NIE)
+[14:54:34][INFO ][PID:  491] KASJER: Wydaję bilet #32, cena: 70 zł
+[14:54:35][INFO ][PID:  491] KASJER: Obsługuję turystę #34 (wiek: 35, VIP: NIE)
+[14:54:35][INFO ][PID:  491] KASJER: Wydaję bilet #33, cena: 70 zł
+[14:54:36][INFO ][PID:  491] KASJER: Obsługuję turystę #36 (wiek: 6, VIP: NIE)
+[14:54:36][INFO ][PID:  491] KASJER: Wydaję bilet #34, cena: 11 zł
+[14:54:36][INFO ][PID:  491] KASJER: Obsługuję turystę #35 (wiek: 29, VIP: NIE)
+[14:54:36][INFO ][PID:  491] KASJER: Wydaję bilet #35, cena: 50 zł
+[14:54:37][INFO ][PID:  491] KASJER: Obsługuję turystę #37 (wiek: 30, VIP: NIE)
+[14:54:37][INFO ][PID:  491] KASJER: Wydaję bilet #36, cena: 15 zł
+[14:54:38][INFO ][PID:  491] KASJER: Obsługuję turystę #38 (wiek: 57, VIP: NIE)
+[14:54:38][INFO ][PID:  491] KASJER: Wydaję bilet #37, cena: 30 zł
+[14:54:39][INFO ][PID:  491] KASJER: Obsługuję turystę #39 (wiek: 35, VIP: NIE)
+[14:54:39][INFO ][PID:  491] KASJER: Wydaję bilet #38, cena: 30 zł
+[14:54:40][INFO ][PID:  491] KASJER: Obsługuję turystę #40 (wiek: 53, VIP: NIE)
+[14:54:40][INFO ][PID:  491] KASJER: Wydaję bilet #39, cena: 70 zł
+[14:54:41][INFO ][PID:  491] KASJER: Obsługuję turystę #41 (wiek: 39, VIP: NIE)
+[14:54:41][INFO ][PID:  491] KASJER: Wydaję bilet #40, cena: 15 zł
+[14:54:42][INFO ][PID:  491] KASJER: Obsługuję turystę #42 (wiek: 56, VIP: NIE)
+[14:54:42][INFO ][PID:  491] KASJER: Wydaję bilet #41, cena: 70 zł
+[14:54:43][INFO ][PID:  491] KASJER: Obsługuję turystę #44 (wiek: 5, VIP: NIE)
+[14:54:43][INFO ][PID:  491] KASJER: Wydaję bilet #42, cena: 22 zł
+[14:54:43][INFO ][PID:  491] KASJER: Obsługuję turystę #43 (wiek: 22, VIP: NIE)
+[14:54:43][INFO ][PID:  491] KASJER: Wydaję bilet #43, cena: 15 zł
+[14:54:44][INFO ][PID:  491] KASJER: Obsługuję turystę #45 (wiek: 62, VIP: NIE)
+[14:54:44][INFO ][PID:  491] KASJER: Wydaję bilet #44, cena: 70 zł
+[14:54:45][INFO ][PID:  491] KASJER: Obsługuję turystę #47 (wiek: 5, VIP: NIE)
+[14:54:45][INFO ][PID:  491] KASJER: Wydaję bilet #45, cena: 52 zł
+[14:54:45][INFO ][PID:  491] KASJER: Obsługuję turystę #46 (wiek: 62, VIP: NIE)
+[14:54:45][INFO ][PID:  491] KASJER: Wydaję bilet #46, cena: 30 zł
+[14:54:46][INFO ][PID:  491] KASJER: Obsługuję turystę #48 (wiek: 41, VIP: NIE)
+[14:54:46][INFO ][PID:  491] KASJER: Wydaję bilet #47, cena: 15 zł
+[14:54:47][INFO ][PID:  491] KASJER: Obsługuję turystę #49 (wiek: 68, VIP: NIE)
+[14:54:47][INFO ][PID:  491] KASJER: Wydaję bilet #48, cena: 75 zł
+[14:54:48][INFO ][PID:  491] KASJER: Obsługuję turystę #50 (wiek: 51, VIP: NIE)
+[14:54:48][INFO ][PID:  491] KASJER: Wydaję bilet #49, cena: 30 zł
+[14:54:49][INFO ][PID:  491] KASJER: Obsługuję turystę #51 (wiek: 67, VIP: NIE)
+[14:54:49][INFO ][PID:  491] KASJER: Wydaję bilet #50, cena: 75 zł
+[14:54:50][INFO ][PID:  491] KASJER: Obsługuję turystę #52 (wiek: 24, VIP: NIE)
+[14:54:50][INFO ][PID:  491] KASJER: Wydaję bilet #51, cena: 30 zł
+[14:54:51][INFO ][PID:  491] KASJER: Obsługuję turystę #53 (wiek: 44, VIP: NIE)
+[14:54:51][INFO ][PID:  491] KASJER: Wydaję bilet #52, cena: 15 zł
+[14:54:52][INFO ][PID:  491] KASJER: Obsługuję turystę #55 (wiek: 7, VIP: NIE)
+[14:54:52][INFO ][PID:  491] KASJER: Wydaję bilet #53, cena: 11 zł
+[14:54:52][INFO ][PID:  491] KASJER: Obsługuję turystę #54 (wiek: 32, VIP: NIE)
+[14:54:52][INFO ][PID:  491] KASJER: Wydaję bilet #54, cena: 50 zł
+[14:54:53][INFO ][PID:  491] KASJER: Obsługuję turystę #56 (wiek: 41, VIP: NIE)
+[14:54:53][INFO ][PID:  491] KASJER: Wydaję bilet #55, cena: 30 zł
+[14:54:54][INFO ][PID:  491] KASJER: Obsługuję turystę #57 (wiek: 57, VIP: NIE)
+[14:54:54][INFO ][PID:  491] KASJER: Wydaję bilet #56, cena: 30 zł
+[14:54:55][INFO ][PID:  491] KASJER: Obsługuję turystę #58 (wiek: 60, VIP: NIE)
+[14:54:55][INFO ][PID:  491] KASJER: Wydaję bilet #57, cena: 100 zł
+[14:54:59][INFO ][PID:  491] KASJER: Kończę pracę. Sprzedano 57 biletów.

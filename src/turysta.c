@@ -33,25 +33,26 @@ void turysta_ustaw_sygnaly(void) {
 }
 
 /* Inicjalizacja turysty */
-void inicjalizuj_turystę(int id, int zadany_wiek, int opiekun_id) {
+void inicjalizuj_turystę(int id, int zadany_wiek, int opiekun_id, int liczba_dzieci) {
     memset(&ja, 0, sizeof(Turysta));
-    
+
     ja.id = id;
     ja.pid = getpid();
     ja.wiek = (zadany_wiek > 0) ? zadany_wiek : ((rand() % 76) + 4);
-    
+
     if (ja.wiek >= 12 && rand() % 100 < 40) {
         ja.typ = ROWERZYSTA;
     } else {
         ja.typ = PIESZY;
     }
-    
+
     ja.vip = (rand() % 100 < PROCENT_VIP);
     ja.dziecko_pod_opieka = (ja.wiek >= WIEK_MIN_DZIECKO && ja.wiek < WIEK_DZIECKO_OPIEKA);
     ja.opiekun_id = opiekun_id;
+    ja.liczba_dzieci = liczba_dzieci;  /* Ile dzieci ten opiekun ma */
     ja.status = STATUS_NOWY;
     ja.liczba_zjazdow = 0;
-    
+
     for (int i = 0; i < MAX_DZIECI_POD_OPIEKA; i++) {
         ja.dzieci_pod_opieka[i] = -1;
     }
@@ -103,18 +104,35 @@ int kup_bilet(void) {
     }
     
     ja.status = STATUS_OCZEKUJE_NA_BILET;
-    
+
     if (!turysta_dzialaj) return -1;
-    
+
+    StanWspoldzielony *stan = turysta_zasoby.shm.stan;
+
     Komunikat odpowiedz;
-    if (odbierz_komunikat(turysta_zasoby.mq.mq_kasa, &odpowiedz, ja.id) == -1) {
-        if (!turysta_dzialaj) return -1;
-        LOG_E("TURYSTA #%d: Błąd odbierania biletu", ja.id);
-        return -1;
+    /* Używamy timeout aby uniknąć deadlocka */
+    while (turysta_dzialaj && stan->kolej_aktywna) {
+        int wynik = odbierz_komunikat_timeout(turysta_zasoby.mq.mq_kasa, &odpowiedz, ja.id, 2);
+
+        if (wynik == 1) {
+            break;  /* Sukces - odebrano komunikat */
+        }
+
+        if (wynik == -1) {
+            if (!turysta_dzialaj) return -1;
+            LOG_E("TURYSTA #%d: Błąd odbierania biletu", ja.id);
+            return -1;
+        }
+
+        /* wynik == 0 (timeout) - sprawdź flagi i spróbuj ponownie */
+        if (!stan->kolej_aktywna || !stan->godziny_pracy) {
+            LOG_W("TURYSTA #%d: Kolej zamknięta podczas oczekiwania na bilet", ja.id);
+            return -1;
+        }
     }
-    
+
     if (!turysta_dzialaj) return -1;
-    
+
     ja.bilet.id = odpowiedz.dane[0];
     ja.bilet.typ = odpowiedz.dane[1];
     ja.bilet.max_uzyc = odpowiedz.dane[2];
@@ -148,95 +166,115 @@ int przejdz_bramke_wejsciowa(void) {
     }
     
     ja.status = STATUS_PRZED_BRAMKA_WEJSCIOWA;
-    
+
+    /* Flagi do śledzenia które semafory zostały nabyte */
+    bool vip_nabyty = false;
+    bool stacja_nabyta = false;
+    int bramka = -1;
+
     /* VIP - priorytet */
     if (ja.vip) {
         LOG_I("TURYSTA #%d [VIP]: Wchodzę bez kolejki", ja.id);
         if (!turysta_dzialaj) return -1;
-        sem_czekaj_sysv(sem_id, SEM_IDX_VIP);
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_VIP) == 0) {
+            vip_nabyty = true;
+        }
         if (!turysta_dzialaj) {
-            sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
+            if (vip_nabyty) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
             return -1;
         }
     }
-    
+
     LOG_I("TURYSTA #%d: Czekam na miejsce na stacji", ja.id);
-    
+
     if (!turysta_dzialaj) {
-        if (ja.vip) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
+        if (vip_nabyty) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
         return -1;
     }
-    
+
     /* Czekaj na miejsce na stacji */
-    sem_czekaj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
-    
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_STACJA_DOLNA) == 0) {
+        stacja_nabyta = true;
+    }
+
     if (!turysta_dzialaj) {
-        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
-        if (ja.vip) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
+        if (stacja_nabyta) sem_sygnalizuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
+        if (vip_nabyty) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
         return -1;
     }
-    
+
     /* Znajdź wolną bramkę */
-    int bramka = -1;
     for (int i = 0; i < LICZBA_BRAMEK_WEJSCIOWYCH && turysta_dzialaj; i++) {
         if (sem_probuj_sysv(sem_id, SEM_IDX_BRAMKA_WEJ_BASE + i) == 0) {
             bramka = i;
             break;
         }
     }
-    
+
     if (!turysta_dzialaj) {
-        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
-        if (ja.vip) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
+        if (stacja_nabyta) sem_sygnalizuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
+        if (vip_nabyty) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
         if (bramka >= 0) sem_sygnalizuj_sysv(sem_id, SEM_IDX_BRAMKA_WEJ_BASE + bramka);
         return -1;
     }
-    
+
     if (bramka == -1) {
         bramka = rand() % LICZBA_BRAMEK_WEJSCIOWYCH;
-        sem_czekaj_sysv(sem_id, SEM_IDX_BRAMKA_WEJ_BASE + bramka);
-        
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_BRAMKA_WEJ_BASE + bramka) != 0) {
+            /* Nie udało się nabyć bramki - anuluj */
+            bramka = -1;
+        }
+
         if (!turysta_dzialaj) {
-            sem_sygnalizuj_sysv(sem_id, SEM_IDX_BRAMKA_WEJ_BASE + bramka);
-            sem_sygnalizuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
-            if (ja.vip) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
+            if (bramka >= 0) sem_sygnalizuj_sysv(sem_id, SEM_IDX_BRAMKA_WEJ_BASE + bramka);
+            if (stacja_nabyta) sem_sygnalizuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
+            if (vip_nabyty) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
             return -1;
         }
     }
-    
+
+    if (bramka == -1) {
+        /* Nie udało się zdobyć bramki */
+        if (stacja_nabyta) sem_sygnalizuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
+        if (vip_nabyty) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
+        return -1;
+    }
+
     ja.bilet.liczba_uzyc++;
-    
+
     /* Rejestruj przejście */
     if (turysta_dzialaj) {
-        sem_czekaj_sysv(sem_id, SEM_IDX_REJESTR);
-        if (turysta_dzialaj && stan->liczba_wpisow_rejestru < MAX_WPISOW_REJESTRU) {
-            WpisRejestru *wpis = &stan->rejestr[stan->liczba_wpisow_rejestru];
-            wpis->bilet_id = ja.bilet.id;
-            wpis->turysta_id = ja.id;
-            wpis->czas = time(NULL);
-            wpis->numer_bramki = bramka;
-            wpis->numer_zjazdu = ja.liczba_zjazdow + 1;
-            stan->liczba_wpisow_rejestru++;
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_REJESTR) == 0) {
+            if (turysta_dzialaj && stan->liczba_wpisow_rejestru < MAX_WPISOW_REJESTRU) {
+                WpisRejestru *wpis = &stan->rejestr[stan->liczba_wpisow_rejestru];
+                wpis->bilet_id = ja.bilet.id;
+                wpis->turysta_id = ja.id;
+                wpis->czas = time(NULL);
+                wpis->numer_bramki = bramka;
+                wpis->numer_zjazdu = ja.liczba_zjazdow + 1;
+                stan->liczba_wpisow_rejestru++;
+            }
+            sem_sygnalizuj_sysv(sem_id, SEM_IDX_REJESTR);
         }
-        sem_sygnalizuj_sysv(sem_id, SEM_IDX_REJESTR);
     }
-    
+
     /* Aktualizuj licznik */
     if (turysta_dzialaj) {
-        sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-        stan->liczba_osob_na_stacji++;
-        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+            stan->liczba_osob_na_stacji++;
+            sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        }
     }
-    
+
     LOG_I("TURYSTA #%d: Przeszedłem przez bramkę %d", ja.id, bramka);
-    
+
     /* Zwolnij bramkę */
     sem_sygnalizuj_sysv(sem_id, SEM_IDX_BRAMKA_WEJ_BASE + bramka);
-    
-    if (ja.vip) {
+
+    if (vip_nabyty) {
         sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
     }
-    
+
     ja.status = STATUS_NA_STACJI_DOLNEJ;
     return turysta_dzialaj ? 0 : -1;
 }
@@ -244,13 +282,13 @@ int przejdz_bramke_wejsciowa(void) {
 /* Czekanie na wejście na peron */
 int czekaj_na_peron(void) {
     if (!turysta_dzialaj) return -1;
-    
+
     StanWspoldzielony *stan = turysta_zasoby.shm.stan;
     int sem_id = turysta_zasoby.sem.sem_id;
-    
+
     ja.status = STATUS_OCZEKUJE_NA_PERON;
     LOG_I("TURYSTA #%d: Czekam na pozwolenie wejścia na peron", ja.id);
-    
+
     /* Wyślij prośbę do pracownika1 */
     Komunikat prosba;
     memset(&prosba, 0, sizeof(Komunikat));
@@ -261,95 +299,113 @@ int czekaj_na_peron(void) {
     prosba.dane[1] = ja.dziecko_pod_opieka ? 1 : 0;
     prosba.dane[2] = ja.opiekun_id;
     prosba.dane[3] = ja.wiek;
-    
+    prosba.dane[4] = ja.liczba_dzieci;  /* Ile dzieci ma ten opiekun */
+
     if (!turysta_dzialaj) return -1;
-    
+
     if (wyslij_komunikat(turysta_zasoby.mq.mq_pracownicy, &prosba) == -1) {
         if (!turysta_dzialaj) return -1;
         LOG_E("TURYSTA #%d: Błąd wysyłania prośby o peron", ja.id);
         return -1;
     }
-    
+
     if (!turysta_dzialaj) return -1;
-    
-    /* Czekaj na semaforze */
-    sem_czekaj_sysv(sem_id, SEM_IDX_PERON);
-    
-    if (!turysta_dzialaj) return -1;
-    
-    /* Sprawdź zatrzymanie kolei */
-    if (stan->kolej_zatrzymana && turysta_dzialaj) {
-        LOG_W("TURYSTA #%d: Kolej zatrzymana! Czekam...", ja.id);
-        sem_czekaj_sysv(sem_id, SEM_IDX_PERON);
-        if (!turysta_dzialaj) return -1;
+
+    /* Czekaj na wiadomość MSG_PERON_DOZWOLONY od pracownika1 */
+    /* Pracownik1 wysyła tę wiadomość gdy turysta zostaje dodany do grupy */
+    Komunikat odp;
+    long moj_typ = ja.id + 20000;  /* Typ wiadomości dla peronu: id + 20000 */
+
+    /* Używamy timeout aby uniknąć deadlocka gdy kolej zostanie zatrzymana */
+    while (turysta_dzialaj && stan->kolej_aktywna) {
+        int wynik = odbierz_komunikat_timeout(turysta_zasoby.mq.mq_pracownicy, &odp, moj_typ, 2);
+
+        if (wynik == 1) {
+            break;  /* Sukces - odebrano komunikat */
+        }
+
+        if (wynik == -1) {
+            if (!turysta_dzialaj) return -1;
+            LOG_E("TURYSTA #%d: Błąd oczekiwania na pozwolenie na peron", ja.id);
+            return -1;
+        }
+
+        /* wynik == 0 (timeout) - sprawdź flagi i spróbuj ponownie */
+        if (!stan->kolej_aktywna || !stan->godziny_pracy) {
+            LOG_W("TURYSTA #%d: Kolej zamknięta podczas oczekiwania na peron", ja.id);
+            return -1;
+        }
     }
-    
+
+    if (!turysta_dzialaj) return -1;
+
     ja.status = STATUS_NA_PERONIE;
     LOG_I("TURYSTA #%d: Wchodzę na peron", ja.id);
-    
+
     /* Aktualizuj liczniki */
     if (turysta_dzialaj) {
-        sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-        stan->liczba_osob_na_stacji--;
-        stan->liczba_osob_na_peronie++;
-        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+            stan->liczba_osob_na_stacji--;
+            stan->liczba_osob_na_peronie++;
+            sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        }
     }
-    
+
     return turysta_dzialaj ? 0 : -1;
 }
 
 /* Wsiadanie na krzesełko */
 int wsiadz_na_krzeselko(void) {
     if (!turysta_dzialaj) return -1;
-    
+
     StanWspoldzielony *stan = turysta_zasoby.shm.stan;
     int sem_id = turysta_zasoby.sem.sem_id;
-    
+
     LOG_I("TURYSTA #%d: Czekam na krzesełko", ja.id);
-    
-    /* Wyślij gotowość */
-    Komunikat msg;
-    memset(&msg, 0, sizeof(Komunikat));
-    msg.mtype = MSG_WSIADANIE_NA_KRZESLO;
-    msg.nadawca_id = ja.id;
-    msg.typ_komunikatu = MSG_WSIADANIE_NA_KRZESLO;
-    msg.dane[0] = ja.typ;
-    msg.dane[1] = ja.dziecko_pod_opieka ? 1 : 0;
-    
+
     if (!turysta_dzialaj) return -1;
-    
-    if (wyslij_komunikat(turysta_zasoby.mq.mq_krzesla, &msg) == -1) {
-        if (!turysta_dzialaj) return -1;
-        LOG_E("TURYSTA #%d: Błąd wsiadania", ja.id);
-        return -1;
-    }
-    
-    if (!turysta_dzialaj) return -1;
-    
-    /* Czekaj na potwierdzenie */
+
+    /* Czekaj na potwierdzenie od pracownika1 - on wysyła gdy krzesełko jest gotowe */
+    /* Pracownik1 już wie że turysta jest na peronie (z prośby o peron) */
     Komunikat odp;
     long moj_typ = ja.id + 10000;
-    
-    if (odbierz_komunikat(turysta_zasoby.mq.mq_krzesla, &odp, moj_typ) == -1) {
-        if (!turysta_dzialaj) return -1;
-        LOG_E("TURYSTA #%d: Błąd oczekiwania na krzesełko", ja.id);
-        return -1;
+
+    /* Używamy timeout aby uniknąć deadlocka gdy kolej zostanie zatrzymana */
+    while (turysta_dzialaj && stan->kolej_aktywna) {
+        int wynik = odbierz_komunikat_timeout(turysta_zasoby.mq.mq_krzesla, &odp, moj_typ, 2);
+
+        if (wynik == 1) {
+            break;  /* Sukces - odebrano komunikat */
+        }
+
+        if (wynik == -1) {
+            if (!turysta_dzialaj) return -1;
+            LOG_E("TURYSTA #%d: Błąd oczekiwania na krzesełko", ja.id);
+            return -1;
+        }
+
+        /* wynik == 0 (timeout) - sprawdź flagi i spróbuj ponownie */
+        if (!stan->kolej_aktywna || !stan->godziny_pracy) {
+            LOG_W("TURYSTA #%d: Kolej zamknięta podczas oczekiwania na krzesełko", ja.id);
+            return -1;
+        }
     }
-    
+
     if (!turysta_dzialaj) return -1;
-    
+
     int krzeselko_id = odp.dane[0];
     
     ja.status = STATUS_NA_KRZESELKU;
     LOG_I("TURYSTA #%d: Wsiadłem na krzesełko #%d", ja.id, krzeselko_id);
-    
+
     /* Aktualizuj licznik */
     if (turysta_dzialaj) {
-        sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-        stan->liczba_osob_na_peronie--;
-        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+            stan->liczba_osob_na_peronie--;
+            sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        }
     }
-    
+
     return turysta_dzialaj ? krzeselko_id : -1;
 }
 
@@ -390,14 +446,15 @@ void jedz_na_trasie(void) {
 /* ========== GŁÓWNA FUNKCJA ========== */
 int main(int argc, char *argv[]) {
     /* Parsuj argumenty */
-    if (argc < 4) {
-        fprintf(stderr, "Użycie: %s <id> <wiek> <opiekun_id>\n", argv[0]);
+    if (argc < 5) {
+        fprintf(stderr, "Użycie: %s <id> <wiek> <opiekun_id> <liczba_dzieci>\n", argv[0]);
         return 1;
     }
-    
+
     int id = atoi(argv[1]);
     int wiek = atoi(argv[2]);
     int opiekun = atoi(argv[3]);
+    int liczba_dzieci = atoi(argv[4]);
     
     /* Walidacja */
     if (id <= 0 || id > 10000) {
@@ -420,7 +477,7 @@ int main(int argc, char *argv[]) {
     /* Wszyscy turysci piszą do wspólnego pliku */
     logger_init("logs/wszyscy_turysci.log");
     
-    inicjalizuj_turystę(id, wiek, opiekun);
+    inicjalizuj_turystę(id, wiek, opiekun, liczba_dzieci);
     
     LOG_I("TURYSTA #%d: Przychodzę (wiek: %d, %s, %s)", 
           ja.id, ja.wiek, 

@@ -55,27 +55,28 @@ void p2_ustaw_sygnaly(void) {
 
 void obsluz_przyjazd_krzeselka(int krzeselko_id) {
     if (!p2_dzialaj) return;
-    
+
     StanWspoldzielony *stan = p2_zasoby.shm.stan;
     int sem_id = p2_zasoby.sem.sem_id;
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
+
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) != 0) return;
+
     Krzeselko *k = &stan->krzeselka[krzeselko_id];
-    
+
     if (k->aktywne && k->liczba_pasazerow > 0) {
         LOG_I("PRACOWNIK2: Krzesełko #%d - %d pasażerów", krzeselko_id, k->liczba_pasazerow);
-        
+
         for (int i = 0; i < k->liczba_pasazerow; i++) {
             int wyjscie = rand() % LICZBA_WYJSC;
             LOG_D("PRACOWNIK2: Turysta #%d -> wyjście %d", k->pasazerowie[i], wyjscie);
         }
-        
+
         k->aktywne = false;
         k->liczba_pasazerow = 0;
         k->liczba_rowerzystow = 0;
         stan->liczba_aktywnych_krzeselek--;
         stan->laczna_liczba_zjazdow++;
-        
+
         sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
         sem_sygnalizuj_sysv(sem_id, SEM_IDX_KRZESELKA);
     } else {
@@ -85,34 +86,36 @@ void obsluz_przyjazd_krzeselka(int krzeselko_id) {
 
 void p2_obsluz_wznowienie_komunikat(void) {
     if (!p2_dzialaj) return;
-    
+
     StanWspoldzielony *stan = p2_zasoby.shm.stan;
     int sem_id = p2_zasoby.sem.sem_id;
-    
+
     LOG_I("PRACOWNIK2: Potwierdzam gotowość do wznowienia");
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-    stan->pracownik2_gotowy = true;
-    sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-    
+
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+        stan->pracownik2_gotowy = true;
+        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+    }
+
     sem_sygnalizuj_sysv(sem_id, SEM_IDX_SYNC);
 }
 
 void p2_zatrzymaj_kolej(void) {
     if (!p2_dzialaj) return;
-    
+
     StanWspoldzielony *stan = p2_zasoby.shm.stan;
     int sem_id = p2_zasoby.sem.sem_id;
-    
+
     LOG_W("PRACOWNIK2: ZATRZYMUJĘ KOLEJ!");
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-    stan->kolej_zatrzymana = true;
-    stan->kto_zatrzymal = 2;
-    sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-    
-    if (stan->pid_pracownik1 > 0) {
-        kill(stan->pid_pracownik1, SIGUSR1);
+
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+        stan->kolej_zatrzymana = true;
+        stan->kto_zatrzymal = 2;
+        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+
+        if (stan->pid_pracownik1 > 0) {
+            kill(stan->pid_pracownik1, SIGUSR1);
+        }
     }
 }
 
@@ -131,11 +134,12 @@ int main(int argc, char *argv[]) {
     
     StanWspoldzielony *stan = p2_zasoby.shm.stan;
     int sem_id = p2_zasoby.sem.sem_id;
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-    stan->pid_pracownik2 = getpid();
-    stan->pracownik2_gotowy = true;
-    sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+        stan->pid_pracownik2 = getpid();
+        stan->pracownik2_gotowy = true;
+        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+    }
     
     while (p2_dzialaj && stan->kolej_aktywna) {
         if (p2_kolej_zatrzymana) {
@@ -143,31 +147,33 @@ int main(int argc, char *argv[]) {
             sem_czekaj_timeout_sysv(sem_id, SEM_IDX_PRACOWNIK2, 1);
             continue;
         }
-        
+
         Komunikat msg;
-        int wynik = odbierz_komunikat_nieblokujaco(p2_zasoby.mq.mq_pracownicy, 
+        int wynik = odbierz_komunikat_nieblokujaco(p2_zasoby.mq.mq_pracownicy,
                                                     &msg, MSG_WZNOW_KOLEJ);
         if (wynik > 0 && p2_dzialaj) {
             p2_obsluz_wznowienie_komunikat();
         }
-        
+
         if (!p2_dzialaj) break;
-        
-        sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-        time_t teraz = time(NULL);
-        for (int i = 0; i < MAX_AKTYWNYCH_KRZESELEK && p2_dzialaj; i++) {
-            Krzeselko *k = &stan->krzeselka[i];
-            if (k->aktywne && k->czas_wyjazdu > 0) {
-                int czas_jazdy = (int)(teraz - k->czas_wyjazdu);
-                if (czas_jazdy >= 2) {
-                    sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-                    obsluz_przyjazd_krzeselka(i);
-                    sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
+
+        /* Sprawdź krzesełka - tylko jeśli uda się nabyć semafor */
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+            time_t teraz = time(NULL);
+            for (int i = 0; i < MAX_AKTYWNYCH_KRZESELEK && p2_dzialaj; i++) {
+                Krzeselko *k = &stan->krzeselka[i];
+                if (k->aktywne && k->czas_wyjazdu > 0) {
+                    int czas_jazdy = (int)(teraz - k->czas_wyjazdu);
+                    if (czas_jazdy >= 2) {
+                        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+                        obsluz_przyjazd_krzeselka(i);
+                        if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) != 0) break;
+                    }
                 }
             }
+            sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
         }
-        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-        
+
         if (rand() % 3000 == 0 && !p2_kolej_zatrzymana && p2_dzialaj) {
             p2_zatrzymaj_kolej();
 
@@ -175,22 +181,25 @@ int main(int argc, char *argv[]) {
             sem_czekaj_timeout_sysv(sem_id, SEM_IDX_SYNC, 2);
 
             if (!p2_dzialaj) break;
-            
+
             Komunikat wznow;
             memset(&wznow, 0, sizeof(Komunikat));
             wznow.mtype = MSG_WZNOW_KOLEJ;
             wznow.nadawca_id = 2;
             wyslij_komunikat(p2_zasoby.mq.mq_pracownicy, &wznow);
-            
-            sem_czekaj_sysv(sem_id, SEM_IDX_SYNC);
+
+            /* Czekaj z timeoutem - nie blokuj na zawsze */
+            if (sem_czekaj_timeout_sysv(sem_id, SEM_IDX_SYNC, 3) != 0) {
+                LOG_W("PRACOWNIK2: Timeout oczekiwania na pracownik1 - wznawianie mimo to");
+            }
             if (!p2_dzialaj) break;
-            
-            sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-            stan->kolej_zatrzymana = false;
-            p2_kolej_zatrzymana = 0;
-            sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-            
-            LOG_I("PRACOWNIK2: Kolej wznowiona");
+
+            if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+                stan->kolej_zatrzymana = false;
+                p2_kolej_zatrzymana = 0;
+                sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+                LOG_I("PRACOWNIK2: Kolej wznowiona");
+            }
         }
 
         /* BLOKUJĄCE czekanie 100ms zamiast busy waiting */

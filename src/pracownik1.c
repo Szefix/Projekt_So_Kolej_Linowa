@@ -121,49 +121,71 @@ int znajdz_opiekuna_w_kolejce(int opiekun_id) {
     return -1;
 }
 
+/* ========== POLICZ DZIECI OPIEKUNA W KOLEJCE ========== */
+int policz_dzieci_opiekuna_w_kolejce(int opiekun_id) {
+    int licznik = 0;
+    for (int i = 0; i < liczba_oczekujacych; i++) {
+        if (kolejka[i].opiekun_id == opiekun_id && kolejka[i].dziecko_pod_opieka) {
+            licznik++;
+        }
+    }
+    return licznik;
+}
+
 /* ========== SPRAWDZENIE CZY TURYSTA MOŻE DOŁĄCZYĆ DO GRUPY ========== */
 bool moze_dolaczyc(OczekujacyTurysta *turysta) {
     if (aktualna_grupa.liczba >= POJEMNOSC_KRZESELKA) return false;
-    
+
     /* Sprawdzenie reguł dla rowerzystów */
     if (turysta->typ == ROWERZYSTA) {
         if (aktualna_grupa.liczba_rowerzystow >= MAX_ROWERZYSTOW_NA_KRZESELKU) return false;
-        if (aktualna_grupa.liczba_rowerzystow == 1 && 
+        if (aktualna_grupa.liczba_rowerzystow == 1 &&
             (aktualna_grupa.liczba - aktualna_grupa.liczba_rowerzystow) > 1) return false;
     } else {
         if (aktualna_grupa.liczba_rowerzystow == 2) return false;
-        if (aktualna_grupa.liczba_rowerzystow == 1 && 
+        if (aktualna_grupa.liczba_rowerzystow == 1 &&
             (aktualna_grupa.liczba - aktualna_grupa.liczba_rowerzystow) >= 2) return false;
     }
-    
-    /* ========== LOGIKA DZIECI POD OPIEKĄ (4-8 LAT) ========== */
-    if (turysta->dziecko_pod_opieka) {
-        /* Dziecko potrzebuje opiekuna w grupie lub musi z nim wejść */
-        if (!opiekun_w_grupie(turysta->opiekun_id)) {
-            /* Opiekun nie jest jeszcze w grupie */
-            int idx_opiekuna = znajdz_opiekuna_w_kolejce(turysta->opiekun_id);
-            if (idx_opiekuna == -1) {
-                /* Opiekun nie jest ani w grupie, ani w kolejce - nie wpuszczamy dziecka! */
-                LOG_W("PRACOWNIK1: Dziecko #%d bez opiekuna #%d - czeka", 
-                      turysta->id, turysta->opiekun_id);
-                return false;
-            }
-            /* Opiekun jest w kolejce - dziecko musi poczekać aż opiekun wejdzie */
+
+    /* ========== LOGIKA OPIEKUNA Z DZIEĆMI ========== */
+    if (!turysta->dziecko_pod_opieka && turysta->liczba_dzieci > 0) {
+        /* Opiekun ma dzieci - musi poczekać aż wszystkie są w kolejce */
+        int dzieci_w_kolejce = policz_dzieci_opiekuna_w_kolejce(turysta->id);
+        if (dzieci_w_kolejce < turysta->liczba_dzieci) {
+            /* Nie wszystkie dzieci są jeszcze w kolejce - czekamy */
             return false;
         }
-        
+
+        /* WAŻNE: Sprawdź czy jest miejsce na opiekuna + WSZYSTKIE dzieci razem */
+        int wolne_miejsca = POJEMNOSC_KRZESELKA - aktualna_grupa.liczba;
+        if (wolne_miejsca < 1 + dzieci_w_kolejce) {
+            /* Nie ma miejsca na całą rodzinę - opiekun musi czekać na następne krzesełko */
+            return false;
+        }
+
+        LOG_I("PRACOWNIK1: Opiekun #%d ma wszystkie %d dzieci w kolejce - wchodzą razem",
+              turysta->id, turysta->liczba_dzieci);
+    }
+
+    /* ========== LOGIKA DZIECI POD OPIEKĄ (4-8 LAT) ========== */
+    if (turysta->dziecko_pod_opieka) {
+        /* Dziecko potrzebuje opiekuna w grupie - MUSI już być dodany */
+        if (!opiekun_w_grupie(turysta->opiekun_id)) {
+            /* Opiekun nie jest w grupie - dziecko NIE może wejść samo */
+            /* Dziecko zostanie dodane automatycznie gdy opiekun wejdzie (patrz dodaj_opiekuna_z_dziecmi) */
+            return false;
+        }
+
         /* Sprawdź limit dzieci na opiekuna (max 2) */
         int dzieci_opiekuna = policz_dzieci_opiekuna_w_grupie(turysta->opiekun_id);
         if (dzieci_opiekuna >= MAX_DZIECI_POD_OPIEKA) {
-            LOG_W("PRACOWNIK1: Opiekun #%d ma już %d dzieci w grupie - limit!", 
-                  turysta->opiekun_id, dzieci_opiekuna);
             return false;
         }
-        
-        LOG_I("PRACOWNIK1: Dziecko #%d dołącza do opiekuna #%d", 
+
+        LOG_I("PRACOWNIK1: Dziecko #%d dołącza do opiekuna #%d",
               turysta->id, turysta->opiekun_id);
     }
-    
+
     return true;
 }
 
@@ -175,13 +197,80 @@ void dodaj_do_grupy(OczekujacyTurysta *turysta) {
     aktualna_grupa.opiekunowie[idx] = turysta->opiekun_id;
     aktualna_grupa.czy_dziecko[idx] = turysta->dziecko_pod_opieka;
     aktualna_grupa.liczba++;
-    
+
     if (turysta->typ == ROWERZYSTA) {
         aktualna_grupa.liczba_rowerzystow++;
     }
     if (turysta->dziecko_pod_opieka) {
         aktualna_grupa.liczba_dzieci++;
     }
+}
+
+/* ========== ATOMOWE DODANIE OPIEKUNA Z DZIEĆMI ========== */
+/* Zwraca liczbę dodanych osób (opiekun + dzieci), lub 0 jeśli nie można dodać */
+/* UWAGA: Nie wysyła powiadomień - to robi wyslij_grupe_na_krzeselko() */
+int dodaj_opiekuna_z_dziecmi(int idx_opiekuna) {
+    /* Skopiuj dane opiekuna PRZED usunięciem z kolejki */
+    OczekujacyTurysta opiekun_kopia = kolejka[idx_opiekuna];
+    int opiekun_id = opiekun_kopia.id;
+    int dodano = 0;
+
+    /* Znajdź wszystkie dzieci tego opiekuna w kolejce */
+    int idx_dzieci[MAX_DZIECI_POD_OPIEKA];
+    int liczba_dzieci_znalezionych = 0;
+
+    for (int i = 0; i < liczba_oczekujacych && liczba_dzieci_znalezionych < opiekun_kopia.liczba_dzieci; i++) {
+        if (kolejka[i].opiekun_id == opiekun_id && kolejka[i].dziecko_pod_opieka) {
+            idx_dzieci[liczba_dzieci_znalezionych++] = i;
+        }
+    }
+
+    /* Dodaj opiekuna */
+    dodaj_do_grupy(&opiekun_kopia);
+    dodano++;
+
+    /* Usuń opiekuna z kolejki */
+    for (int j = idx_opiekuna; j < liczba_oczekujacych - 1; j++) {
+        kolejka[j] = kolejka[j + 1];
+    }
+    liczba_oczekujacych--;
+
+    /* Zaktualizuj indeksy dzieci (przesunęły się przez usunięcie opiekuna) */
+    for (int i = 0; i < liczba_dzieci_znalezionych; i++) {
+        if (idx_dzieci[i] > idx_opiekuna) {
+            idx_dzieci[i]--;
+        }
+    }
+
+    /* Dodaj dzieci (od końca żeby indeksy były poprawne) */
+    for (int i = liczba_dzieci_znalezionych - 1; i >= 0; i--) {
+        int idx = idx_dzieci[i];
+        if (idx < liczba_oczekujacych && aktualna_grupa.liczba < POJEMNOSC_KRZESELKA) {
+            OczekujacyTurysta *dziecko = &kolejka[idx];
+            if (dziecko->opiekun_id == opiekun_id) {
+                dodaj_do_grupy(dziecko);
+                dodano++;
+
+                /* Usuń dziecko z kolejki */
+                for (int j = idx; j < liczba_oczekujacych - 1; j++) {
+                    kolejka[j] = kolejka[j + 1];
+                }
+                liczba_oczekujacych--;
+
+                /* Zaktualizuj pozostałe indeksy */
+                for (int k = 0; k < i; k++) {
+                    if (idx_dzieci[k] > idx) {
+                        idx_dzieci[k]--;
+                    }
+                }
+            }
+        }
+    }
+
+    LOG_I("PRACOWNIK1: Dodano opiekuna #%d z %d dziećmi do grupy",
+          opiekun_id, dodano - 1);
+
+    return dodano;
 }
 
 bool grupa_pelna(void) {
@@ -193,35 +282,61 @@ bool grupa_pelna(void) {
 
 void wyslij_grupe_na_krzeselko(void) {
     if (aktualna_grupa.liczba == 0 || !p1_dzialaj) return;
-    
+
     StanWspoldzielony *stan = p1_zasoby.shm.stan;
     int sem_id = p1_zasoby.sem.sem_id;
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_KRZESELKA);
-    if (!p1_dzialaj) {
-        sem_sygnalizuj_sysv(sem_id, SEM_IDX_KRZESELKA);
+
+    /* Śledzenie nabycia semaforów */
+    bool krzeselka_nabyte = false;
+    bool stan_nabyty = false;
+
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_KRZESELKA) == 0) {
+        krzeselka_nabyte = true;
+    }
+    if (!p1_dzialaj || !krzeselka_nabyte) {
+        if (krzeselka_nabyte) sem_sygnalizuj_sysv(sem_id, SEM_IDX_KRZESELKA);
         return;
     }
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
+
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+        stan_nabyty = true;
+    }
+    if (!p1_dzialaj || !stan_nabyty) {
+        if (stan_nabyty) sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        if (krzeselka_nabyte) sem_sygnalizuj_sysv(sem_id, SEM_IDX_KRZESELKA);
+        return;
+    }
+
     int idx = stan->nastepne_krzeselko_idx;
     Krzeselko *k = &stan->krzeselka[idx];
-    
+
     k->aktywne = true;
     k->liczba_pasazerow = aktualna_grupa.liczba;
     k->liczba_rowerzystow = aktualna_grupa.liczba_rowerzystow;
     k->czas_wyjazdu = time(NULL);
-    
+
     for (int i = 0; i < aktualna_grupa.liczba; i++) {
         k->pasazerowie[i] = aktualna_grupa.osoby[i];
     }
-    
+
     stan->nastepne_krzeselko_idx = (idx + 1) % MAX_AKTYWNYCH_KRZESELEK;
     stan->liczba_aktywnych_krzeselek++;
     sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-    
+
     LOG_I("PRACOWNIK1: Wysyłam krzesełko #%d z %d osobami", idx, aktualna_grupa.liczba);
-    
+
+    /* WAŻNE: Najpierw wyślij MSG_PERON_DOZWOLONY do każdego turysty */
+    /* Turysta czeka na tę wiadomość w czekaj_na_peron() */
+    for (int i = 0; i < aktualna_grupa.liczba && p1_dzialaj; i++) {
+        Komunikat peron_msg;
+        memset(&peron_msg, 0, sizeof(Komunikat));
+        peron_msg.mtype = aktualna_grupa.osoby[i] + 20000;  /* Typ dla peronu */
+        peron_msg.typ_komunikatu = MSG_PERON_DOZWOLONY;
+        peron_msg.dane[0] = idx;
+        wyslij_komunikat(p1_zasoby.mq.mq_pracownicy, &peron_msg);
+    }
+
+    /* Potem wyślij MSG_KRZESLO_GOTOWE - turysta czeka na to w wsiadz_na_krzeselko() */
     for (int i = 0; i < aktualna_grupa.liczba && p1_dzialaj; i++) {
         Komunikat odp;
         memset(&odp, 0, sizeof(Komunikat));
@@ -230,56 +345,61 @@ void wyslij_grupe_na_krzeselko(void) {
         odp.dane[0] = idx;
         wyslij_komunikat(p1_zasoby.mq.mq_krzesla, &odp);
     }
-    
+
     inicjalizuj_grupe();
 }
 
 void p1_zatrzymaj_kolej(void) {
     if (!p1_dzialaj) return;
-    
+
     StanWspoldzielony *stan = p1_zasoby.shm.stan;
     int sem_id = p1_zasoby.sem.sem_id;
-    
+
     LOG_W("PRACOWNIK1: ZATRZYMUJĘ KOLEJ!");
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-    stan->kolej_zatrzymana = true;
-    stan->kto_zatrzymal = 1;
-    sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-    
-    if (stan->pid_pracownik2 > 0) {
-        kill(stan->pid_pracownik2, SIGUSR1);
+
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+        stan->kolej_zatrzymana = true;
+        stan->kto_zatrzymal = 1;
+        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+
+        if (stan->pid_pracownik2 > 0) {
+            kill(stan->pid_pracownik2, SIGUSR1);
+        }
     }
 }
 
 void p1_wznow_kolej(void) {
     if (!p1_dzialaj) return;
-    
+
     StanWspoldzielony *stan = p1_zasoby.shm.stan;
     int sem_id = p1_zasoby.sem.sem_id;
-    
+
     LOG_I("PRACOWNIK1: Wznawianie kolei...");
-    
+
     Komunikat msg;
     memset(&msg, 0, sizeof(Komunikat));
     msg.mtype = MSG_WZNOW_KOLEJ;
     msg.nadawca_id = 1;
     msg.typ_komunikatu = MSG_WZNOW_KOLEJ;
     wyslij_komunikat(p1_zasoby.mq.mq_pracownicy, &msg);
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_SYNC);
+
+    /* Czekaj z timeoutem - nie blokuj na zawsze */
+    if (sem_czekaj_timeout_sysv(sem_id, SEM_IDX_SYNC, 3) != 0) {
+        LOG_W("PRACOWNIK1: Timeout oczekiwania na pracownik2 - wznawianie mimo to");
+    }
     if (!p1_dzialaj) return;
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-    stan->kolej_zatrzymana = false;
-    stan->kto_zatrzymal = 0;
-    p1_kolej_zatrzymana = 0;
-    sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-    
-    LOG_I("PRACOWNIK1: Kolej wznowiona!");
-    
-    if (stan->pid_pracownik2 > 0) {
-        kill(stan->pid_pracownik2, SIGUSR2);
+
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+        stan->kolej_zatrzymana = false;
+        stan->kto_zatrzymal = 0;
+        p1_kolej_zatrzymana = 0;
+        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+
+        LOG_I("PRACOWNIK1: Kolej wznowiona!");
+
+        if (stan->pid_pracownik2 > 0) {
+            kill(stan->pid_pracownik2, SIGUSR2);
+        }
     }
 }
 
@@ -298,37 +418,33 @@ int main(int argc, char *argv[]) {
     
     StanWspoldzielony *stan = p1_zasoby.shm.stan;
     int sem_id = p1_zasoby.sem.sem_id;
-    
-    sem_czekaj_sysv(sem_id, SEM_IDX_STAN);
-    stan->pid_pracownik1 = getpid();
-    stan->pracownik1_gotowy = true;
-    sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-    
+
+    if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+        stan->pid_pracownik1 = getpid();
+        stan->pracownik1_gotowy = true;
+        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+    }
+
     inicjalizuj_grupe();
     
     while (p1_dzialaj && stan->kolej_aktywna) {
-        if (p1_kolej_zatrzymana) {
-            /* BLOKUJĄCE czekanie na semaforze z timeoutem */
-            sem_czekaj_timeout_sysv(sem_id, SEM_IDX_PRACOWNIK1, 1);
-            continue;
-        }
-        
+        /* Odbierz prośby od turystów ZAWSZE (nawet gdy kolej zatrzymana) */
         Komunikat prosba;
-        int wynik = odbierz_komunikat_nieblokujaco(p1_zasoby.mq.mq_pracownicy, 
+        int wynik = odbierz_komunikat_nieblokujaco(p1_zasoby.mq.mq_pracownicy,
                                                     &prosba, MSG_PROSBA_O_PERON);
-        
+
         if (!p1_dzialaj) break;
-        
+
         if (wynik > 0) {
             int id = prosba.nadawca_id;
             int typ = prosba.dane[0];
             bool dziecko = (prosba.dane[1] != 0);
             int opiekun_id = prosba.dane[2];
             int wiek = prosba.dane[3];
-            
-            LOG_I("PRACOWNIK1: Prośba od turysty #%d (wiek: %d, dziecko: %s, opiekun: %d)", 
+
+            LOG_I("PRACOWNIK1: Prośba od turysty #%d (wiek: %d, dziecko: %s, opiekun: %d)",
                   id, wiek, dziecko ? "TAK" : "NIE", opiekun_id);
-            
+
             if (liczba_oczekujacych < MAX_OCZEKUJACYCH) {
                 OczekujacyTurysta *t = &kolejka[liczba_oczekujacych];
                 t->id = id;
@@ -336,38 +452,55 @@ int main(int argc, char *argv[]) {
                 t->dziecko_pod_opieka = dziecko;
                 t->opiekun_id = opiekun_id;
                 t->wiek = wiek;
-                t->liczba_dzieci = 0;
+                t->liczba_dzieci = prosba.dane[4];  /* Ile dzieci ma ten opiekun */
                 liczba_oczekujacych++;
             }
         }
-        
-        /* Najpierw dodajemy dorosłych, potem ich dzieci */
+
+        /* Gdy kolej zatrzymana - nie przetwarzaj kolejki, tylko czekaj */
+        if (p1_kolej_zatrzymana) {
+            struct timeval tv;
+            tv.tv_sec = 0;
+            tv.tv_usec = 100000;  /* 100ms */
+            select(0, NULL, NULL, NULL, &tv);
+            continue;
+        }
+
+        /* Przetwarzanie kolejki - opiekunowie są dodawani razem z dziećmi */
         for (int i = 0; i < liczba_oczekujacych && p1_dzialaj; ) {
             OczekujacyTurysta *turysta = &kolejka[i];
-            
+
             if (moze_dolaczyc(turysta)) {
-                dodaj_do_grupy(turysta);
-                sem_sygnalizuj_sysv(sem_id, SEM_IDX_PERON);
-                
-                /* Usuń z kolejki */
-                for (int j = i; j < liczba_oczekujacych - 1; j++) {
-                    kolejka[j] = kolejka[j + 1];
+                /* Sprawdź czy to opiekun z dziećmi - jeśli tak, dodaj atomowo */
+                if (!turysta->dziecko_pod_opieka && turysta->liczba_dzieci > 0) {
+                    /* Opiekun z dziećmi - dodaj ich wszystkich razem */
+                    dodaj_opiekuna_z_dziecmi(i);
+                    /* i nie jest inkrementowane bo elementy się przesunęły */
+                } else {
+                    /* Zwykły turysta lub dziecko którego opiekun jest już w grupie */
+                    dodaj_do_grupy(turysta);
+
+                    /* Usuń z kolejki */
+                    for (int j = i; j < liczba_oczekujacych - 1; j++) {
+                        kolejka[j] = kolejka[j + 1];
+                    }
+                    liczba_oczekujacych--;
+                    /* i nie jest inkrementowane bo elementy się przesunęły */
                 }
-                liczba_oczekujacych--;
             } else {
                 i++;
             }
-            
+
             if (grupa_pelna()) wyslij_grupe_na_krzeselko();
         }
-        
+
         if (aktualna_grupa.liczba > 0 && liczba_oczekujacych == 0 && p1_dzialaj) {
             /* Sprawdź ponownie bez usleep */
             if (liczba_oczekujacych == 0 && aktualna_grupa.liczba > 0) {
                 wyslij_grupe_na_krzeselko();
             }
         }
-        
+
         if (rand() % 2000 == 0 && !p1_kolej_zatrzymana && p1_dzialaj) {
             p1_zatrzymaj_kolej();
             /* BLOKUJĄCE czekanie z timeoutem 2 sekundy */

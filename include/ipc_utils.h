@@ -84,7 +84,7 @@ void usun_kolejki(KolejkiKomunikatow *mq);
 void usun_wszystkie_zasoby(ZasobyIPC *zasoby);
 
 /* ========== OPERACJE NA SEMAFORACH SYSTEM V ========== */
-void sem_czekaj_sysv(int sem_id, int sem_num);
+int sem_czekaj_sysv(int sem_id, int sem_num);  /* Zwraca 0 przy sukcesie, -1 przy błędzie/przerwaniu */
 void sem_sygnalizuj_sysv(int sem_id, int sem_num);
 int sem_probuj_sysv(int sem_id, int sem_num);
 int sem_pobierz_wartosc(int sem_id, int sem_num);
@@ -94,5 +94,7 @@ int sem_czekaj_timeout_sysv(int sem_id, int sem_num, int timeout_sec);  /* Czeka
 int wyslij_komunikat(int mq_id, Komunikat *msg);
 int odbierz_komunikat(int mq_id, Komunikat *msg, long mtype);
 int odbierz_komunikat_nieblokujaco(int mq_id, Komunikat *msg, long mtype);
+/* Odbiera komunikat z timeoutem - zwraca 1 przy sukcesie, 0 przy timeout, -1 przy błędzie */
+int odbierz_komunikat_timeout(int mq_id, Komunikat *msg, long mtype, int timeout_sec);
 
 #endif
