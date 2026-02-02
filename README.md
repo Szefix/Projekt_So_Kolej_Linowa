@@ -360,8 +360,6 @@ Uruchamia sekwencyjnie:
 
 ## 7. Funkcje systemowe i linki do kodu
 
-## 7. Funkcje systemowe i linki do kodu
-
 ### Tworzenie i obsługa plików
 - `open()`: [src/logger.c:139](https://github.com/Szefix/Projekt_So_Kolej_Linowa/blob/main/src/logger.c#L139) - Otwarcie pliku logu
 - `write()`: [src/logger.c:206](https://github.com/Szefix/Projekt_So_Kolej_Linowa/blob/main/src/logger.c#L206) - Zapis logu
