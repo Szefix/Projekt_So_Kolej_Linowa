@@ -58,7 +58,7 @@ make run-long                      # 120s, 100 turystów
 | Parametr | Opis |
 |----------|------|
 | `-t CZAS` | Czas symulacji w sekundach (0 = nieskończoność) |
-| `-n LICZBA` | Maksymalna liczba turystów (1-500, domyślnie 100) |
+| `-n LICZBA` | Maksymalna liczba turystów (domyślnie 100) |
 | `-T [MNOŻNIK]` | Tryb turbo - przyspieszenie 2-10x (domyślnie 5x) |
 | `-h, --help` | Wyświetl pomoc |
 
