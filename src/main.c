@@ -497,12 +497,12 @@ int zapytaj_o_max_turystow(void) {
     printf(KOLOR_CYAN KOLOR_BOLD "           KONFIGURACJA MAKSYMALNEJ LICZBY TURYSTÓW            \n" KOLOR_RESET);
     printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
     printf("\n");
-    printf("Podaj maksymalną liczbę turystów do wygenerowania (1-500).\n");
+    printf("Podaj maksymalną liczbę turystów do wygenerowania (min. 1, brak górnego limitu).\n");
     printf("(Wciśnij " KOLOR_ZOLTY "ENTER" KOLOR_RESET " aby użyć domyślnej wartości: 100)\n");
     printf("\n");
 
     while (1) {
-        printf("Max turystów [1-500]: " KOLOR_ZOLTY);
+        printf("Max turystów: " KOLOR_ZOLTY);
         fflush(stdout);
 
         if (fgets(bufor, sizeof(bufor), stdin) == NULL) {
@@ -528,8 +528,8 @@ int zapytaj_o_max_turystow(void) {
         }
 
         /* Sprawdź zakres */
-        if (n < 1 || n > 500) {
-            printf(KOLOR_CZERWONY "BŁĄD: Liczba musi być między 1 a 500. Spróbuj ponownie.\n" KOLOR_RESET);
+        if (n < 1) {
+            printf(KOLOR_CZERWONY "BŁĄD: Liczba musi być co najmniej 1. Spróbuj ponownie.\n" KOLOR_RESET);
             continue;
         }
 
@@ -595,8 +595,8 @@ int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_tury
                 return -1;
             }
 
-            if (n < 1 || n > 500) {
-                fprintf(stderr, "BŁĄD: Liczba turystów musi być między 1 a 500 (podano: %d)\n", n);
+            if (n < 1) {
+                fprintf(stderr, "BŁĄD: Liczba turystów musi być co najmniej 1 (podano: %d)\n", n);
                 return -1;
             }
 
@@ -609,7 +609,7 @@ int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_tury
             printf("Parametry:\n");
             printf("  -t czas       Czas symulacji w sekundach (0 = nieskończoność)\n");
             printf("                Jeśli nie podano, program zapyta interaktywnie\n");
-            printf("  -n liczba     Max liczba turystów (1-500, domyślnie 100)\n");
+            printf("  -n liczba     Max liczba turystów (min. 1, domyślnie 100)\n");
             printf("  -T [mnoznik]  Tryb TURBO - przyspiesza symulację\n");
             printf("                mnoznik: 2-10 (domyślnie 5)\n");
             printf("  -h            Wyświetl tę pomoc\n");
