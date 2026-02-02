@@ -30,9 +30,6 @@ static volatile sig_atomic_t zakonczenie = 0;
 static pthread_t watek_monitora;
 static volatile int monitor_aktywny = 1;
 
-/* Pipe do komunikacji z wątkiem monitora */
-static PipeKanaly pipe_monitor;
-
 /* Mutex do statystyk z użyciem pthread_mutex_trylock() */
 static pthread_mutex_t mutex_statystyki = PTHREAD_MUTEX_INITIALIZER;
 static pthread_cond_t cond_statystyki = PTHREAD_COND_INITIALIZER;
@@ -93,16 +90,17 @@ void *watek_monitor_funkcja(void *arg) {
     LOG_I("MONITOR: Wątek monitorowania uruchomiony");
 
     while (monitor_aktywny && stan->kolej_aktywna) {
-        /* Sprawdź czy jest komunikat przez pipe */
-        KomunikatPipe msg;
-        int wynik = odbierz_z_fifo_nieblokujaco(pipe_monitor.fd_read, &msg);
-
-        if (wynik > 0) {
-            LOG_D("MONITOR: Otrzymano komunikat typu %d", msg.typ);
-        }
-
         /* Wyświetl stan */
-        printf("\r[Czas: %3ld s] Stacja: %2d | Peron: %2d | Krzesełka: %2d | Zjazdy: %3d | Bilety: %3d   ",
+        printf("\r" KOLOR_CYAN "[Czas:" KOLOR_RESET " " KOLOR_ZOLTY "%3ld" KOLOR_RESET " s" KOLOR_CYAN "]" KOLOR_RESET
+               " " KOLOR_CYAN "Stacja:" KOLOR_RESET " " KOLOR_ZOLTY "%2d" KOLOR_RESET
+               " " KOLOR_CYAN "|" KOLOR_RESET
+               " " KOLOR_CYAN "Peron:" KOLOR_RESET " " KOLOR_ZOLTY "%2d" KOLOR_RESET
+               " " KOLOR_CYAN "|" KOLOR_RESET
+               " " KOLOR_CYAN "Krzesełka:" KOLOR_RESET " " KOLOR_ZOLTY "%2d" KOLOR_RESET
+               " " KOLOR_CYAN "|" KOLOR_RESET
+               " " KOLOR_CYAN "Zjazdy:" KOLOR_RESET " " KOLOR_ZOLTY "%3d" KOLOR_RESET
+               " " KOLOR_CYAN "|" KOLOR_RESET
+               " " KOLOR_CYAN "Bilety:" KOLOR_RESET " " KOLOR_ZOLTY "%3d" KOLOR_RESET "   ",
                time(NULL) - stan->czas_startu,
                stan->liczba_osob_na_stacji,
                stan->liczba_osob_na_peronie,
@@ -337,23 +335,24 @@ void zatrzymaj_i_czekaj_na_procesy(void) {
 }
 
 /* ========== WYŚWIETLANIE BANERA ========== */
-void wyswietl_banner(int czas_symulacji) {
+void wyswietl_banner(int czas_symulacji, int max_turystow) {
     printf("\n");
-    printf("---------------------------------------------------------------\n");
-    printf("                 KOLEJ LINOWA KRZESEŁKOWA                      \n");
-    printf("                    Symulacja Systemu                          \n");
-    printf("---------------------------------------------------------------\n");
+    printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
+    printf(KOLOR_CYAN KOLOR_BOLD "                 KOLEJ LINOWA KRZESEŁKOWA                      \n" KOLOR_RESET);
+    printf(KOLOR_CYAN "                    Symulacja Systemu                          \n" KOLOR_RESET);
+    printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
     printf("\n");
-    printf("  Krzesełka: %2d aktywnych / %2d łącznie                        \n",
+    printf("  Krzesełka: " KOLOR_ZOLTY "%2d" KOLOR_RESET " aktywnych / " KOLOR_ZOLTY "%2d" KOLOR_RESET " łącznie\n",
            MAX_AKTYWNYCH_KRZESELEK, LICZBA_KRZESELEK);
-    printf("  Bramki wejściowe: %d    Bramki peronowe: %d                   \n",
+    printf("  Bramki wejściowe: " KOLOR_ZOLTY "%d" KOLOR_RESET "    Bramki peronowe: " KOLOR_ZOLTY "%d" KOLOR_RESET "\n",
            LICZBA_BRAMEK_WEJSCIOWYCH, LICZBA_BRAMEK_PERONOWYCH);
-    printf("  Max osób na stacji: %2d                                       \n",
+    printf("  Max osób na stacji: " KOLOR_ZOLTY "%2d" KOLOR_RESET "\n",
            MAX_OSOB_NA_STACJI);
+    printf("  Max turystów: " KOLOR_ZOLTY "%d" KOLOR_RESET "\n", max_turystow);
     if (czas_symulacji == -1) {
-        printf("  Czas symulacji: NIESKOŃCZONY (Ctrl+C aby zakończyć)          \n");
+        printf("  Czas symulacji: " KOLOR_ZOLTY "NIESKOŃCZONY" KOLOR_RESET " (Ctrl+C aby zakończyć)\n");
     } else {
-        printf("  Czas symulacji: %d sekund                                    \n",
+        printf("  Czas symulacji: " KOLOR_ZOLTY "%d" KOLOR_RESET " sekund\n",
                czas_symulacji);
     }
     printf("\n");
@@ -372,20 +371,41 @@ void utworz_katalog_logs(void) {
 /* ========== UŻYCIE popen() - sprawdzenie zasobów IPC ========== */
 void sprawdz_zasoby_ipc(void) {
     FILE *fp;
+    char bufor[256];
+    int znaleziono = 0;
 
     printf("Sprawdzanie istniejących zasobów IPC...\n");
-    
+
     /* Użycie popen() do wykonania komendy ipcs i odczytania wyniku */
-    fp = popen("ipcs -a 2>/dev/null | head -20", "r");
+    fp = popen("ipcs -a 2>/dev/null", "r");
     if (fp == NULL) {
         perror("popen ipcs");
         return;
     }
-    
-   
+
+    /* Czytaj wynik komendy ipcs */
+    while (fgets(bufor, sizeof(bufor), fp) != NULL) {
+        /* Szukaj linii z zasobami (zawierają 0x - klucz hex) */
+        if (strstr(bufor, "0x") != NULL) {
+            if (znaleziono == 0) {
+                printf("  Znalezione zasoby IPC:\n");
+            }
+            printf("    %s", bufor);
+            znaleziono++;
+            if (znaleziono >= 10) {
+                printf("    ... (więcej zasobów)\n");
+                break;
+            }
+        }
+    }
+
     /* Zamknij strumień popen - WAŻNE! */
     int status = pclose(fp);
-    (void)status;  /* Ignoruj status - SIGPIPE od head jest normalny */
+    (void)status;
+
+    if (znaleziono == 0) {
+        printf("  Brak istniejących zasobów IPC.\n");
+    }
 }
 
 /* ========== PARSOWANIE LICZBY Z WALIDACJĄ ========== */
@@ -418,51 +438,103 @@ int zapytaj_o_czas_dzialania(void) {
     char bufor[64];
 
     printf("\n");
-    printf("---------------------------------------------------------------\n");
-    printf("           KONFIGURACJA CZASU DZIAŁANIA SYMULACJI              \n");
-    printf("---------------------------------------------------------------\n");
+    printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
+    printf(KOLOR_CYAN KOLOR_BOLD "           KONFIGURACJA CZASU DZIAŁANIA SYMULACJI              \n" KOLOR_RESET);
+    printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
     printf("\n");
     printf("Podaj czas działania symulacji w sekundach.\n");
-    printf("(Wciśnij ENTER bez wpisywania, aby działać w nieskończoność)\n");
+    printf("(Wciśnij " KOLOR_ZOLTY "ENTER" KOLOR_RESET " bez wpisywania, aby działać w nieskończoność)\n");
     printf("\n");
 
     while (1) {
-        printf("Czas [sekundy]: ");
+        printf("Czas [sekundy]: " KOLOR_ZOLTY);
         fflush(stdout);
 
         if (fgets(bufor, sizeof(bufor), stdin) == NULL) {
+            printf(KOLOR_RESET);
             return -1;  /* EOF - nieskończoność */
         }
+        printf(KOLOR_RESET);
 
         /* Usuń znak nowej linii */
         bufor[strcspn(bufor, "\n")] = '\0';
 
         /* Jeśli pusty string - nieskończoność */
         if (strlen(bufor) == 0) {
-            printf("Wybrano tryb: NIESKOŃCZONY (aż do zamknięcia Ctrl+C)\n\n");
+            printf(KOLOR_ZIELONY "Wybrano tryb: NIESKOŃCZONY (aż do zamknięcia Ctrl+C)\n\n" KOLOR_RESET);
             return -1;
         }
 
         /* Spróbuj sparsować liczbę */
         int czas;
         if (parsuj_liczbe(bufor, &czas) != 0) {
-            printf("BŁĄD: '%s' nie jest poprawną liczbą. Spróbuj ponownie.\n", bufor);
+            printf(KOLOR_CZERWONY "BŁĄD: '%s' nie jest poprawną liczbą. Spróbuj ponownie.\n" KOLOR_RESET, bufor);
             continue;
         }
 
         /* Sprawdź zakres */
         if (czas < 0) {
-            printf("BŁĄD: Czas nie może być ujemny. Spróbuj ponownie.\n");
+            printf(KOLOR_CZERWONY "BŁĄD: Czas nie może być ujemny. Spróbuj ponownie.\n" KOLOR_RESET);
             continue;
         }
 
         if (czas == 0) {
-            printf("Wybrano tryb: NIESKOŃCZONY (aż do zamknięcia Ctrl+C)\n\n");
+            printf(KOLOR_ZIELONY "Wybrano tryb: NIESKOŃCZONY (aż do zamknięcia Ctrl+C)\n\n" KOLOR_RESET);
             return -1;
         }
 
-        printf("Wybrano czas działania: %d sekund\n\n", czas);
+        printf(KOLOR_ZIELONY "Wybrano czas działania: %d sekund\n\n" KOLOR_RESET, czas);
         return czas;
+    }
+}
+
+/* ========== PYTANIE O MAX TURYSTÓW ========== */
+int zapytaj_o_max_turystow(void) {
+    char bufor[64];
+
+    printf("\n");
+    printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
+    printf(KOLOR_CYAN KOLOR_BOLD "           KONFIGURACJA MAKSYMALNEJ LICZBY TURYSTÓW            \n" KOLOR_RESET);
+    printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
+    printf("\n");
+    printf("Podaj maksymalną liczbę turystów do wygenerowania (1-500).\n");
+    printf("(Wciśnij " KOLOR_ZOLTY "ENTER" KOLOR_RESET " aby użyć domyślnej wartości: 100)\n");
+    printf("\n");
+
+    while (1) {
+        printf("Max turystów [1-500]: " KOLOR_ZOLTY);
+        fflush(stdout);
+
+        if (fgets(bufor, sizeof(bufor), stdin) == NULL) {
+            printf(KOLOR_RESET);
+            return 100;  /* EOF - domyślna wartość */
+        }
+        printf(KOLOR_RESET);
+
+        /* Usuń znak nowej linii */
+        bufor[strcspn(bufor, "\n")] = '\0';
+
+        /* Jeśli pusty string - domyślna wartość */
+        if (strlen(bufor) == 0) {
+            printf(KOLOR_ZIELONY "Wybrano domyślną wartość: 100 turystów\n\n" KOLOR_RESET);
+            return 100;
+        }
+
+        /* Spróbuj sparsować liczbę */
+        int n;
+        if (parsuj_liczbe(bufor, &n) != 0) {
+            printf(KOLOR_CZERWONY "BŁĄD: '%s' nie jest poprawną liczbą. Spróbuj ponownie.\n" KOLOR_RESET, bufor);
+            continue;
+        }
+
+        /* Sprawdź zakres */
+        if (n < 1 || n > 500) {
+            printf(KOLOR_CZERWONY "BŁĄD: Liczba musi być między 1 a 500. Spróbuj ponownie.\n" KOLOR_RESET);
+            continue;
+        }
+
+        printf(KOLOR_ZIELONY "Wybrano maksymalną liczbę turystów: %d\n\n" KOLOR_RESET, n);
+        return n;
     }
 }
 
@@ -555,12 +627,14 @@ int main(int argc, char *argv[]) {
     /* Jeśli czas nie podany przez argumenty - zapytaj użytkownika */
     if (czas_symulacji == -1) {
         czas_symulacji = zapytaj_o_czas_dzialania();
+        /* Skoro pytamy o czas, zapytaj też o turystów */
+        max_turystow = zapytaj_o_max_turystow();
     }
 
     /* Inicjalizacja */
     srand(time(NULL) ^ getpid());
     utworz_katalog_logs();
-    wyswietl_banner(czas_symulacji);
+    wyswietl_banner(czas_symulacji, max_turystow);
     
     /* Ustawienie obsługi sygnałów */
     ustaw_obsluge_sygnalow();
@@ -575,21 +649,12 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "BŁĄD: Nie można utworzyć potoków FIFO\n");
         return 1;
     }
-    
-    /* Tworzenie pipe dla wątku monitora */
-    if (utworz_pipe(&pipe_monitor) == -1) {
-        fprintf(stderr, "BŁĄD: Nie można utworzyć pipe\n");
-        usun_fifo_wszystkie();
-        return 1;
-    }
-    
+
     /* Inicjalizacja zasobów IPC */
     if (inicjalizuj_wszystkie_zasoby(&zasoby) == -1) {
         fprintf(stderr, "BŁĄD: Nie można zainicjalizować zasobów IPC\n");
         fprintf(stderr, "Spróbuj: make clean-ipc\n");
         usun_fifo_wszystkie();
-        close(pipe_monitor.fd_read);
-        close(pipe_monitor.fd_write);
         return 1;
     }
     
@@ -668,13 +733,16 @@ int main(int argc, char *argv[]) {
         }
         
         /* Generuj nowych turystów - ale tylko gdy stacja nie jest przepełniona */
+        /* Generuj do 5 turystów na sekundę */
         if (teraz - ostatni_turysta >= 1 && stan->godziny_pracy &&
             nastepny_id <= max_turystow &&
             stan->liczba_osob_na_stacji < MAX_OSOB_NA_STACJI - 5) {
-            if (rand() % 100 < 70) {
+            int ile_wygenerowac = 3 + (rand() % 3);  /* 3-5 turystów */
+            for (int i = 0; i < ile_wygenerowac && nastepny_id <= max_turystow &&
+                 stan->liczba_osob_na_stacji < MAX_OSOB_NA_STACJI - 5; i++) {
                 generuj_grupe(&nastepny_id);
-                ostatni_turysta = teraz;
             }
+            ostatni_turysta = teraz;
         }
 
         /* Zbierz zakończone procesy potomne (zapobieganie zombie) */
@@ -709,12 +777,12 @@ int main(int argc, char *argv[]) {
     
     /* Podsumowanie */
     printf("\n");
-    printf("---------------------------------------------------------------\n");
-    printf("                    PODSUMOWANIE DNIA                          \n");
-    printf("  Łączna liczba zjazdów:     %-34d \n", stan->laczna_liczba_zjazdow);
-    printf("  Sprzedanych biletów:       %-34d \n", stan->liczba_sprzedanych_biletow);
-    printf("  Wpisów w rejestrze:        %-34d \n", stan->liczba_wpisow_rejestru);
-    printf("---------------------------------------------------------------\n");
+    printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
+    printf(KOLOR_CYAN KOLOR_BOLD "                    PODSUMOWANIE DNIA                          \n" KOLOR_RESET);
+    printf("  Łączna liczba zjazdów:     " KOLOR_ZOLTY "%-6d" KOLOR_RESET "\n", stan->laczna_liczba_zjazdow);
+    printf("  Sprzedanych biletów:       " KOLOR_ZOLTY "%-6d" KOLOR_RESET "\n", stan->liczba_sprzedanych_biletow);
+    printf("  Wpisów w rejestrze:        " KOLOR_ZOLTY "%-6d" KOLOR_RESET "\n", stan->liczba_wpisow_rejestru);
+    printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
     printf("\n");
     
     LOG_I(" ZAKOŃCZENIE SYMULACJI ");
@@ -722,8 +790,6 @@ int main(int argc, char *argv[]) {
     
     /* DOPIERO TERAZ czyść zasoby IPC - po zakończeniu wszystkich procesów */
     printf("Czyszczenie zasobów IPC...\n");
-    close(pipe_monitor.fd_read);
-    close(pipe_monitor.fd_write);
     usun_fifo_wszystkie();
     usun_wszystkie_zasoby(&zasoby);
     

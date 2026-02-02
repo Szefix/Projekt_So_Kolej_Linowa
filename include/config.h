@@ -63,4 +63,12 @@
 #define MQ_KEY_PRACOWNICY 0x5003
 #define MQ_KEY_KRZESLA 0x5004
 
+/* ========== KOLORY ANSI (terminal) ========== */
+#define KOLOR_RESET   "\033[0m"
+#define KOLOR_BOLD    "\033[1m"
+#define KOLOR_CYAN    "\033[36m"
+#define KOLOR_ZOLTY   "\033[33m"
+#define KOLOR_ZIELONY "\033[32m"
+#define KOLOR_CZERWONY "\033[31m"
+
 #endif
