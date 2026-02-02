@@ -385,11 +385,7 @@ void sprawdz_zasoby_ipc(void) {
    
     /* Zamknij strumień popen - WAŻNE! */
     int status = pclose(fp);
-    if (status == -1) {
-        fprintf(stderr, "UWAGA: pclose - proces potomny już zakończony (to normalne)\n");
-    } else {
-        LOG_D("MAIN: ipcs zakończone ze statusem %d", WEXITSTATUS(status));
-    }
+    (void)status;  /* Ignoruj status - SIGPIPE od head jest normalny */
 }
 
 /* ========== PARSOWANIE LICZBY Z WALIDACJĄ ========== */
@@ -671,9 +667,10 @@ int main(int argc, char *argv[]) {
             break;
         }
         
-        /* Generuj nowych turystów */
+        /* Generuj nowych turystów - ale tylko gdy stacja nie jest przepełniona */
         if (teraz - ostatni_turysta >= 1 && stan->godziny_pracy &&
-            nastepny_id <= max_turystow) {
+            nastepny_id <= max_turystow &&
+            stan->liczba_osob_na_stacji < MAX_OSOB_NA_STACJI - 5) {
             if (rand() % 100 < 70) {
                 generuj_grupe(&nastepny_id);
                 ostatni_turysta = teraz;

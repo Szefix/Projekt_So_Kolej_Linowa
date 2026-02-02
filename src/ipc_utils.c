@@ -287,54 +287,75 @@ void usun_pamiec_wspoldzielona(PamiecWspoldzielona *shm) {
     }
 }
 
+/* ========== ZWIĘKSZENIE ROZMIARU KOLEJKI ========== */
+
+static void ustaw_rozmiar_kolejki(int mq_id, int rozmiar_bajtow) {
+    struct msqid_ds buf;
+    if (msgctl(mq_id, IPC_STAT, &buf) == -1) {
+        perror("msgctl IPC_STAT");
+        return;
+    }
+    buf.msg_qbytes = rozmiar_bajtow;
+    if (msgctl(mq_id, IPC_SET, &buf) == -1) {
+        /* Ignoruj błąd - może wymagać uprawnień root */
+        /* perror("msgctl IPC_SET"); */
+    }
+}
+
 /* ========== INICJALIZACJA KOLEJEK ========== */
 
 int inicjalizuj_kolejki(KolejkiKomunikatow *mq) {
     /* Usuń stare kolejki */
     key_t klucz;
     int stary;
-    
+
     klucz = ftok("/tmp", 'A');
     stary = msgget(klucz, 0666);
     if (stary != -1) msgctl(stary, IPC_RMID, NULL);
-    
+
     klucz = ftok("/tmp", 'B');
     stary = msgget(klucz, 0666);
     if (stary != -1) msgctl(stary, IPC_RMID, NULL);
-    
+
     klucz = ftok("/tmp", 'C');
     stary = msgget(klucz, 0666);
     if (stary != -1) msgctl(stary, IPC_RMID, NULL);
-    
+
     klucz = ftok("/tmp", 'D');
     stary = msgget(klucz, 0666);
     if (stary != -1) msgctl(stary, IPC_RMID, NULL);
-    
+
     /* Tworzenie nowych kolejek - uprawnienia 0660 */
     mq->mq_kasa = msgget(ftok("/tmp", 'A'), IPC_CREAT | IPC_EXCL | 0660);
     if (mq->mq_kasa == -1) {
         perror("msgget kasa");
         return -1;
     }
-    
+
     mq->mq_bramki = msgget(ftok("/tmp", 'B'), IPC_CREAT | IPC_EXCL | 0660);
     if (mq->mq_bramki == -1) {
         perror("msgget bramki");
         return -1;
     }
-    
+
     mq->mq_pracownicy = msgget(ftok("/tmp", 'C'), IPC_CREAT | IPC_EXCL | 0660);
     if (mq->mq_pracownicy == -1) {
         perror("msgget pracownicy");
         return -1;
     }
-    
+
     mq->mq_krzesla = msgget(ftok("/tmp", 'D'), IPC_CREAT | IPC_EXCL | 0660);
     if (mq->mq_krzesla == -1) {
         perror("msgget krzesla");
         return -1;
     }
-    
+
+    /* Zwiększ rozmiar kolejek do 64KB (pomieści ~500 komunikatów) */
+    ustaw_rozmiar_kolejki(mq->mq_kasa, 65536);
+    ustaw_rozmiar_kolejki(mq->mq_bramki, 65536);
+    ustaw_rozmiar_kolejki(mq->mq_pracownicy, 65536);
+    ustaw_rozmiar_kolejki(mq->mq_krzesla, 65536);
+
     return 0;
 }
 
@@ -415,13 +436,33 @@ void usun_wszystkie_zasoby(ZasobyIPC *zasoby) {
 /* ========== WYSYŁANIE KOMUNIKATU ========== */
 
 int wyslij_komunikat(int mq_id, Komunikat *msg) {
-    if (msgsnd(mq_id, msg, sizeof(Komunikat) - sizeof(long), 0) == -1) {
-        if (errno != EINTR) {
-            perror("msgsnd");
+    /* Próbuj wysłać z retry gdy kolejka pełna */
+    int proby = 50;  /* Max 50 prób * 20ms = 1 sekunda */
+
+    while (proby > 0) {
+        if (msgsnd(mq_id, msg, sizeof(Komunikat) - sizeof(long), IPC_NOWAIT) == 0) {
+            return 0;  /* Sukces */
         }
-        return -1;
+
+        if (errno == EAGAIN) {
+            /* Kolejka pełna - poczekaj i spróbuj ponownie */
+            struct timeval tv;
+            tv.tv_sec = 0;
+            tv.tv_usec = 20000;  /* 20ms */
+            select(0, NULL, NULL, NULL, &tv);
+            proby--;
+        } else if (errno == EINTR) {
+            /* Przerwane sygnałem - zakończ */
+            return -1;
+        } else {
+            perror("msgsnd");
+            return -1;
+        }
     }
-    return 0;
+
+    /* Timeout - kolejka cały czas pełna */
+    fprintf(stderr, "msgsnd: kolejka pełna przez 1s, komunikat odrzucony\n");
+    return -1;
 }
 
 /* ========== ODBIERANIE KOMUNIKATU (BLOKUJĄCE) ========== */

@@ -4,6 +4,7 @@
 #include <string.h>
 #include <signal.h>
 #include <errno.h>
+#include <time.h>
 #include <sys/select.h>
 #include "config.h"
 #include "types.h"
@@ -33,9 +34,13 @@ typedef struct {
     int opiekun_id;       /* -1 jeśli dorosły lub dziecko bez opieki */
     int wiek;
     int liczba_dzieci;    /* Ile dzieci ten dorosły ma pod opieką (w kolejce) */
+    time_t czas_dodania;  /* Kiedy turysta został dodany do kolejki */
 } OczekujacyTurysta;
 
-#define MAX_OCZEKUJACYCH 200
+/* Timeout w sekundach - po tym czasie dziecko bez opiekuna jest usuwane */
+#define TIMEOUT_OCZEKIWANIA_NA_OPIEKUNA 10
+
+#define MAX_OCZEKUJACYCH 300
 static OczekujacyTurysta kolejka[MAX_OCZEKUJACYCH];
 static int liczba_oczekujacych = 0;
 static GrupaKrzeselko aktualna_grupa;
@@ -149,22 +154,38 @@ bool moze_dolaczyc(OczekujacyTurysta *turysta) {
 
     /* ========== LOGIKA OPIEKUNA Z DZIEĆMI ========== */
     if (!turysta->dziecko_pod_opieka && turysta->liczba_dzieci > 0) {
-        /* Opiekun ma dzieci - musi poczekać aż wszystkie są w kolejce */
+        /* Opiekun ma dzieci - sprawdź ile jest w kolejce */
         int dzieci_w_kolejce = policz_dzieci_opiekuna_w_kolejce(turysta->id);
+
         if (dzieci_w_kolejce < turysta->liczba_dzieci) {
-            /* Nie wszystkie dzieci są jeszcze w kolejce - czekamy */
-            return false;
+            /* Nie wszystkie dzieci są jeszcze w kolejce - sprawdź timeout */
+            time_t teraz = time(NULL);
+            time_t czas_oczekiwania = teraz - turysta->czas_dodania;
+
+            if (czas_oczekiwania < TIMEOUT_OCZEKIWANIA_NA_OPIEKUNA) {
+                /* Jeszcze czekamy na dzieci */
+                return false;
+            }
+
+            /* Timeout - jedź z tymi dziećmi co są, lub sam */
+            LOG_W("PRACOWNIK1: Opiekun #%d timeout - ma %d/%d dzieci, jedzie z tym co jest",
+                  turysta->id, dzieci_w_kolejce, turysta->liczba_dzieci);
+
+            /* Zaktualizuj liczbę dzieci do tych co faktycznie są */
+            /* (aby dodaj_opiekuna_z_dziecmi działało poprawnie) */
         }
 
-        /* WAŻNE: Sprawdź czy jest miejsce na opiekuna + WSZYSTKIE dzieci razem */
+        /* WAŻNE: Sprawdź czy jest miejsce na opiekuna + dzieci które SĄ w kolejce */
         int wolne_miejsca = POJEMNOSC_KRZESELKA - aktualna_grupa.liczba;
         if (wolne_miejsca < 1 + dzieci_w_kolejce) {
             /* Nie ma miejsca na całą rodzinę - opiekun musi czekać na następne krzesełko */
             return false;
         }
 
-        LOG_I("PRACOWNIK1: Opiekun #%d ma wszystkie %d dzieci w kolejce - wchodzą razem",
-              turysta->id, turysta->liczba_dzieci);
+        if (dzieci_w_kolejce > 0) {
+            LOG_I("PRACOWNIK1: Opiekun #%d z %d dziećmi wchodzi na krzesełko",
+                  turysta->id, dzieci_w_kolejce);
+        }
     }
 
     /* ========== LOGIKA DZIECI POD OPIEKĄ (4-8 LAT) ========== */
@@ -215,11 +236,12 @@ int dodaj_opiekuna_z_dziecmi(int idx_opiekuna) {
     int opiekun_id = opiekun_kopia.id;
     int dodano = 0;
 
-    /* Znajdź wszystkie dzieci tego opiekuna w kolejce */
+    /* Znajdź wszystkie dzieci tego opiekuna FAKTYCZNIE w kolejce */
     int idx_dzieci[MAX_DZIECI_POD_OPIEKA];
     int liczba_dzieci_znalezionych = 0;
 
-    for (int i = 0; i < liczba_oczekujacych && liczba_dzieci_znalezionych < opiekun_kopia.liczba_dzieci; i++) {
+    /* Szukaj WSZYSTKICH dzieci w kolejce (nie ograniczaj do liczba_dzieci - może być mniej) */
+    for (int i = 0; i < liczba_oczekujacych && liczba_dzieci_znalezionych < MAX_DZIECI_POD_OPIEKA; i++) {
         if (kolejka[i].opiekun_id == opiekun_id && kolejka[i].dziecko_pod_opieka) {
             idx_dzieci[liczba_dzieci_znalezionych++] = i;
         }
@@ -307,9 +329,24 @@ void wyslij_grupe_na_krzeselko(void) {
         return;
     }
 
-    int idx = stan->nastepne_krzeselko_idx;
-    Krzeselko *k = &stan->krzeselka[idx];
+    /* Znajdź DOWOLNE wolne krzesełko zamiast czekać na konkretne */
+    int idx = -1;
+    for (int i = 0; i < MAX_AKTYWNYCH_KRZESELEK; i++) {
+        if (!stan->krzeselka[i].aktywne) {
+            idx = i;
+            break;
+        }
+    }
 
+    if (idx == -1) {
+        /* Wszystkie krzesełka aktywne - to nie powinno się zdarzyć jeśli semafor działa */
+        LOG_W("PRACOWNIK1: Brak wolnych krzesełek mimo nabytego semafora!");
+        sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        sem_sygnalizuj_sysv(sem_id, SEM_IDX_KRZESELKA);
+        return;
+    }
+
+    Krzeselko *k = &stan->krzeselka[idx];
     k->aktywne = true;
     k->liczba_pasazerow = aktualna_grupa.liczba;
     k->liczba_rowerzystow = aktualna_grupa.liczba_rowerzystow;
@@ -319,7 +356,6 @@ void wyslij_grupe_na_krzeselko(void) {
         k->pasazerowie[i] = aktualna_grupa.osoby[i];
     }
 
-    stan->nastepne_krzeselko_idx = (idx + 1) % MAX_AKTYWNYCH_KRZESELEK;
     stan->liczba_aktywnych_krzeselek++;
     sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
 
@@ -453,6 +489,7 @@ int main(int argc, char *argv[]) {
                 t->opiekun_id = opiekun_id;
                 t->wiek = wiek;
                 t->liczba_dzieci = prosba.dane[4];  /* Ile dzieci ma ten opiekun */
+                t->czas_dodania = time(NULL);       /* Zapisz czas dodania */
                 liczba_oczekujacych++;
             }
         }
@@ -469,6 +506,41 @@ int main(int argc, char *argv[]) {
         /* Przetwarzanie kolejki - opiekunowie są dodawani razem z dziećmi */
         for (int i = 0; i < liczba_oczekujacych && p1_dzialaj; ) {
             OczekujacyTurysta *turysta = &kolejka[i];
+
+            /* Usuń osierocone dzieci - ale tylko po upływie timeout */
+            if (turysta->dziecko_pod_opieka) {
+                int idx_opiekuna = znajdz_opiekuna_w_kolejce(turysta->opiekun_id);
+                if (idx_opiekuna == -1 && !opiekun_w_grupie(turysta->opiekun_id)) {
+                    /* Opiekun nie jest jeszcze w kolejce - sprawdź timeout */
+                    time_t teraz = time(NULL);
+                    time_t czas_oczekiwania = teraz - turysta->czas_dodania;
+
+                    if (czas_oczekiwania < TIMEOUT_OCZEKIWANIA_NA_OPIEKUNA) {
+                        /* Jeszcze czekamy na opiekuna - pomiń to dziecko na razie */
+                        i++;
+                        continue;
+                    }
+
+                    /* Timeout - opiekun nie przyszedł, usuń dziecko */
+                    LOG_W("PRACOWNIK1: Usuwam osierocone dziecko #%d (opiekun #%d nie przyszedł przez %ld s)",
+                          turysta->id, turysta->opiekun_id, czas_oczekiwania);
+
+                    /* Wyślij powiadomienie żeby dziecko mogło kontynuować */
+                    Komunikat peron_msg;
+                    memset(&peron_msg, 0, sizeof(Komunikat));
+                    peron_msg.mtype = turysta->id + 20000;
+                    peron_msg.typ_komunikatu = MSG_PERON_DOZWOLONY;
+                    peron_msg.dane[0] = -1;  /* -1 oznacza "wyjdź bez jazdy" */
+                    wyslij_komunikat(p1_zasoby.mq.mq_pracownicy, &peron_msg);
+
+                    /* Usuń z kolejki */
+                    for (int j = i; j < liczba_oczekujacych - 1; j++) {
+                        kolejka[j] = kolejka[j + 1];
+                    }
+                    liczba_oczekujacych--;
+                    continue;  /* Nie inkrementuj i */
+                }
+            }
 
             if (moze_dolaczyc(turysta)) {
                 /* Sprawdź czy to opiekun z dziećmi - jeśli tak, dodaj atomowo */
@@ -494,9 +566,23 @@ int main(int argc, char *argv[]) {
             if (grupa_pelna()) wyslij_grupe_na_krzeselko();
         }
 
-        if (aktualna_grupa.liczba > 0 && liczba_oczekujacych == 0 && p1_dzialaj) {
-            /* Sprawdź ponownie bez usleep */
-            if (liczba_oczekujacych == 0 && aktualna_grupa.liczba > 0) {
+        /* Wyślij niepełną grupę jeśli:
+         * - grupa ma kogoś
+         * - kolejka jest pusta LUB wszyscy w kolejce czekają (dzieci na opiekunów)
+         */
+        if (aktualna_grupa.liczba > 0 && p1_dzialaj) {
+            bool wszyscy_czekaja = true;
+            for (int i = 0; i < liczba_oczekujacych; i++) {
+                OczekujacyTurysta *t = &kolejka[i];
+                /* Sprawdź czy ten turysta mógłby dołączyć */
+                if (!t->dziecko_pod_opieka || opiekun_w_grupie(t->opiekun_id)) {
+                    /* Ten turysta mógłby dołączyć - nie wysyłaj jeszcze */
+                    wszyscy_czekaja = false;
+                    break;
+                }
+            }
+
+            if (liczba_oczekujacych == 0 || wszyscy_czekaja) {
                 wyslij_grupe_na_krzeselko();
             }
         }

@@ -121,7 +121,8 @@ void obsluz_klienta(Komunikat *prosba) {
     
     Komunikat odpowiedz;
     memset(&odpowiedz, 0, sizeof(Komunikat));
-    odpowiedz.mtype = turysta_id;
+    /* WAŻNE: mtype = id + 1000 żeby nie kolidować z MSG_PROSBA_O_BILET=1 */
+    odpowiedz.mtype = turysta_id + 1000;
     odpowiedz.typ_komunikatu = MSG_BILET_WYDANY;
     odpowiedz.nadawca_id = 0;
     odpowiedz.dane[0] = bilet.id;

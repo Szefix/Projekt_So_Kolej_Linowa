@@ -148,7 +148,7 @@ typedef struct {
     int nadawca_id;
     int typ_komunikatu;         /* TypKomunikatu */
     int dane[8];                /* Dane dodatkowe */
-    char tekst[64];             /* Opcjonalny tekst */
 } Komunikat;
+/* Rozmiar: ~48 bajtów, kolejka 16KB pomieści ~330 komunikatów */
 
 #endif

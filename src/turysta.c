@@ -111,8 +111,10 @@ int kup_bilet(void) {
 
     Komunikat odpowiedz;
     /* Używamy timeout aby uniknąć deadlocka */
+    /* WAŻNE: mtype = id + 1000 żeby nie kolidować z MSG_PROSBA_O_BILET=1 */
+    long moj_typ_kasa = ja.id + 1000;
     while (turysta_dzialaj && stan->kolej_aktywna) {
-        int wynik = odbierz_komunikat_timeout(turysta_zasoby.mq.mq_kasa, &odpowiedz, ja.id, 2);
+        int wynik = odbierz_komunikat_timeout(turysta_zasoby.mq.mq_kasa, &odpowiedz, moj_typ_kasa, 2);
 
         if (wynik == 1) {
             break;  /* Sukces - odebrano komunikat */
@@ -290,16 +292,22 @@ int czekaj_na_peron(void) {
     LOG_I("TURYSTA #%d: Czekam na pozwolenie wejścia na peron", ja.id);
 
     /* Wyślij prośbę do pracownika1 */
+    /* WAŻNE: Przy kolejnych zjazdach turysta jedzie samodzielnie
+     * (dzieci i opiekun jadą osobno jako niezależne procesy) */
+    int dzieci_do_wyslania = (ja.liczba_zjazdow == 0) ? ja.liczba_dzieci : 0;
+    int opiekun_do_wyslania = (ja.liczba_zjazdow == 0) ? ja.opiekun_id : -1;
+    bool dziecko_do_wyslania = (ja.liczba_zjazdow == 0) ? ja.dziecko_pod_opieka : false;
+
     Komunikat prosba;
     memset(&prosba, 0, sizeof(Komunikat));
     prosba.mtype = MSG_PROSBA_O_PERON;
     prosba.nadawca_id = ja.id;
     prosba.typ_komunikatu = MSG_PROSBA_O_PERON;
     prosba.dane[0] = ja.typ;
-    prosba.dane[1] = ja.dziecko_pod_opieka ? 1 : 0;
-    prosba.dane[2] = ja.opiekun_id;
+    prosba.dane[1] = dziecko_do_wyslania ? 1 : 0;
+    prosba.dane[2] = opiekun_do_wyslania;
     prosba.dane[3] = ja.wiek;
-    prosba.dane[4] = ja.liczba_dzieci;  /* Ile dzieci ma ten opiekun */
+    prosba.dane[4] = dzieci_do_wyslania;  /* Ile dzieci ma ten opiekun */
 
     if (!turysta_dzialaj) return -1;
 
@@ -338,6 +346,12 @@ int czekaj_na_peron(void) {
     }
 
     if (!turysta_dzialaj) return -1;
+
+    /* Sprawdź czy zostaliśmy odrzuceni (osierocone dziecko) */
+    if (odp.dane[0] == -1) {
+        LOG_W("TURYSTA #%d: Odrzucony - opiekun wyjechał beze mnie", ja.id);
+        return -1;
+    }
 
     ja.status = STATUS_NA_PERONIE;
     LOG_I("TURYSTA #%d: Wchodzę na peron", ja.id);
@@ -539,7 +553,7 @@ int main(int argc, char *argv[]) {
             sem_sygnalizuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
             break;
         }
-        
+
         /* Symulacja jazdy na górę - BLOKUJĄCE czekanie 2 sekundy */
         for (int i = 0; i < 2 && turysta_dzialaj; i++) {
             /* select() blokuje proces na 1 sekundę */
@@ -548,16 +562,18 @@ int main(int argc, char *argv[]) {
             tv.tv_usec = 0;
             select(0, NULL, NULL, NULL, &tv);
         }
-        
+
         if (!turysta_dzialaj) {
             sem_sygnalizuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA);
             break;
         }
-        
+
         /* Na stacji górnej */
         ja.status = STATUS_NA_STACJI_GORNEJ;
         LOG_I("TURYSTA #%d: Dojechałem na stację górną", ja.id);
-        
+        /* UWAGA: SEM_IDX_KRZESELKA jest zwalniany przez pracownik2
+         * gdy krzesełko dojedzie na górę - NIE zwalniamy tutaj */
+
         /* Wyjdź jednym z wyjść */
         int wyjscie = rand() % LICZBA_WYJSC;
         LOG_I("TURYSTA #%d: Wychodzę wyjściem %d", ja.id, wyjscie);

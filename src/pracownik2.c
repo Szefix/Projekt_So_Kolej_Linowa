@@ -78,7 +78,7 @@ void obsluz_przyjazd_krzeselka(int krzeselko_id) {
         stan->laczna_liczba_zjazdow++;
 
         sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
-        sem_sygnalizuj_sysv(sem_id, SEM_IDX_KRZESELKA);
+        sem_sygnalizuj_sysv(sem_id, SEM_IDX_KRZESELKA);  /* Zwolnij krzesełko */
     } else {
         sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
     }
@@ -199,6 +199,11 @@ int main(int argc, char *argv[]) {
                 p2_kolej_zatrzymana = 0;
                 sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
                 LOG_I("PRACOWNIK2: Kolej wznowiona");
+
+                /* WAŻNE: Poinformuj pracownik1 że może wznowić pracę */
+                if (stan->pid_pracownik1 > 0) {
+                    kill(stan->pid_pracownik1, SIGUSR2);
+                }
             }
         }
 

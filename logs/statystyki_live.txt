@@ -1,4 +1,0 @@
-Statystyki (iteracja 47):
-- Osoby na stacji: 7
-- Zjazdy: 33
-- Bilety: 57
