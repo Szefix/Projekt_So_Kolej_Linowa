@@ -207,13 +207,14 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        /* BLOKUJĄCE czekanie 100ms zamiast busy waiting */
+        /* BLOKUJĄCE czekanie - w turbo skróć czas */
+        int turbo = (stan && stan->turbo_mnoznik > 1) ? stan->turbo_mnoznik : 1;
         struct timeval tv;
         tv.tv_sec = 0;
-        tv.tv_usec = 100000;
+        tv.tv_usec = 100000 / turbo;  /* 100ms / turbo */
         select(0, NULL, NULL, NULL, &tv);
     }
-    
+
     LOG_I("PRACOWNIK2: Kończę pracę. Zjazdów: %d", stan->laczna_liczba_zjazdow);
     logger_close();
     return 0;

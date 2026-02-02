@@ -436,18 +436,24 @@ void jedz_na_trasie(void) {
     int czasy_tras[] = {CZAS_TRASY_T1, CZAS_TRASY_T2, CZAS_TRASY_T3};
     const char *nazwy_tras[] = {"T1 (łatwa)", "T2 (średnia)", "T3 (trudna)"};
     int wybor = rand() % 3;
-    int czas_trasy = czasy_tras[wybor];
-    
+
+    /* Pobierz mnożnik turbo ze stanu współdzielonego */
+    StanWspoldzielony *stan = turysta_zasoby.shm.stan;
+    int turbo = (stan && stan->turbo_mnoznik > 1) ? stan->turbo_mnoznik : 1;
+
+    int czas_trasy = czasy_tras[wybor] / turbo;  /* Skróć czas w turbo */
+    if (czas_trasy < 1) czas_trasy = 1;          /* Minimum 1 sekunda */
+
     ja.status = STATUS_NA_TRASIE;
-    LOG_I("TURYSTA #%d (rowerzysta): Wybieram trasę %s (czas: %ds)", 
-          ja.id, nazwy_tras[wybor], czas_trasy);
-    
+    LOG_I("TURYSTA #%d (rowerzysta): Wybieram trasę %s (czas: %ds%s)",
+          ja.id, nazwy_tras[wybor], czas_trasy, turbo > 1 ? " [TURBO]" : "");
+
     /* Symulacja czasu przejazdu - BLOKUJĄCE czekanie zamiast busy waiting */
     for (int i = 0; i < czas_trasy && turysta_dzialaj; i++) {
-        /* select() blokuje proces na 1 sekundę */
+        /* select() blokuje proces */
         struct timeval tv;
-        tv.tv_sec = 1;
-        tv.tv_usec = 0;
+        tv.tv_sec = (turbo > 1) ? 0 : 1;
+        tv.tv_usec = (turbo > 1) ? (1000000 / turbo) : 0;
         select(0, NULL, NULL, NULL, &tv);
     }
     
@@ -554,12 +560,14 @@ int main(int argc, char *argv[]) {
             break;
         }
 
-        /* Symulacja jazdy na górę - BLOKUJĄCE czekanie 2 sekundy */
-        for (int i = 0; i < 2 && turysta_dzialaj; i++) {
-            /* select() blokuje proces na 1 sekundę */
+        /* Symulacja jazdy na górę - BLOKUJĄCE czekanie */
+        /* W turbo skróć czas jazdy */
+        int turbo = (stan && stan->turbo_mnoznik > 1) ? stan->turbo_mnoznik : 1;
+        int czas_jazdy = (turbo > 1) ? 1 : 2;  /* 2s normalnie, 1s w turbo */
+        for (int i = 0; i < czas_jazdy && turysta_dzialaj; i++) {
             struct timeval tv;
-            tv.tv_sec = 1;
-            tv.tv_usec = 0;
+            tv.tv_sec = (turbo > 1) ? 0 : 1;
+            tv.tv_usec = (turbo > 1) ? (500000 / turbo) : 0;  /* 0.5s / turbo */
             select(0, NULL, NULL, NULL, &tv);
         }
 

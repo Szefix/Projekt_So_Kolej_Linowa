@@ -110,6 +110,9 @@ typedef struct {
     bool kolej_zatrzymana;
     bool godziny_pracy;
     time_t czas_startu;
+
+    /* Tryb turbo - mnożnik przyspieszenia (1 = normalny, 2-10 = turbo) */
+    int turbo_mnoznik;
     
     /* Liczniki */
     int liczba_osob_na_stacji;

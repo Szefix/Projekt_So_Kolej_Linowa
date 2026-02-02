@@ -171,14 +171,15 @@ int main(int argc, char *argv[]) {
             }
             sem_sygnalizuj_sysv(sem_id, SEM_IDX_KASA);
         } else if (wynik == 0) {
-            /* BLOKUJĄCE czekanie 10ms gdy brak komunikatów */
+            /* BLOKUJĄCE czekanie - w turbo skróć czas */
+            int turbo = (stan && stan->turbo_mnoznik > 1) ? stan->turbo_mnoznik : 1;
             struct timeval tv;
             tv.tv_sec = 0;
-            tv.tv_usec = 10000;
+            tv.tv_usec = 10000 / turbo;  /* 10ms / turbo */
             select(0, NULL, NULL, NULL, &tv);
         }
     }
-    
+
     LOG_I("KASJER: Kończę pracę. Sprzedano %d biletów.", 
           stan->liczba_sprzedanych_biletow);
     logger_close();

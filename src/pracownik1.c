@@ -594,10 +594,12 @@ int main(int argc, char *argv[]) {
             if (p1_dzialaj) p1_wznow_kolej();
         }
 
-        /* BLOKUJĄCE czekanie 50ms zamiast busy waiting */
+        /* BLOKUJĄCE czekanie - w turbo skróć czas */
+        StanWspoldzielony *stan = p1_zasoby.shm.stan;
+        int turbo = (stan && stan->turbo_mnoznik > 1) ? stan->turbo_mnoznik : 1;
         struct timeval tv;
         tv.tv_sec = 0;
-        tv.tv_usec = 50000;
+        tv.tv_usec = 50000 / turbo;  /* 50ms / turbo */
         select(0, NULL, NULL, NULL, &tv);
     }
     

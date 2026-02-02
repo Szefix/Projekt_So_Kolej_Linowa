@@ -539,12 +539,27 @@ int zapytaj_o_max_turystow(void) {
 }
 
 /* ========== WALIDACJA PARAMETRÓW ========== */
-int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_turystow) {
+int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_turystow, int *turbo_mnoznik) {
     *czas_symulacji = -1;  /* Domyślnie: pytaj użytkownika */
     *max_turystow = 100;
+    *turbo_mnoznik = 1;    /* Domyślnie: normalny tryb */
 
     for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-t") == 0) {
+        if (strcmp(argv[i], "-T") == 0 || strcmp(argv[i], "--turbo") == 0) {
+            /* Tryb turbo - opcjonalnie z mnożnikiem */
+            if (i + 1 < argc && argv[i + 1][0] != '-') {
+                int t;
+                if (parsuj_liczbe(argv[i + 1], &t) == 0 && t >= 2 && t <= 10) {
+                    *turbo_mnoznik = t;
+                    i++;
+                } else {
+                    *turbo_mnoznik = 5;  /* Domyślny mnożnik turbo */
+                }
+            } else {
+                *turbo_mnoznik = 5;  /* Domyślny mnożnik turbo */
+            }
+
+        } else if (strcmp(argv[i], "-t") == 0) {
             /* Sprawdź czy jest argument po -t */
             if (i + 1 >= argc) {
                 fprintf(stderr, "BŁĄD: Brak wartości po parametrze -t\n");
@@ -589,19 +604,23 @@ int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_tury
             i++;
 
         } else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
-            printf("Użycie: %s [-t czas] [-n liczba_turystow]\n", argv[0]);
+            printf("Użycie: %s [-t czas] [-n liczba_turystow] [-T [mnoznik]]\n", argv[0]);
             printf("\n");
             printf("Parametry:\n");
-            printf("  -t czas    Czas symulacji w sekundach (0 = nieskończoność)\n");
-            printf("             Jeśli nie podano, program zapyta interaktywnie\n");
-            printf("  -n liczba  Max liczba turystów (1-500, domyślnie 100)\n");
-            printf("  -h         Wyświetl tę pomoc\n");
+            printf("  -t czas       Czas symulacji w sekundach (0 = nieskończoność)\n");
+            printf("                Jeśli nie podano, program zapyta interaktywnie\n");
+            printf("  -n liczba     Max liczba turystów (1-500, domyślnie 100)\n");
+            printf("  -T [mnoznik]  Tryb TURBO - przyspiesza symulację\n");
+            printf("                mnoznik: 2-10 (domyślnie 5)\n");
+            printf("  -h            Wyświetl tę pomoc\n");
             printf("\n");
             printf("Przykłady:\n");
             printf("  %s              - interaktywne pytanie o czas\n", argv[0]);
             printf("  %s -t 60        - symulacja przez 60 sekund\n", argv[0]);
             printf("  %s -t 0         - symulacja w nieskończoność\n", argv[0]);
             printf("  %s -t 120 -n 50 - 120 sekund, max 50 turystów\n", argv[0]);
+            printf("  %s -t 60 -T     - tryb turbo (5x szybciej)\n", argv[0]);
+            printf("  %s -t 60 -T 10  - tryb turbo (10x szybciej)\n", argv[0]);
             return 1;
 
         } else {
@@ -616,10 +635,10 @@ int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_tury
 
 /* ========== GŁÓWNA FUNKCJA PROGRAMU ========== */
 int main(int argc, char *argv[]) {
-    int czas_symulacji, max_turystow;
+    int czas_symulacji, max_turystow, turbo_mnoznik;
 
     /* Walidacja parametrów */
-    int wynik = waliduj_parametry(argc, argv, &czas_symulacji, &max_turystow);
+    int wynik = waliduj_parametry(argc, argv, &czas_symulacji, &max_turystow, &turbo_mnoznik);
     if (wynik != 0) {
         return (wynik > 0) ? 0 : 1;
     }
@@ -670,7 +689,14 @@ int main(int argc, char *argv[]) {
     }
     
     StanWspoldzielony *stan = zasoby.shm.stan;
-    
+
+    /* Ustaw tryb turbo w stanie współdzielonym */
+    stan->turbo_mnoznik = turbo_mnoznik;
+    if (turbo_mnoznik > 1) {
+        printf(KOLOR_ZOLTY "*** TRYB TURBO AKTYWNY (x%d) ***" KOLOR_RESET "\n", turbo_mnoznik);
+        LOG_I("TURBO: Aktywny z mnożnikiem x%d", turbo_mnoznik);
+    }
+
     printf("Uruchamianie procesów obsługi...\n");
 
     /* Uruchomienie procesów */
@@ -733,11 +759,20 @@ int main(int argc, char *argv[]) {
         }
         
         /* Generuj nowych turystów - ale tylko gdy stacja nie jest przepełniona */
-        /* Generuj do 5 turystów na sekundę */
-        if (teraz - ostatni_turysta >= 1 && stan->godziny_pracy &&
+        /* W trybie turbo generuj częściej (turbo_mnoznik razy na sekundę) */
+        static int turbo_licznik = 0;
+        turbo_licznik++;
+        int generuj_teraz = (turbo_mnoznik > 1) ?
+            (turbo_licznik % (10 / turbo_mnoznik) == 0) :  /* W turbo co kilka iteracji */
+            (teraz - ostatni_turysta >= 1);                 /* Normalnie co sekundę */
+
+        if (generuj_teraz && stan->godziny_pracy &&
             nastepny_id <= max_turystow &&
             stan->liczba_osob_na_stacji < MAX_OSOB_NA_STACJI - 5) {
-            int ile_wygenerowac = 3 + (rand() % 3);  /* 3-5 turystów */
+            /* W turbo generuj więcej turystów naraz */
+            int ile_wygenerowac = (turbo_mnoznik > 1) ?
+                (3 + (rand() % 3)) * turbo_mnoznik :  /* Turbo: więcej naraz */
+                3 + (rand() % 3);                      /* Normalnie: 3-5 */
             for (int i = 0; i < ile_wygenerowac && nastepny_id <= max_turystow &&
                  stan->liczba_osob_na_stacji < MAX_OSOB_NA_STACJI - 5; i++) {
                 generuj_grupe(&nastepny_id);
@@ -758,23 +793,26 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        /* Zamiast busy waiting - użyj select() z timeoutem 100ms (BLOKUJĄCE) */
+        /* Zamiast busy waiting - użyj select() z timeoutem (BLOKUJĄCE) */
+        /* W trybie turbo skróć pauzy */
         struct timeval tv;
         tv.tv_sec = 0;
-        tv.tv_usec = 100000;  /* 100ms */
-        select(0, NULL, NULL, NULL, &tv);  /* Blokuje proces na 100ms */
+        tv.tv_usec = (turbo_mnoznik > 1) ? (100000 / turbo_mnoznik) : 100000;
+        select(0, NULL, NULL, NULL, &tv);
     }
     
     printf("\n\nZatrzymywanie symulacji...\n");
+    fflush(stdout);
     LOG_I("MAIN: Zatrzymywanie symulacji");
-    
+
     /* WAŻNE: Najpierw zatrzymaj i poczekaj na wszystkie procesy */
     zatrzymaj_i_czekaj_na_procesy();
-    
+
     /* Generuj raport */
     printf("Generowanie raportu...\n");
+    fflush(stdout);
     generuj_raport(stan, "logs/raport_dzienny.txt");
-    
+
     /* Podsumowanie */
     printf("\n");
     printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
@@ -784,16 +822,19 @@ int main(int argc, char *argv[]) {
     printf("  Wpisów w rejestrze:        " KOLOR_ZOLTY "%-6d" KOLOR_RESET "\n", stan->liczba_wpisow_rejestru);
     printf(KOLOR_CYAN "---------------------------------------------------------------\n" KOLOR_RESET);
     printf("\n");
-    
+    fflush(stdout);
+
     LOG_I(" ZAKOŃCZENIE SYMULACJI ");
-    logger_close();         
-    
+    logger_close();
+
     /* DOPIERO TERAZ czyść zasoby IPC - po zakończeniu wszystkich procesów */
     printf("Czyszczenie zasobów IPC...\n");
+    fflush(stdout);
     usun_fifo_wszystkie();
     usun_wszystkie_zasoby(&zasoby);
-    
+
     printf("Symulacja zakończona pomyślnie.\n");
-    
+    fflush(stdout);
+
     return 0;
 }
