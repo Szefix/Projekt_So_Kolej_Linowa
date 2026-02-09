@@ -414,6 +414,30 @@ ps aux | grep turysta | head -5
 ps aux | grep defunct | grep -v grep | wc -l
 ```
 
+### 6.3 Test VIP (`test_vip.sh`)
+
+Test automatyczny weryfikujący tryb wymuszenia VIP (flaga `-V`), w którym **wszyscy** turyści otrzymują status VIP.
+
+```bash
+chmod +x test_vip.sh
+./test_vip.sh
+```
+
+**Parametry uruchomienia:** 30s, 200 turystów, flaga `-V`
+
+**3 sprawdzenia:**
+
+| # | Co sprawdza | Warunek zaliczenia |
+|---|-------------|-------------------|
+| 1 | Wszyscy turyści mają status VIP | Brak wpisów "zwykły" w logach `Przychodzę` |
+| 2 | VIP wchodzą bez kolejki | Istnieją wpisy `[VIP].*bez kolejki` |
+| 3 | Nikt nie czeka w zwykłej kolejce | Brak wpisów `Czekam na miejsce na stacji` |
+
+**Jak działa flaga `-V`:**
+- `main.c` ustawia `stan->wymus_vip = true` w pamięci współdzielonej
+- `turysta.c` odczytuje flagę i nadpisuje `ja.vip = true` dla każdego turysty
+- Dodatkowo log level zmienia się z `LOG_WARN` na `LOG_INFO`, żeby wpisy `[VIP]` trafiały do logów
+
 ---
 
 ## 7. Funkcje systemowe i linki do kodu
