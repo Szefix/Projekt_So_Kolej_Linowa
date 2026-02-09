@@ -113,7 +113,8 @@ typedef struct {
 
     /* Tryb turbo - mnożnik przyspieszenia (1 = normalny, 2-10 = turbo) */
     int turbo_mnoznik;
-    
+    bool wymus_vip;
+
     /* Liczniki */
     int liczba_osob_na_stacji;
     int liczba_osob_na_peronie;

@@ -551,10 +551,11 @@ int zapytaj_o_max_turystow(void) {
 }
 
 /* ========== WALIDACJA PARAMETRÓW ========== */
-int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_turystow, int *turbo_mnoznik) {
+int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_turystow, int *turbo_mnoznik, bool *wymus_vip) {
     *czas_symulacji = -1;  /* Domyślnie: pytaj użytkownika */
     *max_turystow = 100;
     *turbo_mnoznik = 1;    /* Domyślnie: normalny tryb */
+    *wymus_vip = false;
 
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-T") == 0 || strcmp(argv[i], "--turbo") == 0) {
@@ -615,6 +616,9 @@ int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_tury
             *max_turystow = n;
             i++;
 
+        } else if (strcmp(argv[i], "-V") == 0 || strcmp(argv[i], "--vip") == 0) {
+            *wymus_vip = true;
+
         } else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
             printf("Użycie: %s [-t czas] [-n liczba_turystow] [-T [mnoznik]]\n", argv[0]);
             printf("\n");
@@ -624,6 +628,7 @@ int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_tury
             printf("  -n liczba     Max liczba turystów (min. 1, domyślnie 100)\n");
             printf("  -T [mnoznik]  Tryb TURBO - przyspiesza symulację\n");
             printf("                mnoznik: 2-10 (domyślnie 5)\n");
+            printf("  -V            Wymuszenie trybu VIP dla wszystkich turystów\n");
             printf("  -h            Wyświetl tę pomoc\n");
             printf("\n");
             printf("Przykłady:\n");
@@ -633,6 +638,7 @@ int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_tury
             printf("  %s -t 120 -n 50 - 120 sekund, max 50 turystów\n", argv[0]);
             printf("  %s -t 60 -T     - tryb turbo (5x szybciej)\n", argv[0]);
             printf("  %s -t 60 -T 10  - tryb turbo (10x szybciej)\n", argv[0]);
+            printf("  %s -t 60 -V     - wszyscy turyści jako VIP\n", argv[0]);
             return 1;
 
         } else {
@@ -648,9 +654,10 @@ int waliduj_parametry(int argc, char *argv[], int *czas_symulacji, int *max_tury
 /* ========== GŁÓWNA FUNKCJA PROGRAMU ========== */
 int main(int argc, char *argv[]) {
     int czas_symulacji, max_turystow, turbo_mnoznik;
+    bool wymus_vip;
 
     /* Walidacja parametrów */
-    int wynik = waliduj_parametry(argc, argv, &czas_symulacji, &max_turystow, &turbo_mnoznik);
+    int wynik = waliduj_parametry(argc, argv, &czas_symulacji, &max_turystow, &turbo_mnoznik, &wymus_vip);
     if (wynik != 0) {
         return (wynik > 0) ? 0 : 1;
     }
@@ -707,6 +714,12 @@ int main(int argc, char *argv[]) {
     if (turbo_mnoznik > 1) {
         printf(KOLOR_ZOLTY "*** TRYB TURBO AKTYWNY (x%d) ***" KOLOR_RESET "\n", turbo_mnoznik);
         LOG_I("TURBO: Aktywny z mnożnikiem x%d", turbo_mnoznik);
+    }
+
+    stan->wymus_vip = wymus_vip;
+    if (wymus_vip) {
+        printf(KOLOR_ZOLTY "*** TRYB VIP AKTYWNY - wszyscy turyści są VIP ***" KOLOR_RESET "\n");
+        LOG_I("VIP: Wymuszony tryb VIP dla wszystkich turystów");
     }
 
     printf("Uruchamianie procesów obsługi...\n");

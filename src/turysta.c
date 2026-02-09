@@ -523,12 +523,17 @@ int main(int argc, char *argv[]) {
     
     /* Wszyscy turysci piszą do wspólnego pliku */
     logger_init("logs/wszyscy_turysci.log");
-    logger_set_level(LOG_WARN);
-    
+    logger_set_level(turysta_zasoby.shm.stan->wymus_vip ? LOG_INFO : LOG_WARN);
+
     inicjalizuj_turystę(id, wiek, opiekun, liczba_dzieci);
-    
-    LOG_I("TURYSTA #%d: Przychodzę (wiek: %d, %s, %s)", 
-          ja.id, ja.wiek, 
+
+    /* Tryb wymuszenia VIP - nadpisz losowy wynik */
+    if (turysta_zasoby.shm.stan->wymus_vip) {
+        ja.vip = true;
+    }
+
+    LOG_I("TURYSTA #%d: Przychodzę (wiek: %d, %s, %s)",
+          ja.id, ja.wiek,
           ja.typ == ROWERZYSTA ? "rowerzysta" : "pieszy",
           ja.vip ? "VIP" : "zwykły");
     
