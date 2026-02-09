@@ -57,7 +57,7 @@ make run-long                      # 120s, 100 turystów
 **Parametry:**
 | Parametr | Opis |
 |----------|------|
-| `-t CZAS` | Czas symulacji w sekundach (0 = nieskończoność) |
+| `-t CZAS` | Czas symulacji w sekundach (wpływa na generowanie turystów, 0 = nieskończoność) |
 | `-n LICZBA` | Maksymalna liczba turystów (domyślnie 100) |
 | `-T [MNOŻNIK]` | Tryb turbo - przyspieszenie 2-10x (domyślnie 5x) |
 | `-h, --help` | Wyświetl pomoc |
@@ -132,7 +132,7 @@ Struktura `StanWspoldzielony` zawiera:
 - Flagi systemowe (`kolej_aktywna`, `kolej_zatrzymana`, `godziny_pracy`)
 - Liczniki (osoby na stacji, na peronie, aktywne krzesełka)
 - Stan bramek i krzesełek
-- Rejestr przejść (max 2000 wpisów)
+- Rejestr przejść (max 5000 wpisów)
 - Statystyki (zjazdy, sprzedane bilety)
 - PID-y pracowników i flagi gotowości
 
@@ -176,7 +176,7 @@ FUNKCJA moze_dolaczyc(turysta, aktualna_grupa):
         JEŚLI opiekun_w_grupie(turysta.opiekun_id):
             ZWRÓĆ TRUE
         W_PRZECIWNYM_RAZIE:
-            czekaj_na_opiekuna(timeout=10s)
+            czekaj_na_opiekuna(timeout=60s)
 
     ZWRÓĆ TRUE
 ```
@@ -300,7 +300,7 @@ Projekt zawiera trzy zestawy testów uruchamiane przez `./run_all_tests.sh`:
 | 13 | Priorytet VIP | Wejście bez kolejki |
 | 14 | Pojemność krzesełka | Max 4 osoby, max 2 rowerzystów |
 | 15 | Limit stacji | Max N osób na stacji dolnej |
-| 16 | Zamknięcie kolei | Transport pozostałych osób |
+| 16 | Zamknięcie kolei | Oczekiwanie na zakończenie wszystkich turystów |
 
 ### 6.1b Test IPC Mechanisms (`test_ipc_mechanisms.sh`) - 10 testów
 
@@ -375,10 +375,10 @@ Sleepy testowe są już wpisane w kod i **zakomentowane**. Aby przetestować blo
 | Komponent | Plik | Linia | Co odkomentować |
 |-----------|------|-------|-----------------|
 | Kasjer | `src/kasjer.c` | 156 | `/*sleep(30);*/` → `sleep(30);` |
-| Pracownik1 | `src/pracownik1.c` | 531-540 | Pętla z `select()` odporna na sygnały (40s) |
+| Pracownik1 | `src/pracownik1.c` | 531-540 | Pętla z `select()` odporna na sygnały (35s) |
 | Pracownik2 | `src/pracownik2.c` | 155 | `/*sleep(30);*/` → `sleep(30);` |
 
-**Uwaga:** Pracownik1 używa pętli `select()` zamiast surowego `sleep()`, ponieważ `sleep()` jest przerywany przez sygnały SIGUSR1/SIGUSR2 (zatrzymanie/wznowienie kolei). Pętla sprawdza czas co 1s i kontynuuje do upływu 40s niezależnie od otrzymanych sygnałów.
+**Uwaga:** Pracownik1 używa pętli `select()` zamiast surowego `sleep()`, ponieważ `sleep()` jest przerywany przez sygnały SIGUSR1/SIGUSR2 (zatrzymanie/wznowienie kolei). Pętla sprawdza czas co 1s i kontynuuje do upływu 35s niezależnie od otrzymanych sygnałów.
 
 #### Przeprowadzenie testu
 
@@ -436,7 +436,7 @@ chmod +x test_vip.sh
 **Jak działa flaga `-V`:**
 - `main.c` ustawia `stan->wymus_vip = true` w pamięci współdzielonej
 - `turysta.c` odczytuje flagę i nadpisuje `ja.vip = true` dla każdego turysty
-- Dodatkowo log level zmienia się z `LOG_WARN` na `LOG_INFO`, żeby wpisy `[VIP]` trafiały do logów
+- Log level jest ustawiony na `LOG_INFO`, więc wpisy `[VIP]` trafiają do logów
 
 ---
 

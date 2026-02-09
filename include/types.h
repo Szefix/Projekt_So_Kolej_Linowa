@@ -101,7 +101,7 @@ typedef struct {
 } WpisRejestru;
 
 /* ========== MAKSYMALNA LICZBA WPISÓW W REJESTRZE ========== */
-#define MAX_WPISOW_REJESTRU 2000
+#define MAX_WPISOW_REJESTRU 5000
 
 /* ========== STAN WSPÓŁDZIELONY ========== */
 typedef struct {

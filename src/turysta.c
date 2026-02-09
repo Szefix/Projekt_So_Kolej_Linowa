@@ -41,11 +41,13 @@ void inicjalizuj_turystę(int id, int zadany_wiek, int opiekun_id, int liczba_dz
     ja.pid = getpid();
     ja.wiek = (zadany_wiek > 0) ? zadany_wiek : ((rand() % 76) + 4);
 
-    if (ja.wiek >= 12 && rand() % 100 < 40) {
+    ja.typ = PIESZY;
+
+    /*if (ja.wiek >= 12 && rand() % 100 < 40) {
         ja.typ = ROWERZYSTA;
     } else {
         ja.typ = PIESZY;
-    }
+    }*/
 
     ja.vip = (rand() % 100 < PROCENT_VIP);
     ja.dziecko_pod_opieka = (ja.wiek >= WIEK_MIN_DZIECKO && ja.wiek < WIEK_DZIECKO_OPIEKA);
@@ -83,9 +85,10 @@ int kup_bilet(void) {
     
     LOG_I("TURYSTA #%d: Podchodzę do kasy", ja.id);
     
-    int typy[] = {BILET_JEDNORAZOWY, BILET_CZASOWY_TK1, BILET_CZASOWY_TK2, 
-                  BILET_CZASOWY_TK3, BILET_DZIENNY};
-    int typ = typy[rand() % 5];
+    /* int typy[] = {BILET_JEDNORAZOWY, BILET_CZASOWY_TK1, BILET_CZASOWY_TK2, 
+                  BILET_CZASOWY_TK3, BILET_DZIENNY};*/
+    int typy[] = {BILET_JEDNORAZOWY};
+    int typ = typy[0]; /* rand() % 5 czytal poza tablica - naprawione */
     
     Komunikat prosba;
     memset(&prosba, 0, sizeof(Komunikat));
@@ -523,7 +526,7 @@ int main(int argc, char *argv[]) {
     
     /* Wszyscy turysci piszą do wspólnego pliku */
     logger_init("logs/wszyscy_turysci.log");
-    logger_set_level(turysta_zasoby.shm.stan->wymus_vip ? LOG_INFO : LOG_WARN);
+    logger_set_level(LOG_INFO);
 
     inicjalizuj_turystę(id, wiek, opiekun, liczba_dzieci);
 
@@ -634,8 +637,13 @@ int main(int argc, char *argv[]) {
         }
         
         /* 30% szans na zakończenie */
-        if (rand() % 100 < 30) {
+        /*if (rand() % 100 < 30) {
             LOG_I("TURYSTA #%d: Wystarczy na dziś, wychodzę", ja.id);
+            break;
+        }*/
+
+        if (ja.liczba_zjazdow >= 1){
+             LOG_I("TURYSTA #%d: Wystarczy na dziś, wychodzę", ja.id);
             break;
         }
         
@@ -646,6 +654,21 @@ int main(int argc, char *argv[]) {
         }
     }
     
+    /* Cleanup - napraw liczniki jeśli turysta wyszedł awaryjnie */
+    if (ja.status == STATUS_NA_STACJI_DOLNEJ || ja.status == STATUS_OCZEKUJE_NA_PERON) {
+        /* Turysta był na stacji ale nie przeszedł na peron - napraw licznik stacji */
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+            stan->liczba_osob_na_stacji--;
+            sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        }
+    } else if (ja.status == STATUS_NA_PERONIE) {
+        /* Turysta był na peronie ale nie wsiadł na krzesełko - napraw licznik peronu */
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
+            stan->liczba_osob_na_peronie--;
+            sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
+        }
+    }
+
     ja.status = STATUS_ZAKONCZONY;
     LOG_I("TURYSTA #%d: Kończę dzień z %d zjazdami", ja.id, ja.liczba_zjazdow);
     

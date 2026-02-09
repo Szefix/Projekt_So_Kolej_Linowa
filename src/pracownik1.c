@@ -38,7 +38,8 @@ typedef struct {
 } OczekujacyTurysta;
 
 /* Timeout w sekundach - po tym czasie dziecko bez opiekuna jest usuwane */
-#define TIMEOUT_OCZEKIWANIA_NA_OPIEKUNA 10
+/* Przy dużej liczbie turystów opiekun może długo czekać w kolejce do kasy */
+#define TIMEOUT_OCZEKIWANIA_NA_OPIEKUNA 60
 #define MAX_TURYSTA_ID 10000
 #define MAX_ODCZYT_NA_ITER 500
 
@@ -531,7 +532,7 @@ int main(int argc, char *argv[]) {
     /* Sleep testowy - odporny na sygnały
     {
         time_t sleep_start = time(NULL);
-        while ((time(NULL) - sleep_start) < 40 && p1_dzialaj && stan->kolej_aktywna) {
+        while ((time(NULL) - sleep_start) < 35 && p1_dzialaj && stan->kolej_aktywna) {
             struct timeval tv_sleep;
             tv_sleep.tv_sec = 1;
             tv_sleep.tv_usec = 0;
@@ -649,3 +650,4 @@ int main(int argc, char *argv[]) {
     logger_close();
     return 0;
 }
+

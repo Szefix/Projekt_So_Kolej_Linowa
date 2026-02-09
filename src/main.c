@@ -246,13 +246,19 @@ void uruchom_turystę(int id, int wiek, int opiekun, int liczba_dzieci) {
 }
 
 /* ========== GENEROWANIE GRUPY ========== */
-void generuj_grupe(int *id) {
+void generuj_grupe(int *id, int max_id) {
     int dorosly_id = (*id)++;
     int wiek_dorosly = 20 + (rand() % 50);
-    
+
     int dzieci = 0;
     if (rand() % 100 < 25) {
         dzieci = 1 + (rand() % MAX_DZIECI_POD_OPIEKA);
+    }
+
+    /* Przytnij dzieci żeby nie przekroczyć max_id */
+    if (dorosly_id + dzieci > max_id) {
+        dzieci = max_id - dorosly_id;
+        if (dzieci < 0) dzieci = 0;
     }
     
     LOG_I("MAIN: Generuję turystę #%d (wiek: %d) z %d dziećmi",
@@ -744,43 +750,43 @@ int main(int argc, char *argv[]) {
     printf("Symulacja rozpoczęta! Naciśnij Ctrl+C aby przerwać.\n\n");
     
     /* Główna pętla symulacji */
-    time_t czas_start = time(NULL);
     int nastepny_id = 1;
     time_t ostatni_turysta = 0;
-    int tryb_nieskonczonosci = (czas_symulacji == -1);
+    time_t czas_wszyscy_gotowi = 0;  /* Kiedy wykryto zywe==0 */
 
     while (!zakonczenie) {
         time_t teraz = time(NULL);
-        time_t czas_dzialania = teraz - czas_start;
 
-        /* Sprawdź koniec symulacji (tylko jeśli nie tryb nieskończony) */
-        if (!tryb_nieskonczonosci && czas_dzialania >= czas_symulacji) {
-            LOG_I("MAIN: Koniec godzin pracy kolei");
-
-            if (sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN) == 0) {
-                stan->godziny_pracy = false;
-                sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
+        /* Sprawdź koniec symulacji */
+        /* Warunki: wszyscy wygenerowani i wszyscy przejechali */
+        if (nastepny_id > max_turystow) {
+            /* Sprawdź czy są jeszcze żywe procesy turystów */
+            int zywe = 0;
+            for (int j = 0; j < liczba_turystow; j++) {
+                if (pidy_turystow[j] > 0) zywe++;
             }
 
-            printf("\n\nKolej zamknięta! Oczekiwanie na opuszczenie stacji...\n");
+            if (zywe == 0) {
+                if (czas_wszyscy_gotowi == 0) {
+                    /* Pierwsze wykrycie - zapamiętaj czas, pętla dalej działa */
+                    czas_wszyscy_gotowi = teraz;
+                    LOG_I("MAIN: Wszyscy turyści zakończyli - czekam 5s na ostatnie operacje");
+                    printf("\n\nWszyscy turyści przejechali! Czekam na zakończenie ostatnich operacji...\n");
+                    fflush(stdout);
+                } else if (teraz - czas_wszyscy_gotowi >= 5) {
+                    /* Minęło 5 sekund - zamykaj */
+                    LOG_I("MAIN: Zamykam kolej");
+                    printf("Zamykanie kolei...\n");
 
-            int timeout = CZAS_WYLACZENIA_PO_ZAMKNIECIU;
-            while (timeout > 0 && (stan->liczba_osob_na_stacji > 0 ||
-                                    stan->liczba_osob_na_peronie > 0)) {
-                /* BLOKUJĄCE czekanie z timeoutem zamiast busy waiting */
-                struct timeval tv;
-                tv.tv_sec = 1;
-                tv.tv_usec = 0;
-                select(0, NULL, NULL, NULL, &tv);  /* Blokuje na 1 sekundę */
-                timeout--;
+                    if (sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN) == 0) {
+                        stan->godziny_pracy = false;
+                        stan->kolej_aktywna = false;
+                        sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
+                    }
+
+                    break;
+                }
             }
-
-            if (sem_czekaj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN) == 0) {
-                stan->kolej_aktywna = false;
-                sem_sygnalizuj_sysv(zasoby.sem.sem_id, SEM_IDX_STAN);
-            }
-
-            break;
         }
         
         /* Generuj nowych turystów - ale tylko gdy stacja nie jest przepełniona */
@@ -800,7 +806,7 @@ int main(int argc, char *argv[]) {
                 3 + (rand() % 3);                      /* Normalnie: 3-5 */
             for (int i = 0; i < ile_wygenerowac && nastepny_id <= max_turystow &&
                  stan->liczba_osob_na_stacji < MAX_OSOB_NA_STACJI - 5; i++) {
-                generuj_grupe(&nastepny_id);
+                generuj_grupe(&nastepny_id, max_turystow);
             }
             ostatni_turysta = teraz;
         }
