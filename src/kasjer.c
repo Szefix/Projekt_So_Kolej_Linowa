@@ -147,10 +147,13 @@ int main(int argc, char *argv[]) {
     zasoby_polaczone = 1;
     
     logger_init("logs/kasjer.log");
+
     LOG_I("KASJER: Rozpoczynam pracę (PID: %d)", getpid());
     
     StanWspoldzielony *stan = kasjer_zasoby.shm.stan;
     int sem_id = kasjer_zasoby.sem.sem_id;
+
+    /*sleep(30);*/
     
     while (kasjer_dzialaj) {
         /* Sprawdź stan kolei */

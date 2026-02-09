@@ -39,11 +39,75 @@ typedef struct {
 
 /* Timeout w sekundach - po tym czasie dziecko bez opiekuna jest usuwane */
 #define TIMEOUT_OCZEKIWANIA_NA_OPIEKUNA 10
+#define MAX_TURYSTA_ID 10000
+#define MAX_ODCZYT_NA_ITER 500
 
-#define MAX_OCZEKUJACYCH 300
+#define MAX_OCZEKUJACYCH 5000
 static OczekujacyTurysta kolejka[MAX_OCZEKUJACYCH];
 static int liczba_oczekujacych = 0;
 static GrupaKrzeselko aktualna_grupa;
+static int dzieci_w_kolejce[MAX_TURYSTA_ID + 1];
+static time_t ostatni_diag = 0;
+
+bool moze_dolaczyc(OczekujacyTurysta *turysta);
+
+static void zmniejsz_licznik_dziecka(int opiekun_id) {
+    if (opiekun_id > 0 && opiekun_id <= MAX_TURYSTA_ID) {
+        if (dzieci_w_kolejce[opiekun_id] > 0) {
+            dzieci_w_kolejce[opiekun_id]--;
+        }
+    }
+}
+
+/* ========== USUNIĘCIE Z KOLEJKI - SWAP-WITH-LAST O(1) ========== */
+static void usun_z_kolejki(int idx) {
+    liczba_oczekujacych--;
+    if (idx < liczba_oczekujacych) {
+        kolejka[idx] = kolejka[liczba_oczekujacych];
+    }
+}
+
+static void p1_log_diag(void) {
+    struct msqid_ds buf;
+    int q_prac = -1, q_prac_max = -1;
+    int q_krz = -1, q_krz_max = -1;
+    int sem_krz = -1;
+
+    if (msgctl(p1_zasoby.mq.mq_pracownicy, IPC_STAT, &buf) == 0) {
+        q_prac = (int)buf.msg_qnum;
+        q_prac_max = (int)buf.msg_qbytes;
+    } else {
+        perror("msgctl pracownicy");
+    }
+
+    if (msgctl(p1_zasoby.mq.mq_krzesla, IPC_STAT, &buf) == 0) {
+        q_krz = (int)buf.msg_qnum;
+        q_krz_max = (int)buf.msg_qbytes;
+    } else {
+        perror("msgctl krzesla");
+    }
+
+    sem_krz = semctl(p1_zasoby.sem.sem_id, SEM_IDX_KRZESELKA, GETVAL);
+    if (sem_krz == -1) {
+        perror("semctl krzeselka");
+    }
+
+    StanWspoldzielony *stan = p1_zasoby.shm.stan;
+    LOG_I("DIAG: q_prac=%d/%d q_krz=%d/%d sem_krz=%d aktywne=%d stacja=%d peron=%d",
+          q_prac, q_prac_max, q_krz, q_krz_max, sem_krz,
+          stan ? stan->liczba_aktywnych_krzeselek : -1,
+          stan ? stan->liczba_osob_na_stacji : -1,
+          stan ? stan->liczba_osob_na_peronie : -1);
+}
+
+static bool ktos_moze_dolaczyc(void) {
+    for (int i = 0; i < liczba_oczekujacych; i++) {
+        if (moze_dolaczyc(&kolejka[i])) {
+            return true;
+        }
+    }
+    return false;
+}
 
 static void p1_obsluz_zatrzymanie(int sig, siginfo_t *info, void *context) {
     (void)sig; (void)info; (void)context;
@@ -128,6 +192,9 @@ int znajdz_opiekuna_w_kolejce(int opiekun_id) {
 
 /* ========== POLICZ DZIECI OPIEKUNA W KOLEJCE ========== */
 int policz_dzieci_opiekuna_w_kolejce(int opiekun_id) {
+    if (opiekun_id > 0 && opiekun_id <= MAX_TURYSTA_ID) {
+        return dzieci_w_kolejce[opiekun_id];
+    }
     int licznik = 0;
     for (int i = 0; i < liczba_oczekujacych; i++) {
         if (kolejka[i].opiekun_id == opiekun_id && kolejka[i].dziecko_pod_opieka) {
@@ -236,56 +303,23 @@ int dodaj_opiekuna_z_dziecmi(int idx_opiekuna) {
     int opiekun_id = opiekun_kopia.id;
     int dodano = 0;
 
-    /* Znajdź wszystkie dzieci tego opiekuna FAKTYCZNIE w kolejce */
-    int idx_dzieci[MAX_DZIECI_POD_OPIEKA];
-    int liczba_dzieci_znalezionych = 0;
-
-    /* Szukaj WSZYSTKICH dzieci w kolejce (nie ograniczaj do liczba_dzieci - może być mniej) */
-    for (int i = 0; i < liczba_oczekujacych && liczba_dzieci_znalezionych < MAX_DZIECI_POD_OPIEKA; i++) {
-        if (kolejka[i].opiekun_id == opiekun_id && kolejka[i].dziecko_pod_opieka) {
-            idx_dzieci[liczba_dzieci_znalezionych++] = i;
-        }
-    }
-
-    /* Dodaj opiekuna */
+    /* Dodaj opiekuna do grupy */
     dodaj_do_grupy(&opiekun_kopia);
     dodano++;
 
-    /* Usuń opiekuna z kolejki */
-    for (int j = idx_opiekuna; j < liczba_oczekujacych - 1; j++) {
-        kolejka[j] = kolejka[j + 1];
-    }
-    liczba_oczekujacych--;
+    /* Usuń opiekuna z kolejki - O(1) swap-with-last */
+    usun_z_kolejki(idx_opiekuna);
 
-    /* Zaktualizuj indeksy dzieci (przesunęły się przez usunięcie opiekuna) */
-    for (int i = 0; i < liczba_dzieci_znalezionych; i++) {
-        if (idx_dzieci[i] > idx_opiekuna) {
-            idx_dzieci[i]--;
-        }
-    }
-
-    /* Dodaj dzieci (od końca żeby indeksy były poprawne) */
-    for (int i = liczba_dzieci_znalezionych - 1; i >= 0; i--) {
-        int idx = idx_dzieci[i];
-        if (idx < liczba_oczekujacych && aktualna_grupa.liczba < POJEMNOSC_KRZESELKA) {
-            OczekujacyTurysta *dziecko = &kolejka[idx];
-            if (dziecko->opiekun_id == opiekun_id) {
-                dodaj_do_grupy(dziecko);
-                dodano++;
-
-                /* Usuń dziecko z kolejki */
-                for (int j = idx; j < liczba_oczekujacych - 1; j++) {
-                    kolejka[j] = kolejka[j + 1];
-                }
-                liczba_oczekujacych--;
-
-                /* Zaktualizuj pozostałe indeksy */
-                for (int k = 0; k < i; k++) {
-                    if (idx_dzieci[k] > idx) {
-                        idx_dzieci[k]--;
-                    }
-                }
-            }
+    /* Znajdź i dodaj dzieci skanując kolejkę (indeksy nieważne po swap) */
+    for (int i = 0; i < liczba_oczekujacych && aktualna_grupa.liczba < POJEMNOSC_KRZESELKA; ) {
+        if (kolejka[i].opiekun_id == opiekun_id && kolejka[i].dziecko_pod_opieka) {
+            dodaj_do_grupy(&kolejka[i]);
+            dodano++;
+            zmniejsz_licznik_dziecka(opiekun_id);
+            usun_z_kolejki(i);
+            /* Nie inkrementuj i - swap-with-last podmienił element */
+        } else {
+            i++;
         }
     }
 
@@ -439,6 +473,37 @@ void p1_wznow_kolej(void) {
     }
 }
 
+/* ========== OPRÓŻNIANIE KOLEJKI KOMUNIKATÓW ========== */
+/* Czyta WSZYSTKIE dostępne MSG_PROSBA_O_PERON z kolejki do wewnętrznej tablicy */
+void oproznij_kolejke(void) {
+    Komunikat prosba_tmp;
+    int odczytanych = 0;
+    while (odczytanych < MAX_ODCZYT_NA_ITER &&
+           odbierz_komunikat_nieblokujaco(p1_zasoby.mq.mq_pracownicy,
+                                          &prosba_tmp, MSG_PROSBA_O_PERON) > 0) {
+        if (liczba_oczekujacych < MAX_OCZEKUJACYCH) {
+            OczekujacyTurysta *t = &kolejka[liczba_oczekujacych];
+            t->id = prosba_tmp.nadawca_id;
+            t->typ = prosba_tmp.dane[0];
+            t->dziecko_pod_opieka = (prosba_tmp.dane[1] != 0);
+            t->opiekun_id = prosba_tmp.dane[2];
+            t->wiek = prosba_tmp.dane[3];
+            t->liczba_dzieci = prosba_tmp.dane[4];
+            t->czas_dodania = time(NULL);
+            /* Inkrementalny licznik dzieci - O(1) zamiast przebudowy całej tablicy */
+            if (t->dziecko_pod_opieka && t->opiekun_id > 0 && t->opiekun_id <= MAX_TURYSTA_ID) {
+                dzieci_w_kolejce[t->opiekun_id]++;
+            }
+            liczba_oczekujacych++;
+        }
+        odczytanych++;
+    }
+    if (odczytanych > 0) {
+        LOG_I("PRACOWNIK1: Odczytano %d próśb z kolejki (łącznie oczekujących: %d)",
+              odczytanych, liczba_oczekujacych);
+    }
+}
+
 int main(int argc, char *argv[]) {
     (void)argc; (void)argv;
     
@@ -462,37 +527,28 @@ int main(int argc, char *argv[]) {
     }
 
     inicjalizuj_grupe();
-    
+
+    /* Sleep testowy - odporny na sygnały
+    {
+        time_t sleep_start = time(NULL);
+        while ((time(NULL) - sleep_start) < 40 && p1_dzialaj && stan->kolej_aktywna) {
+            struct timeval tv_sleep;
+            tv_sleep.tv_sec = 1;
+            tv_sleep.tv_usec = 0;
+            select(0, NULL, NULL, NULL, &tv_sleep);
+        }
+    }*/
+
     while (p1_dzialaj && stan->kolej_aktywna) {
-        /* Odbierz prośby od turystów ZAWSZE (nawet gdy kolej zatrzymana) */
-        Komunikat prosba;
-        int wynik = odbierz_komunikat_nieblokujaco(p1_zasoby.mq.mq_pracownicy,
-                                                    &prosba, MSG_PROSBA_O_PERON);
+        time_t teraz_diag = time(NULL);
+        if (teraz_diag != ostatni_diag) {
+            ostatni_diag = teraz_diag;
+            p1_log_diag();
+        }
+        /* Odbierz WSZYSTKIE prośby od turystów (nawet gdy kolej zatrzymana) */
+        oproznij_kolejke();
 
         if (!p1_dzialaj) break;
-
-        if (wynik > 0) {
-            int id = prosba.nadawca_id;
-            int typ = prosba.dane[0];
-            bool dziecko = (prosba.dane[1] != 0);
-            int opiekun_id = prosba.dane[2];
-            int wiek = prosba.dane[3];
-
-            LOG_I("PRACOWNIK1: Prośba od turysty #%d (wiek: %d, dziecko: %s, opiekun: %d)",
-                  id, wiek, dziecko ? "TAK" : "NIE", opiekun_id);
-
-            if (liczba_oczekujacych < MAX_OCZEKUJACYCH) {
-                OczekujacyTurysta *t = &kolejka[liczba_oczekujacych];
-                t->id = id;
-                t->typ = typ;
-                t->dziecko_pod_opieka = dziecko;
-                t->opiekun_id = opiekun_id;
-                t->wiek = wiek;
-                t->liczba_dzieci = prosba.dane[4];  /* Ile dzieci ma ten opiekun */
-                t->czas_dodania = time(NULL);       /* Zapisz czas dodania */
-                liczba_oczekujacych++;
-            }
-        }
 
         /* Gdy kolej zatrzymana - nie przetwarzaj kolejki, tylko czekaj */
         if (p1_kolej_zatrzymana) {
@@ -533,12 +589,10 @@ int main(int argc, char *argv[]) {
                     peron_msg.dane[0] = -1;  /* -1 oznacza "wyjdź bez jazdy" */
                     wyslij_komunikat(p1_zasoby.mq.mq_pracownicy, &peron_msg);
 
-                    /* Usuń z kolejki */
-                    for (int j = i; j < liczba_oczekujacych - 1; j++) {
-                        kolejka[j] = kolejka[j + 1];
-                    }
-                    liczba_oczekujacych--;
-                    continue;  /* Nie inkrementuj i */
+                    /* Usuń z kolejki - O(1) swap-with-last */
+                    zmniejsz_licznik_dziecka(turysta->opiekun_id);
+                    usun_z_kolejki(i);
+                    continue;  /* Nie inkrementuj i - swap-with-last */
                 }
             }
 
@@ -552,12 +606,10 @@ int main(int argc, char *argv[]) {
                     /* Zwykły turysta lub dziecko którego opiekun jest już w grupie */
                     dodaj_do_grupy(turysta);
 
-                    /* Usuń z kolejki */
-                    for (int j = i; j < liczba_oczekujacych - 1; j++) {
-                        kolejka[j] = kolejka[j + 1];
-                    }
-                    liczba_oczekujacych--;
-                    /* i nie jest inkrementowane bo elementy się przesunęły */
+                    /* Usuń z kolejki - O(1) swap-with-last */
+                    zmniejsz_licznik_dziecka(turysta->opiekun_id);
+                    usun_z_kolejki(i);
+                    /* i nie jest inkrementowane - swap-with-last podmienił element */
                 }
             } else {
                 i++;
@@ -566,23 +618,9 @@ int main(int argc, char *argv[]) {
             if (grupa_pelna()) wyslij_grupe_na_krzeselko();
         }
 
-        /* Wyślij niepełną grupę jeśli:
-         * - grupa ma kogoś
-         * - kolejka jest pusta LUB wszyscy w kolejce czekają (dzieci na opiekunów)
-         */
+        /* Wyślij niepełną grupę jeśli nikt więcej nie może dołączyć */
         if (aktualna_grupa.liczba > 0 && p1_dzialaj) {
-            bool wszyscy_czekaja = true;
-            for (int i = 0; i < liczba_oczekujacych; i++) {
-                OczekujacyTurysta *t = &kolejka[i];
-                /* Sprawdź czy ten turysta mógłby dołączyć */
-                if (!t->dziecko_pod_opieka || opiekun_w_grupie(t->opiekun_id)) {
-                    /* Ten turysta mógłby dołączyć - nie wysyłaj jeszcze */
-                    wszyscy_czekaja = false;
-                    break;
-                }
-            }
-
-            if (liczba_oczekujacych == 0 || wszyscy_czekaja) {
+            if (liczba_oczekujacych == 0 || !ktos_moze_dolaczyc()) {
                 wyslij_grupe_na_krzeselko();
             }
         }

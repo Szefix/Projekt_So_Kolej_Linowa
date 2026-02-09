@@ -16,6 +16,7 @@
 static int fd_logu = -1;
 static pthread_mutex_t mutex_logu = PTHREAD_MUTEX_INITIALIZER;
 static char nazwa_pliku_logu[256] = {0};
+static PoziomLogu minimalny_poziom = LOG_DEBUG;
 
 /* ========== ZMIENNE WARUNKOWE PTHREAD ========== */
 /* Używane do synchronizacji bufora logów */
@@ -151,6 +152,18 @@ void logger_init(const char *nazwa_pliku) {
     pthread_mutex_unlock(&mutex_logu);
 }
 
+void logger_set_level(PoziomLogu poziom) {
+    if (poziom < LOG_DEBUG) {
+        minimalny_poziom = LOG_DEBUG;
+        return;
+    }
+    if (poziom > LOG_ERROR) {
+        minimalny_poziom = LOG_ERROR;
+        return;
+    }
+    minimalny_poziom = poziom;
+}
+
 /* ========== ZAMKNIĘCIE LOGGERA - SYSTEMOWE close() ========== */
 void logger_close(void) {
     pthread_mutex_lock(&mutex_logu);
@@ -167,6 +180,9 @@ void logger_close(void) {
 
 /* ========== GŁÓWNA FUNKCJA LOGOWANIA - SYSTEMOWE write() ========== */
 void logger_log(PoziomLogu poziom, const char *format, ...) {
+    if (poziom < minimalny_poziom) {
+        return;
+    }
     pthread_mutex_lock(&mutex_logu);
     
     int fd = (fd_logu != -1) ? fd_logu : STDERR_FILENO;

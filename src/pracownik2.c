@@ -63,19 +63,29 @@ void obsluz_przyjazd_krzeselka(int krzeselko_id) {
 
     Krzeselko *k = &stan->krzeselka[krzeselko_id];
 
-    if (k->aktywne && k->liczba_pasazerow > 0) {
-        LOG_I("PRACOWNIK2: Krzesełko #%d - %d pasażerów", krzeselko_id, k->liczba_pasazerow);
+    if (k->aktywne) {
+        int pasazerowie = k->liczba_pasazerow;
+        if (pasazerowie > 0) {
+            LOG_I("PRACOWNIK2: Krzesełko #%d - %d pasażerów", krzeselko_id, pasazerowie);
 
-        for (int i = 0; i < k->liczba_pasazerow; i++) {
-            int wyjscie = rand() % LICZBA_WYJSC;
-            LOG_D("PRACOWNIK2: Turysta #%d -> wyjście %d", k->pasazerowie[i], wyjscie);
+            for (int i = 0; i < pasazerowie; i++) {
+                int wyjscie = rand() % LICZBA_WYJSC;
+                LOG_D("PRACOWNIK2: Turysta #%d -> wyjście %d", k->pasazerowie[i], wyjscie);
+            }
+        } else {
+            LOG_W("PRACOWNIK2: Krzesełko #%d aktywne bez pasażerów - zwalniam", krzeselko_id);
         }
 
         k->aktywne = false;
         k->liczba_pasazerow = 0;
         k->liczba_rowerzystow = 0;
-        stan->liczba_aktywnych_krzeselek--;
-        stan->laczna_liczba_zjazdow++;
+        k->czas_wyjazdu = 0;
+        if (stan->liczba_aktywnych_krzeselek > 0) {
+            stan->liczba_aktywnych_krzeselek--;
+        } else {
+            LOG_W("PRACOWNIK2: liczba_aktywnych_krzeselek już 0 przy krzesełku #%d", krzeselko_id);
+        }
+        stan->laczna_liczba_zjazdow += pasazerowie;
 
         sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
         sem_sygnalizuj_sysv(sem_id, SEM_IDX_KRZESELKA);  /* Zwolnij krzesełko */
@@ -130,6 +140,7 @@ int main(int argc, char *argv[]) {
     }
     
     logger_init("logs/pracownik2.log");
+
     LOG_I("PRACOWNIK2: Rozpoczynam pracę (PID: %d)", getpid());
     
     StanWspoldzielony *stan = p2_zasoby.shm.stan;
@@ -141,6 +152,8 @@ int main(int argc, char *argv[]) {
         sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
     }
     
+    /*sleep(30);*/
+
     while (p2_dzialaj && stan->kolej_aktywna) {
         if (p2_kolej_zatrzymana) {
             /* BLOKUJĄCE czekanie na semaforze z timeoutem */
@@ -156,6 +169,7 @@ int main(int argc, char *argv[]) {
         }
 
         if (!p2_dzialaj) break;
+        int turbo = (stan && stan->turbo_mnoznik > 1) ? stan->turbo_mnoznik : 1;
 
         /* Sprawdź krzesełka - tylko jeśli uda się nabyć semafor */
         if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) == 0) {
@@ -164,7 +178,8 @@ int main(int argc, char *argv[]) {
                 Krzeselko *k = &stan->krzeselka[i];
                 if (k->aktywne && k->czas_wyjazdu > 0) {
                     int czas_jazdy = (int)(teraz - k->czas_wyjazdu);
-                    if (czas_jazdy >= 2) {
+                    int minimalny_czas = (turbo > 1) ? 1 : 2;
+                    if (czas_jazdy >= minimalny_czas) {
                         sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
                         obsluz_przyjazd_krzeselka(i);
                         if (sem_czekaj_sysv(sem_id, SEM_IDX_STAN) != 0) break;
@@ -174,7 +189,8 @@ int main(int argc, char *argv[]) {
             sem_sygnalizuj_sysv(sem_id, SEM_IDX_STAN);
         }
 
-        if (rand() % 3000 == 0 && !p2_kolej_zatrzymana && p2_dzialaj) {
+        int stop_mod = (turbo > 1) ? 10000 : 3000;
+        if (rand() % stop_mod == 0 && !p2_kolej_zatrzymana && p2_dzialaj) {
             p2_zatrzymaj_kolej();
 
             /* BLOKUJĄCE czekanie z timeoutem 2 sekundy */
@@ -208,7 +224,6 @@ int main(int argc, char *argv[]) {
         }
 
         /* BLOKUJĄCE czekanie - w turbo skróć czas */
-        int turbo = (stan && stan->turbo_mnoznik > 1) ? stan->turbo_mnoznik : 1;
         struct timeval tv;
         tv.tv_sec = 0;
         tv.tv_usec = 100000 / turbo;  /* 100ms / turbo */

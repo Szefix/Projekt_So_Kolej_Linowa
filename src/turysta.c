@@ -6,6 +6,7 @@
 #include <time.h>
 #include <errno.h>
 #include <sys/select.h>
+#include <limits.h>
 #include "config.h"
 #include "types.h"
 #include "ipc_utils.h"
@@ -187,16 +188,23 @@ int przejdz_bramke_wejsciowa(void) {
         }
     }
 
-    LOG_I("TURYSTA #%d: Czekam na miejsce na stacji", ja.id);
-
     if (!turysta_dzialaj) {
         if (vip_nabyty) sem_sygnalizuj_sysv(sem_id, SEM_IDX_VIP);
         return -1;
     }
 
-    /* Czekaj na miejsce na stacji */
-    if (sem_czekaj_sysv(sem_id, SEM_IDX_STACJA_DOLNA) == 0) {
-        stacja_nabyta = true;
+    /* Czekaj na miejsce na stacji - VIP wchodzi bez kolejki */
+    if (ja.vip) {
+        /* VIP próbuje nabyć semafor nieblokująco - wchodzi niezależnie od wyniku */
+        if (sem_probuj_sysv(sem_id, SEM_IDX_STACJA_DOLNA) == 0) {
+            stacja_nabyta = true;
+        }
+        LOG_I("TURYSTA #%d [VIP]: Wchodzę na stację bez kolejki", ja.id);
+    } else {
+        LOG_I("TURYSTA #%d: Czekam na miejsce na stacji", ja.id);
+        if (sem_czekaj_sysv(sem_id, SEM_IDX_STACJA_DOLNA) == 0) {
+            stacja_nabyta = true;
+        }
     }
 
     if (!turysta_dzialaj) {
@@ -311,10 +319,14 @@ int czekaj_na_peron(void) {
 
     if (!turysta_dzialaj) return -1;
 
-    if (wyslij_komunikat(turysta_zasoby.mq.mq_pracownicy, &prosba) == -1) {
+    /* Retry wysyłania aż się uda - wysyłamy dokładnie 1 wiadomość */
+    while (turysta_dzialaj && stan->kolej_aktywna) {
+        if (wyslij_komunikat(turysta_zasoby.mq.mq_pracownicy, &prosba) == 0) break;
         if (!turysta_dzialaj) return -1;
-        LOG_E("TURYSTA #%d: Błąd wysyłania prośby o peron", ja.id);
-        return -1;
+        struct timeval tv_send;
+        tv_send.tv_sec = 0;
+        tv_send.tv_usec = 500000;  /* 500ms */
+        select(0, NULL, NULL, NULL, &tv_send);
     }
 
     if (!turysta_dzialaj) return -1;
@@ -463,6 +475,17 @@ void jedz_na_trasie(void) {
     }
 }
 
+/* ========== BEZPIECZNE PARSOWANIE ARGUMENTU (zamiast atoi) ========== */
+static int bezpieczne_parsuj(const char *str, int *wynik) {
+    if (str == NULL || *str == '\0') return -1;
+    char *koniec;
+    errno = 0;
+    long wartosc = strtol(str, &koniec, 10);
+    if (*koniec != '\0' || errno == ERANGE || wartosc > INT_MAX || wartosc < INT_MIN) return -1;
+    *wynik = (int)wartosc;
+    return 0;
+}
+
 /* ========== GŁÓWNA FUNKCJA ========== */
 int main(int argc, char *argv[]) {
     /* Parsuj argumenty */
@@ -471,10 +494,14 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int id = atoi(argv[1]);
-    int wiek = atoi(argv[2]);
-    int opiekun = atoi(argv[3]);
-    int liczba_dzieci = atoi(argv[4]);
+    int id, wiek, opiekun, liczba_dzieci;
+    if (bezpieczne_parsuj(argv[1], &id) != 0 ||
+        bezpieczne_parsuj(argv[2], &wiek) != 0 ||
+        bezpieczne_parsuj(argv[3], &opiekun) != 0 ||
+        bezpieczne_parsuj(argv[4], &liczba_dzieci) != 0) {
+        fprintf(stderr, "Błąd: niepoprawne argumenty liczbowe\n");
+        return 1;
+    }
     
     /* Walidacja */
     if (id <= 0 || id > 10000) {
@@ -496,6 +523,7 @@ int main(int argc, char *argv[]) {
     
     /* Wszyscy turysci piszą do wspólnego pliku */
     logger_init("logs/wszyscy_turysci.log");
+    logger_set_level(LOG_WARN);
     
     inicjalizuj_turystę(id, wiek, opiekun, liczba_dzieci);
     

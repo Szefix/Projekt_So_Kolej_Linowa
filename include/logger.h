@@ -16,6 +16,7 @@ typedef enum {
 /* ========== FUNKCJE LOGOWANIA ========== */
 void logger_init(const char *nazwa_pliku);
 void logger_close(void);
+void logger_set_level(PoziomLogu poziom);
 void logger_log(PoziomLogu poziom, const char *format, ...);
 
 /* ========== ASYNCHRONICZNE LOGOWANIE (pthread_cond_*) ========== */

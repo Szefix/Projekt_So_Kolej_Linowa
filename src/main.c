@@ -22,7 +22,7 @@ static ZasobyIPC zasoby;
 static pid_t pid_kasjer = 0;
 static pid_t pid_pracownik1 = 0;
 static pid_t pid_pracownik2 = 0;
-static pid_t pidy_turystow[200];
+static pid_t pidy_turystow[10000];
 static int liczba_turystow = 0;
 static volatile sig_atomic_t zakonczenie = 0;
 
@@ -90,24 +90,36 @@ void *watek_monitor_funkcja(void *arg) {
     LOG_I("MONITOR: Wątek monitorowania uruchomiony");
 
     while (monitor_aktywny && stan->kolej_aktywna) {
-        /* Wyświetl stan */
-        printf("\r" KOLOR_CYAN "[Czas:" KOLOR_RESET " " KOLOR_ZOLTY "%3ld" KOLOR_RESET " s" KOLOR_CYAN "]" KOLOR_RESET
-               " " KOLOR_CYAN "Stacja:" KOLOR_RESET " " KOLOR_ZOLTY "%2d" KOLOR_RESET
-               " " KOLOR_CYAN "|" KOLOR_RESET
-               " " KOLOR_CYAN "Peron:" KOLOR_RESET " " KOLOR_ZOLTY "%2d" KOLOR_RESET
-               " " KOLOR_CYAN "|" KOLOR_RESET
-               " " KOLOR_CYAN "Krzesełka:" KOLOR_RESET " " KOLOR_ZOLTY "%2d" KOLOR_RESET
-               " " KOLOR_CYAN "|" KOLOR_RESET
-               " " KOLOR_CYAN "Zjazdy:" KOLOR_RESET " " KOLOR_ZOLTY "%3d" KOLOR_RESET
-               " " KOLOR_CYAN "|" KOLOR_RESET
-               " " KOLOR_CYAN "Bilety:" KOLOR_RESET " " KOLOR_ZOLTY "%3d" KOLOR_RESET "   ",
-               time(NULL) - stan->czas_startu,
-               stan->liczba_osob_na_stacji,
-               stan->liczba_osob_na_peronie,
-               stan->liczba_aktywnych_krzeselek,
-               stan->laczna_liczba_zjazdow,
-               stan->liczba_sprzedanych_biletow);
-        fflush(stdout);
+        /* Wyświetl stan - pthread_mutex_trylock() sprawdza czy statystyki nie są aktualizowane */
+        if (pthread_mutex_trylock(&mutex_statystyki) == 0) {
+            /* Zlicz żywe procesy turystów z tablicy PID-ów (szybkie - bez /proc) */
+            int zywe = 0;
+            for (int i = 0; i < liczba_turystow; i++) {
+                if (pidy_turystow[i] > 0) zywe++;
+            }
+
+            printf("\r" KOLOR_CYAN "[Czas:" KOLOR_RESET " " KOLOR_ZOLTY "%3ld" KOLOR_RESET " s" KOLOR_CYAN "]" KOLOR_RESET
+                   " " KOLOR_CYAN "Stacja:" KOLOR_RESET " " KOLOR_ZOLTY "%2d" KOLOR_RESET
+                   " " KOLOR_CYAN "|" KOLOR_RESET
+                   " " KOLOR_CYAN "Peron:" KOLOR_RESET " " KOLOR_ZOLTY "%2d" KOLOR_RESET
+                   " " KOLOR_CYAN "|" KOLOR_RESET
+                   " " KOLOR_CYAN "Krzesełka:" KOLOR_RESET " " KOLOR_ZOLTY "%2d" KOLOR_RESET
+                   " " KOLOR_CYAN "|" KOLOR_RESET
+                   " " KOLOR_CYAN "Zjazdy:" KOLOR_RESET " " KOLOR_ZOLTY "%3d" KOLOR_RESET
+                   " " KOLOR_CYAN "|" KOLOR_RESET
+                   " " KOLOR_CYAN "Bilety:" KOLOR_RESET " " KOLOR_ZOLTY "%3d" KOLOR_RESET
+                   " " KOLOR_CYAN "|" KOLOR_RESET
+                   " " KOLOR_CYAN "Procesy:" KOLOR_RESET " " KOLOR_ZOLTY "%4d" KOLOR_RESET "   ",
+                   time(NULL) - stan->czas_startu,
+                   stan->liczba_osob_na_stacji,
+                   stan->liczba_osob_na_peronie,
+                   stan->liczba_aktywnych_krzeselek,
+                   stan->laczna_liczba_zjazdow,
+                   stan->liczba_sprzedanych_biletow,
+                   zywe);
+            fflush(stdout);
+            pthread_mutex_unlock(&mutex_statystyki);
+        }
 
         /* BLOKUJĄCE czekanie z timeoutem 500ms - pthread_cond_timedwait() */
         struct timespec ts;
@@ -227,7 +239,7 @@ void uruchom_turystę(int id, int wiek, int opiekun, int liczba_dzieci) {
         _exit(1);
     }
     
-    if (liczba_turystow < 200) {
+    if (liczba_turystow < 10000) {
         pidy_turystow[liczba_turystow++] = pid;
     }
     LOG_D("MAIN: Uruchomiono turystę #%d (PID: %d, wiek: %d)", id, pid, wiek);

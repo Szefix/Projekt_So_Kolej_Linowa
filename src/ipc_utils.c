@@ -350,11 +350,11 @@ int inicjalizuj_kolejki(KolejkiKomunikatow *mq) {
         return -1;
     }
 
-    /* Zwiększ rozmiar kolejek do 64KB (pomieści ~500 komunikatów) */
-    ustaw_rozmiar_kolejki(mq->mq_kasa, 65536);
-    ustaw_rozmiar_kolejki(mq->mq_bramki, 65536);
-    ustaw_rozmiar_kolejki(mq->mq_pracownicy, 65536);
-    ustaw_rozmiar_kolejki(mq->mq_krzesla, 65536);
+    /* Zwiększ rozmiar kolejek */
+    ustaw_rozmiar_kolejki(mq->mq_kasa, 262144);
+    ustaw_rozmiar_kolejki(mq->mq_bramki, 262144);
+    ustaw_rozmiar_kolejki(mq->mq_pracownicy, 4194304);  /* 4MB - dużo odpowiedzi dla turystów */
+    ustaw_rozmiar_kolejki(mq->mq_krzesla, 4194304);      /* 4MB - dużo komunikatów o krzesłach */
 
     return 0;
 }
@@ -461,7 +461,6 @@ int wyslij_komunikat(int mq_id, Komunikat *msg) {
     }
 
     /* Timeout - kolejka cały czas pełna */
-    fprintf(stderr, "msgsnd: kolejka pełna przez 1s, komunikat odrzucony\n");
     return -1;
 }
 

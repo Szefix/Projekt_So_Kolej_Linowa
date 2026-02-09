@@ -12,7 +12,7 @@
 #define LICZBA_BRAMEK_PERONOWYCH 3
 
 /* ========== STACJA ========== */
-#define MAX_OSOB_NA_STACJI 50  /* N osób między bramkami */
+#define MAX_OSOB_NA_STACJI 10000  /* N osób między bramkami */
 
 /* ========== WYJŚCIA STACJA GÓRNA ========== */
 #define LICZBA_WYJSC 2
